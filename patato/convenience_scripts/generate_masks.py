@@ -7,7 +7,7 @@ from os.path import join
 
 import h5py
 from .. import sort_key
-from ...utils.mask_operations import generate_mask
+from ..utils.mask_operations import generate_mask
 
 
 def init_argparse():

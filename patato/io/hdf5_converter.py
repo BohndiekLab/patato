@@ -5,8 +5,8 @@ import os
 import glob
 from os.path import join, dirname, split
 
-from patato.io.ithera.read_ithera import iTheraMSOT
-from patato.io.simpa.read_simpa import SimpaImporter
+from ..io.ithera.read_ithera import iTheraMSOT
+from ..io.simpa.read_simpa import SimpaImporter
 
 from ..utils import sort_key
 

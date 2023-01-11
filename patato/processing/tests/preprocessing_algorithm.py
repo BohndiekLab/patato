@@ -5,10 +5,10 @@ import unittest
 from os.path import split, join
 
 import numpy as np
-from patato.core.image_structures.pa_time_data import PATimeSeries
-from patato.io.msot_data import PAData
+from ...core.image_structures.pa_time_data import PATimeSeries
+from ...io.msot_data import PAData
 
-from patato.processing.gpu_preprocessing_algorithm import DefaultMSOTPreProcessor, GPUMSOTPreProcessor
+from ..gpu_preprocessing_algorithm import DefaultMSOTPreProcessor, GPUMSOTPreProcessor
 
 
 class TestPreprocessing(unittest.TestCase):

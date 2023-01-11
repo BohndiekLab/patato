@@ -5,7 +5,7 @@ import unittest
 from os.path import split, join
 
 import numpy as np
-from patato.io.msot_data import PAData
+from ..msot_data import PAData
 
 
 class TestMSOTData(unittest.TestCase):

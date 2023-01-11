@@ -43,7 +43,7 @@ class ReaderInterface(metaclass=ABCMeta):
         return np.all(np.isnan(self.get_scanner_z_position())) or np.all(0. == self.get_scanner_z_position())
 
     def save_to_hdf5(self, filename):
-        from patato.io.hdf.hdf5_interface import HDF5Writer
+        from ..hdf.hdf5_interface import HDF5Writer
         file = h5py.File(filename, "a")
         writer = HDF5Writer(file)
         return writer.save_file(self)

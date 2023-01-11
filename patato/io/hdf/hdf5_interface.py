@@ -7,11 +7,11 @@ from typing import TYPE_CHECKING, Optional, Sequence
 
 import h5py
 import numpy as np
-from patato.core.image_structures.image_structure_types import IMAGE_DATA_TYPES
-from patato.core.image_structures.pa_time_data import PATimeSeries
-from patato.io.attribute_tags import HDF5Tags, ROITags, UnmixingAttributeTags, ReconAttributeTags
-from patato.io.hdf.fileimporter import WriterInterface, ReaderInterface
-from patato.utils.rois.roi_type import ROI
+from ...core.image_structures.image_structure_types import IMAGE_DATA_TYPES
+from ...core.image_structures.pa_time_data import PATimeSeries
+from ...io.attribute_tags import HDF5Tags, ROITags, UnmixingAttributeTags, ReconAttributeTags
+from ...io.hdf.fileimporter import WriterInterface, ReaderInterface
+from ...utils.rois.roi_type import ROI
 
 if TYPE_CHECKING:
     import numpy as np

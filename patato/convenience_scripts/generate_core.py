@@ -7,7 +7,7 @@ from os.path import split, join
 
 from .. import PAData
 from .. import sort_key
-from ...utils.roi_operations import add_rim_core_data
+from ..utils.roi_operations import add_rim_core_data
 
 
 def init_argparse():

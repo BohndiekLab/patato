@@ -62,7 +62,7 @@ class ROI:
             return mask, ret_image, selection
 
     def plot(self, ax=None, **kwargs):
-        from patato.utils.roi_operations import REGION_COLOUR_MAP, close_loop
+        from ..roi_operations import REGION_COLOUR_MAP, close_loop
         import matplotlib.pyplot as plt
         if ax is None:
             ax = plt.gca()

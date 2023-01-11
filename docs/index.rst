@@ -23,6 +23,7 @@ the community.
 * Please do get involved! Contact Thomas Else (thomas.else@cruk.cam.ac.uk).
 
 .. only:: latex
+
     User Guide
     """""""""""""""""""""
 
@@ -34,6 +35,7 @@ the community.
    intro/*
 
 .. only:: latex
+
     Examples
     """""""""""""""""""""
 
@@ -45,8 +47,10 @@ the community.
    examples/*
 
 .. only:: latex
+
     API Reference
     """""""""""""""""""""
+
 .. toctree::
    :maxdepth: 2
    :caption: API Reference
@@ -56,8 +60,10 @@ the community.
    Bohndiek-Lab Specific Code <api/bohndieklab_utilities>
 
 .. only:: latex
+
     Developers
     """"""""""""""""""""
+
 .. toctree::
    :maxdepth: 2
    :caption: Developers

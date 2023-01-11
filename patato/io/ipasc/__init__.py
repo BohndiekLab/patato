@@ -4,7 +4,7 @@
 import h5py
 import pacfish as pf
 
-from patato.io.ipasc.ipasc_export import TomHDF5AdapterToIPASCFormat
+from .ipasc_export import TomHDF5AdapterToIPASCFormat
 
 
 def export_to_ipasc(path_to_hdf5, out_path=None):

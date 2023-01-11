@@ -6,9 +6,9 @@ import xml.dom.minidom
 from os.path import split, join
 
 import numpy as np
-from patato.core.image_structures.reconstruction_image import Reconstruction
-from patato.io.hdf.fileimporter import ReaderInterface
-from patato.io.ithera import load_ithera_irf
+from ...core.image_structures.reconstruction_image import Reconstruction
+from ..hdf.fileimporter import ReaderInterface
+from ..ithera import load_ithera_irf
 
 
 def xml_to_dict(x):

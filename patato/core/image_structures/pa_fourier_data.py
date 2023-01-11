@@ -10,8 +10,8 @@ from __future__ import annotations
 import numpy as np
 import scipy.fft
 import xarray
-from patato.core.image_structures.pa_raw_data import PARawData
-from patato.core.image_structures.pa_time_data import PATimeSeries
+from ..image_structures.pa_raw_data import PARawData
+from ..image_structures.pa_time_data import PATimeSeries
 
 
 class PAFourierDomain(PARawData):

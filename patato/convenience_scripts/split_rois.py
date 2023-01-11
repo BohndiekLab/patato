@@ -7,7 +7,7 @@ from os.path import split, join
 
 from .. import PAData
 from .. import sort_key
-from ...utils.roi_operations import split_roi_left_right
+from ..utils.roi_operations import split_roi_left_right
 
 
 def init_argparse():

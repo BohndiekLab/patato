@@ -4,10 +4,10 @@
 import unittest
 from os.path import join, split
 
-from patato import SpectralUnmixer, MSOTPreProcessor
-from patato.io.json.json_reading import read_reconstruction_preset, read_unmixing_preset
-from patato.processing.preprocessing_algorithm import DefaultMSOTPreProcessor
-from patato.processing.gpu_preprocessing_algorithm import GPUMSOTPreProcessor
+from .... import SpectralUnmixer, MSOTPreProcessor
+from ....io.json.json_reading import read_reconstruction_preset, read_unmixing_preset
+from ....processing.preprocessing_algorithm import DefaultMSOTPreProcessor
+from ....processing.gpu_preprocessing_algorithm import GPUMSOTPreProcessor
 
 
 class TestJSONLoading(unittest.TestCase):

@@ -7,7 +7,7 @@ from typing import Union, Optional
 from ..attribute_tags import PreprocessingAttributeTags, UnmixingAttributeTags, ReconAttributeTags
 from ..msot_data import PAData
 from ...processing.preprocessing_types import PREPROCESSING_NAMES
-from patato.unmixing.unmixer import SpectralUnmixer, SO2Calculator, THbCalculator
+from ...unmixing.unmixer import SpectralUnmixer, SO2Calculator, THbCalculator
 from ...recon import RECONSTRUCTION_NAMES
 
 
@@ -132,7 +132,7 @@ def read_unmixing_preset(json_path: Union[str, dict], example_data: Optional[PAD
     spectra_names = settings[UnmixingAttributeTags.SPECTRA]
 
     # Initialize the spectral unmixer pipeline
-    from patato.processing.spectra import SPECTRA_NAMES
+    from ...processing.spectra import SPECTRA_NAMES
     spectra = [SPECTRA_NAMES[x]() for x in spectra_names]
 
     compute_so2 = settings[UnmixingAttributeTags.COMPUTE_SO2]

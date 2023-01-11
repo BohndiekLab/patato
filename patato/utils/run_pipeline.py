@@ -5,9 +5,9 @@ import logging
 from collections import deque
 from typing import Tuple
 
-from patato.io.hdf.hdf5_interface import HDF5Writer
-from patato.io.msot_data import PAData
-from patato.processing.processing_algorithm import ProcessingAlgorithm, ProcessingResult
+from ..io.hdf.hdf5_interface import HDF5Writer
+from ..io.msot_data import PAData
+from ..processing.processing_algorithm import ProcessingAlgorithm, ProcessingResult
 from typing_extensions import Deque
 
 

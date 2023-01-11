@@ -5,7 +5,7 @@ import matplotlib.animation as animation
 import matplotlib.pyplot as plt
 from matplotlib.colors import ListedColormap
 
-from patato.io.attribute_tags import HDF5Tags
+from ..io.attribute_tags import HDF5Tags
 
 
 def animate_sequence(images, cmap, clim, **kwargs):

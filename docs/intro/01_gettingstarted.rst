@@ -22,13 +22,13 @@ Installation
 
 .. hint::
     The reconstruction algorithms rely on JAX and CUDA to enable parallelisation and GPU support. You may need to
-    follow the instructions `here <https://github.com/google/jax#installation>`_.
+    follow the instructions `on the jax website here <https://github.com/google/jax#installation>`_.
 
 Windows Installation
 --------------------
 
 If you are using Windows, you may need to install an unofficial build of JAXLIB to support image
-reconstruction. See (`here <https://github.com/cloudhan/jax-windows-builder>`_) for more details.
+reconstruction. See (`this GitHub repository <https://github.com/cloudhan/jax-windows-builder>`_) for more details.
 
 Option 1: Install using pip (not yet supported)
 ------------------------------------------------------

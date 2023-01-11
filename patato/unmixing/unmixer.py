@@ -5,15 +5,15 @@ from typing import Tuple, Optional, List, Union
 
 import numpy as np
 
-from patato.core.image_structures.reconstruction_image import Reconstruction
-from patato.core.image_structures.single_image import SingleImage
-from patato.core.image_structures.single_parameter_data import SingleParameterData
-from patato.core.image_structures.unmixed_image import UnmixedData
-from patato.io.attribute_tags import UnmixingAttributeTags, GCAttributeTags
-from patato.io.msot_data import PAData, HDF5Tags
-from patato.processing.processing_algorithm import SpatialProcessingAlgorithm, ProcessingResult
-from patato.processing.spectra import Spectrum, SPECTRA_NAMES
-from patato.utils.time_series_analysis import find_gc_boundaries
+from ..core.image_structures.reconstruction_image import Reconstruction
+from ..core.image_structures.single_image import SingleImage
+from ..core.image_structures.single_parameter_data import SingleParameterData
+from ..core.image_structures.unmixed_image import UnmixedData
+from ..io.attribute_tags import UnmixingAttributeTags, GCAttributeTags
+from ..io.msot_data import PAData, HDF5Tags
+from ..processing.processing_algorithm import SpatialProcessingAlgorithm, ProcessingResult
+from ..processing.spectra import Spectrum, SPECTRA_NAMES
+from ..utils.time_series_analysis import find_gc_boundaries
 
 
 class SpectralUnmixer(SpatialProcessingAlgorithm):

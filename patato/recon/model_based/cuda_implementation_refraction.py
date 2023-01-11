@@ -10,7 +10,7 @@ except ImportError:
 from os.path import dirname, join, exists
 
 import numpy as np
-from patato.recon.model_based.cuda_implementation import get_hash
+from .cuda_implementation import get_hash
 
 
 def generate_model(det_x, det_y, dl_0, dl_1, y_cutoff, dx, nx, x_0, nt):

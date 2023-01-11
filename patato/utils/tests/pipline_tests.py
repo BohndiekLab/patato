@@ -4,15 +4,15 @@
 import unittest
 from os.path import join, split
 
-from patato.core.image_structures.reconstruction_image import Reconstruction
+from ...core.image_structures.reconstruction_image import Reconstruction
 
-from patato.core.image_structures.unmixed_image import UnmixedData
-from patato.io.msot_data import PAData
-from patato.processing.preprocessing_algorithm import DefaultMSOTPreProcessor
-from patato.processing.spectra import OxyHaemoglobin, Haemoglobin
-from patato.recon import ReferenceBackprojection
-from patato.unmixing.unmixer import SpectralUnmixer
-from patato.utils.run_pipeline import run_pipeline
+from ...core.image_structures.unmixed_image import UnmixedData
+from ...io.msot_data import PAData
+from ...processing.preprocessing_algorithm import DefaultMSOTPreProcessor
+from ...processing.spectra import OxyHaemoglobin, Haemoglobin
+from ...recon import ReferenceBackprojection
+from ...unmixing.unmixer import SpectralUnmixer
+from ..run_pipeline import run_pipeline
 
 
 class TestPipelines(unittest.TestCase):

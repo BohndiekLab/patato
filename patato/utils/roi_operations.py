@@ -7,13 +7,13 @@ from typing import TYPE_CHECKING, Tuple
 import numpy as np
 
 if TYPE_CHECKING:
-    from patato.io.msot_data import PAData
+    from ..io.msot_data import PAData
 
 from seaborn import color_palette
 
 
 def split_roi_left_right(data: "PAData", base_roi="", split_template="unnamed"):
-    from patato.io.msot_data import ROI
+    from ..io.msot_data import ROI
     # Initial implementation - only supports one "dividing" roi.
     data_rois = data.get_rois()
 
@@ -77,7 +77,7 @@ def close_loop(x):
 
 
 def get_rim_core_rois(roi_data: "ROI", distance: float, radius=False):
-    from patato.io.msot_data import ROI
+    from ..io.msot_data import ROI
     roi = roi_data.get_polygon()
     if radius:
         effective_radius = np.sqrt(roi.area / np.pi)

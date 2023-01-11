@@ -5,7 +5,7 @@ import unittest
 from os.path import split, join
 
 import numpy as np
-from patato import PAData, iTheraMSOT, DefaultMSOTPreProcessor, ReferenceBackprojection
+from .... import PAData, iTheraMSOT, DefaultMSOTPreProcessor, ReferenceBackprojection
 
 
 class TestITheraImport(unittest.TestCase):
@@ -17,6 +17,8 @@ class TestITheraImport(unittest.TestCase):
         pa_2 = PAData(iTheraMSOT(join(f, "../../../../data/itheraexample/Scan_1")))
         self.assertEqual(pa_1.get_scan_name(), pa_2.get_scan_name())
         self.assertEqual(pa_1.scan_reader.get_scan_comment(), pa_2.scan_reader.get_scan_comment())
+
+        print(pa_1.get_scan_reconstructions())
         pa_2.set_default_recon()
 
         pa_2.get_scan_reconstructions().imshow(return_scalebar_dimension=True)

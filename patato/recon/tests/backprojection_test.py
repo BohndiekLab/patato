@@ -4,10 +4,10 @@
 import unittest
 from os.path import split, join
 
-from patato.io.msot_data import PAData
-from patato.processing.preprocessing_algorithm import DefaultMSOTPreProcessor
-from patato.recon import OpenCLBackprojection
-from patato.recon.backprojection_reference import ReferenceBackprojection
+from ...io.msot_data import PAData
+from ...processing.preprocessing_algorithm import DefaultMSOTPreProcessor
+from .. import OpenCLBackprojection
+from ..backprojection_reference import ReferenceBackprojection
 
 
 class BackprojectionTest(unittest.TestCase):

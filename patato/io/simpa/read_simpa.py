@@ -3,9 +3,9 @@
 
 import numpy as np
 import simpa as sp
-from patato.core.image_structures.reconstruction_image import Reconstruction
-from patato.io.attribute_tags import ReconAttributeTags
-from patato.io.hdf.fileimporter import ReaderInterface
+from ...core.image_structures.reconstruction_image import Reconstruction
+from ..attribute_tags import ReconAttributeTags
+from ..hdf.fileimporter import ReaderInterface
 
 
 class SimpaImporter(ReaderInterface):

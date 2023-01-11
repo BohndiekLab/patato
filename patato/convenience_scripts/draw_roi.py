@@ -19,7 +19,7 @@ from scipy.optimize import least_squares
 if matplotlib.get_backend() == "MacOSX":
     matplotlib.use("TkAgg")
 
-from ...utils.roi_operations import ROI_NAMES, REGION_COLOURS, close_loop
+from ..utils.roi_operations import ROI_NAMES, REGION_COLOURS, close_loop
 
 # TODO: Temporary fix for ?
 import os

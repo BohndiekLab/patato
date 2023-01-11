@@ -11,10 +11,10 @@ import numpy as np
 import scipy.fft
 import xarray
 
-from ...core.image_structures.pa_raw_data import PARawData
+from ..image_structures.pa_raw_data import PARawData
 
 if TYPE_CHECKING:
-    from patato.core.image_structures.pa_fourier_data import PAFourierDomain
+    from ..image_structures.pa_fourier_data import PAFourierDomain
 
 try:
     from pyopencl.array import Array, to_device
@@ -54,7 +54,7 @@ class PATimeSeries(PARawData):
         return "detectors", "timeseries"
 
     def to_fourier_domain(self) -> "PAFourierDomain":
-        from patato.core.image_structures.pa_fourier_data import PAFourierDomain
+        from ...core.image_structures.pa_fourier_data import PAFourierDomain
         res = self.copy(PAFourierDomain)
         try:
             import cupy as cp

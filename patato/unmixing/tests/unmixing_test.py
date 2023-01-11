@@ -6,9 +6,9 @@ from os.path import join, split
 
 import numpy as np
 
-from patato import Reconstruction, SO2Calculator, SpectralUnmixer, THbCalculator, ReferenceBackprojection
-from patato.io.msot_data import PAData
-from patato.processing.preprocessing_algorithm import DefaultMSOTPreProcessor
+from ... import Reconstruction, SO2Calculator, SpectralUnmixer, THbCalculator, ReferenceBackprojection
+from ...io.msot_data import PAData
+from ...processing.preprocessing_algorithm import DefaultMSOTPreProcessor
 
 
 class TestUnmixing(unittest.TestCase):

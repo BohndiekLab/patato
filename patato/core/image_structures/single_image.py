@@ -10,7 +10,7 @@ from typing import List, TYPE_CHECKING
 if TYPE_CHECKING:
     import h5py
 
-from patato.core.image_structures.image_sequence import ImageSequence
+from ...core.image_structures.image_sequence import ImageSequence
 
 
 class SingleImage(ImageSequence):

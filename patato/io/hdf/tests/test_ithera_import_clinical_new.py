@@ -3,8 +3,8 @@
 
 import unittest
 
-from patato.io.ithera.read_ithera import iTheraMSOT
-from patato.io.msot_data import PAData
+from ...ithera.read_ithera import iTheraMSOT
+from ...msot_data import PAData
 
 
 class iTheraImportTestNew(unittest.TestCase):

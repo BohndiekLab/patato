@@ -4,7 +4,7 @@
 import argparse
 from distutils.util import strtobool
 
-from ...io.hdf5_converter import convert_simpa
+from ..io.hdf5_converter import convert_simpa
 
 
 def main():

@@ -7,7 +7,7 @@ from typing import List
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from patato.utils.rois.roi_type import ROI
+    from .rois.roi_type import ROI
 
 import numpy as np
 from shapely.geometry import Polygon, Point, MultiPolygon
@@ -66,7 +66,7 @@ def interpolate_rois(rois: List["ROI"], z_positions):
     if len(rois) <= 1 or all([rois[0].z == r.z for r in rois]):
         return []
     from itk import MorphologicalContourInterpolator, image_view_from_array, array_view_from_image
-    from patato.utils.rois.roi_type import ROI
+    from .rois.roi_type import ROI
     buffer = 10
 
     indices = [r.ax0_index[0] for r in rois]

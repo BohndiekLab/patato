@@ -5,7 +5,7 @@ This defines the data structure for single parameter datasets like sO2 and THb.
 #  Copyright (c) Thomas Else 2023.
 #  License: BSD-3
 
-from patato.core.image_structures.image_sequence import ImageSequence
+from ..image_structures.image_sequence import ImageSequence
 
 
 class SingleParameterData(ImageSequence):

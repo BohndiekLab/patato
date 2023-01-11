@@ -9,6 +9,8 @@ from os.path import join
 import h5py
 import matplotlib.pyplot as plt
 import numpy as np
+
+from ...core.image_structures import image_structure_types
 from ...utils import sort_key
 from ...utils.mask_operations import generate_mask
 from scipy.signal import fftconvolve
@@ -32,7 +34,7 @@ def find_dce_boundaries(scan, reference_name="reference_",
             mask = scan["unmixed_masks"][recon]["0"][reference_name][ref_number][:]
             masks.append(mask)
     mask = masks[-1]
-    measurement = patato.core.image_structures.image_structure_types.T
+    measurement = image_structure_types.T
 
     kernel = np.arange(window) - window / 2 + 1 / 2
     kernel = np.exp(-(kernel / sigma) ** 2)

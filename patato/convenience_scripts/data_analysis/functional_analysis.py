@@ -4,6 +4,7 @@
 import h5py
 import numpy as np
 import skfda
+from ...core.image_structures import image_structure_types
 from scipy.linalg import solve_triangular
 from skfda.misc.regularization import compute_penalty_matrix
 from skfda.representation.basis import FDataBasis
@@ -80,8 +81,7 @@ def load_data(oe_file, dce_file, recon_num="0", dceunmixed_num="0ICG",
 def generate_map(mask, values, transpose=True):
     output = np.zeros(mask.shape) * np.nan
     if transpose:
-        patato.core.image_structures.image_structure_types.T[
-            patato.core.image_structures.image_structure_types.T] = values
+        image_structure_types.T[image_structure_types.T] = values
     else:
         output[mask] = values
     return output
@@ -249,7 +249,7 @@ class MultiFPCA(BaseEstimator, TransformerMixin):
                 raise ValueError("The basis used in fit is different from "
                                  "the basis used in transform.")
             output.append((X.coefficients @ jmat
-                           @ patato.core.image_structures.image_structure_types.T))
+                           @ image_structure_types.T))
         # in this case it is the inner product of our data with the components
         return sum(output)
 
@@ -340,7 +340,7 @@ class MultiRegressor:
 
 def smooth(data, steps, knot_d=10):
     fd = skfda.FDataGrid(
-        data_matrix=patato.core.image_structures.image_structure_types.T,
+        data_matrix=image_structure_types.T,
         grid_points=np.arange(data.shape[0]),
     )
     knots = []

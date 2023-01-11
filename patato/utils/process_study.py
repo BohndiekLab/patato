@@ -4,8 +4,8 @@
 import glob
 from os.path import join
 
-from patato.io.msot_data import PAData
-from patato.utils import sort_key
+from ..io.msot_data import PAData
+from . import sort_key
 
 
 def get_hdf5_files(folder, filter_name="", mode="r"):

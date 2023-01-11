@@ -2,6 +2,7 @@
 #  License: BSD-3
 
 import numpy as np
+from patato.core.image_structures import image_structure_types
 from scipy.signal import fftconvolve
 
 
@@ -10,8 +11,8 @@ def find_gc_boundaries(mask, data_so2,
                        sign=1):
     # Find the points at which the time series MSOT data switches from air to oxygen or oxygen to air.
     # STEP 1: Smooth the curve with a Gaussian kernel
-
-    measurement = patato.core.image_structures.image_structure_types.T
+    # Complete error here:
+    measurement = image_structure_types.T
     if sign != 2:
         measurement *= sign
 
