@@ -5,4 +5,4 @@ Bohndiek Lab Utilities
    :toctree: ../_autosummary
    :recursive:
 
-   bohndieklab_utilities
+   patato.bohndieklab_utilities

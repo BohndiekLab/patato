@@ -5,4 +5,4 @@ Convenience Scripts
    :toctree: ../_autosummary
    :recursive:
 
-   convenience_scripts
+   patato.convenience_scripts
