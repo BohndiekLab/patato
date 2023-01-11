@@ -18,8 +18,10 @@ the community.
 * Please report any bugs or issues you find to our GitHub repository
 * Please do get involved! Contact Thomas Else (thomas.else@cruk.cam.ac.uk).
 
-User Guide
-"""""""""""""""""""""
+.. only:: latex
+    User Guide
+    """""""""""""""""""""
+
 .. toctree::
    :maxdepth: 1
    :caption: User Guide
@@ -27,8 +29,10 @@ User Guide
 
    intro/*
 
-Examples
-"""""""""""""""""""""
+.. only:: latex
+    Examples
+    """""""""""""""""""""
+
 .. toctree::
    :maxdepth: 2
    :caption: Examples
@@ -36,8 +40,9 @@ Examples
 
    examples/*
 
-API Reference
-"""""""""""""""""""""
+.. only:: latex
+    API Reference
+    """""""""""""""""""""
 .. toctree::
    :maxdepth: 2
    :caption: API Reference
@@ -46,9 +51,9 @@ API Reference
    Convenience Scripts <api/convenience_scripts>
    Bohndiek-Lab Specific Code <api/bohndieklab_utilities>
 
-
-Developers
-""""""""""""""""""""
+.. only:: latex
+    Developers
+    """"""""""""""""""""
 .. toctree::
    :maxdepth: 2
    :caption: Developers
