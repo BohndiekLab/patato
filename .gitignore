@@ -4,6 +4,9 @@
 *.npz
 *.hdf5
 
+docs/_autosummary
+docs/_build
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
