@@ -1,3 +1,23 @@
 [build-system]
 requires = ["setuptools", "wheel", "cython", "pybind11"]
 build-backend = "setuptools.build_meta"
+
+[project]
+name = "patato"
+version = "0.0.1"
+authors = [
+  { name="Thomas Else", email="thomas.else@cruk.cam.ac.uk" },
+]
+description = "A Python Toolkit for the analysis of photoacoustic tomography data."
+readme = "README.md"
+requires-python = ">=3.9"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: BSD 3-Clause License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/tomelse/patato"
+"Bug Tracker" = "https://github.com/tomelse/patato/issues"
+"Documentation" = "https://patato.readthedocs.io"
