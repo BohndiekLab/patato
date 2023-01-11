@@ -9,7 +9,7 @@ a separate Anaconda environment to install PATATO to minimise conflicts between 
     If you are using Anaconda, you may wish to create a new environment to install PATATO to. This can be
     done by running the following command in the Anaconda prompt:
 
-        conda create -n patato python=3.6
+        conda create -n patato python=3.9
 
     Then activate the environment by running:
 
