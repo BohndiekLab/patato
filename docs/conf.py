@@ -58,7 +58,7 @@ html_theme = 'sphinx_book_theme'
 
 # html_logo = "potato logo.png"
 html_theme_options = {
-    "repository_url": "https://github.com/tomelse/MSOTAnalysis",
+    "repository_url": "https://github.com/tomelse/patato",
     "use_repository_button": True,
     "use_download_button": True,
 }

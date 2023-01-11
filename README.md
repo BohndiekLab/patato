@@ -17,4 +17,4 @@ pip install git+https://github.com/tomelse/MSOTAnalysis
 ```
 
 ## Documentation, examples and contributing
-Documentation for PATATO can be found at https://tomelse.github.io/MSOTAnalysis/.
+Documentation for PATATO can be found at https://patato.readthedocs.io/en/latest/?badge=latest.
