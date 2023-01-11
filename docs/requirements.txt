@@ -13,3 +13,4 @@ cython
 xarray
 pyopencl
 shapely
+nbsphinx
