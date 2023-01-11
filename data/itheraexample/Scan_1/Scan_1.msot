@@ -1,0 +1,3547 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataModelMsotProject xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <FolderName>Scan_2</FolderName>
+  <FriendlyName>Scan_2</FriendlyName>
+  <CreationTime>2022-11-09T11:18:28.3375261+00:00</CreationTime>
+  <DataModelVersion>2.2</DataModelVersion>
+  <Scientist>MSOT</Scientist>
+  <CustomerName>Cambridge University</CustomerName>
+  <HARDWARE-DESC xmlns="Header_Schema">
+    <AMPLIFICATION>0</AMPLIFICATION>
+    <SAMPLING-FREQUENCY unit="Hz" unit-modifier="M">40</SAMPLING-FREQUENCY>
+    <AD-RANGE unit="V" unit-modifier="none">0</AD-RANGE>
+    <POWER unit="J" unit-modifier="none">0</POWER>
+    <TRANSDUCER>msot2</TRANSDUCER>
+    <LASER-CALIBRATION-FILE-PATH>C:\ProgramData\iThera\MSOTSystem\LaserEnergyCal_P1296__CH1_2022322_UMK.cal</LASER-CALIBRATION-FILE-PATH>
+    <LASER-CHANNEL-NUMBER>None</LASER-CHANNEL-NUMBER>
+    <GEOMETRY>spherical</GEOMETRY>
+    <SETUP-TYPE>Msot2</SETUP-TYPE>
+    <AXIAL-OFFSET>0</AXIAL-OFFSET>
+    <LIGHTSPOT-SIZE>0</LIGHTSPOT-SIZE>
+    <BACKGROUND-ABSORPTION-UPPER-SLIDER-LIMIT>0.3</BACKGROUND-ABSORPTION-UPPER-SLIDER-LIMIT>
+    <BACKGROUND-ABSORPTION-LOWER-SLIDER-LIMIT>0</BACKGROUND-ABSORPTION-LOWER-SLIDER-LIMIT>
+    <BACKGROUND-OXYGENATION-UPPER-SLIDER-LIMIT>100</BACKGROUND-OXYGENATION-UPPER-SLIDER-LIMIT>
+    <BACKGROUND-OXYGENATION-LOWER-SLIDER-LIMIT>0</BACKGROUND-OXYGENATION-LOWER-SLIDER-LIMIT>
+    <SPEED-OF-SOUND-UPPER-SLIDER-LIMI.>50</SPEED-OF-SOUND-UPPER-SLIDER-LIMI.>
+    <SPEED-OF-SOUND-LOWER-SLIDER-LIMIT>-50</SPEED-OF-SOUND-LOWER-SLIDER-LIMIT>
+    <SPEED-OF-SOUND-BASE>0</SPEED-OF-SOUND-BASE>
+    <COUPLANT-SPEED-OF-SOUND>0</COUPLANT-SPEED-OF-SOUND>
+    <COUPLANT-CENTER-OF-ROTATION>0</COUPLANT-CENTER-OF-ROTATION>
+    <MIN-COUPLANT-CENTER-OF-ROTATION-OFFSET>0</MIN-COUPLANT-CENTER-OF-ROTATION-OFFSET>
+    <MAX-COUPLANT-CENTER-OF-ROTATION-OFFSET>0</MAX-COUPLANT-CENTER-OF-ROTATION-OFFSET>
+    <COUPLANT-CURVATURE-RADIUS>0</COUPLANT-CURVATURE-RADIUS>
+    <FRAME-DESC>
+      <PROJECTION wavelength-ref="all" number="1">
+        <VALUE axis-ref="1">0.02890018718562214</VALUE>
+        <VALUE axis-ref="2">-0.028373036154701561</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="2">
+        <VALUE axis-ref="1">0.029417545780916019</VALUE>
+        <VALUE axis-ref="2">-0.027836271306116239</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="3">
+        <VALUE axis-ref="1">0.029924936640654921</VALUE>
+        <VALUE axis-ref="2">-0.027290074515339619</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="4">
+        <VALUE axis-ref="1">0.0304221878423423</VALUE>
+        <VALUE axis-ref="2">-0.02673463085373053</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="5">
+        <VALUE axis-ref="1">0.030909130899166939</VALUE>
+        <VALUE axis-ref="2">-0.026170128525824309</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="6">
+        <VALUE axis-ref="1">0.031385600817092393</VALUE>
+        <VALUE axis-ref="2">-0.02559675880556226</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="7">
+        <VALUE axis-ref="1">0.031851436150762982</VALUE>
+        <VALUE axis-ref="2">-0.025014715971481059</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="8">
+        <VALUE axis-ref="1">0.032306479058207341</VALUE>
+        <VALUE axis-ref="2">-0.0244241972408841</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="9">
+        <VALUE axis-ref="1">0.03275057535432109</VALUE>
+        <VALUE axis-ref="2">-0.02382540270301713</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="10">
+        <VALUE axis-ref="1">0.033183574563110281</VALUE>
+        <VALUE axis-ref="2">-0.0232185352512707</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="11">
+        <VALUE axis-ref="1">0.03360532996867819</VALUE>
+        <VALUE axis-ref="2">-0.022603800514432521</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="12">
+        <VALUE axis-ref="1">0.034015698664937977</VALUE>
+        <VALUE axis-ref="2">-0.021981406787012891</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="13">
+        <VALUE axis-ref="1">0.034414541604034531</VALUE>
+        <VALUE axis-ref="2">-0.021351564958667</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="14">
+        <VALUE axis-ref="1">0.034801723643458841</VALUE>
+        <VALUE axis-ref="2">-0.0207144884427378</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="15">
+        <VALUE axis-ref="1">0.03517711359183931</VALUE>
+        <VALUE axis-ref="2">-0.02007039310394378</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="16">
+        <VALUE axis-ref="1">0.035540584253394077</VALUE>
+        <VALUE axis-ref="2">-0.0194194971852362</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="17">
+        <VALUE axis-ref="1">0.035892012471029668</VALUE>
+        <VALUE axis-ref="2">-0.018762021233850339</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="18">
+        <VALUE axis-ref="1">0.036231279168071</VALUE>
+        <VALUE axis-ref="2">-0.018098188026576149</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="19">
+        <VALUE axis-ref="1">0.036558269388608983</VALUE>
+        <VALUE axis-ref="2">-0.017428222494273352</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="20">
+        <VALUE axis-ref="1">0.036872872336451722</VALUE>
+        <VALUE axis-ref="2">-0.0167523516456566</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="21">
+        <VALUE axis-ref="1">0.037174981412666307</VALUE>
+        <VALUE axis-ref="2">-0.016070804490376771</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="22">
+        <VALUE axis-ref="1">0.037464494251698441</VALUE>
+        <VALUE axis-ref="2">-0.01538381196142407</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="23">
+        <VALUE axis-ref="1">0.037741312756057563</VALUE>
+        <VALUE axis-ref="2">-0.014691606836879581</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="24">
+        <VALUE axis-ref="1">0.038005343129555877</VALUE>
+        <VALUE axis-ref="2">-0.01399442366104155</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="25">
+        <VALUE axis-ref="1">0.038256495909089951</VALUE>
+        <VALUE axis-ref="2">-0.01329249866495325</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="26">
+        <VALUE axis-ref="1">0.038494685994954009</VALUE>
+        <VALUE axis-ref="2">-0.012586069686359259</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="27">
+        <VALUE axis-ref="1">0.038719832679674861</VALUE>
+        <VALUE axis-ref="2">-0.01187537608911747</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="28">
+        <VALUE axis-ref="1">0.038931859675358491</VALUE>
+        <VALUE axis-ref="2">-0.0111606586820938</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="29">
+        <VALUE axis-ref="1">0.039130695139539207</VALUE>
+        <VALUE axis-ref="2">-0.010442159637567431</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="30">
+        <VALUE axis-ref="1">0.039316271699522488</VALUE>
+        <VALUE axis-ref="2">-0.00972012240917403</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="31">
+        <VALUE axis-ref="1">0.039488526475213261</VALUE>
+        <VALUE axis-ref="2">-0.00899479164941474</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="32">
+        <VALUE axis-ref="1">0.039647401100422017</VALUE>
+        <VALUE axis-ref="2">-0.00826641312675908</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="33">
+        <VALUE axis-ref="1">0.039792841742641367</VALUE>
+        <VALUE axis-ref="2">-0.00753523364236959</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="34">
+        <VALUE axis-ref="1">0.039924799121286492</VALUE>
+        <VALUE axis-ref="2">-0.00680150094647661</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="35">
+        <VALUE axis-ref="1">0.040043228524393112</VALUE>
+        <VALUE axis-ref="2">-0.00606546365443152</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="36">
+        <VALUE axis-ref="1">0.040148089823767677</VALUE>
+        <VALUE axis-ref="2">-0.00532737116246676</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="37">
+        <VALUE axis-ref="1">0.040239347488584112</VALUE>
+        <VALUE axis-ref="2">-0.00458747356319135</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="38">
+        <VALUE axis-ref="1">0.040316970597423042</VALUE>
+        <VALUE axis-ref="2">-0.00384602156085038</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="39">
+        <VALUE axis-ref="1">0.040380932848749058</VALUE>
+        <VALUE axis-ref="2">-0.00310326638637727</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="40">
+        <VALUE axis-ref="1">0.040431212569822662</VALUE>
+        <VALUE axis-ref="2">-0.00235945971226764</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="41">
+        <VALUE axis-ref="1">0.040467792724043737</VALUE>
+        <VALUE axis-ref="2">-0.00161485356730346</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="42">
+        <VALUE axis-ref="1">0.040490660916724222</VALUE>
+        <VALUE axis-ref="2">-0.00086970025115651</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="43">
+        <VALUE axis-ref="1">0.040499809399287837</VALUE>
+        <VALUE axis-ref="2">-0.00012425224890012</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="44">
+        <VALUE axis-ref="1">0.040495235071895612</VALUE>
+        <VALUE axis-ref="2">0.00062123785454202</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="45">
+        <VALUE axis-ref="1">0.0404769394844962</VALUE>
+        <VALUE axis-ref="2">0.0013665174599808</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="46">
+        <VALUE axis-ref="1">0.040444928836300742</VALUE>
+        <VALUE axis-ref="2">0.00211133403955148</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="47">
+        <VALUE axis-ref="1">0.040399213973682291</VALUE>
+        <VALUE axis-ref="2">0.00285543522227937</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="48">
+        <VALUE axis-ref="1">0.0403398103865007</VALUE>
+        <VALUE axis-ref="2">0.00359856887959225</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="49">
+        <VALUE axis-ref="1">0.040266738202854112</VALUE>
+        <VALUE axis-ref="2">0.00434048321075076</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="50">
+        <VALUE axis-ref="1">0.040180022182258773</VALUE>
+        <VALUE axis-ref="2">0.00508092682816763</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="51">
+        <VALUE axis-ref="1">0.040079691707259633</VALUE>
+        <VALUE axis-ref="2">0.00581964884258693</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="52">
+        <VALUE axis-ref="1">0.039965780773474513</VALUE>
+        <VALUE axis-ref="2">0.00655639894809453</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="53">
+        <VALUE axis-ref="1">0.039838327978075079</VALUE>
+        <VALUE axis-ref="2">0.00729092750693083</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="54">
+        <VALUE axis-ref="1">0.039697376506708751</VALUE>
+        <VALUE axis-ref="2">0.00802298563407712</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="55">
+        <VALUE axis-ref="1">0.039542974118865863</VALUE>
+        <VALUE axis-ref="2">0.00875232528158689</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="56">
+        <VALUE axis-ref="1">0.039375173131696917</VALUE>
+        <VALUE axis-ref="2">0.00947869932263351</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="57">
+        <VALUE axis-ref="1">0.039194030402285758</VALUE>
+        <VALUE axis-ref="2">0.01020186163524579</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="58">
+        <VALUE axis-ref="1">0.0389996073083842</VALUE>
+        <VALUE axis-ref="2">0.010921567185703061</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="59">
+        <VALUE axis-ref="1">0.038791969727615082</VALUE>
+        <VALUE axis-ref="2">0.01163757211156155</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="60">
+        <VALUE axis-ref="1">0.038571188015150512</VALUE>
+        <VALUE axis-ref="2">0.0123496338042838</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="61">
+        <VALUE axis-ref="1">0.038337336979872981</VALUE>
+        <VALUE axis-ref="2">0.01305751099144333</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="62">
+        <VALUE axis-ref="1">0.038090495859027372</VALUE>
+        <VALUE axis-ref="2">0.013760963818476491</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="63">
+        <VALUE axis-ref="1">0.037830748291372493</VALUE>
+        <VALUE axis-ref="2">0.01445975392995392</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="64">
+        <VALUE axis-ref="1">0.037558182288841252</VALUE>
+        <VALUE axis-ref="2">0.015153644550344051</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="65">
+        <VALUE axis-ref="1">0.037272890206718978</VALUE>
+        <VALUE axis-ref="2">0.015842400564241289</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="66">
+        <VALUE axis-ref="1">0.036974968712350127</VALUE>
+        <VALUE axis-ref="2">0.01652578859603164</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="67">
+        <VALUE axis-ref="1">0.036664518752383808</VALUE>
+        <VALUE axis-ref="2">0.01720357708896891</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="68">
+        <VALUE axis-ref="1">0.036341645518569443</VALUE>
+        <VALUE axis-ref="2">0.017875536383634531</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="69">
+        <VALUE axis-ref="1">0.036006458412113918</VALUE>
+        <VALUE axis-ref="2">0.018541438795754529</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="70">
+        <VALUE axis-ref="1">0.03565907100661251</VALUE>
+        <VALUE axis-ref="2">0.019201058693347279</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="71">
+        <VALUE axis-ref="1">0.035299601009566021</VALUE>
+        <VALUE axis-ref="2">0.0198541725731758</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="72">
+        <VALUE axis-ref="1">0.03492817022249714</VALUE>
+        <VALUE axis-ref="2">0.020500559136478792</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="73">
+        <VALUE axis-ref="1">0.034544904499679729</VALUE>
+        <VALUE axis-ref="2">0.021139999363954758</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="74">
+        <VALUE axis-ref="1">0.034149933705494739</VALUE>
+        <VALUE axis-ref="2">0.02177227658997365</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="75">
+        <VALUE axis-ref="1">0.033743391670427482</VALUE>
+        <VALUE axis-ref="2">0.022397176575991121</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="76">
+        <VALUE axis-ref="1">0.033325416145720967</VALUE>
+        <VALUE axis-ref="2">0.023014487583140331</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="77">
+        <VALUE axis-ref="1">0.032896148756700758</VALUE>
+        <VALUE axis-ref="2">0.023624000443976782</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="78">
+        <VALUE axis-ref="1">0.032455734954787173</VALUE>
+        <VALUE axis-ref="2">0.024225508633351871</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="79">
+        <VALUE axis-ref="1">0.032004323968211047</VALUE>
+        <VALUE axis-ref="2">0.024818808338391091</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="80">
+        <VALUE axis-ref="1">0.031542068751449777</VALUE>
+        <VALUE axis-ref="2">0.02540369852755334</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="81">
+        <VALUE axis-ref="1">0.031069125933400731</VALUE>
+        <VALUE axis-ref="2">0.02597998101874761</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="82">
+        <VALUE axis-ref="1">0.03058565576430973</VALUE>
+        <VALUE axis-ref="2">0.026547460546484429</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="83">
+        <VALUE axis-ref="1">0.030091822061472429</VALUE>
+        <VALUE axis-ref="2">0.027105944828038759</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="84">
+        <VALUE axis-ref="1">0.029587792153727019</VALUE>
+        <VALUE axis-ref="2">0.027655244628602551</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="85">
+        <VALUE axis-ref="1">0.02907373682475713</VALUE>
+        <VALUE axis-ref="2">0.028195173825404259</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="86">
+        <VALUE axis-ref="1">0.028549830255224149</VALUE>
+        <VALUE axis-ref="2">0.028725549470774062</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="87">
+        <VALUE axis-ref="1">0.02801624996374839</VALUE>
+        <VALUE axis-ref="2">0.02924619185413322</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="88">
+        <VALUE axis-ref="1">0.027473176746759389</VALUE>
+        <VALUE axis-ref="2">0.029756924562886519</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="89">
+        <VALUE axis-ref="1">0.026920794617235469</VALUE>
+        <VALUE axis-ref="2">0.0302575745421973</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="90">
+        <VALUE axis-ref="1">0.026359290742353429</VALUE>
+        <VALUE axis-ref="2">0.030747972153624719</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="91">
+        <VALUE axis-ref="1">0.02578885538006951</VALUE>
+        <VALUE axis-ref="2">0.031227951232603461</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="92">
+        <VALUE axis-ref="1">0.025209681814653068</VALUE>
+        <VALUE axis-ref="2">0.031697349144746333</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="93">
+        <VALUE axis-ref="1">0.024621966291194831</VALUE>
+        <VALUE axis-ref="2">0.032156006840950657</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="94">
+        <VALUE axis-ref="1">0.024025907949111889</VALUE>
+        <VALUE axis-ref="2">0.032603768911290028</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="95">
+        <VALUE axis-ref="1">0.02342170875467205</VALUE>
+        <VALUE axis-ref="2">0.033040483637672723</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="96">
+        <VALUE axis-ref="1">0.022809573432560279</VALUE>
+        <VALUE axis-ref="2">0.033466003045249382</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="97">
+        <VALUE axis-ref="1">0.022189709396510559</VALUE>
+        <VALUE axis-ref="2">0.03388018295255224</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="98">
+        <VALUE axis-ref="1">0.021562326679026519</VALUE>
+        <VALUE axis-ref="2">0.034282883020349111</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="99">
+        <VALUE axis-ref="1">0.020927637860214818</VALUE>
+        <VALUE axis-ref="2">0.034673966799195377</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="100">
+        <VALUE axis-ref="1">0.02028585799575525</VALUE>
+        <VALUE axis-ref="2">0.035053301775668053</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="101">
+        <VALUE axis-ref="1">0.01963720454403204</VALUE>
+        <VALUE axis-ref="2">0.035420759417266127</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="102">
+        <VALUE axis-ref="1">0.01898189729245103</VALUE>
+        <VALUE axis-ref="2">0.03577621521596213</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="103">
+        <VALUE axis-ref="1">0.018320158282967718</VALUE>
+        <VALUE axis-ref="2">0.036119548730389882</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="104">
+        <VALUE axis-ref="1">0.017652211736851348</VALUE>
+        <VALUE axis-ref="2">0.03645064362665449</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="105">
+        <VALUE axis-ref="1">0.016978283978710571</VALUE>
+        <VALUE axis-ref="2">0.036769387717750492</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="106">
+        <VALUE axis-ref="1">0.01629860335980644</VALUE>
+        <VALUE axis-ref="2">0.037075673001574848</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="107">
+        <VALUE axis-ref="1">0.015613400180678709</VALUE>
+        <VALUE axis-ref="2">0.037369395697522088</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="108">
+        <VALUE axis-ref="1">0.01492290661311158</VALUE>
+        <VALUE axis-ref="2">0.037650456281648842</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="109">
+        <VALUE axis-ref="1">0.014227356621465469</VALUE>
+        <VALUE axis-ref="2">0.037918759520396271</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="110">
+        <VALUE axis-ref="1">0.01352698588340138</VALUE>
+        <VALUE axis-ref="2">0.0381742145028586</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="111">
+        <VALUE axis-ref="1">0.012822031710024721</VALUE>
+        <VALUE axis-ref="2">0.038416734671587079</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="112">
+        <VALUE axis-ref="1">0.01211273296547564</VALUE>
+        <VALUE axis-ref="2">0.038646237851918779</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="113">
+        <VALUE axis-ref="1">0.01139932998599319</VALUE>
+        <VALUE axis-ref="2">0.038862646279820383</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="114">
+        <VALUE axis-ref="1">0.01068206449848068</VALUE>
+        <VALUE axis-ref="2">0.039065886628237421</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="115">
+        <VALUE axis-ref="1">0.00996117953859968</VALUE>
+        <VALUE axis-ref="2">0.039255890031940223</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="116">
+        <VALUE axis-ref="1">0.00923691936842087</VALUE>
+        <VALUE axis-ref="2">0.039432592110857888</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="117">
+        <VALUE axis-ref="1">0.00850952939365902</VALUE>
+        <VALUE axis-ref="2">0.039595932991892652</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="118">
+        <VALUE axis-ref="1">0.00777925608052064</VALUE>
+        <VALUE axis-ref="2">0.03974585732920706</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="119">
+        <VALUE axis-ref="1">0.00704634687219228</VALUE>
+        <VALUE axis-ref="2">0.039882314322977119</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="120">
+        <VALUE axis-ref="1">0.00631105010499775</VALUE>
+        <VALUE axis-ref="2">0.040005257736605182</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="121">
+        <VALUE axis-ref="1">0.00557361492425268</VALUE>
+        <VALUE axis-ref="2">0.040114645912386511</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="122">
+        <VALUE axis-ref="1">0.00483429119984514</VALUE>
+        <VALUE axis-ref="2">0.040210441785624537</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="123">
+        <VALUE axis-ref="1">0.00409332944157053</VALUE>
+        <VALUE axis-ref="2">0.040292612897189627</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="124">
+        <VALUE axis-ref="1">0.00335098071424971</VALUE>
+        <VALUE axis-ref="2">0.04036113140451747</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="125">
+        <VALUE axis-ref="1">0.00260749655265923</VALUE>
+        <VALUE axis-ref="2">0.040415974091043139</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="126">
+        <VALUE axis-ref="1">0.00186312887630204</VALUE>
+        <VALUE axis-ref="2">0.040457122374067712</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="127">
+        <VALUE axis-ref="1">0.00111812990404811</VALUE>
+        <VALUE axis-ref="2">0.040484562311054739</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="128">
+        <VALUE axis-ref="1">0.00037275206867343</VALUE>
+        <VALUE axis-ref="2">0.040498284604354541</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="129">
+        <VALUE axis-ref="1">-0.00037275206867343</VALUE>
+        <VALUE axis-ref="2">0.040498284604354541</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="130">
+        <VALUE axis-ref="1">-0.00111812990404811</VALUE>
+        <VALUE axis-ref="2">0.040484562311054739</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="131">
+        <VALUE axis-ref="1">-0.00186312887630204</VALUE>
+        <VALUE axis-ref="2">0.040457122374067712</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="132">
+        <VALUE axis-ref="1">-0.00260749655265923</VALUE>
+        <VALUE axis-ref="2">0.040415974091043139</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="133">
+        <VALUE axis-ref="1">-0.00335098071424971</VALUE>
+        <VALUE axis-ref="2">0.04036113140451747</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="134">
+        <VALUE axis-ref="1">-0.00409332944157053</VALUE>
+        <VALUE axis-ref="2">0.040292612897189627</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="135">
+        <VALUE axis-ref="1">-0.00483429119984514</VALUE>
+        <VALUE axis-ref="2">0.040210441785624537</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="136">
+        <VALUE axis-ref="1">-0.00557361492425268</VALUE>
+        <VALUE axis-ref="2">0.040114645912386511</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="137">
+        <VALUE axis-ref="1">-0.00631105010499775</VALUE>
+        <VALUE axis-ref="2">0.040005257736605182</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="138">
+        <VALUE axis-ref="1">-0.00704634687219228</VALUE>
+        <VALUE axis-ref="2">0.039882314322977119</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="139">
+        <VALUE axis-ref="1">-0.00777925608052064</VALUE>
+        <VALUE axis-ref="2">0.03974585732920706</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="140">
+        <VALUE axis-ref="1">-0.00850952939365902</VALUE>
+        <VALUE axis-ref="2">0.039595932991892652</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="141">
+        <VALUE axis-ref="1">-0.00923691936842087</VALUE>
+        <VALUE axis-ref="2">0.039432592110857888</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="142">
+        <VALUE axis-ref="1">-0.00996117953859968</VALUE>
+        <VALUE axis-ref="2">0.039255890031940223</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="143">
+        <VALUE axis-ref="1">-0.01068206449848068</VALUE>
+        <VALUE axis-ref="2">0.039065886628237421</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="144">
+        <VALUE axis-ref="1">-0.01139932998599319</VALUE>
+        <VALUE axis-ref="2">0.038862646279820383</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="145">
+        <VALUE axis-ref="1">-0.01211273296547564</VALUE>
+        <VALUE axis-ref="2">0.038646237851918779</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="146">
+        <VALUE axis-ref="1">-0.012822031710024721</VALUE>
+        <VALUE axis-ref="2">0.038416734671587079</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="147">
+        <VALUE axis-ref="1">-0.01352698588340138</VALUE>
+        <VALUE axis-ref="2">0.0381742145028586</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="148">
+        <VALUE axis-ref="1">-0.014227356621465469</VALUE>
+        <VALUE axis-ref="2">0.037918759520396271</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="149">
+        <VALUE axis-ref="1">-0.01492290661311158</VALUE>
+        <VALUE axis-ref="2">0.037650456281648842</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="150">
+        <VALUE axis-ref="1">-0.015613400180678709</VALUE>
+        <VALUE axis-ref="2">0.037369395697522088</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="151">
+        <VALUE axis-ref="1">-0.01629860335980644</VALUE>
+        <VALUE axis-ref="2">0.037075673001574848</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="152">
+        <VALUE axis-ref="1">-0.016978283978710571</VALUE>
+        <VALUE axis-ref="2">0.036769387717750492</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="153">
+        <VALUE axis-ref="1">-0.017652211736851348</VALUE>
+        <VALUE axis-ref="2">0.03645064362665449</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="154">
+        <VALUE axis-ref="1">-0.018320158282967718</VALUE>
+        <VALUE axis-ref="2">0.036119548730389882</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="155">
+        <VALUE axis-ref="1">-0.01898189729245103</VALUE>
+        <VALUE axis-ref="2">0.03577621521596213</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="156">
+        <VALUE axis-ref="1">-0.01963720454403204</VALUE>
+        <VALUE axis-ref="2">0.035420759417266127</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="157">
+        <VALUE axis-ref="1">-0.02028585799575525</VALUE>
+        <VALUE axis-ref="2">0.035053301775668053</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="158">
+        <VALUE axis-ref="1">-0.020927637860214818</VALUE>
+        <VALUE axis-ref="2">0.034673966799195377</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="159">
+        <VALUE axis-ref="1">-0.021562326679026519</VALUE>
+        <VALUE axis-ref="2">0.034282883020349111</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="160">
+        <VALUE axis-ref="1">-0.022189709396510559</VALUE>
+        <VALUE axis-ref="2">0.03388018295255224</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="161">
+        <VALUE axis-ref="1">-0.022809573432560279</VALUE>
+        <VALUE axis-ref="2">0.033466003045249382</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="162">
+        <VALUE axis-ref="1">-0.02342170875467205</VALUE>
+        <VALUE axis-ref="2">0.033040483637672723</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="163">
+        <VALUE axis-ref="1">-0.024025907949111889</VALUE>
+        <VALUE axis-ref="2">0.032603768911290028</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="164">
+        <VALUE axis-ref="1">-0.024621966291194831</VALUE>
+        <VALUE axis-ref="2">0.032156006840950657</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="165">
+        <VALUE axis-ref="1">-0.025209681814653068</VALUE>
+        <VALUE axis-ref="2">0.031697349144746333</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="166">
+        <VALUE axis-ref="1">-0.02578885538006951</VALUE>
+        <VALUE axis-ref="2">0.031227951232603461</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="167">
+        <VALUE axis-ref="1">-0.026359290742353429</VALUE>
+        <VALUE axis-ref="2">0.030747972153624719</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="168">
+        <VALUE axis-ref="1">-0.026920794617235469</VALUE>
+        <VALUE axis-ref="2">0.0302575745421973</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="169">
+        <VALUE axis-ref="1">-0.027473176746759389</VALUE>
+        <VALUE axis-ref="2">0.029756924562886519</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="170">
+        <VALUE axis-ref="1">-0.02801624996374839</VALUE>
+        <VALUE axis-ref="2">0.02924619185413322</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="171">
+        <VALUE axis-ref="1">-0.028549830255224149</VALUE>
+        <VALUE axis-ref="2">0.028725549470774062</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="172">
+        <VALUE axis-ref="1">-0.02907373682475713</VALUE>
+        <VALUE axis-ref="2">0.028195173825404259</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="173">
+        <VALUE axis-ref="1">-0.029587792153727019</VALUE>
+        <VALUE axis-ref="2">0.027655244628602551</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="174">
+        <VALUE axis-ref="1">-0.030091822061472429</VALUE>
+        <VALUE axis-ref="2">0.027105944828038759</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="175">
+        <VALUE axis-ref="1">-0.03058565576430973</VALUE>
+        <VALUE axis-ref="2">0.026547460546484429</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="176">
+        <VALUE axis-ref="1">-0.031069125933400731</VALUE>
+        <VALUE axis-ref="2">0.02597998101874761</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="177">
+        <VALUE axis-ref="1">-0.031542068751449777</VALUE>
+        <VALUE axis-ref="2">0.02540369852755334</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="178">
+        <VALUE axis-ref="1">-0.032004323968211047</VALUE>
+        <VALUE axis-ref="2">0.024818808338391091</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="179">
+        <VALUE axis-ref="1">-0.032455734954787173</VALUE>
+        <VALUE axis-ref="2">0.024225508633351871</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="180">
+        <VALUE axis-ref="1">-0.032896148756700758</VALUE>
+        <VALUE axis-ref="2">0.023624000443976782</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="181">
+        <VALUE axis-ref="1">-0.033325416145720967</VALUE>
+        <VALUE axis-ref="2">0.023014487583140331</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="182">
+        <VALUE axis-ref="1">-0.033743391670427482</VALUE>
+        <VALUE axis-ref="2">0.022397176575991121</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="183">
+        <VALUE axis-ref="1">-0.034149933705494739</VALUE>
+        <VALUE axis-ref="2">0.02177227658997365</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="184">
+        <VALUE axis-ref="1">-0.034544904499679729</VALUE>
+        <VALUE axis-ref="2">0.021139999363954758</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="185">
+        <VALUE axis-ref="1">-0.03492817022249714</VALUE>
+        <VALUE axis-ref="2">0.020500559136478792</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="186">
+        <VALUE axis-ref="1">-0.035299601009566021</VALUE>
+        <VALUE axis-ref="2">0.0198541725731758</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="187">
+        <VALUE axis-ref="1">-0.03565907100661251</VALUE>
+        <VALUE axis-ref="2">0.019201058693347279</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="188">
+        <VALUE axis-ref="1">-0.036006458412113918</VALUE>
+        <VALUE axis-ref="2">0.018541438795754529</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="189">
+        <VALUE axis-ref="1">-0.036341645518569443</VALUE>
+        <VALUE axis-ref="2">0.017875536383634531</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="190">
+        <VALUE axis-ref="1">-0.036664518752383808</VALUE>
+        <VALUE axis-ref="2">0.01720357708896891</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="191">
+        <VALUE axis-ref="1">-0.036974968712350127</VALUE>
+        <VALUE axis-ref="2">0.01652578859603164</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="192">
+        <VALUE axis-ref="1">-0.037272890206718978</VALUE>
+        <VALUE axis-ref="2">0.015842400564241289</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="193">
+        <VALUE axis-ref="1">-0.037558182288841252</VALUE>
+        <VALUE axis-ref="2">0.015153644550344051</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="194">
+        <VALUE axis-ref="1">-0.037830748291372493</VALUE>
+        <VALUE axis-ref="2">0.01445975392995392</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="195">
+        <VALUE axis-ref="1">-0.038090495859027372</VALUE>
+        <VALUE axis-ref="2">0.013760963818476491</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="196">
+        <VALUE axis-ref="1">-0.038337336979872981</VALUE>
+        <VALUE axis-ref="2">0.01305751099144333</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="197">
+        <VALUE axis-ref="1">-0.038571188015150512</VALUE>
+        <VALUE axis-ref="2">0.0123496338042838</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="198">
+        <VALUE axis-ref="1">-0.038791969727615082</VALUE>
+        <VALUE axis-ref="2">0.01163757211156155</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="199">
+        <VALUE axis-ref="1">-0.0389996073083842</VALUE>
+        <VALUE axis-ref="2">0.010921567185703061</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="200">
+        <VALUE axis-ref="1">-0.039194030402285758</VALUE>
+        <VALUE axis-ref="2">0.01020186163524579</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="201">
+        <VALUE axis-ref="1">-0.039375173131696917</VALUE>
+        <VALUE axis-ref="2">0.00947869932263351</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="202">
+        <VALUE axis-ref="1">-0.039542974118865863</VALUE>
+        <VALUE axis-ref="2">0.00875232528158689</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="203">
+        <VALUE axis-ref="1">-0.039697376506708751</VALUE>
+        <VALUE axis-ref="2">0.00802298563407712</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="204">
+        <VALUE axis-ref="1">-0.039838327978075079</VALUE>
+        <VALUE axis-ref="2">0.00729092750693083</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="205">
+        <VALUE axis-ref="1">-0.039965780773474513</VALUE>
+        <VALUE axis-ref="2">0.00655639894809453</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="206">
+        <VALUE axis-ref="1">-0.040079691707259633</VALUE>
+        <VALUE axis-ref="2">0.00581964884258693</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="207">
+        <VALUE axis-ref="1">-0.040180022182258773</VALUE>
+        <VALUE axis-ref="2">0.00508092682816763</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="208">
+        <VALUE axis-ref="1">-0.040266738202854112</VALUE>
+        <VALUE axis-ref="2">0.00434048321075076</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="209">
+        <VALUE axis-ref="1">-0.0403398103865007</VALUE>
+        <VALUE axis-ref="2">0.00359856887959225</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="210">
+        <VALUE axis-ref="1">-0.040399213973682291</VALUE>
+        <VALUE axis-ref="2">0.00285543522227937</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="211">
+        <VALUE axis-ref="1">-0.040444928836300742</VALUE>
+        <VALUE axis-ref="2">0.00211133403955148</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="212">
+        <VALUE axis-ref="1">-0.0404769394844962</VALUE>
+        <VALUE axis-ref="2">0.0013665174599808</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="213">
+        <VALUE axis-ref="1">-0.040495235071895612</VALUE>
+        <VALUE axis-ref="2">0.00062123785454202</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="214">
+        <VALUE axis-ref="1">-0.040499809399287837</VALUE>
+        <VALUE axis-ref="2">-0.00012425224890012</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="215">
+        <VALUE axis-ref="1">-0.040490660916724222</VALUE>
+        <VALUE axis-ref="2">-0.00086970025115651</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="216">
+        <VALUE axis-ref="1">-0.040467792724043737</VALUE>
+        <VALUE axis-ref="2">-0.00161485356730346</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="217">
+        <VALUE axis-ref="1">-0.040431212569822662</VALUE>
+        <VALUE axis-ref="2">-0.00235945971226764</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="218">
+        <VALUE axis-ref="1">-0.040380932848749058</VALUE>
+        <VALUE axis-ref="2">-0.00310326638637727</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="219">
+        <VALUE axis-ref="1">-0.040316970597423042</VALUE>
+        <VALUE axis-ref="2">-0.00384602156085038</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="220">
+        <VALUE axis-ref="1">-0.040239347488584112</VALUE>
+        <VALUE axis-ref="2">-0.00458747356319135</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="221">
+        <VALUE axis-ref="1">-0.040148089823767677</VALUE>
+        <VALUE axis-ref="2">-0.00532737116246676</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="222">
+        <VALUE axis-ref="1">-0.040043228524393112</VALUE>
+        <VALUE axis-ref="2">-0.00606546365443152</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="223">
+        <VALUE axis-ref="1">-0.039924799121286492</VALUE>
+        <VALUE axis-ref="2">-0.00680150094647661</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="224">
+        <VALUE axis-ref="1">-0.039792841742641367</VALUE>
+        <VALUE axis-ref="2">-0.00753523364236959</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="225">
+        <VALUE axis-ref="1">-0.039647401100422017</VALUE>
+        <VALUE axis-ref="2">-0.00826641312675908</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="226">
+        <VALUE axis-ref="1">-0.039488526475213261</VALUE>
+        <VALUE axis-ref="2">-0.00899479164941474</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="227">
+        <VALUE axis-ref="1">-0.039316271699522488</VALUE>
+        <VALUE axis-ref="2">-0.00972012240917403</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="228">
+        <VALUE axis-ref="1">-0.039130695139539207</VALUE>
+        <VALUE axis-ref="2">-0.010442159637567431</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="229">
+        <VALUE axis-ref="1">-0.038931859675358491</VALUE>
+        <VALUE axis-ref="2">-0.0111606586820938</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="230">
+        <VALUE axis-ref="1">-0.038719832679674861</VALUE>
+        <VALUE axis-ref="2">-0.01187537608911747</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="231">
+        <VALUE axis-ref="1">-0.038494685994954009</VALUE>
+        <VALUE axis-ref="2">-0.012586069686359259</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="232">
+        <VALUE axis-ref="1">-0.038256495909089951</VALUE>
+        <VALUE axis-ref="2">-0.01329249866495325</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="233">
+        <VALUE axis-ref="1">-0.038005343129555877</VALUE>
+        <VALUE axis-ref="2">-0.01399442366104155</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="234">
+        <VALUE axis-ref="1">-0.037741312756057563</VALUE>
+        <VALUE axis-ref="2">-0.014691606836879581</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="235">
+        <VALUE axis-ref="1">-0.037464494251698441</VALUE>
+        <VALUE axis-ref="2">-0.01538381196142407</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="236">
+        <VALUE axis-ref="1">-0.037174981412666307</VALUE>
+        <VALUE axis-ref="2">-0.016070804490376771</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="237">
+        <VALUE axis-ref="1">-0.036872872336451722</VALUE>
+        <VALUE axis-ref="2">-0.0167523516456566</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="238">
+        <VALUE axis-ref="1">-0.036558269388608983</VALUE>
+        <VALUE axis-ref="2">-0.017428222494273352</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="239">
+        <VALUE axis-ref="1">-0.036231279168071</VALUE>
+        <VALUE axis-ref="2">-0.018098188026576149</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="240">
+        <VALUE axis-ref="1">-0.035892012471029668</VALUE>
+        <VALUE axis-ref="2">-0.018762021233850339</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="241">
+        <VALUE axis-ref="1">-0.035540584253394077</VALUE>
+        <VALUE axis-ref="2">-0.0194194971852362</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="242">
+        <VALUE axis-ref="1">-0.03517711359183931</VALUE>
+        <VALUE axis-ref="2">-0.02007039310394378</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="243">
+        <VALUE axis-ref="1">-0.034801723643458841</VALUE>
+        <VALUE axis-ref="2">-0.0207144884427378</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="244">
+        <VALUE axis-ref="1">-0.034414541604034531</VALUE>
+        <VALUE axis-ref="2">-0.021351564958667</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="245">
+        <VALUE axis-ref="1">-0.034015698664937977</VALUE>
+        <VALUE axis-ref="2">-0.021981406787012891</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="246">
+        <VALUE axis-ref="1">-0.03360532996867819</VALUE>
+        <VALUE axis-ref="2">-0.022603800514432521</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="247">
+        <VALUE axis-ref="1">-0.033183574563110281</VALUE>
+        <VALUE axis-ref="2">-0.0232185352512707</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="248">
+        <VALUE axis-ref="1">-0.03275057535432109</VALUE>
+        <VALUE axis-ref="2">-0.02382540270301713</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="249">
+        <VALUE axis-ref="1">-0.032306479058207341</VALUE>
+        <VALUE axis-ref="2">-0.0244241972408841</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="250">
+        <VALUE axis-ref="1">-0.031851436150762982</VALUE>
+        <VALUE axis-ref="2">-0.025014715971481059</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="251">
+        <VALUE axis-ref="1">-0.031385600817092393</VALUE>
+        <VALUE axis-ref="2">-0.02559675880556226</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="252">
+        <VALUE axis-ref="1">-0.030909130899166939</VALUE>
+        <VALUE axis-ref="2">-0.026170128525824309</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="253">
+        <VALUE axis-ref="1">-0.0304221878423423</VALUE>
+        <VALUE axis-ref="2">-0.02673463085373053</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="254">
+        <VALUE axis-ref="1">-0.029924936640654921</VALUE>
+        <VALUE axis-ref="2">-0.027290074515339619</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="255">
+        <VALUE axis-ref="1">-0.029417545780916019</VALUE>
+        <VALUE axis-ref="2">-0.027836271306116239</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="256">
+        <VALUE axis-ref="1">-0.02890018718562214</VALUE>
+        <VALUE axis-ref="2">-0.028373036154701561</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+    </FRAME-DESC>
+    <DAQFirmwareVersion>3.3</DAQFirmwareVersion>
+    <DAQTriggerDelay>0</DAQTriggerDelay>
+    <DAQTriggerDelayStepSize>200</DAQTriggerDelayStepSize>
+  </HARDWARE-DESC>
+  <MEASUREMENT-DESC WATER-ABSORPTION-CALCULATION-METHOD="Scan" LEnergy-normalization="PerPulse" xmlns="Header_Schema">
+    <ULTRA-SOUND-PRESENT>false</ULTRA-SOUND-PRESENT>
+    <ULTRA-SOUND-RESOLUTION>0</ULTRA-SOUND-RESOLUTION>
+    <INITIAL-ENERGY unit="J" unit-modifier="none">0</INITIAL-ENERGY>
+    <VERTICAL-DEPTH unit="m" unit-modifier="m">2</VERTICAL-DEPTH>
+    <REPETITION-RATE unit="Hz" unit-modifier="none">10</REPETITION-RATE>
+    <TEMPERATURE unit="C" unit-modifier="none">0</TEMPERATURE>
+    <VERTICAL-STEPS>1</VERTICAL-STEPS>
+    <AVERAGES-PER-PROJECTION>10</AVERAGES-PER-PROJECTION>
+    <NUMBER-OF-FRAMES>10</NUMBER-OF-FRAMES>
+    <RECORDED-LENGTH>2030</RECORDED-LENGTH>
+    <PATH-LENGTH-IN-WATER unit="m" unit-modifier="c">0.03</PATH-LENGTH-IN-WATER>
+    <WATER-ABSORPTION-COEFFICIENTS>
+      <WATER-ABSORPTION-COEFFICIENT number="1" coefficient="0" />
+      <WATER-ABSORPTION-COEFFICIENT number="2" coefficient="0" />
+      <WATER-ABSORPTION-COEFFICIENT number="3" coefficient="0.4739918130544134" />
+      <WATER-ABSORPTION-COEFFICIENT number="4" coefficient="0.48596498518028541" />
+      <WATER-ABSORPTION-COEFFICIENT number="5" coefficient="0.50008096523510037" />
+      <WATER-ABSORPTION-COEFFICIENT number="6" coefficient="0.51732399298845577" />
+      <WATER-ABSORPTION-COEFFICIENT number="7" coefficient="0.54616994497143589" />
+      <WATER-ABSORPTION-COEFFICIENT number="8" coefficient="0.59811740653547374" />
+      <WATER-ABSORPTION-COEFFICIENT number="9" coefficient="0.66311570937440134" />
+      <WATER-ABSORPTION-COEFFICIENT number="10" coefficient="0.74854806838910193" />
+      <WATER-ABSORPTION-COEFFICIENT number="11" coefficient="0.859419112570984" />
+      <WATER-ABSORPTION-COEFFICIENT number="12" coefficient="1.0381227388370975" />
+      <WATER-ABSORPTION-COEFFICIENT number="13" coefficient="1.2730558031963441" />
+      <WATER-ABSORPTION-COEFFICIENT number="14" coefficient="1.5509063914702081" />
+      <WATER-ABSORPTION-COEFFICIENT number="15" coefficient="1.9719217908544762" />
+      <WATER-ABSORPTION-COEFFICIENT number="16" coefficient="2.511023379959139" />
+      <WATER-ABSORPTION-COEFFICIENT number="17" coefficient="2.7817264566742104" />
+      <WATER-ABSORPTION-COEFFICIENT number="18" coefficient="2.829924613573874" />
+      <WATER-ABSORPTION-COEFFICIENT number="19" coefficient="2.8528181004428523" />
+      <WATER-ABSORPTION-COEFFICIENT number="20" coefficient="2.8787506662826363" />
+      <WATER-ABSORPTION-COEFFICIENT number="21" coefficient="2.86020962211454" />
+      <WATER-ABSORPTION-COEFFICIENT number="22" coefficient="2.8628898297338496" />
+      <WATER-ABSORPTION-COEFFICIENT number="23" coefficient="2.8244307677438618" />
+      <WATER-ABSORPTION-COEFFICIENT number="24" coefficient="2.7632493376240248" />
+      <WATER-ABSORPTION-COEFFICIENT number="25" coefficient="2.69" />
+      <WATER-ABSORPTION-COEFFICIENT number="26" coefficient="2.5882279169096138" />
+      <WATER-ABSORPTION-COEFFICIENT number="27" coefficient="2.4681172986870488" />
+      <WATER-ABSORPTION-COEFFICIENT number="28" coefficient="2.3589865630017308" />
+      <WATER-ABSORPTION-COEFFICIENT number="29" coefficient="2.25" />
+      <WATER-ABSORPTION-COEFFICIENT number="30" coefficient="2.1990820125858321" />
+      <WATER-ABSORPTION-COEFFICIENT number="31" coefficient="2.1902180879524886" />
+      <WATER-ABSORPTION-COEFFICIENT number="32" coefficient="2.2330550498229127" />
+      <WATER-ABSORPTION-COEFFICIENT number="33" coefficient="2.3426361397256539" />
+      <WATER-ABSORPTION-COEFFICIENT number="34" coefficient="2.6105128525949435" />
+      <WATER-ABSORPTION-COEFFICIENT number="35" coefficient="3.2216495822403326" />
+      <WATER-ABSORPTION-COEFFICIENT number="36" coefficient="3.7199447206257572" />
+      <WATER-ABSORPTION-COEFFICIENT number="37" coefficient="3.9410502840891124" />
+      <WATER-ABSORPTION-COEFFICIENT number="38" coefficient="4.08943375083836" />
+      <WATER-ABSORPTION-COEFFICIENT number="39" coefficient="4.2013625594816251" />
+      <WATER-ABSORPTION-COEFFICIENT number="40" coefficient="4.3258881090877033" />
+      <WATER-ABSORPTION-COEFFICIENT number="41" coefficient="4.6441387703483086" />
+      <WATER-ABSORPTION-COEFFICIENT number="42" coefficient="4.5962845027977126" />
+      <WATER-ABSORPTION-COEFFICIENT number="43" coefficient="4.7691792259004764" />
+      <WATER-ABSORPTION-COEFFICIENT number="44" coefficient="5.0119233973181228" />
+      <WATER-ABSORPTION-COEFFICIENT number="45" coefficient="5.2830172409789631" />
+      <WATER-ABSORPTION-COEFFICIENT number="46" coefficient="5.57" />
+      <WATER-ABSORPTION-COEFFICIENT number="47" coefficient="5.8471237306141006" />
+      <WATER-ABSORPTION-COEFFICIENT number="48" coefficient="6.1252494349340019" />
+      <WATER-ABSORPTION-COEFFICIENT number="49" coefficient="6.40296514024696" />
+      <WATER-ABSORPTION-COEFFICIENT number="50" coefficient="6.7178875366302995" />
+      <WATER-ABSORPTION-COEFFICIENT number="51" coefficient="7.1239375452424678" />
+      <WATER-ABSORPTION-COEFFICIENT number="52" coefficient="7.6749292865900642" />
+      <WATER-ABSORPTION-COEFFICIENT number="53" coefficient="8.608464087671976" />
+      <WATER-ABSORPTION-COEFFICIENT number="54" coefficient="10.084326699035962" />
+      <WATER-ABSORPTION-COEFFICIENT number="55" coefficient="12.207512416515215" />
+      <WATER-ABSORPTION-COEFFICIENT number="56" coefficient="14.903884432745496" />
+      <WATER-ABSORPTION-COEFFICIENT number="57" coefficient="18.356696165604749" />
+      <WATER-ABSORPTION-COEFFICIENT number="58" coefficient="22.689668334537107" />
+      <WATER-ABSORPTION-COEFFICIENT number="59" coefficient="28.773198238121719" />
+      <WATER-ABSORPTION-COEFFICIENT number="60" coefficient="37.670420637443236" />
+      <WATER-ABSORPTION-COEFFICIENT number="61" coefficient="44.200663278619061" />
+      <WATER-ABSORPTION-COEFFICIENT number="62" coefficient="46.890220811990211" />
+      <WATER-ABSORPTION-COEFFICIENT number="63" coefficient="47.996969664223315" />
+      <WATER-ABSORPTION-COEFFICIENT number="64" coefficient="48.611143468396243" />
+      <WATER-ABSORPTION-COEFFICIENT number="65" coefficient="48.277798383958405" />
+      <WATER-ABSORPTION-COEFFICIENT number="66" coefficient="47.21443515230753" />
+      <WATER-ABSORPTION-COEFFICIENT number="67" coefficient="45.342646334383659" />
+      <WATER-ABSORPTION-COEFFICIENT number="68" coefficient="43.119890713193655" />
+      <WATER-ABSORPTION-COEFFICIENT number="69" coefficient="40.7" />
+      <WATER-ABSORPTION-COEFFICIENT number="70" coefficient="18.93368490675962" />
+      <WATER-ABSORPTION-COEFFICIENT number="71" coefficient="127.62934375224862" />
+    </WATER-ABSORPTION-COEFFICIENTS>
+    <WATER-ABSORPTION-CALCULATION-FILE>WaterAbsorptionVsWavelength.bin</WATER-ABSORPTION-CALCULATION-FILE>
+    <AVERAGE-ENERGY-TABLE>
+      <AVRAGE-ENERGY unit="J" unit-modifier="m" number="1">25.10898245614035</AVRAGE-ENERGY>
+      <AVRAGE-ENERGY unit="J" unit-modifier="m" number="2">27.980017857142858</AVRAGE-ENERGY>
+      <AVRAGE-ENERGY unit="J" unit-modifier="m" number="3">47.941607142857144</AVRAGE-ENERGY>
+      <AVRAGE-ENERGY unit="J" unit-modifier="m" number="4">55.428749999999994</AVRAGE-ENERGY>
+      <AVRAGE-ENERGY unit="J" unit-modifier="m" number="5">63.285357142857144</AVRAGE-ENERGY>
+      <AVRAGE-ENERGY unit="J" unit-modifier="m" number="6">49.035892857142862</AVRAGE-ENERGY>
+      <AVRAGE-ENERGY unit="J" unit-modifier="m" number="7">55.58649122807018</AVRAGE-ENERGY>
+      <AVRAGE-ENERGY unit="J" unit-modifier="m" number="8">58.317142857142848</AVRAGE-ENERGY>
+      <AVRAGE-ENERGY unit="J" unit-modifier="m" number="9">66.731428571428566</AVRAGE-ENERGY>
+      <AVRAGE-ENERGY unit="J" unit-modifier="m" number="10">69.622280701754391</AVRAGE-ENERGY>
+      <AVRAGE-ENERGY unit="J" unit-modifier="m" number="11">69.959122807017536</AVRAGE-ENERGY>
+      <AVRAGE-ENERGY unit="J" unit-modifier="m" number="12">70.400714285714287</AVRAGE-ENERGY>
+      <AVRAGE-ENERGY unit="J" unit-modifier="m" number="13">70.362321428571434</AVRAGE-ENERGY>
+      <AVRAGE-ENERGY unit="J" unit-modifier="m" number="14">70.118928571428569</AVRAGE-ENERGY>
+      <AVRAGE-ENERGY unit="J" unit-modifier="m" number="15">70.992631578947368</AVRAGE-ENERGY>
+      <AVRAGE-ENERGY unit="J" unit-modifier="m" number="16">71.165964912280685</AVRAGE-ENERGY>
+      <AVRAGE-ENERGY unit="J" unit-modifier="m" number="17">70.405178571428578</AVRAGE-ENERGY>
+      <AVRAGE-ENERGY unit="J" unit-modifier="m" number="18">70.794642857142861</AVRAGE-ENERGY>
+      <AVRAGE-ENERGY unit="J" unit-modifier="m" number="19">70.921428571428578</AVRAGE-ENERGY>
+      <AVRAGE-ENERGY unit="J" unit-modifier="m" number="20">70.046250000000015</AVRAGE-ENERGY>
+      <AVRAGE-ENERGY unit="J" unit-modifier="m" number="21">69.468749999999986</AVRAGE-ENERGY>
+      <AVRAGE-ENERGY unit="J" unit-modifier="m" number="22">70.080357142857139</AVRAGE-ENERGY>
+      <AVRAGE-ENERGY unit="J" unit-modifier="m" number="23">69.988392857142827</AVRAGE-ENERGY>
+      <AVRAGE-ENERGY unit="J" unit-modifier="m" number="24">69.22017857142859</AVRAGE-ENERGY>
+      <AVRAGE-ENERGY unit="J" unit-modifier="m" number="25">70.109464285714282</AVRAGE-ENERGY>
+      <AVRAGE-ENERGY unit="J" unit-modifier="m" number="26">69.893035714285716</AVRAGE-ENERGY>
+      <AVRAGE-ENERGY unit="J" unit-modifier="m" number="27">69.092321428571424</AVRAGE-ENERGY>
+      <AVRAGE-ENERGY unit="J" unit-modifier="m" number="28">69.511428571428567</AVRAGE-ENERGY>
+      <AVRAGE-ENERGY unit="J" unit-modifier="m" number="29">70.039107142857148</AVRAGE-ENERGY>
+      <AVRAGE-ENERGY unit="J" unit-modifier="m" number="30">69.768214285714279</AVRAGE-ENERGY>
+      <AVRAGE-ENERGY unit="J" unit-modifier="m" number="31">70.181964285714287</AVRAGE-ENERGY>
+      <AVRAGE-ENERGY unit="J" unit-modifier="m" number="32">69.982105263157891</AVRAGE-ENERGY>
+      <AVRAGE-ENERGY unit="J" unit-modifier="m" number="33">68.066785714285714</AVRAGE-ENERGY>
+      <AVRAGE-ENERGY unit="J" unit-modifier="m" number="34">67.261379310344864</AVRAGE-ENERGY>
+      <AVRAGE-ENERGY unit="J" unit-modifier="m" number="35">68.2080357142857</AVRAGE-ENERGY>
+      <AVRAGE-ENERGY unit="J" unit-modifier="m" number="36">68.8075</AVRAGE-ENERGY>
+      <AVRAGE-ENERGY unit="J" unit-modifier="m" number="37">65.561071428571452</AVRAGE-ENERGY>
+      <AVRAGE-ENERGY unit="J" unit-modifier="m" number="38">66.2280357142857</AVRAGE-ENERGY>
+      <AVRAGE-ENERGY unit="J" unit-modifier="m" number="39">67.380350877192967</AVRAGE-ENERGY>
+      <AVRAGE-ENERGY unit="J" unit-modifier="m" number="40">65.697857142857146</AVRAGE-ENERGY>
+      <AVRAGE-ENERGY unit="J" unit-modifier="m" number="41">64.711249999999993</AVRAGE-ENERGY>
+      <AVRAGE-ENERGY unit="J" unit-modifier="m" number="42">65.958392857142854</AVRAGE-ENERGY>
+      <AVRAGE-ENERGY unit="J" unit-modifier="m" number="43">63.46125</AVRAGE-ENERGY>
+      <AVRAGE-ENERGY unit="J" unit-modifier="m" number="44">63.9117857142857</AVRAGE-ENERGY>
+      <AVRAGE-ENERGY unit="J" unit-modifier="m" number="45">63.763392857142868</AVRAGE-ENERGY>
+      <AVRAGE-ENERGY unit="J" unit-modifier="m" number="46">61.9442857142857</AVRAGE-ENERGY>
+      <AVRAGE-ENERGY unit="J" unit-modifier="m" number="47">62.426250000000024</AVRAGE-ENERGY>
+      <AVRAGE-ENERGY unit="J" unit-modifier="m" number="48">62.03410714285716</AVRAGE-ENERGY>
+      <AVRAGE-ENERGY unit="J" unit-modifier="m" number="49">61.286785714285713</AVRAGE-ENERGY>
+      <AVRAGE-ENERGY unit="J" unit-modifier="m" number="50">61.004107142857144</AVRAGE-ENERGY>
+      <AVRAGE-ENERGY unit="J" unit-modifier="m" number="51">59.649464285714274</AVRAGE-ENERGY>
+      <AVRAGE-ENERGY unit="J" unit-modifier="m" number="52">60.867142857142845</AVRAGE-ENERGY>
+      <AVRAGE-ENERGY unit="J" unit-modifier="m" number="53">58.881964285714282</AVRAGE-ENERGY>
+      <AVRAGE-ENERGY unit="J" unit-modifier="m" number="54">58.357678571428551</AVRAGE-ENERGY>
+      <AVRAGE-ENERGY unit="J" unit-modifier="m" number="55">58.9963157894737</AVRAGE-ENERGY>
+      <AVRAGE-ENERGY unit="J" unit-modifier="m" number="56">57.06071428571429</AVRAGE-ENERGY>
+      <AVRAGE-ENERGY unit="J" unit-modifier="m" number="57">55.952499999999993</AVRAGE-ENERGY>
+      <AVRAGE-ENERGY unit="J" unit-modifier="m" number="58">57.640714285714289</AVRAGE-ENERGY>
+      <AVRAGE-ENERGY unit="J" unit-modifier="m" number="59">55.295964912280709</AVRAGE-ENERGY>
+      <AVRAGE-ENERGY unit="J" unit-modifier="m" number="60">53.503333333333323</AVRAGE-ENERGY>
+      <AVRAGE-ENERGY unit="J" unit-modifier="m" number="61">54.505263157894738</AVRAGE-ENERGY>
+      <AVRAGE-ENERGY unit="J" unit-modifier="m" number="62">54.529999999999994</AVRAGE-ENERGY>
+      <AVRAGE-ENERGY unit="J" unit-modifier="m" number="63">52.476964285714295</AVRAGE-ENERGY>
+      <AVRAGE-ENERGY unit="J" unit-modifier="m" number="64">51.440000000000012</AVRAGE-ENERGY>
+      <AVRAGE-ENERGY unit="J" unit-modifier="m" number="65">51.423749999999977</AVRAGE-ENERGY>
+      <AVRAGE-ENERGY unit="J" unit-modifier="m" number="66">50.961428571428591</AVRAGE-ENERGY>
+      <AVRAGE-ENERGY unit="J" unit-modifier="m" number="67">50.882678571428578</AVRAGE-ENERGY>
+      <AVRAGE-ENERGY unit="J" unit-modifier="m" number="68">50.673749999999991</AVRAGE-ENERGY>
+      <AVRAGE-ENERGY unit="J" unit-modifier="m" number="69">49.017321428571471</AVRAGE-ENERGY>
+      <AVRAGE-ENERGY unit="J" unit-modifier="m" number="70">39.148392857142845</AVRAGE-ENERGY>
+      <AVRAGE-ENERGY unit="J" unit-modifier="m" number="71">30.997500000000006</AVRAGE-ENERGY>
+    </AVERAGE-ENERGY-TABLE>
+    <WAVELENGTHS>
+      <WAVELENGTH unit="m" unit-modifier="n" number="1">660</WAVELENGTH>
+      <WAVELENGTH unit="m" unit-modifier="n" number="2">665</WAVELENGTH>
+      <WAVELENGTH unit="m" unit-modifier="n" number="3">670</WAVELENGTH>
+      <WAVELENGTH unit="m" unit-modifier="n" number="4">675</WAVELENGTH>
+      <WAVELENGTH unit="m" unit-modifier="n" number="5">680</WAVELENGTH>
+      <WAVELENGTH unit="m" unit-modifier="n" number="6">685</WAVELENGTH>
+      <WAVELENGTH unit="m" unit-modifier="n" number="7">690</WAVELENGTH>
+      <WAVELENGTH unit="m" unit-modifier="n" number="8">695</WAVELENGTH>
+      <WAVELENGTH unit="m" unit-modifier="n" number="9">700</WAVELENGTH>
+      <WAVELENGTH unit="m" unit-modifier="n" number="10">705</WAVELENGTH>
+      <WAVELENGTH unit="m" unit-modifier="n" number="11">710</WAVELENGTH>
+      <WAVELENGTH unit="m" unit-modifier="n" number="12">715</WAVELENGTH>
+      <WAVELENGTH unit="m" unit-modifier="n" number="13">720</WAVELENGTH>
+      <WAVELENGTH unit="m" unit-modifier="n" number="14">725</WAVELENGTH>
+      <WAVELENGTH unit="m" unit-modifier="n" number="15">730</WAVELENGTH>
+      <WAVELENGTH unit="m" unit-modifier="n" number="16">735</WAVELENGTH>
+      <WAVELENGTH unit="m" unit-modifier="n" number="17">740</WAVELENGTH>
+      <WAVELENGTH unit="m" unit-modifier="n" number="18">745</WAVELENGTH>
+      <WAVELENGTH unit="m" unit-modifier="n" number="19">750</WAVELENGTH>
+      <WAVELENGTH unit="m" unit-modifier="n" number="20">755</WAVELENGTH>
+      <WAVELENGTH unit="m" unit-modifier="n" number="21">760</WAVELENGTH>
+      <WAVELENGTH unit="m" unit-modifier="n" number="22">765</WAVELENGTH>
+      <WAVELENGTH unit="m" unit-modifier="n" number="23">770</WAVELENGTH>
+      <WAVELENGTH unit="m" unit-modifier="n" number="24">775</WAVELENGTH>
+      <WAVELENGTH unit="m" unit-modifier="n" number="25">780</WAVELENGTH>
+      <WAVELENGTH unit="m" unit-modifier="n" number="26">785</WAVELENGTH>
+      <WAVELENGTH unit="m" unit-modifier="n" number="27">790</WAVELENGTH>
+      <WAVELENGTH unit="m" unit-modifier="n" number="28">795</WAVELENGTH>
+      <WAVELENGTH unit="m" unit-modifier="n" number="29">800</WAVELENGTH>
+      <WAVELENGTH unit="m" unit-modifier="n" number="30">805</WAVELENGTH>
+      <WAVELENGTH unit="m" unit-modifier="n" number="31">810</WAVELENGTH>
+      <WAVELENGTH unit="m" unit-modifier="n" number="32">815</WAVELENGTH>
+      <WAVELENGTH unit="m" unit-modifier="n" number="33">820</WAVELENGTH>
+      <WAVELENGTH unit="m" unit-modifier="n" number="34">825</WAVELENGTH>
+      <WAVELENGTH unit="m" unit-modifier="n" number="35">830</WAVELENGTH>
+      <WAVELENGTH unit="m" unit-modifier="n" number="36">835</WAVELENGTH>
+      <WAVELENGTH unit="m" unit-modifier="n" number="37">840</WAVELENGTH>
+      <WAVELENGTH unit="m" unit-modifier="n" number="38">845</WAVELENGTH>
+      <WAVELENGTH unit="m" unit-modifier="n" number="39">850</WAVELENGTH>
+      <WAVELENGTH unit="m" unit-modifier="n" number="40">855</WAVELENGTH>
+      <WAVELENGTH unit="m" unit-modifier="n" number="41">860</WAVELENGTH>
+      <WAVELENGTH unit="m" unit-modifier="n" number="42">865</WAVELENGTH>
+      <WAVELENGTH unit="m" unit-modifier="n" number="43">870</WAVELENGTH>
+      <WAVELENGTH unit="m" unit-modifier="n" number="44">875</WAVELENGTH>
+      <WAVELENGTH unit="m" unit-modifier="n" number="45">880</WAVELENGTH>
+      <WAVELENGTH unit="m" unit-modifier="n" number="46">885</WAVELENGTH>
+      <WAVELENGTH unit="m" unit-modifier="n" number="47">890</WAVELENGTH>
+      <WAVELENGTH unit="m" unit-modifier="n" number="48">895</WAVELENGTH>
+      <WAVELENGTH unit="m" unit-modifier="n" number="49">900</WAVELENGTH>
+      <WAVELENGTH unit="m" unit-modifier="n" number="50">905</WAVELENGTH>
+      <WAVELENGTH unit="m" unit-modifier="n" number="51">910</WAVELENGTH>
+      <WAVELENGTH unit="m" unit-modifier="n" number="52">915</WAVELENGTH>
+      <WAVELENGTH unit="m" unit-modifier="n" number="53">920</WAVELENGTH>
+      <WAVELENGTH unit="m" unit-modifier="n" number="54">925</WAVELENGTH>
+      <WAVELENGTH unit="m" unit-modifier="n" number="55">930</WAVELENGTH>
+      <WAVELENGTH unit="m" unit-modifier="n" number="56">935</WAVELENGTH>
+      <WAVELENGTH unit="m" unit-modifier="n" number="57">940</WAVELENGTH>
+      <WAVELENGTH unit="m" unit-modifier="n" number="58">945</WAVELENGTH>
+      <WAVELENGTH unit="m" unit-modifier="n" number="59">950</WAVELENGTH>
+      <WAVELENGTH unit="m" unit-modifier="n" number="60">955</WAVELENGTH>
+      <WAVELENGTH unit="m" unit-modifier="n" number="61">960</WAVELENGTH>
+      <WAVELENGTH unit="m" unit-modifier="n" number="62">965</WAVELENGTH>
+      <WAVELENGTH unit="m" unit-modifier="n" number="63">970</WAVELENGTH>
+      <WAVELENGTH unit="m" unit-modifier="n" number="64">975</WAVELENGTH>
+      <WAVELENGTH unit="m" unit-modifier="n" number="65">980</WAVELENGTH>
+      <WAVELENGTH unit="m" unit-modifier="n" number="66">985</WAVELENGTH>
+      <WAVELENGTH unit="m" unit-modifier="n" number="67">990</WAVELENGTH>
+      <WAVELENGTH unit="m" unit-modifier="n" number="68">995</WAVELENGTH>
+      <WAVELENGTH unit="m" unit-modifier="n" number="69">1000</WAVELENGTH>
+      <WAVELENGTH unit="m" unit-modifier="n" number="70">1100</WAVELENGTH>
+      <WAVELENGTH unit="m" unit-modifier="n" number="71">1200</WAVELENGTH>
+    </WAVELENGTHS>
+    <COORDINATE-DEFINITION>
+      <AXIS number="1" unit="m" unit-modifier="none">x</AXIS>
+      <AXIS number="2" unit="m" unit-modifier="none">y</AXIS>
+      <AXIS number="3" unit="m" unit-modifier="m">z</AXIS>
+    </COORDINATE-DEFINITION>
+    <SEQUENCE>by-wavelength</SEQUENCE>
+    <PROJECTIONS />
+  </MEASUREMENT-DESC>
+  <ScanNode>
+    <Name>Hb+Hz</Name>
+    <Comment />
+    <zAxisUnit>mm</zAxisUnit>
+    <NumberOfSlices>71</NumberOfSlices>
+    <Wavelengths>
+      <Wavelength unit="m" unit-modifier="n" number="1">660</Wavelength>
+      <Wavelength unit="m" unit-modifier="n" number="2">665</Wavelength>
+      <Wavelength unit="m" unit-modifier="n" number="3">670</Wavelength>
+      <Wavelength unit="m" unit-modifier="n" number="4">675</Wavelength>
+      <Wavelength unit="m" unit-modifier="n" number="5">680</Wavelength>
+      <Wavelength unit="m" unit-modifier="n" number="6">685</Wavelength>
+      <Wavelength unit="m" unit-modifier="n" number="7">690</Wavelength>
+      <Wavelength unit="m" unit-modifier="n" number="8">695</Wavelength>
+      <Wavelength unit="m" unit-modifier="n" number="9">700</Wavelength>
+      <Wavelength unit="m" unit-modifier="n" number="10">705</Wavelength>
+      <Wavelength unit="m" unit-modifier="n" number="11">710</Wavelength>
+      <Wavelength unit="m" unit-modifier="n" number="12">715</Wavelength>
+      <Wavelength unit="m" unit-modifier="n" number="13">720</Wavelength>
+      <Wavelength unit="m" unit-modifier="n" number="14">725</Wavelength>
+      <Wavelength unit="m" unit-modifier="n" number="15">730</Wavelength>
+      <Wavelength unit="m" unit-modifier="n" number="16">735</Wavelength>
+      <Wavelength unit="m" unit-modifier="n" number="17">740</Wavelength>
+      <Wavelength unit="m" unit-modifier="n" number="18">745</Wavelength>
+      <Wavelength unit="m" unit-modifier="n" number="19">750</Wavelength>
+      <Wavelength unit="m" unit-modifier="n" number="20">755</Wavelength>
+      <Wavelength unit="m" unit-modifier="n" number="21">760</Wavelength>
+      <Wavelength unit="m" unit-modifier="n" number="22">765</Wavelength>
+      <Wavelength unit="m" unit-modifier="n" number="23">770</Wavelength>
+      <Wavelength unit="m" unit-modifier="n" number="24">775</Wavelength>
+      <Wavelength unit="m" unit-modifier="n" number="25">780</Wavelength>
+      <Wavelength unit="m" unit-modifier="n" number="26">785</Wavelength>
+      <Wavelength unit="m" unit-modifier="n" number="27">790</Wavelength>
+      <Wavelength unit="m" unit-modifier="n" number="28">795</Wavelength>
+      <Wavelength unit="m" unit-modifier="n" number="29">800</Wavelength>
+      <Wavelength unit="m" unit-modifier="n" number="30">805</Wavelength>
+      <Wavelength unit="m" unit-modifier="n" number="31">810</Wavelength>
+      <Wavelength unit="m" unit-modifier="n" number="32">815</Wavelength>
+      <Wavelength unit="m" unit-modifier="n" number="33">820</Wavelength>
+      <Wavelength unit="m" unit-modifier="n" number="34">825</Wavelength>
+      <Wavelength unit="m" unit-modifier="n" number="35">830</Wavelength>
+      <Wavelength unit="m" unit-modifier="n" number="36">835</Wavelength>
+      <Wavelength unit="m" unit-modifier="n" number="37">840</Wavelength>
+      <Wavelength unit="m" unit-modifier="n" number="38">845</Wavelength>
+      <Wavelength unit="m" unit-modifier="n" number="39">850</Wavelength>
+      <Wavelength unit="m" unit-modifier="n" number="40">855</Wavelength>
+      <Wavelength unit="m" unit-modifier="n" number="41">860</Wavelength>
+      <Wavelength unit="m" unit-modifier="n" number="42">865</Wavelength>
+      <Wavelength unit="m" unit-modifier="n" number="43">870</Wavelength>
+      <Wavelength unit="m" unit-modifier="n" number="44">875</Wavelength>
+      <Wavelength unit="m" unit-modifier="n" number="45">880</Wavelength>
+      <Wavelength unit="m" unit-modifier="n" number="46">885</Wavelength>
+      <Wavelength unit="m" unit-modifier="n" number="47">890</Wavelength>
+      <Wavelength unit="m" unit-modifier="n" number="48">895</Wavelength>
+      <Wavelength unit="m" unit-modifier="n" number="49">900</Wavelength>
+      <Wavelength unit="m" unit-modifier="n" number="50">905</Wavelength>
+      <Wavelength unit="m" unit-modifier="n" number="51">910</Wavelength>
+      <Wavelength unit="m" unit-modifier="n" number="52">915</Wavelength>
+      <Wavelength unit="m" unit-modifier="n" number="53">920</Wavelength>
+      <Wavelength unit="m" unit-modifier="n" number="54">925</Wavelength>
+      <Wavelength unit="m" unit-modifier="n" number="55">930</Wavelength>
+      <Wavelength unit="m" unit-modifier="n" number="56">935</Wavelength>
+      <Wavelength unit="m" unit-modifier="n" number="57">940</Wavelength>
+      <Wavelength unit="m" unit-modifier="n" number="58">945</Wavelength>
+      <Wavelength unit="m" unit-modifier="n" number="59">950</Wavelength>
+      <Wavelength unit="m" unit-modifier="n" number="60">955</Wavelength>
+      <Wavelength unit="m" unit-modifier="n" number="61">960</Wavelength>
+      <Wavelength unit="m" unit-modifier="n" number="62">965</Wavelength>
+      <Wavelength unit="m" unit-modifier="n" number="63">970</Wavelength>
+      <Wavelength unit="m" unit-modifier="n" number="64">975</Wavelength>
+      <Wavelength unit="m" unit-modifier="n" number="65">980</Wavelength>
+      <Wavelength unit="m" unit-modifier="n" number="66">985</Wavelength>
+      <Wavelength unit="m" unit-modifier="n" number="67">990</Wavelength>
+      <Wavelength unit="m" unit-modifier="n" number="68">995</Wavelength>
+      <Wavelength unit="m" unit-modifier="n" number="69">1000</Wavelength>
+      <Wavelength unit="m" unit-modifier="n" number="70">1100</Wavelength>
+      <Wavelength unit="m" unit-modifier="n" number="71">1200</Wavelength>
+    </Wavelengths>
+    <TrimSpeedOfSound>3</TrimSpeedOfSound>
+    <CouplantCorrection>false</CouplantCorrection>
+    <TrimCouplantCenterOfRotation>0</TrimCouplantCenterOfRotation>
+    <ImagingObjectStart>201</ImagingObjectStart>
+    <ImagingObjectLength>130</ImagingObjectLength>
+    <DeviceSN>1-14-02</DeviceSN>
+    <TransducerSN>9967H103H104</TransducerSN>
+    <LaserSN>P1296</LaserSN>
+    <DAQ_MACaddress>00:11:1C:01:7E:19 </DAQ_MACaddress>
+    <SW_Version>3.8.1.08</SW_Version>
+    <ScanFrames>
+      <DataModelScanFrame>
+        <Frame timestamp="638035895113957010" ultraSound-frame-offset="-1">
+          <Z-POS axis-ref="3">38.259999999999991</Z-POS>
+          <X-POS axis-ref="1">0.98</X-POS>
+          <Y-POS axis-ref="2">4.02</Y-POS>
+          <TEMPERATURE unit="C" unit-modifier="none">26.090000000000003</TEMPERATURE>
+          <WAVELENGTH unit="m" unit-modifier="n">660</WAVELENGTH>
+          <POWER unit="J" unit-modifier="m">451.12376831736037</POWER>
+          <DIODE-READOUT unit="V" unit-modifier="none">920.5</DIODE-READOUT>
+          <LASER-ENERGY unit="J" unit-modifier="m">26.447379817549127</LASER-ENERGY>
+          <RUN>1</RUN>
+          <REPETITION>1</REPETITION>
+        </Frame>
+        <IDOffset>0</IDOffset>
+      </DataModelScanFrame>
+      <DataModelScanFrame>
+        <Frame timestamp="638035895124207596" ultraSound-frame-offset="-1">
+          <Z-POS axis-ref="3">38.259999999999991</Z-POS>
+          <X-POS axis-ref="1">0.98</X-POS>
+          <Y-POS axis-ref="2">4.02</Y-POS>
+          <TEMPERATURE unit="C" unit-modifier="none">26.090000000000003</TEMPERATURE>
+          <WAVELENGTH unit="m" unit-modifier="n">665</WAVELENGTH>
+          <POWER unit="J" unit-modifier="m">433.8019200450579</POWER>
+          <DIODE-READOUT unit="V" unit-modifier="none">891.3</DIODE-READOUT>
+          <LASER-ENERGY unit="J" unit-modifier="m">24.751123779862535</LASER-ENERGY>
+          <RUN>1</RUN>
+          <REPETITION>1</REPETITION>
+        </Frame>
+        <IDOffset>1</IDOffset>
+      </DataModelScanFrame>
+      <DataModelScanFrame>
+        <Frame timestamp="638035895134128164" ultraSound-frame-offset="-1">
+          <Z-POS axis-ref="3">38.259999999999991</Z-POS>
+          <X-POS axis-ref="1">0.98</X-POS>
+          <Y-POS axis-ref="2">4.02</Y-POS>
+          <TEMPERATURE unit="C" unit-modifier="none">26.12</TEMPERATURE>
+          <WAVELENGTH unit="m" unit-modifier="n">670</WAVELENGTH>
+          <POWER unit="J" unit-modifier="m">684.24704349331842</POWER>
+          <DIODE-READOUT unit="V" unit-modifier="none">1602.4</DIODE-READOUT>
+          <LASER-ENERGY unit="J" unit-modifier="m">42.52735505479653</LASER-ENERGY>
+          <RUN>1</RUN>
+          <REPETITION>1</REPETITION>
+        </Frame>
+        <IDOffset>2</IDOffset>
+      </DataModelScanFrame>
+      <DataModelScanFrame>
+        <Frame timestamp="638035895144248743" ultraSound-frame-offset="-1">
+          <Z-POS axis-ref="3">38.259999999999991</Z-POS>
+          <X-POS axis-ref="1">0.98</X-POS>
+          <Y-POS axis-ref="2">4.02</Y-POS>
+          <TEMPERATURE unit="C" unit-modifier="none">26.12</TEMPERATURE>
+          <WAVELENGTH unit="m" unit-modifier="n">675</WAVELENGTH>
+          <POWER unit="J" unit-modifier="m">795.50691167206469</POWER>
+          <DIODE-READOUT unit="V" unit-modifier="none">1894.8</DIODE-READOUT>
+          <LASER-ENERGY unit="J" unit-modifier="m">49.829201893252105</LASER-ENERGY>
+          <RUN>1</RUN>
+          <REPETITION>1</REPETITION>
+        </Frame>
+        <IDOffset>3</IDOffset>
+      </DataModelScanFrame>
+      <DataModelScanFrame>
+        <Frame timestamp="638035895154029302" ultraSound-frame-offset="-1">
+          <Z-POS axis-ref="3">38.259999999999991</Z-POS>
+          <X-POS axis-ref="1">0.98</X-POS>
+          <Y-POS axis-ref="2">4.02</Y-POS>
+          <TEMPERATURE unit="C" unit-modifier="none">26.12</TEMPERATURE>
+          <WAVELENGTH unit="m" unit-modifier="n">680</WAVELENGTH>
+          <POWER unit="J" unit-modifier="m">946.04272132656808</POWER>
+          <DIODE-READOUT unit="V" unit-modifier="none">2249.9</DIODE-READOUT>
+          <LASER-ENERGY unit="J" unit-modifier="m">59.140523828644106</LASER-ENERGY>
+          <RUN>1</RUN>
+          <REPETITION>1</REPETITION>
+        </Frame>
+        <IDOffset>4</IDOffset>
+      </DataModelScanFrame>
+      <DataModelScanFrame>
+        <Frame timestamp="638035895163929868" ultraSound-frame-offset="-1">
+          <Z-POS axis-ref="3">38.259999999999991</Z-POS>
+          <X-POS axis-ref="1">0.98</X-POS>
+          <Y-POS axis-ref="2">4.02</Y-POS>
+          <TEMPERATURE unit="C" unit-modifier="none">26.11</TEMPERATURE>
+          <WAVELENGTH unit="m" unit-modifier="n">685</WAVELENGTH>
+          <POWER unit="J" unit-modifier="m">715.84844901856366</POWER>
+          <DIODE-READOUT unit="V" unit-modifier="none">1672.5</DIODE-READOUT>
+          <LASER-ENERGY unit="J" unit-modifier="m">44.899468054662215</LASER-ENERGY>
+          <RUN>1</RUN>
+          <REPETITION>1</REPETITION>
+        </Frame>
+        <IDOffset>5</IDOffset>
+      </DataModelScanFrame>
+      <DataModelScanFrame>
+        <Frame timestamp="638035895174190455" ultraSound-frame-offset="-1">
+          <Z-POS axis-ref="3">38.259999999999991</Z-POS>
+          <X-POS axis-ref="1">0.98</X-POS>
+          <Y-POS axis-ref="2">4.02</Y-POS>
+          <TEMPERATURE unit="C" unit-modifier="none">26.11</TEMPERATURE>
+          <WAVELENGTH unit="m" unit-modifier="n">690</WAVELENGTH>
+          <POWER unit="J" unit-modifier="m">878.93520060007143</POWER>
+          <DIODE-READOUT unit="V" unit-modifier="none">2102.1</DIODE-READOUT>
+          <LASER-ENERGY unit="J" unit-modifier="m">55.187918564090104</LASER-ENERGY>
+          <RUN>1</RUN>
+          <REPETITION>1</REPETITION>
+        </Frame>
+        <IDOffset>6</IDOffset>
+      </DataModelScanFrame>
+      <DataModelScanFrame>
+        <Frame timestamp="638035895184241030" ultraSound-frame-offset="-1">
+          <Z-POS axis-ref="3">38.259999999999991</Z-POS>
+          <X-POS axis-ref="1">0.98</X-POS>
+          <Y-POS axis-ref="2">4.02</Y-POS>
+          <TEMPERATURE unit="C" unit-modifier="none">26.11</TEMPERATURE>
+          <WAVELENGTH unit="m" unit-modifier="n">695</WAVELENGTH>
+          <POWER unit="J" unit-modifier="m">888.142606858151</POWER>
+          <DIODE-READOUT unit="V" unit-modifier="none">2102.9</DIODE-READOUT>
+          <LASER-ENERGY unit="J" unit-modifier="m">55.563215434977586</LASER-ENERGY>
+          <RUN>1</RUN>
+          <REPETITION>1</REPETITION>
+        </Frame>
+        <IDOffset>7</IDOffset>
+      </DataModelScanFrame>
+      <DataModelScanFrame>
+        <Frame timestamp="638035895194181599" ultraSound-frame-offset="-1">
+          <Z-POS axis-ref="3">38.259999999999991</Z-POS>
+          <X-POS axis-ref="1">0.98</X-POS>
+          <Y-POS axis-ref="2">4.02</Y-POS>
+          <TEMPERATURE unit="C" unit-modifier="none">26.11</TEMPERATURE>
+          <WAVELENGTH unit="m" unit-modifier="n">700</WAVELENGTH>
+          <POWER unit="J" unit-modifier="m">1035.125773824569</POWER>
+          <DIODE-READOUT unit="V" unit-modifier="none">2438.8</DIODE-READOUT>
+          <LASER-ENERGY unit="J" unit-modifier="m">64.753893103012473</LASER-ENERGY>
+          <RUN>1</RUN>
+          <REPETITION>1</REPETITION>
+        </Frame>
+        <IDOffset>8</IDOffset>
+      </DataModelScanFrame>
+      <DataModelScanFrame>
+        <Frame timestamp="638035895204262175" ultraSound-frame-offset="-1">
+          <Z-POS axis-ref="3">38.259999999999991</Z-POS>
+          <X-POS axis-ref="1">0.98</X-POS>
+          <Y-POS axis-ref="2">4.02</Y-POS>
+          <TEMPERATURE unit="C" unit-modifier="none">26.145</TEMPERATURE>
+          <WAVELENGTH unit="m" unit-modifier="n">705</WAVELENGTH>
+          <POWER unit="J" unit-modifier="m">1069.0650760697952</POWER>
+          <DIODE-READOUT unit="V" unit-modifier="none">2507.5</DIODE-READOUT>
+          <LASER-ENERGY unit="J" unit-modifier="m">66.823555520427959</LASER-ENERGY>
+          <RUN>1</RUN>
+          <REPETITION>1</REPETITION>
+        </Frame>
+        <IDOffset>9</IDOffset>
+      </DataModelScanFrame>
+      <DataModelScanFrame>
+        <Frame timestamp="638035895213892726" ultraSound-frame-offset="-1">
+          <Z-POS axis-ref="3">38.259999999999991</Z-POS>
+          <X-POS axis-ref="1">0.98</X-POS>
+          <Y-POS axis-ref="2">4.02</Y-POS>
+          <TEMPERATURE unit="C" unit-modifier="none">26.145</TEMPERATURE>
+          <WAVELENGTH unit="m" unit-modifier="n">710</WAVELENGTH>
+          <POWER unit="J" unit-modifier="m">1067.0358326882149</POWER>
+          <DIODE-READOUT unit="V" unit-modifier="none">2496.5</DIODE-READOUT>
+          <LASER-ENERGY unit="J" unit-modifier="m">66.720788454834093</LASER-ENERGY>
+          <RUN>1</RUN>
+          <REPETITION>1</REPETITION>
+        </Frame>
+        <IDOffset>10</IDOffset>
+      </DataModelScanFrame>
+      <DataModelScanFrame>
+        <Frame timestamp="638035895224153313" ultraSound-frame-offset="-1">
+          <Z-POS axis-ref="3">38.259999999999991</Z-POS>
+          <X-POS axis-ref="1">0.98</X-POS>
+          <Y-POS axis-ref="2">4.02</Y-POS>
+          <TEMPERATURE unit="C" unit-modifier="none">26.175</TEMPERATURE>
+          <WAVELENGTH unit="m" unit-modifier="n">715</WAVELENGTH>
+          <POWER unit="J" unit-modifier="m">1049.9492575316524</POWER>
+          <DIODE-READOUT unit="V" unit-modifier="none">2448.6</DIODE-READOUT>
+          <LASER-ENERGY unit="J" unit-modifier="m">65.64324855233437</LASER-ENERGY>
+          <RUN>1</RUN>
+          <REPETITION>1</REPETITION>
+        </Frame>
+        <IDOffset>11</IDOffset>
+      </DataModelScanFrame>
+      <DataModelScanFrame>
+        <Frame timestamp="638035895233963874" ultraSound-frame-offset="-1">
+          <Z-POS axis-ref="3">38.259999999999991</Z-POS>
+          <X-POS axis-ref="1">0.98</X-POS>
+          <Y-POS axis-ref="2">4.02</Y-POS>
+          <TEMPERATURE unit="C" unit-modifier="none">26.175</TEMPERATURE>
+          <WAVELENGTH unit="m" unit-modifier="n">720</WAVELENGTH>
+          <POWER unit="J" unit-modifier="m">1067.0735082932056</POWER>
+          <DIODE-READOUT unit="V" unit-modifier="none">2477.7</DIODE-READOUT>
+          <LASER-ENERGY unit="J" unit-modifier="m">66.69876282380956</LASER-ENERGY>
+          <RUN>1</RUN>
+          <REPETITION>1</REPETITION>
+        </Frame>
+        <IDOffset>12</IDOffset>
+      </DataModelScanFrame>
+      <DataModelScanFrame>
+        <Frame timestamp="638035895244194459" ultraSound-frame-offset="-1">
+          <Z-POS axis-ref="3">38.259999999999991</Z-POS>
+          <X-POS axis-ref="1">0.98</X-POS>
+          <Y-POS axis-ref="2">4.02</Y-POS>
+          <TEMPERATURE unit="C" unit-modifier="none">26.175</TEMPERATURE>
+          <WAVELENGTH unit="m" unit-modifier="n">725</WAVELENGTH>
+          <POWER unit="J" unit-modifier="m">1062.8187235230571</POWER>
+          <DIODE-READOUT unit="V" unit-modifier="none">2459.3</DIODE-READOUT>
+          <LASER-ENERGY unit="J" unit-modifier="m">66.4202873508627</LASER-ENERGY>
+          <RUN>1</RUN>
+          <REPETITION>1</REPETITION>
+        </Frame>
+        <IDOffset>13</IDOffset>
+      </DataModelScanFrame>
+      <DataModelScanFrame>
+        <Frame timestamp="638035895253975019" ultraSound-frame-offset="-1">
+          <Z-POS axis-ref="3">38.259999999999991</Z-POS>
+          <X-POS axis-ref="1">0.98</X-POS>
+          <Y-POS axis-ref="2">4.02</Y-POS>
+          <TEMPERATURE unit="C" unit-modifier="none">26.185000000000002</TEMPERATURE>
+          <WAVELENGTH unit="m" unit-modifier="n">730</WAVELENGTH>
+          <POWER unit="J" unit-modifier="m">1099.7729128463795</POWER>
+          <DIODE-READOUT unit="V" unit-modifier="none">2532.1</DIODE-READOUT>
+          <LASER-ENERGY unit="J" unit-modifier="m">68.745997633582974</LASER-ENERGY>
+          <RUN>1</RUN>
+          <REPETITION>1</REPETITION>
+        </Frame>
+        <IDOffset>14</IDOffset>
+      </DataModelScanFrame>
+      <DataModelScanFrame>
+        <Frame timestamp="638035895264115599" ultraSound-frame-offset="-1">
+          <Z-POS axis-ref="3">38.259999999999991</Z-POS>
+          <X-POS axis-ref="1">0.98</X-POS>
+          <Y-POS axis-ref="2">4.02</Y-POS>
+          <TEMPERATURE unit="C" unit-modifier="none">26.185000000000002</TEMPERATURE>
+          <WAVELENGTH unit="m" unit-modifier="n">735</WAVELENGTH>
+          <POWER unit="J" unit-modifier="m">1112.8431579033825</POWER>
+          <DIODE-READOUT unit="V" unit-modifier="none">2546.5</DIODE-READOUT>
+          <LASER-ENERGY unit="J" unit-modifier="m">69.54749124427731</LASER-ENERGY>
+          <RUN>1</RUN>
+          <REPETITION>1</REPETITION>
+        </Frame>
+        <IDOffset>15</IDOffset>
+      </DataModelScanFrame>
+      <DataModelScanFrame>
+        <Frame timestamp="638035895274036166" ultraSound-frame-offset="-1">
+          <Z-POS axis-ref="3">38.259999999999991</Z-POS>
+          <X-POS axis-ref="1">0.98</X-POS>
+          <Y-POS axis-ref="2">4.02</Y-POS>
+          <TEMPERATURE unit="C" unit-modifier="none">26.215</TEMPERATURE>
+          <WAVELENGTH unit="m" unit-modifier="n">740</WAVELENGTH>
+          <POWER unit="J" unit-modifier="m">1108.5529387307679</POWER>
+          <DIODE-READOUT unit="V" unit-modifier="none">2525.7</DIODE-READOUT>
+          <LASER-ENERGY unit="J" unit-modifier="m">69.277363131194491</LASER-ENERGY>
+          <RUN>1</RUN>
+          <REPETITION>1</REPETITION>
+        </Frame>
+        <IDOffset>16</IDOffset>
+      </DataModelScanFrame>
+      <DataModelScanFrame>
+        <Frame timestamp="638035895284196747" ultraSound-frame-offset="-1">
+          <Z-POS axis-ref="3">38.259999999999991</Z-POS>
+          <X-POS axis-ref="1">0.98</X-POS>
+          <Y-POS axis-ref="2">4.02</Y-POS>
+          <TEMPERATURE unit="C" unit-modifier="none">26.215</TEMPERATURE>
+          <WAVELENGTH unit="m" unit-modifier="n">745</WAVELENGTH>
+          <POWER unit="J" unit-modifier="m">1116.0823859980537</POWER>
+          <DIODE-READOUT unit="V" unit-modifier="none">2529.6</DIODE-READOUT>
+          <LASER-ENERGY unit="J" unit-modifier="m">69.776330276441826</LASER-ENERGY>
+          <RUN>1</RUN>
+          <REPETITION>1</REPETITION>
+        </Frame>
+        <IDOffset>17</IDOffset>
+      </DataModelScanFrame>
+      <DataModelScanFrame>
+        <Frame timestamp="638035895294147316" ultraSound-frame-offset="-1">
+          <Z-POS axis-ref="3">38.259999999999991</Z-POS>
+          <X-POS axis-ref="1">0.98</X-POS>
+          <Y-POS axis-ref="2">4.02</Y-POS>
+          <TEMPERATURE unit="C" unit-modifier="none">26.23</TEMPERATURE>
+          <WAVELENGTH unit="m" unit-modifier="n">750</WAVELENGTH>
+          <POWER unit="J" unit-modifier="m">1077.2432913545001</POWER>
+          <DIODE-READOUT unit="V" unit-modifier="none">2427.7</DIODE-READOUT>
+          <LASER-ENERGY unit="J" unit-modifier="m">67.324841149493423</LASER-ENERGY>
+          <RUN>1</RUN>
+          <REPETITION>1</REPETITION>
+        </Frame>
+        <IDOffset>18</IDOffset>
+      </DataModelScanFrame>
+      <DataModelScanFrame>
+        <Frame timestamp="638035895304017881" ultraSound-frame-offset="-1">
+          <Z-POS axis-ref="3">38.259999999999991</Z-POS>
+          <X-POS axis-ref="1">0.98</X-POS>
+          <Y-POS axis-ref="2">4.02</Y-POS>
+          <TEMPERATURE unit="C" unit-modifier="none">26.23</TEMPERATURE>
+          <WAVELENGTH unit="m" unit-modifier="n">755</WAVELENGTH>
+          <POWER unit="J" unit-modifier="m">1088.6293132872668</POWER>
+          <DIODE-READOUT unit="V" unit-modifier="none">2439.4</DIODE-READOUT>
+          <LASER-ENERGY unit="J" unit-modifier="m">68.042852449181026</LASER-ENERGY>
+          <RUN>1</RUN>
+          <REPETITION>1</REPETITION>
+        </Frame>
+        <IDOffset>19</IDOffset>
+      </DataModelScanFrame>
+      <DataModelScanFrame>
+        <Frame timestamp="638035895313988451" ultraSound-frame-offset="-1">
+          <Z-POS axis-ref="3">38.259999999999991</Z-POS>
+          <X-POS axis-ref="1">0.98</X-POS>
+          <Y-POS axis-ref="2">4.02</Y-POS>
+          <TEMPERATURE unit="C" unit-modifier="none">26.25</TEMPERATURE>
+          <WAVELENGTH unit="m" unit-modifier="n">760</WAVELENGTH>
+          <POWER unit="J" unit-modifier="m">1077.2702667982951</POWER>
+          <DIODE-READOUT unit="V" unit-modifier="none">2406.2</DIODE-READOUT>
+          <LASER-ENERGY unit="J" unit-modifier="m">67.35024549051586</LASER-ENERGY>
+          <RUN>1</RUN>
+          <REPETITION>1</REPETITION>
+        </Frame>
+        <IDOffset>20</IDOffset>
+      </DataModelScanFrame>
+      <DataModelScanFrame>
+        <Frame timestamp="638035895324259039" ultraSound-frame-offset="-1">
+          <Z-POS axis-ref="3">38.259999999999991</Z-POS>
+          <X-POS axis-ref="1">0.98</X-POS>
+          <Y-POS axis-ref="2">4.02</Y-POS>
+          <TEMPERATURE unit="C" unit-modifier="none">26.25</TEMPERATURE>
+          <WAVELENGTH unit="m" unit-modifier="n">765</WAVELENGTH>
+          <POWER unit="J" unit-modifier="m">1088.122968457576</POWER>
+          <DIODE-READOUT unit="V" unit-modifier="none">2417.4</DIODE-READOUT>
+          <LASER-ENERGY unit="J" unit-modifier="m">68.013740871428013</LASER-ENERGY>
+          <RUN>1</RUN>
+          <REPETITION>1</REPETITION>
+        </Frame>
+        <IDOffset>21</IDOffset>
+      </DataModelScanFrame>
+      <DataModelScanFrame>
+        <Frame timestamp="638035895334279612" ultraSound-frame-offset="-1">
+          <Z-POS axis-ref="3">38.259999999999991</Z-POS>
+          <X-POS axis-ref="1">0.98</X-POS>
+          <Y-POS axis-ref="2">4.02</Y-POS>
+          <TEMPERATURE unit="C" unit-modifier="none">26.25</TEMPERATURE>
+          <WAVELENGTH unit="m" unit-modifier="n">770</WAVELENGTH>
+          <POWER unit="J" unit-modifier="m">1078.471070328754</POWER>
+          <DIODE-READOUT unit="V" unit-modifier="none">2385.8</DIODE-READOUT>
+          <LASER-ENERGY unit="J" unit-modifier="m">67.413163414518763</LASER-ENERGY>
+          <RUN>1</RUN>
+          <REPETITION>1</REPETITION>
+        </Frame>
+        <IDOffset>22</IDOffset>
+      </DataModelScanFrame>
+      <DataModelScanFrame>
+        <Frame timestamp="638035895344230181" ultraSound-frame-offset="-1">
+          <Z-POS axis-ref="3">38.259999999999991</Z-POS>
+          <X-POS axis-ref="1">0.98</X-POS>
+          <Y-POS axis-ref="2">4.02</Y-POS>
+          <TEMPERATURE unit="C" unit-modifier="none">26.3</TEMPERATURE>
+          <WAVELENGTH unit="m" unit-modifier="n">775</WAVELENGTH>
+          <POWER unit="J" unit-modifier="m">1069.7742251457405</POWER>
+          <DIODE-READOUT unit="V" unit-modifier="none">2356.6</DIODE-READOUT>
+          <LASER-ENERGY unit="J" unit-modifier="m">66.877550104070309</LASER-ENERGY>
+          <RUN>1</RUN>
+          <REPETITION>1</REPETITION>
+        </Frame>
+        <IDOffset>23</IDOffset>
+      </DataModelScanFrame>
+      <DataModelScanFrame>
+        <Frame timestamp="638035895353990739" ultraSound-frame-offset="-1">
+          <Z-POS axis-ref="3">38.259999999999991</Z-POS>
+          <X-POS axis-ref="1">0.98</X-POS>
+          <Y-POS axis-ref="2">4.02</Y-POS>
+          <TEMPERATURE unit="C" unit-modifier="none">26.3</TEMPERATURE>
+          <WAVELENGTH unit="m" unit-modifier="n">780</WAVELENGTH>
+          <POWER unit="J" unit-modifier="m">1076.0180784317181</POWER>
+          <DIODE-READOUT unit="V" unit-modifier="none">2358.6</DIODE-READOUT>
+          <LASER-ENERGY unit="J" unit-modifier="m">67.2675031928969</LASER-ENERGY>
+          <RUN>1</RUN>
+          <REPETITION>1</REPETITION>
+        </Frame>
+        <IDOffset>24</IDOffset>
+      </DataModelScanFrame>
+      <DataModelScanFrame>
+        <Frame timestamp="638035895364041314" ultraSound-frame-offset="-1">
+          <Z-POS axis-ref="3">38.259999999999991</Z-POS>
+          <X-POS axis-ref="1">0.98</X-POS>
+          <Y-POS axis-ref="2">4.02</Y-POS>
+          <TEMPERATURE unit="C" unit-modifier="none">26.375</TEMPERATURE>
+          <WAVELENGTH unit="m" unit-modifier="n">785</WAVELENGTH>
+          <POWER unit="J" unit-modifier="m">1083.890900928154</POWER>
+          <DIODE-READOUT unit="V" unit-modifier="none">2366.8</DIODE-READOUT>
+          <LASER-ENERGY unit="J" unit-modifier="m">67.758132713919508</LASER-ENERGY>
+          <RUN>1</RUN>
+          <REPETITION>1</REPETITION>
+        </Frame>
+        <IDOffset>25</IDOffset>
+      </DataModelScanFrame>
+      <DataModelScanFrame>
+        <Frame timestamp="638035895374231897" ultraSound-frame-offset="-1">
+          <Z-POS axis-ref="3">38.259999999999991</Z-POS>
+          <X-POS axis-ref="1">0.98</X-POS>
+          <Y-POS axis-ref="2">4.02</Y-POS>
+          <TEMPERATURE unit="C" unit-modifier="none">26.375</TEMPERATURE>
+          <WAVELENGTH unit="m" unit-modifier="n">790</WAVELENGTH>
+          <POWER unit="J" unit-modifier="m">1087.2092545464334</POWER>
+          <DIODE-READOUT unit="V" unit-modifier="none">2364</DIODE-READOUT>
+          <LASER-ENERGY unit="J" unit-modifier="m">67.972904150859534</LASER-ENERGY>
+          <RUN>1</RUN>
+          <REPETITION>1</REPETITION>
+        </Frame>
+        <IDOffset>26</IDOffset>
+      </DataModelScanFrame>
+      <DataModelScanFrame>
+        <Frame timestamp="638035895384112462" ultraSound-frame-offset="-1">
+          <Z-POS axis-ref="3">38.259999999999991</Z-POS>
+          <X-POS axis-ref="1">0.98</X-POS>
+          <Y-POS axis-ref="2">4.02</Y-POS>
+          <TEMPERATURE unit="C" unit-modifier="none">26.43</TEMPERATURE>
+          <WAVELENGTH unit="m" unit-modifier="n">795</WAVELENGTH>
+          <POWER unit="J" unit-modifier="m">1082.4367406198348</POWER>
+          <DIODE-READOUT unit="V" unit-modifier="none">2347.4</DIODE-READOUT>
+          <LASER-ENERGY unit="J" unit-modifier="m">67.652710912265519</LASER-ENERGY>
+          <RUN>1</RUN>
+          <REPETITION>1</REPETITION>
+        </Frame>
+        <IDOffset>27</IDOffset>
+      </DataModelScanFrame>
+      <DataModelScanFrame>
+        <Frame timestamp="638035895394073032" ultraSound-frame-offset="-1">
+          <Z-POS axis-ref="3">38.259999999999991</Z-POS>
+          <X-POS axis-ref="1">0.98</X-POS>
+          <Y-POS axis-ref="2">4.02</Y-POS>
+          <TEMPERATURE unit="C" unit-modifier="none">26.43</TEMPERATURE>
+          <WAVELENGTH unit="m" unit-modifier="n">800</WAVELENGTH>
+          <POWER unit="J" unit-modifier="m">1076.6214551674809</POWER>
+          <DIODE-READOUT unit="V" unit-modifier="none">2328.7</DIODE-READOUT>
+          <LASER-ENERGY unit="J" unit-modifier="m">67.304774169262743</LASER-ENERGY>
+          <RUN>1</RUN>
+          <REPETITION>1</REPETITION>
+        </Frame>
+        <IDOffset>28</IDOffset>
+      </DataModelScanFrame>
+      <DataModelScanFrame>
+        <Frame timestamp="638035895404053603" ultraSound-frame-offset="-1">
+          <Z-POS axis-ref="3">38.259999999999991</Z-POS>
+          <X-POS axis-ref="1">0.98</X-POS>
+          <Y-POS axis-ref="2">4.02</Y-POS>
+          <TEMPERATURE unit="C" unit-modifier="none">26.46</TEMPERATURE>
+          <WAVELENGTH unit="m" unit-modifier="n">805</WAVELENGTH>
+          <POWER unit="J" unit-modifier="m">1102.6330130831277</POWER>
+          <DIODE-READOUT unit="V" unit-modifier="none">2379.5</DIODE-READOUT>
+          <LASER-ENERGY unit="J" unit-modifier="m">68.943685780182619</LASER-ENERGY>
+          <RUN>1</RUN>
+          <REPETITION>1</REPETITION>
+        </Frame>
+        <IDOffset>29</IDOffset>
+      </DataModelScanFrame>
+      <DataModelScanFrame>
+        <Frame timestamp="638035895413934168" ultraSound-frame-offset="-1">
+          <Z-POS axis-ref="3">38.259999999999991</Z-POS>
+          <X-POS axis-ref="1">0.98</X-POS>
+          <Y-POS axis-ref="2">4.02</Y-POS>
+          <TEMPERATURE unit="C" unit-modifier="none">26.46</TEMPERATURE>
+          <WAVELENGTH unit="m" unit-modifier="n">810</WAVELENGTH>
+          <POWER unit="J" unit-modifier="m">1071.2889983451264</POWER>
+          <DIODE-READOUT unit="V" unit-modifier="none">2309.1</DIODE-READOUT>
+          <LASER-ENERGY unit="J" unit-modifier="m">66.972864583649169</LASER-ENERGY>
+          <RUN>1</RUN>
+          <REPETITION>1</REPETITION>
+        </Frame>
+        <IDOffset>30</IDOffset>
+      </DataModelScanFrame>
+      <DataModelScanFrame>
+        <Frame timestamp="638035895424034746" ultraSound-frame-offset="-1">
+          <Z-POS axis-ref="3">38.259999999999991</Z-POS>
+          <X-POS axis-ref="1">0.98</X-POS>
+          <Y-POS axis-ref="2">4.02</Y-POS>
+          <TEMPERATURE unit="C" unit-modifier="none">26.46</TEMPERATURE>
+          <WAVELENGTH unit="m" unit-modifier="n">815</WAVELENGTH>
+          <POWER unit="J" unit-modifier="m">1065.4619848993877</POWER>
+          <DIODE-READOUT unit="V" unit-modifier="none">2277.3</DIODE-READOUT>
+          <LASER-ENERGY unit="J" unit-modifier="m">66.622603902516246</LASER-ENERGY>
+          <RUN>1</RUN>
+          <REPETITION>1</REPETITION>
+        </Frame>
+        <IDOffset>31</IDOffset>
+      </DataModelScanFrame>
+      <DataModelScanFrame>
+        <Frame timestamp="638035895434175326" ultraSound-frame-offset="-1">
+          <Z-POS axis-ref="3">38.259999999999991</Z-POS>
+          <X-POS axis-ref="1">0.98</X-POS>
+          <Y-POS axis-ref="2">4.02</Y-POS>
+          <TEMPERATURE unit="C" unit-modifier="none">26.475</TEMPERATURE>
+          <WAVELENGTH unit="m" unit-modifier="n">820</WAVELENGTH>
+          <POWER unit="J" unit-modifier="m">1023.6510938753618</POWER>
+          <DIODE-READOUT unit="V" unit-modifier="none">2167.4</DIODE-READOUT>
+          <LASER-ENERGY unit="J" unit-modifier="m">63.987477709021661</LASER-ENERGY>
+          <RUN>1</RUN>
+          <REPETITION>1</REPETITION>
+        </Frame>
+        <IDOffset>32</IDOffset>
+      </DataModelScanFrame>
+      <DataModelScanFrame>
+        <Frame timestamp="638035895444015888" ultraSound-frame-offset="-1">
+          <Z-POS axis-ref="3">38.259999999999991</Z-POS>
+          <X-POS axis-ref="1">0.98</X-POS>
+          <Y-POS axis-ref="2">4.02</Y-POS>
+          <TEMPERATURE unit="C" unit-modifier="none">26.475</TEMPERATURE>
+          <WAVELENGTH unit="m" unit-modifier="n">825</WAVELENGTH>
+          <POWER unit="J" unit-modifier="m">1040.7414036827415</POWER>
+          <DIODE-READOUT unit="V" unit-modifier="none">2194.4</DIODE-READOUT>
+          <LASER-ENERGY unit="J" unit-modifier="m">65.092994108142847</LASER-ENERGY>
+          <RUN>1</RUN>
+          <REPETITION>1</REPETITION>
+        </Frame>
+        <IDOffset>33</IDOffset>
+      </DataModelScanFrame>
+      <DataModelScanFrame>
+        <Frame timestamp="638035895453976458" ultraSound-frame-offset="-1">
+          <Z-POS axis-ref="3">38.259999999999991</Z-POS>
+          <X-POS axis-ref="1">0.98</X-POS>
+          <Y-POS axis-ref="2">4.02</Y-POS>
+          <TEMPERATURE unit="C" unit-modifier="none">26.505000000000003</TEMPERATURE>
+          <WAVELENGTH unit="m" unit-modifier="n">830</WAVELENGTH>
+          <POWER unit="J" unit-modifier="m">1036.4194435042637</POWER>
+          <DIODE-READOUT unit="V" unit-modifier="none">2189.3</DIODE-READOUT>
+          <LASER-ENERGY unit="J" unit-modifier="m">64.788582383441636</LASER-ENERGY>
+          <RUN>1</RUN>
+          <REPETITION>1</REPETITION>
+        </Frame>
+        <IDOffset>34</IDOffset>
+      </DataModelScanFrame>
+      <DataModelScanFrame>
+        <Frame timestamp="638035895463987031" ultraSound-frame-offset="-1">
+          <Z-POS axis-ref="3">38.259999999999991</Z-POS>
+          <X-POS axis-ref="1">0.98</X-POS>
+          <Y-POS axis-ref="2">4.02</Y-POS>
+          <TEMPERATURE unit="C" unit-modifier="none">26.505000000000003</TEMPERATURE>
+          <WAVELENGTH unit="m" unit-modifier="n">835</WAVELENGTH>
+          <POWER unit="J" unit-modifier="m">1066.533930023315</POWER>
+          <DIODE-READOUT unit="V" unit-modifier="none">2249.3</DIODE-READOUT>
+          <LASER-ENERGY unit="J" unit-modifier="m">66.665383130455851</LASER-ENERGY>
+          <RUN>1</RUN>
+          <REPETITION>1</REPETITION>
+        </Frame>
+        <IDOffset>35</IDOffset>
+      </DataModelScanFrame>
+      <DataModelScanFrame>
+        <Frame timestamp="638035895474177614" ultraSound-frame-offset="-1">
+          <Z-POS axis-ref="3">38.259999999999991</Z-POS>
+          <X-POS axis-ref="1">0.98</X-POS>
+          <Y-POS axis-ref="2">4.02</Y-POS>
+          <TEMPERATURE unit="C" unit-modifier="none">26.53</TEMPERATURE>
+          <WAVELENGTH unit="m" unit-modifier="n">840</WAVELENGTH>
+          <POWER unit="J" unit-modifier="m">1028.9420317999009</POWER>
+          <DIODE-READOUT unit="V" unit-modifier="none">2141.6</DIODE-READOUT>
+          <LASER-ENERGY unit="J" unit-modifier="m">64.328397458982323</LASER-ENERGY>
+          <RUN>1</RUN>
+          <REPETITION>1</REPETITION>
+        </Frame>
+        <IDOffset>36</IDOffset>
+      </DataModelScanFrame>
+      <DataModelScanFrame>
+        <Frame timestamp="638035895484068179" ultraSound-frame-offset="-1">
+          <Z-POS axis-ref="3">38.259999999999991</Z-POS>
+          <X-POS axis-ref="1">0.98</X-POS>
+          <Y-POS axis-ref="2">4.02</Y-POS>
+          <TEMPERATURE unit="C" unit-modifier="none">26.53</TEMPERATURE>
+          <WAVELENGTH unit="m" unit-modifier="n">845</WAVELENGTH>
+          <POWER unit="J" unit-modifier="m">1044.4421893219926</POWER>
+          <DIODE-READOUT unit="V" unit-modifier="none">2166.9</DIODE-READOUT>
+          <LASER-ENERGY unit="J" unit-modifier="m">65.335995142955269</LASER-ENERGY>
+          <RUN>1</RUN>
+          <REPETITION>1</REPETITION>
+        </Frame>
+        <IDOffset>37</IDOffset>
+      </DataModelScanFrame>
+      <DataModelScanFrame>
+        <Frame timestamp="638035895494068751" ultraSound-frame-offset="-1">
+          <Z-POS axis-ref="3">38.259999999999991</Z-POS>
+          <X-POS axis-ref="1">0.98</X-POS>
+          <Y-POS axis-ref="2">4.02</Y-POS>
+          <TEMPERATURE unit="C" unit-modifier="none">26.555</TEMPERATURE>
+          <WAVELENGTH unit="m" unit-modifier="n">850</WAVELENGTH>
+          <POWER unit="J" unit-modifier="m">1047.0701358068341</POWER>
+          <DIODE-READOUT unit="V" unit-modifier="none">2178.9</DIODE-READOUT>
+          <LASER-ENERGY unit="J" unit-modifier="m">65.4472817697297</LASER-ENERGY>
+          <RUN>1</RUN>
+          <REPETITION>1</REPETITION>
+        </Frame>
+        <IDOffset>38</IDOffset>
+      </DataModelScanFrame>
+      <DataModelScanFrame>
+        <Frame timestamp="638035895503869312" ultraSound-frame-offset="-1">
+          <Z-POS axis-ref="3">38.259999999999991</Z-POS>
+          <X-POS axis-ref="1">0.98</X-POS>
+          <Y-POS axis-ref="2">4.02</Y-POS>
+          <TEMPERATURE unit="C" unit-modifier="none">26.555</TEMPERATURE>
+          <WAVELENGTH unit="m" unit-modifier="n">855</WAVELENGTH>
+          <POWER unit="J" unit-modifier="m">1015.9401282046368</POWER>
+          <DIODE-READOUT unit="V" unit-modifier="none">2086.4</DIODE-READOUT>
+          <LASER-ENERGY unit="J" unit-modifier="m">63.520522275535221</LASER-ENERGY>
+          <RUN>1</RUN>
+          <REPETITION>1</REPETITION>
+        </Frame>
+        <IDOffset>39</IDOffset>
+      </DataModelScanFrame>
+      <DataModelScanFrame>
+        <Frame timestamp="638035895514139899" ultraSound-frame-offset="-1">
+          <Z-POS axis-ref="3">38.259999999999991</Z-POS>
+          <X-POS axis-ref="1">0.98</X-POS>
+          <Y-POS axis-ref="2">4.02</Y-POS>
+          <TEMPERATURE unit="C" unit-modifier="none">26.555</TEMPERATURE>
+          <WAVELENGTH unit="m" unit-modifier="n">860</WAVELENGTH>
+          <POWER unit="J" unit-modifier="m">996.4355206492819</POWER>
+          <DIODE-READOUT unit="V" unit-modifier="none">2047.8</DIODE-READOUT>
+          <LASER-ENERGY unit="J" unit-modifier="m">62.318003504863874</LASER-ENERGY>
+          <RUN>1</RUN>
+          <REPETITION>1</REPETITION>
+        </Frame>
+        <IDOffset>40</IDOffset>
+      </DataModelScanFrame>
+      <DataModelScanFrame>
+        <Frame timestamp="638035895524090468" ultraSound-frame-offset="-1">
+          <Z-POS axis-ref="3">38.259999999999991</Z-POS>
+          <X-POS axis-ref="1">0.98</X-POS>
+          <Y-POS axis-ref="2">4.02</Y-POS>
+          <TEMPERATURE unit="C" unit-modifier="none">26.58</TEMPERATURE>
+          <WAVELENGTH unit="m" unit-modifier="n">865</WAVELENGTH>
+          <POWER unit="J" unit-modifier="m">1007.9616236313342</POWER>
+          <DIODE-READOUT unit="V" unit-modifier="none">2078</DIODE-READOUT>
+          <LASER-ENERGY unit="J" unit-modifier="m">63.003673225349019</LASER-ENERGY>
+          <RUN>1</RUN>
+          <REPETITION>1</REPETITION>
+        </Frame>
+        <IDOffset>41</IDOffset>
+      </DataModelScanFrame>
+      <DataModelScanFrame>
+        <Frame timestamp="638035895534161044" ultraSound-frame-offset="-1">
+          <Z-POS axis-ref="3">38.259999999999991</Z-POS>
+          <X-POS axis-ref="1">0.98</X-POS>
+          <Y-POS axis-ref="2">4.02</Y-POS>
+          <TEMPERATURE unit="C" unit-modifier="none">26.58</TEMPERATURE>
+          <WAVELENGTH unit="m" unit-modifier="n">870</WAVELENGTH>
+          <POWER unit="J" unit-modifier="m">977.37356810166841</POWER>
+          <DIODE-READOUT unit="V" unit-modifier="none">1974.1</DIODE-READOUT>
+          <LASER-ENERGY unit="J" unit-modifier="m">61.11569416750558</LASER-ENERGY>
+          <RUN>1</RUN>
+          <REPETITION>1</REPETITION>
+        </Frame>
+        <IDOffset>42</IDOffset>
+      </DataModelScanFrame>
+      <DataModelScanFrame>
+        <Frame timestamp="638035895544021608" ultraSound-frame-offset="-1">
+          <Z-POS axis-ref="3">38.259999999999991</Z-POS>
+          <X-POS axis-ref="1">0.98</X-POS>
+          <Y-POS axis-ref="2">4.02</Y-POS>
+          <TEMPERATURE unit="C" unit-modifier="none">26.6</TEMPERATURE>
+          <WAVELENGTH unit="m" unit-modifier="n">875</WAVELENGTH>
+          <POWER unit="J" unit-modifier="m">992.08554514057221</POWER>
+          <DIODE-READOUT unit="V" unit-modifier="none">2033.1</DIODE-READOUT>
+          <LASER-ENERGY unit="J" unit-modifier="m">62.035488591146553</LASER-ENERGY>
+          <RUN>1</RUN>
+          <REPETITION>1</REPETITION>
+        </Frame>
+        <IDOffset>43</IDOffset>
+      </DataModelScanFrame>
+      <DataModelScanFrame>
+        <Frame timestamp="638035895554192190" ultraSound-frame-offset="-1">
+          <Z-POS axis-ref="3">38.259999999999991</Z-POS>
+          <X-POS axis-ref="1">0.98</X-POS>
+          <Y-POS axis-ref="2">4.02</Y-POS>
+          <TEMPERATURE unit="C" unit-modifier="none">26.6</TEMPERATURE>
+          <WAVELENGTH unit="m" unit-modifier="n">880</WAVELENGTH>
+          <POWER unit="J" unit-modifier="m">961.7918685197227</POWER>
+          <DIODE-READOUT unit="V" unit-modifier="none">1941.6</DIODE-READOUT>
+          <LASER-ENERGY unit="J" unit-modifier="m">60.113260201824573</LASER-ENERGY>
+          <RUN>1</RUN>
+          <REPETITION>1</REPETITION>
+        </Frame>
+        <IDOffset>44</IDOffset>
+      </DataModelScanFrame>
+      <DataModelScanFrame>
+        <Frame timestamp="638035895564182762" ultraSound-frame-offset="-1">
+          <Z-POS axis-ref="3">38.259999999999991</Z-POS>
+          <X-POS axis-ref="1">0.98</X-POS>
+          <Y-POS axis-ref="2">4.02</Y-POS>
+          <TEMPERATURE unit="C" unit-modifier="none">26.615000000000002</TEMPERATURE>
+          <WAVELENGTH unit="m" unit-modifier="n">885</WAVELENGTH>
+          <POWER unit="J" unit-modifier="m">982.71602361000578</POWER>
+          <DIODE-READOUT unit="V" unit-modifier="none">1990.1</DIODE-READOUT>
+          <LASER-ENERGY unit="J" unit-modifier="m">61.276858037867136</LASER-ENERGY>
+          <RUN>1</RUN>
+          <REPETITION>1</REPETITION>
+        </Frame>
+        <IDOffset>45</IDOffset>
+      </DataModelScanFrame>
+      <DataModelScanFrame>
+        <Frame timestamp="638035895574013324" ultraSound-frame-offset="-1">
+          <Z-POS axis-ref="3">38.259999999999991</Z-POS>
+          <X-POS axis-ref="1">0.98</X-POS>
+          <Y-POS axis-ref="2">4.02</Y-POS>
+          <TEMPERATURE unit="C" unit-modifier="none">26.615000000000002</TEMPERATURE>
+          <WAVELENGTH unit="m" unit-modifier="n">890</WAVELENGTH>
+          <POWER unit="J" unit-modifier="m">974.7686397350443</POWER>
+          <DIODE-READOUT unit="V" unit-modifier="none">1952.5</DIODE-READOUT>
+          <LASER-ENERGY unit="J" unit-modifier="m">60.9446682161158</LASER-ENERGY>
+          <RUN>1</RUN>
+          <REPETITION>1</REPETITION>
+        </Frame>
+        <IDOffset>46</IDOffset>
+      </DataModelScanFrame>
+      <DataModelScanFrame>
+        <Frame timestamp="638035895584093900" ultraSound-frame-offset="-1">
+          <Z-POS axis-ref="3">38.259999999999991</Z-POS>
+          <X-POS axis-ref="1">0.98</X-POS>
+          <Y-POS axis-ref="2">4.02</Y-POS>
+          <TEMPERATURE unit="C" unit-modifier="none">26.635</TEMPERATURE>
+          <WAVELENGTH unit="m" unit-modifier="n">895</WAVELENGTH>
+          <POWER unit="J" unit-modifier="m">983.530074572233</POWER>
+          <DIODE-READOUT unit="V" unit-modifier="none">1964.6</DIODE-READOUT>
+          <LASER-ENERGY unit="J" unit-modifier="m">61.014488921152932</LASER-ENERGY>
+          <RUN>1</RUN>
+          <REPETITION>1</REPETITION>
+        </Frame>
+        <IDOffset>47</IDOffset>
+      </DataModelScanFrame>
+      <DataModelScanFrame>
+        <Frame timestamp="638035895594164476" ultraSound-frame-offset="-1">
+          <Z-POS axis-ref="3">38.259999999999991</Z-POS>
+          <X-POS axis-ref="1">0.98</X-POS>
+          <Y-POS axis-ref="2">4.02</Y-POS>
+          <TEMPERATURE unit="C" unit-modifier="none">26.635</TEMPERATURE>
+          <WAVELENGTH unit="m" unit-modifier="n">900</WAVELENGTH>
+          <POWER unit="J" unit-modifier="m">947.46999421306941</POWER>
+          <DIODE-READOUT unit="V" unit-modifier="none">1878</DIODE-READOUT>
+          <LASER-ENERGY unit="J" unit-modifier="m">59.231573632958955</LASER-ENERGY>
+          <RUN>1</RUN>
+          <REPETITION>1</REPETITION>
+        </Frame>
+        <IDOffset>48</IDOffset>
+      </DataModelScanFrame>
+      <DataModelScanFrame>
+        <Frame timestamp="638035895604275055" ultraSound-frame-offset="-1">
+          <Z-POS axis-ref="3">38.259999999999991</Z-POS>
+          <X-POS axis-ref="1">0.98</X-POS>
+          <Y-POS axis-ref="2">4.02</Y-POS>
+          <TEMPERATURE unit="C" unit-modifier="none">26.66</TEMPERATURE>
+          <WAVELENGTH unit="m" unit-modifier="n">905</WAVELENGTH>
+          <POWER unit="J" unit-modifier="m">978.57127709270617</POWER>
+          <DIODE-READOUT unit="V" unit-modifier="none">1915.6</DIODE-READOUT>
+          <LASER-ENERGY unit="J" unit-modifier="m">59.918745046106338</LASER-ENERGY>
+          <RUN>1</RUN>
+          <REPETITION>1</REPETITION>
+        </Frame>
+        <IDOffset>49</IDOffset>
+      </DataModelScanFrame>
+      <DataModelScanFrame>
+        <Frame timestamp="638035895614115618" ultraSound-frame-offset="-1">
+          <Z-POS axis-ref="3">38.259999999999991</Z-POS>
+          <X-POS axis-ref="1">0.98</X-POS>
+          <Y-POS axis-ref="2">4.02</Y-POS>
+          <TEMPERATURE unit="C" unit-modifier="none">26.66</TEMPERATURE>
+          <WAVELENGTH unit="m" unit-modifier="n">910</WAVELENGTH>
+          <POWER unit="J" unit-modifier="m">905.23194066063479</POWER>
+          <DIODE-READOUT unit="V" unit-modifier="none">1764.2</DIODE-READOUT>
+          <LASER-ENERGY unit="J" unit-modifier="m">56.631135243297535</LASER-ENERGY>
+          <RUN>1</RUN>
+          <REPETITION>1</REPETITION>
+        </Frame>
+        <IDOffset>50</IDOffset>
+      </DataModelScanFrame>
+      <DataModelScanFrame>
+        <Frame timestamp="638035895624276199" ultraSound-frame-offset="-1">
+          <Z-POS axis-ref="3">38.259999999999991</Z-POS>
+          <X-POS axis-ref="1">0.98</X-POS>
+          <Y-POS axis-ref="2">4.02</Y-POS>
+          <TEMPERATURE unit="C" unit-modifier="none">26.66</TEMPERATURE>
+          <WAVELENGTH unit="m" unit-modifier="n">915</WAVELENGTH>
+          <POWER unit="J" unit-modifier="m">942.04976320834419</POWER>
+          <DIODE-READOUT unit="V" unit-modifier="none">1849.7</DIODE-READOUT>
+          <LASER-ENERGY unit="J" unit-modifier="m">58.366434537536534</LASER-ENERGY>
+          <RUN>1</RUN>
+          <REPETITION>1</REPETITION>
+        </Frame>
+        <IDOffset>51</IDOffset>
+      </DataModelScanFrame>
+      <DataModelScanFrame>
+        <Frame timestamp="638035895634256770" ultraSound-frame-offset="-1">
+          <Z-POS axis-ref="3">38.259999999999991</Z-POS>
+          <X-POS axis-ref="1">0.98</X-POS>
+          <Y-POS axis-ref="2">4.02</Y-POS>
+          <TEMPERATURE unit="C" unit-modifier="none">26.695</TEMPERATURE>
+          <WAVELENGTH unit="m" unit-modifier="n">920</WAVELENGTH>
+          <POWER unit="J" unit-modifier="m">926.946353190167</POWER>
+          <DIODE-READOUT unit="V" unit-modifier="none">1809</DIODE-READOUT>
+          <LASER-ENERGY unit="J" unit-modifier="m">57.694012134200918</LASER-ENERGY>
+          <RUN>1</RUN>
+          <REPETITION>1</REPETITION>
+        </Frame>
+        <IDOffset>52</IDOffset>
+      </DataModelScanFrame>
+      <DataModelScanFrame>
+        <Frame timestamp="638035895644157336" ultraSound-frame-offset="-1">
+          <Z-POS axis-ref="3">38.259999999999991</Z-POS>
+          <X-POS axis-ref="1">0.98</X-POS>
+          <Y-POS axis-ref="2">4.02</Y-POS>
+          <TEMPERATURE unit="C" unit-modifier="none">26.695</TEMPERATURE>
+          <WAVELENGTH unit="m" unit-modifier="n">925</WAVELENGTH>
+          <POWER unit="J" unit-modifier="m">912.30987895154954</POWER>
+          <DIODE-READOUT unit="V" unit-modifier="none">1772</DIODE-READOUT>
+          <LASER-ENERGY unit="J" unit-modifier="m">57.031957220376604</LASER-ENERGY>
+          <RUN>1</RUN>
+          <REPETITION>1</REPETITION>
+        </Frame>
+        <IDOffset>53</IDOffset>
+      </DataModelScanFrame>
+      <DataModelScanFrame>
+        <Frame timestamp="638035895654307916" ultraSound-frame-offset="-1">
+          <Z-POS axis-ref="3">38.259999999999991</Z-POS>
+          <X-POS axis-ref="1">0.98</X-POS>
+          <Y-POS axis-ref="2">4.02</Y-POS>
+          <TEMPERATURE unit="C" unit-modifier="none">26.745</TEMPERATURE>
+          <WAVELENGTH unit="m" unit-modifier="n">930</WAVELENGTH>
+          <POWER unit="J" unit-modifier="m">953.34496631878778</POWER>
+          <DIODE-READOUT unit="V" unit-modifier="none">1799.7</DIODE-READOUT>
+          <LASER-ENERGY unit="J" unit-modifier="m">57.168390595144466</LASER-ENERGY>
+          <RUN>1</RUN>
+          <REPETITION>1</REPETITION>
+        </Frame>
+        <IDOffset>54</IDOffset>
+      </DataModelScanFrame>
+      <DataModelScanFrame>
+        <Frame timestamp="638035895663938467" ultraSound-frame-offset="-1">
+          <Z-POS axis-ref="3">38.259999999999991</Z-POS>
+          <X-POS axis-ref="1">0.98</X-POS>
+          <Y-POS axis-ref="2">4.02</Y-POS>
+          <TEMPERATURE unit="C" unit-modifier="none">26.745</TEMPERATURE>
+          <WAVELENGTH unit="m" unit-modifier="n">935</WAVELENGTH>
+          <POWER unit="J" unit-modifier="m">919.52196525597253</POWER>
+          <DIODE-READOUT unit="V" unit-modifier="none">1722.1</DIODE-READOUT>
+          <LASER-ENERGY unit="J" unit-modifier="m">55.875875853762565</LASER-ENERGY>
+          <RUN>1</RUN>
+          <REPETITION>1</REPETITION>
+        </Frame>
+        <IDOffset>55</IDOffset>
+      </DataModelScanFrame>
+      <DataModelScanFrame>
+        <Frame timestamp="638035895674109049" ultraSound-frame-offset="-1">
+          <Z-POS axis-ref="3">38.259999999999991</Z-POS>
+          <X-POS axis-ref="1">0.98</X-POS>
+          <Y-POS axis-ref="2">4.02</Y-POS>
+          <TEMPERATURE unit="C" unit-modifier="none">26.775</TEMPERATURE>
+          <WAVELENGTH unit="m" unit-modifier="n">940</WAVELENGTH>
+          <POWER unit="J" unit-modifier="m">885.03257275831743</POWER>
+          <DIODE-READOUT unit="V" unit-modifier="none">1696.7</DIODE-READOUT>
+          <LASER-ENERGY unit="J" unit-modifier="m">55.32352643424457</LASER-ENERGY>
+          <RUN>1</RUN>
+          <REPETITION>1</REPETITION>
+        </Frame>
+        <IDOffset>56</IDOffset>
+      </DataModelScanFrame>
+      <DataModelScanFrame>
+        <Frame timestamp="638035895683999615" ultraSound-frame-offset="-1">
+          <Z-POS axis-ref="3">38.259999999999991</Z-POS>
+          <X-POS axis-ref="1">0.98</X-POS>
+          <Y-POS axis-ref="2">4.02</Y-POS>
+          <TEMPERATURE unit="C" unit-modifier="none">26.775</TEMPERATURE>
+          <WAVELENGTH unit="m" unit-modifier="n">945</WAVELENGTH>
+          <POWER unit="J" unit-modifier="m">958.8614355638565</POWER>
+          <DIODE-READOUT unit="V" unit-modifier="none">1737.5</DIODE-READOUT>
+          <LASER-ENERGY unit="J" unit-modifier="m">56.025052668404342</LASER-ENERGY>
+          <RUN>1</RUN>
+          <REPETITION>1</REPETITION>
+        </Frame>
+        <IDOffset>57</IDOffset>
+      </DataModelScanFrame>
+      <DataModelScanFrame>
+        <Frame timestamp="638035895694220199" ultraSound-frame-offset="-1">
+          <Z-POS axis-ref="3">38.259999999999991</Z-POS>
+          <X-POS axis-ref="1">0.98</X-POS>
+          <Y-POS axis-ref="2">4.02</Y-POS>
+          <TEMPERATURE unit="C" unit-modifier="none">26.810000000000002</TEMPERATURE>
+          <WAVELENGTH unit="m" unit-modifier="n">950</WAVELENGTH>
+          <POWER unit="J" unit-modifier="m">940.08467629998552</POWER>
+          <DIODE-READOUT unit="V" unit-modifier="none">1675.7</DIODE-READOUT>
+          <LASER-ENERGY unit="J" unit-modifier="m">54.615732746068772</LASER-ENERGY>
+          <RUN>1</RUN>
+          <REPETITION>1</REPETITION>
+        </Frame>
+        <IDOffset>58</IDOffset>
+      </DataModelScanFrame>
+      <DataModelScanFrame>
+        <Frame timestamp="638035895704190770" ultraSound-frame-offset="-1">
+          <Z-POS axis-ref="3">38.259999999999991</Z-POS>
+          <X-POS axis-ref="1">0.98</X-POS>
+          <Y-POS axis-ref="2">4.02</Y-POS>
+          <TEMPERATURE unit="C" unit-modifier="none">26.810000000000002</TEMPERATURE>
+          <WAVELENGTH unit="m" unit-modifier="n">955</WAVELENGTH>
+          <POWER unit="J" unit-modifier="m">850.4420663698611</POWER>
+          <DIODE-READOUT unit="V" unit-modifier="none">1593.2</DIODE-READOUT>
+          <LASER-ENERGY unit="J" unit-modifier="m">53.172093205487691</LASER-ENERGY>
+          <RUN>1</RUN>
+          <REPETITION>1</REPETITION>
+        </Frame>
+        <IDOffset>59</IDOffset>
+      </DataModelScanFrame>
+      <DataModelScanFrame>
+        <Frame timestamp="638035895714131338" ultraSound-frame-offset="-1">
+          <Z-POS axis-ref="3">38.259999999999991</Z-POS>
+          <X-POS axis-ref="1">0.98</X-POS>
+          <Y-POS axis-ref="2">4.02</Y-POS>
+          <TEMPERATURE unit="C" unit-modifier="none">26.810000000000002</TEMPERATURE>
+          <WAVELENGTH unit="m" unit-modifier="n">960</WAVELENGTH>
+          <POWER unit="J" unit-modifier="m">882.12701519350344</POWER>
+          <DIODE-READOUT unit="V" unit-modifier="none">1609.6</DIODE-READOUT>
+          <LASER-ENERGY unit="J" unit-modifier="m">52.845516304724889</LASER-ENERGY>
+          <RUN>1</RUN>
+          <REPETITION>1</REPETITION>
+        </Frame>
+        <IDOffset>60</IDOffset>
+      </DataModelScanFrame>
+      <DataModelScanFrame>
+        <Frame timestamp="638035895724141911" ultraSound-frame-offset="-1">
+          <Z-POS axis-ref="3">38.259999999999991</Z-POS>
+          <X-POS axis-ref="1">0.98</X-POS>
+          <Y-POS axis-ref="2">4.02</Y-POS>
+          <TEMPERATURE unit="C" unit-modifier="none">26.840000000000003</TEMPERATURE>
+          <WAVELENGTH unit="m" unit-modifier="n">965</WAVELENGTH>
+          <POWER unit="J" unit-modifier="m">945.727340785157</POWER>
+          <DIODE-READOUT unit="V" unit-modifier="none">1614.3</DIODE-READOUT>
+          <LASER-ENERGY unit="J" unit-modifier="m">52.7009049744211</LASER-ENERGY>
+          <RUN>1</RUN>
+          <REPETITION>1</REPETITION>
+        </Frame>
+        <IDOffset>61</IDOffset>
+      </DataModelScanFrame>
+      <DataModelScanFrame>
+        <Frame timestamp="638035895734002475" ultraSound-frame-offset="-1">
+          <Z-POS axis-ref="3">38.259999999999991</Z-POS>
+          <X-POS axis-ref="1">0.98</X-POS>
+          <Y-POS axis-ref="2">4.02</Y-POS>
+          <TEMPERATURE unit="C" unit-modifier="none">26.840000000000003</TEMPERATURE>
+          <WAVELENGTH unit="m" unit-modifier="n">970</WAVELENGTH>
+          <POWER unit="J" unit-modifier="m">908.64048853933241</POWER>
+          <DIODE-READOUT unit="V" unit-modifier="none">1545.2</DIODE-READOUT>
+          <LASER-ENERGY unit="J" unit-modifier="m">50.985883214307513</LASER-ENERGY>
+          <RUN>1</RUN>
+          <REPETITION>1</REPETITION>
+        </Frame>
+        <IDOffset>62</IDOffset>
+      </DataModelScanFrame>
+      <DataModelScanFrame>
+        <Frame timestamp="638035895744123054" ultraSound-frame-offset="-1">
+          <Z-POS axis-ref="3">38.259999999999991</Z-POS>
+          <X-POS axis-ref="1">0.98</X-POS>
+          <Y-POS axis-ref="2">4.02</Y-POS>
+          <TEMPERATURE unit="C" unit-modifier="none">26.855</TEMPERATURE>
+          <WAVELENGTH unit="m" unit-modifier="n">975</WAVELENGTH>
+          <POWER unit="J" unit-modifier="m">797.40196932780782</POWER>
+          <DIODE-READOUT unit="V" unit-modifier="none">1448.3</DIODE-READOUT>
+          <LASER-ENERGY unit="J" unit-modifier="m">49.506177338233918</LASER-ENERGY>
+          <RUN>1</RUN>
+          <REPETITION>1</REPETITION>
+        </Frame>
+        <IDOffset>63</IDOffset>
+      </DataModelScanFrame>
+      <DataModelScanFrame>
+        <Frame timestamp="638035895754033620" ultraSound-frame-offset="-1">
+          <Z-POS axis-ref="3">38.259999999999991</Z-POS>
+          <X-POS axis-ref="1">0.98</X-POS>
+          <Y-POS axis-ref="2">4.02</Y-POS>
+          <TEMPERATURE unit="C" unit-modifier="none">26.855</TEMPERATURE>
+          <WAVELENGTH unit="m" unit-modifier="n">980</WAVELENGTH>
+          <POWER unit="J" unit-modifier="m">793.7618585471389</POWER>
+          <DIODE-READOUT unit="V" unit-modifier="none">1453.9</DIODE-READOUT>
+          <LASER-ENERGY unit="J" unit-modifier="m">49.648506549676533</LASER-ENERGY>
+          <RUN>1</RUN>
+          <REPETITION>1</REPETITION>
+        </Frame>
+        <IDOffset>64</IDOffset>
+      </DataModelScanFrame>
+      <DataModelScanFrame>
+        <Frame timestamp="638035895764114197" ultraSound-frame-offset="-1">
+          <Z-POS axis-ref="3">38.259999999999991</Z-POS>
+          <X-POS axis-ref="1">0.98</X-POS>
+          <Y-POS axis-ref="2">4.02</Y-POS>
+          <TEMPERATURE unit="C" unit-modifier="none">26.869999999999997</TEMPERATURE>
+          <WAVELENGTH unit="m" unit-modifier="n">985</WAVELENGTH>
+          <POWER unit="J" unit-modifier="m">843.424742999625</POWER>
+          <DIODE-READOUT unit="V" unit-modifier="none">1485.6</DIODE-READOUT>
+          <LASER-ENERGY unit="J" unit-modifier="m">50.332566611224522</LASER-ENERGY>
+          <RUN>1</RUN>
+          <REPETITION>1</REPETITION>
+        </Frame>
+        <IDOffset>65</IDOffset>
+      </DataModelScanFrame>
+      <DataModelScanFrame>
+        <Frame timestamp="638035895774224775" ultraSound-frame-offset="-1">
+          <Z-POS axis-ref="3">38.259999999999991</Z-POS>
+          <X-POS axis-ref="1">0.98</X-POS>
+          <Y-POS axis-ref="2">4.02</Y-POS>
+          <TEMPERATURE unit="C" unit-modifier="none">26.869999999999997</TEMPERATURE>
+          <WAVELENGTH unit="m" unit-modifier="n">990</WAVELENGTH>
+          <POWER unit="J" unit-modifier="m">891.08462583169376</POWER>
+          <DIODE-READOUT unit="V" unit-modifier="none">1484.8</DIODE-READOUT>
+          <LASER-ENERGY unit="J" unit-modifier="m">50.031545161559087</LASER-ENERGY>
+          <RUN>1</RUN>
+          <REPETITION>1</REPETITION>
+        </Frame>
+        <IDOffset>66</IDOffset>
+      </DataModelScanFrame>
+      <DataModelScanFrame>
+        <Frame timestamp="638035895784205346" ultraSound-frame-offset="-1">
+          <Z-POS axis-ref="3">38.259999999999991</Z-POS>
+          <X-POS axis-ref="1">0.98</X-POS>
+          <Y-POS axis-ref="2">4.02</Y-POS>
+          <TEMPERATURE unit="C" unit-modifier="none">26.89</TEMPERATURE>
+          <WAVELENGTH unit="m" unit-modifier="n">995</WAVELENGTH>
+          <POWER unit="J" unit-modifier="m">905.29405293929551</POWER>
+          <DIODE-READOUT unit="V" unit-modifier="none">1477.4</DIODE-READOUT>
+          <LASER-ENERGY unit="J" unit-modifier="m">49.920975783530636</LASER-ENERGY>
+          <RUN>1</RUN>
+          <REPETITION>1</REPETITION>
+        </Frame>
+        <IDOffset>67</IDOffset>
+      </DataModelScanFrame>
+      <DataModelScanFrame>
+        <Frame timestamp="638035895794125914" ultraSound-frame-offset="-1">
+          <Z-POS axis-ref="3">38.259999999999991</Z-POS>
+          <X-POS axis-ref="1">0.98</X-POS>
+          <Y-POS axis-ref="2">4.02</Y-POS>
+          <TEMPERATURE unit="C" unit-modifier="none">26.89</TEMPERATURE>
+          <WAVELENGTH unit="m" unit-modifier="n">1000</WAVELENGTH>
+          <POWER unit="J" unit-modifier="m">855.55920900924662</POWER>
+          <DIODE-READOUT unit="V" unit-modifier="none">1414.5</DIODE-READOUT>
+          <LASER-ENERGY unit="J" unit-modifier="m">48.495096451834144</LASER-ENERGY>
+          <RUN>1</RUN>
+          <REPETITION>1</REPETITION>
+        </Frame>
+        <IDOffset>68</IDOffset>
+      </DataModelScanFrame>
+      <DataModelScanFrame>
+        <Frame timestamp="638035895803986478" ultraSound-frame-offset="-1">
+          <Z-POS axis-ref="3">38.259999999999991</Z-POS>
+          <X-POS axis-ref="1">0.98</X-POS>
+          <Y-POS axis-ref="2">4.02</Y-POS>
+          <TEMPERATURE unit="C" unit-modifier="none">26.89</TEMPERATURE>
+          <WAVELENGTH unit="m" unit-modifier="n">1100</WAVELENGTH>
+          <POWER unit="J" unit-modifier="m">644.4632158675729</POWER>
+          <DIODE-READOUT unit="V" unit-modifier="none">964.3</DIODE-READOUT>
+          <LASER-ENERGY unit="J" unit-modifier="m">37.61449768813403</LASER-ENERGY>
+          <RUN>1</RUN>
+          <REPETITION>1</REPETITION>
+        </Frame>
+        <IDOffset>69</IDOffset>
+      </DataModelScanFrame>
+      <DataModelScanFrame>
+        <Frame timestamp="638035895814337070" ultraSound-frame-offset="-1">
+          <Z-POS axis-ref="3">38.259999999999991</Z-POS>
+          <X-POS axis-ref="1">0.98</X-POS>
+          <Y-POS axis-ref="2">4.02</Y-POS>
+          <TEMPERATURE unit="C" unit-modifier="none">26.9</TEMPERATURE>
+          <WAVELENGTH unit="m" unit-modifier="n">1200</WAVELENGTH>
+          <POWER unit="J" unit-modifier="m">639.86161317978974</POWER>
+          <DIODE-READOUT unit="V" unit-modifier="none">717.7</DIODE-READOUT>
+          <LASER-ENERGY unit="J" unit-modifier="m">30.862759290271164</LASER-ENERGY>
+          <RUN>1</RUN>
+          <REPETITION>1</REPETITION>
+        </Frame>
+        <IDOffset>70</IDOffset>
+      </DataModelScanFrame>
+    </ScanFrames>
+    <IsVentral>false</IsVentral>
+    <AnimalLibType>Female Mouse</AnimalLibType>
+  </ScanNode>
+  <ReconNodes />
+  <MspNodes />
+  <RoiNodes />
+  <StudyPreset>
+    <PresetIdentifier>363af186-8cfa-4d47-b22e-3005930c2ada</PresetIdentifier>
+    <PresetVersion>0</PresetVersion>
+    <Name>FullSpectrum</Name>
+    <IsDefaultPreset>true</IsDefaultPreset>
+    <MspPresets>
+      <DataModelMspPreset>
+        <SubstractOneFromMany>true</SubstractOneFromMany>
+        <Method>regression</Method>
+        <DiscardNegativeValues>true</DiscardNegativeValues>
+        <IcaComponents>5</IcaComponents>
+        <UserSelectedSpectra>
+          <string>Hb</string>
+          <string>HbO2</string>
+        </UserSelectedSpectra>
+        <BgWavelength unit="m" unit-modifier="n" number="0">660</BgWavelength>
+        <BgWavelengthFrame>1</BgWavelengthFrame>
+        <DifferenceWavelength unit="m" unit-modifier="n" number="0">730</DifferenceWavelength>
+      </DataModelMspPreset>
+    </MspPresets>
+    <ReconPresets>
+      <DataModelReconPreset>
+        <SystemReconPresetsVersion>1</SystemReconPresetsVersion>
+        <Method>direct</Method>
+        <SystemReconPresets>
+          <ReconstructionPreset>
+            <Name>20mm(75um)</Name>
+            <Resolution>276</Resolution>
+            <Projections>512</Projections>
+            <RoiLow>0.0305</RoiLow>
+            <RoiHigh>0.0505</RoiHigh>
+            <UltraSoundPixelSize>0.00018</UltraSoundPixelSize>
+            <ProdigyDataSet>Half</ProdigyDataSet>
+            <ProdigyDaq>SA</ProdigyDaq>
+            <ProdigySubImageIncrement>64</ProdigySubImageIncrement>
+            <ProdigyCUDATime>150</ProdigyCUDATime>
+            <ProdigyInterpolation>2</ProdigyInterpolation>
+            <TimeRes>3</TimeRes>
+            <FilterLow>50000</FilterLow>
+            <FilterHigh>6500000</FilterHigh>
+            <FilterType>FIR</FilterType>
+            <Nz>1</Nz>
+            <RoiZlow>0.01</RoiZlow>
+            <RoiZhigh>0</RoiZhigh>
+            <AThreshold>0.001</AThreshold>
+            <Threshold>0.01</Threshold>
+            <MaxSupportedFrameRate>0</MaxSupportedFrameRate>
+          </ReconstructionPreset>
+          <ReconstructionPreset>
+            <Name>25mm(75um)</Name>
+            <Resolution>332</Resolution>
+            <Projections>512</Projections>
+            <RoiLow>0.028</RoiLow>
+            <RoiHigh>0.053</RoiHigh>
+            <UltraSoundPixelSize>0.00018</UltraSoundPixelSize>
+            <ProdigyDataSet>Half</ProdigyDataSet>
+            <ProdigyDaq>SA</ProdigyDaq>
+            <ProdigySubImageIncrement>64</ProdigySubImageIncrement>
+            <ProdigyCUDATime>150</ProdigyCUDATime>
+            <ProdigyInterpolation>2</ProdigyInterpolation>
+            <TimeRes>3</TimeRes>
+            <FilterLow>50000</FilterLow>
+            <FilterHigh>6500000</FilterHigh>
+            <FilterType>FIR</FilterType>
+            <Nz>1</Nz>
+            <RoiZlow>0.01</RoiZlow>
+            <RoiZhigh>0</RoiZhigh>
+            <AThreshold>0.001</AThreshold>
+            <Threshold>0.01</Threshold>
+            <MaxSupportedFrameRate>0</MaxSupportedFrameRate>
+          </ReconstructionPreset>
+          <ReconstructionPreset>
+            <Name>30mm(100um)</Name>
+            <Resolution>300</Resolution>
+            <Projections>512</Projections>
+            <RoiLow>0.0255</RoiLow>
+            <RoiHigh>0.0555</RoiHigh>
+            <UltraSoundPixelSize>0.00018</UltraSoundPixelSize>
+            <ProdigyDataSet>Half</ProdigyDataSet>
+            <ProdigyDaq>SA</ProdigyDaq>
+            <ProdigySubImageIncrement>64</ProdigySubImageIncrement>
+            <ProdigyCUDATime>150</ProdigyCUDATime>
+            <ProdigyInterpolation>2</ProdigyInterpolation>
+            <TimeRes>3</TimeRes>
+            <FilterLow>50000</FilterLow>
+            <FilterHigh>6500000</FilterHigh>
+            <FilterType>FIR</FilterType>
+            <Nz>1</Nz>
+            <RoiZlow>0.01</RoiZlow>
+            <RoiZhigh>0</RoiZhigh>
+            <AThreshold>0.001</AThreshold>
+            <Threshold>0.01</Threshold>
+            <MaxSupportedFrameRate>0</MaxSupportedFrameRate>
+          </ReconstructionPreset>
+          <ReconstructionPreset>
+            <Name>50mm(200um)</Name>
+            <Resolution>252</Resolution>
+            <Projections>512</Projections>
+            <RoiLow>0.0155</RoiLow>
+            <RoiHigh>0.0655</RoiHigh>
+            <UltraSoundPixelSize>0.00018</UltraSoundPixelSize>
+            <ProdigyDataSet>Half</ProdigyDataSet>
+            <ProdigyDaq>SA</ProdigyDaq>
+            <ProdigySubImageIncrement>64</ProdigySubImageIncrement>
+            <ProdigyCUDATime>150</ProdigyCUDATime>
+            <ProdigyInterpolation>2</ProdigyInterpolation>
+            <TimeRes>3</TimeRes>
+            <FilterLow>50000</FilterLow>
+            <FilterHigh>6500000</FilterHigh>
+            <FilterType>FIR</FilterType>
+            <Nz>1</Nz>
+            <RoiZlow>0.01</RoiZlow>
+            <RoiZhigh>0</RoiZhigh>
+            <AThreshold>0.001</AThreshold>
+            <Threshold>0.01</Threshold>
+            <MaxSupportedFrameRate>0</MaxSupportedFrameRate>
+          </ReconstructionPreset>
+        </SystemReconPresets>
+        <SelectedPresetIndex>1</SelectedPresetIndex>
+        <DisableLowPass>false</DisableLowPass>
+        <FilterLow>50000</FilterLow>
+        <FilterHigh>6500000</FilterHigh>
+        <DepthCorrection>false</DepthCorrection>
+        <BackgroundAbsorption>0.1</BackgroundAbsorption>
+        <BackgroundOxygenation>70</BackgroundOxygenation>
+        <ReducedScatteringCoefficient>10</ReducedScatteringCoefficient>
+        <ImpulseResponse>true</ImpulseResponse>
+        <SensitivityMap>false</SensitivityMap>
+        <UserSoundTrim>0</UserSoundTrim>
+        <ProdigyFrequency>6</ProdigyFrequency>
+        <ProdigyPower>PL20</ProdigyPower>
+        <ProdigySV>1460</ProdigySV>
+      </DataModelReconPreset>
+    </ReconPresets>
+    <ExprerimentPreset>
+      <PreviewMode>FullSequence</PreviewMode>
+      <DisplayAllWavelengths>true</DisplayAllWavelengths>
+      <ContinuousAcquisitionMode>false</ContinuousAcquisitionMode>
+      <FramesPerWavelength>10</FramesPerWavelength>
+      <AverageFramesPerWavelength>true</AverageFramesPerWavelength>
+      <RepetitionsPerSlice>1</RepetitionsPerSlice>
+      <PreferredBackroundWL>900</PreferredBackroundWL>
+      <DefaultLaserTriggerRate>10</DefaultLaserTriggerRate>
+      <WavelengthSet>
+        <Items>
+          <double>660</double>
+          <double>665</double>
+          <double>670</double>
+          <double>675</double>
+          <double>680</double>
+          <double>685</double>
+          <double>690</double>
+          <double>695</double>
+          <double>700</double>
+          <double>705</double>
+          <double>710</double>
+          <double>715</double>
+          <double>720</double>
+          <double>725</double>
+          <double>730</double>
+          <double>735</double>
+          <double>740</double>
+          <double>745</double>
+          <double>750</double>
+          <double>755</double>
+          <double>760</double>
+          <double>765</double>
+          <double>770</double>
+          <double>775</double>
+          <double>780</double>
+          <double>785</double>
+          <double>790</double>
+          <double>795</double>
+          <double>800</double>
+          <double>805</double>
+          <double>810</double>
+          <double>815</double>
+          <double>820</double>
+          <double>825</double>
+          <double>830</double>
+          <double>835</double>
+          <double>840</double>
+          <double>845</double>
+          <double>850</double>
+          <double>855</double>
+          <double>860</double>
+          <double>865</double>
+          <double>870</double>
+          <double>875</double>
+          <double>880</double>
+          <double>885</double>
+          <double>890</double>
+          <double>895</double>
+          <double>900</double>
+          <double>905</double>
+          <double>910</double>
+          <double>915</double>
+          <double>920</double>
+          <double>925</double>
+          <double>930</double>
+          <double>935</double>
+          <double>940</double>
+          <double>945</double>
+          <double>950</double>
+          <double>955</double>
+          <double>960</double>
+          <double>965</double>
+          <double>970</double>
+          <double>975</double>
+          <double>980</double>
+          <double>985</double>
+          <double>990</double>
+          <double>995</double>
+          <double>1000</double>
+          <double>1100</double>
+          <double>1200</double>
+        </Items>
+      </WavelengthSet>
+      <TimeRunSet>
+        <UseEqualIntervals>true</UseEqualIntervals>
+        <PeriodicInterval>2015-01-01T00:01:00</PeriodicInterval>
+        <RepeatAcquisition>false</RepeatAcquisition>
+        <RepeatLimit>1</RepeatLimit>
+        <RepeatWithoutDelay>false</RepeatWithoutDelay>
+        <ScheduleItemsIntervals />
+      </TimeRunSet>
+      <USVisible>false</USVisible>
+      <SelectiveFrameAveraging>
+        <REFWAVELENGTH>0</REFWAVELENGTH>
+        <CORRTHRES>0</CORRTHRES>
+        <MAXAVERAGES>1</MAXAVERAGES>
+        <FRAMECORRTHRES>0</FRAMECORRTHRES>
+        <CONFLIMIT>0</CONFLIMIT>
+      </SelectiveFrameAveraging>
+      <DesiredWaterTemperature>36</DesiredWaterTemperature>
+      <IsMultipleMspLivePreviewEnabled>false</IsMultipleMspLivePreviewEnabled>
+    </ExprerimentPreset>
+    <ImagingSettingsPreset>
+      <AutoScaling>true</AutoScaling>
+      <ScalingMode>FullViewAuto</ScalingMode>
+      <Rotation>
+        <M11>1</M11>
+        <M12>0</M12>
+        <M21>0</M21>
+        <M22>1</M22>
+        <OffsetX>0</OffsetX>
+        <OffsetY>0</OffsetY>
+      </Rotation>
+      <Zoom>1</Zoom>
+      <ImageLayers />
+      <ImageLayersComposeMethod>Overlay</ImageLayersComposeMethod>
+      <IsOxyMapsEnabled>false</IsOxyMapsEnabled>
+      <VolumeZoomCenter3D>
+        <X>0</X>
+        <Y>0</Y>
+        <Z>0</Z>
+      </VolumeZoomCenter3D>
+      <CroppingPoint0>
+        <X>0</X>
+        <Y>0</Y>
+        <Z>0</Z>
+      </CroppingPoint0>
+      <CroppingPoint1>
+        <X>1</X>
+        <Y>1</Y>
+        <Z>1</Z>
+      </CroppingPoint1>
+      <MeasurementRulers2D>
+        <MeasurementRulersXY />
+        <MeasurementRulersXZ />
+        <MeasurementRulersYZ />
+      </MeasurementRulers2D>
+      <DrawingRois2D>
+        <Regions />
+      </DrawingRois2D>
+      <Show3DTexture>false</Show3DTexture>
+      <Show3DVolumeRender>false</Show3DVolumeRender>
+      <Show3DViews>false</Show3DViews>
+      <SelectedROIsStyle>None</SelectedROIsStyle>
+      <ShowMIP>true</ShowMIP>
+      <ShowMIPCrop>false</ShowMIPCrop>
+      <Z_SelectedPlane>0.5</Z_SelectedPlane>
+      <Y_SelectedPlane>0.5</Y_SelectedPlane>
+      <X_SelectedPlane>0.5</X_SelectedPlane>
+      <Texture3DCameraTransform>
+        <M11>1</M11>
+        <M12>0</M12>
+        <M13>0</M13>
+        <M14>0</M14>
+        <M21>0</M21>
+        <M22>1</M22>
+        <M23>0</M23>
+        <M24>0</M24>
+        <M31>0</M31>
+        <M32>0</M32>
+        <M33>1</M33>
+        <M34>0</M34>
+        <OffsetX>0</OffsetX>
+        <OffsetY>0</OffsetY>
+        <OffsetZ>0</OffsetZ>
+        <M44>1</M44>
+      </Texture3DCameraTransform>
+      <VolumeRenderCameraTransform>
+        <M11>1</M11>
+        <M12>0</M12>
+        <M13>0</M13>
+        <M14>0</M14>
+        <M21>0</M21>
+        <M22>1</M22>
+        <M23>0</M23>
+        <M24>0</M24>
+        <M31>0</M31>
+        <M32>0</M32>
+        <M33>1</M33>
+        <M34>0</M34>
+        <OffsetX>0</OffsetX>
+        <OffsetY>0</OffsetY>
+        <OffsetZ>0</OffsetZ>
+        <M44>1</M44>
+      </VolumeRenderCameraTransform>
+      <ShowVRWireFrame>false</ShowVRWireFrame>
+      <Show3DVolumeRenderMIP>false</Show3DVolumeRenderMIP>
+      <ImageGridLineType>None</ImageGridLineType>
+      <ImageGridLineStepSize>1</ImageGridLineStepSize>
+      <ImageGridLineColor>
+        <A>255</A>
+        <R>0</R>
+        <G>0</G>
+        <B>255</B>
+        <ScA>1</ScA>
+        <ScR>0</ScR>
+        <ScG>0</ScG>
+        <ScB>1</ScB>
+      </ImageGridLineColor>
+      <UltrasoundMinimumScaling>-1</UltrasoundMinimumScaling>
+      <UltrasoundMaximumScaling>1</UltrasoundMaximumScaling>
+      <BackgroundMinimumScaling>0.05</BackgroundMinimumScaling>
+      <BackgroundMaximumScaling>0.995</BackgroundMaximumScaling>
+      <ForegroundMinimumScaling>-1</ForegroundMinimumScaling>
+      <ForegroundMaximumScaling>1</ForegroundMaximumScaling>
+      <Visible3DGridPlanesTypes>All</Visible3DGridPlanesTypes>
+    </ImagingSettingsPreset>
+    <AdditionalViews>
+      <ImagingSettingsPresets />
+      <MaximizedViewIndex>-1</MaximizedViewIndex>
+    </AdditionalViews>
+    <PresetType>User</PresetType>
+    <CompatibleDetectorGUID>Imaging chamber</CompatibleDetectorGUID>
+  </StudyPreset>
+  <OAMPreset>
+    <PresetIdentifier>363af186-8cfa-4d47-b22e-3005930c2ada</PresetIdentifier>
+    <PresetVersion>0</PresetVersion>
+    <Name>FullSpectrum</Name>
+    <IsDefaultPreset>true</IsDefaultPreset>
+    <MspPresets>
+      <DataModelMspPreset>
+        <SubstractOneFromMany>true</SubstractOneFromMany>
+        <Method>regression</Method>
+        <DiscardNegativeValues>true</DiscardNegativeValues>
+        <IcaComponents>5</IcaComponents>
+        <UserSelectedSpectra>
+          <string>Hb</string>
+          <string>HbO2</string>
+        </UserSelectedSpectra>
+        <BgWavelength unit="m" unit-modifier="n" number="0">660</BgWavelength>
+        <BgWavelengthFrame>1</BgWavelengthFrame>
+        <DifferenceWavelength unit="m" unit-modifier="n" number="0">730</DifferenceWavelength>
+      </DataModelMspPreset>
+    </MspPresets>
+    <ReconPresets>
+      <DataModelReconPreset>
+        <SystemReconPresetsVersion>1</SystemReconPresetsVersion>
+        <Method>direct</Method>
+        <SystemReconPresets>
+          <ReconstructionPreset>
+            <Name>20mm(75um)</Name>
+            <Resolution>276</Resolution>
+            <Projections>512</Projections>
+            <RoiLow>0.0305</RoiLow>
+            <RoiHigh>0.0505</RoiHigh>
+            <UltraSoundPixelSize>0.00018</UltraSoundPixelSize>
+            <ProdigyDataSet>Half</ProdigyDataSet>
+            <ProdigyDaq>SA</ProdigyDaq>
+            <ProdigySubImageIncrement>64</ProdigySubImageIncrement>
+            <ProdigyCUDATime>150</ProdigyCUDATime>
+            <ProdigyInterpolation>2</ProdigyInterpolation>
+            <TimeRes>3</TimeRes>
+            <FilterLow>50000</FilterLow>
+            <FilterHigh>6500000</FilterHigh>
+            <FilterType>FIR</FilterType>
+            <Nz>1</Nz>
+            <RoiZlow>0</RoiZlow>
+            <RoiZhigh>0</RoiZhigh>
+            <AThreshold>0.001</AThreshold>
+            <Threshold>0.01</Threshold>
+            <MaxSupportedFrameRate>0</MaxSupportedFrameRate>
+          </ReconstructionPreset>
+          <ReconstructionPreset>
+            <Name>25mm(75um)</Name>
+            <Resolution>332</Resolution>
+            <Projections>512</Projections>
+            <RoiLow>0.028</RoiLow>
+            <RoiHigh>0.053</RoiHigh>
+            <UltraSoundPixelSize>0.00018</UltraSoundPixelSize>
+            <ProdigyDataSet>Half</ProdigyDataSet>
+            <ProdigyDaq>SA</ProdigyDaq>
+            <ProdigySubImageIncrement>64</ProdigySubImageIncrement>
+            <ProdigyCUDATime>150</ProdigyCUDATime>
+            <ProdigyInterpolation>2</ProdigyInterpolation>
+            <TimeRes>3</TimeRes>
+            <FilterLow>50000</FilterLow>
+            <FilterHigh>6500000</FilterHigh>
+            <FilterType>FIR</FilterType>
+            <Nz>1</Nz>
+            <RoiZlow>0</RoiZlow>
+            <RoiZhigh>0</RoiZhigh>
+            <AThreshold>0.001</AThreshold>
+            <Threshold>0.01</Threshold>
+            <MaxSupportedFrameRate>0</MaxSupportedFrameRate>
+          </ReconstructionPreset>
+          <ReconstructionPreset>
+            <Name>30mm(100um)</Name>
+            <Resolution>300</Resolution>
+            <Projections>512</Projections>
+            <RoiLow>0.0255</RoiLow>
+            <RoiHigh>0.0555</RoiHigh>
+            <UltraSoundPixelSize>0.00018</UltraSoundPixelSize>
+            <ProdigyDataSet>Half</ProdigyDataSet>
+            <ProdigyDaq>SA</ProdigyDaq>
+            <ProdigySubImageIncrement>64</ProdigySubImageIncrement>
+            <ProdigyCUDATime>150</ProdigyCUDATime>
+            <ProdigyInterpolation>2</ProdigyInterpolation>
+            <TimeRes>3</TimeRes>
+            <FilterLow>50000</FilterLow>
+            <FilterHigh>6500000</FilterHigh>
+            <FilterType>FIR</FilterType>
+            <Nz>1</Nz>
+            <RoiZlow>0</RoiZlow>
+            <RoiZhigh>0</RoiZhigh>
+            <AThreshold>0.001</AThreshold>
+            <Threshold>0.01</Threshold>
+            <MaxSupportedFrameRate>0</MaxSupportedFrameRate>
+          </ReconstructionPreset>
+          <ReconstructionPreset>
+            <Name>50mm(200um)</Name>
+            <Resolution>252</Resolution>
+            <Projections>512</Projections>
+            <RoiLow>0.0155</RoiLow>
+            <RoiHigh>0.0655</RoiHigh>
+            <UltraSoundPixelSize>0.00018</UltraSoundPixelSize>
+            <ProdigyDataSet>Half</ProdigyDataSet>
+            <ProdigyDaq>SA</ProdigyDaq>
+            <ProdigySubImageIncrement>64</ProdigySubImageIncrement>
+            <ProdigyCUDATime>150</ProdigyCUDATime>
+            <ProdigyInterpolation>2</ProdigyInterpolation>
+            <TimeRes>3</TimeRes>
+            <FilterLow>50000</FilterLow>
+            <FilterHigh>6500000</FilterHigh>
+            <FilterType>FIR</FilterType>
+            <Nz>1</Nz>
+            <RoiZlow>0</RoiZlow>
+            <RoiZhigh>0</RoiZhigh>
+            <AThreshold>0.001</AThreshold>
+            <Threshold>0.01</Threshold>
+            <MaxSupportedFrameRate>0</MaxSupportedFrameRate>
+          </ReconstructionPreset>
+        </SystemReconPresets>
+        <SelectedPresetIndex>1</SelectedPresetIndex>
+        <DisableLowPass>false</DisableLowPass>
+        <FilterLow>50000</FilterLow>
+        <FilterHigh>6500000</FilterHigh>
+        <DepthCorrection>false</DepthCorrection>
+        <BackgroundAbsorption>0.1</BackgroundAbsorption>
+        <BackgroundOxygenation>70</BackgroundOxygenation>
+        <ReducedScatteringCoefficient>10</ReducedScatteringCoefficient>
+        <ImpulseResponse>true</ImpulseResponse>
+        <SensitivityMap>false</SensitivityMap>
+        <UserSoundTrim>3</UserSoundTrim>
+        <ProdigyFrequency>6</ProdigyFrequency>
+        <ProdigyPower>PL20</ProdigyPower>
+        <ProdigySV>1460</ProdigySV>
+      </DataModelReconPreset>
+    </ReconPresets>
+    <ExprerimentPreset>
+      <PreviewMode>SingleWL</PreviewMode>
+      <DisplayAllWavelengths>true</DisplayAllWavelengths>
+      <ContinuousAcquisitionMode>false</ContinuousAcquisitionMode>
+      <FramesPerWavelength>10</FramesPerWavelength>
+      <AverageFramesPerWavelength>true</AverageFramesPerWavelength>
+      <RepetitionsPerSlice>1</RepetitionsPerSlice>
+      <PreferredBackroundWL>660</PreferredBackroundWL>
+      <DefaultLaserTriggerRate>10</DefaultLaserTriggerRate>
+      <WavelengthSet>
+        <Items>
+          <double>660</double>
+          <double>665</double>
+          <double>670</double>
+          <double>675</double>
+          <double>680</double>
+          <double>685</double>
+          <double>690</double>
+          <double>695</double>
+          <double>700</double>
+          <double>705</double>
+          <double>710</double>
+          <double>715</double>
+          <double>720</double>
+          <double>725</double>
+          <double>730</double>
+          <double>735</double>
+          <double>740</double>
+          <double>745</double>
+          <double>750</double>
+          <double>755</double>
+          <double>760</double>
+          <double>765</double>
+          <double>770</double>
+          <double>775</double>
+          <double>780</double>
+          <double>785</double>
+          <double>790</double>
+          <double>795</double>
+          <double>800</double>
+          <double>805</double>
+          <double>810</double>
+          <double>815</double>
+          <double>820</double>
+          <double>825</double>
+          <double>830</double>
+          <double>835</double>
+          <double>840</double>
+          <double>845</double>
+          <double>850</double>
+          <double>855</double>
+          <double>860</double>
+          <double>865</double>
+          <double>870</double>
+          <double>875</double>
+          <double>880</double>
+          <double>885</double>
+          <double>890</double>
+          <double>895</double>
+          <double>900</double>
+          <double>905</double>
+          <double>910</double>
+          <double>915</double>
+          <double>920</double>
+          <double>925</double>
+          <double>930</double>
+          <double>935</double>
+          <double>940</double>
+          <double>945</double>
+          <double>950</double>
+          <double>955</double>
+          <double>960</double>
+          <double>965</double>
+          <double>970</double>
+          <double>975</double>
+          <double>980</double>
+          <double>985</double>
+          <double>990</double>
+          <double>995</double>
+          <double>1000</double>
+          <double>1100</double>
+          <double>1200</double>
+        </Items>
+      </WavelengthSet>
+      <TimeRunSet>
+        <UseEqualIntervals>true</UseEqualIntervals>
+        <PeriodicInterval>2015-01-01T00:01:00</PeriodicInterval>
+        <RepeatAcquisition>false</RepeatAcquisition>
+        <RepeatLimit>1</RepeatLimit>
+        <RepeatWithoutDelay>false</RepeatWithoutDelay>
+        <ScheduleItemsIntervals />
+      </TimeRunSet>
+      <USVisible>false</USVisible>
+      <SelectiveFrameAveraging>
+        <REFWAVELENGTH>0</REFWAVELENGTH>
+        <CORRTHRES>0</CORRTHRES>
+        <MAXAVERAGES>1</MAXAVERAGES>
+        <FRAMECORRTHRES>0</FRAMECORRTHRES>
+        <CONFLIMIT>0</CONFLIMIT>
+      </SelectiveFrameAveraging>
+      <DesiredWaterTemperature>36</DesiredWaterTemperature>
+      <IsMultipleMspLivePreviewEnabled>false</IsMultipleMspLivePreviewEnabled>
+    </ExprerimentPreset>
+    <ImagingSettingsPreset>
+      <AutoScaling>true</AutoScaling>
+      <ScalingMode>IndividualAuto</ScalingMode>
+      <Rotation>
+        <M11>1</M11>
+        <M12>0</M12>
+        <M21>0</M21>
+        <M22>1</M22>
+        <OffsetX>0</OffsetX>
+        <OffsetY>0</OffsetY>
+      </Rotation>
+      <Zoom>1</Zoom>
+      <ImageLayers>
+        <DataModelImagingLayer>
+          <Palette>
+            <PaletteType>Bone</PaletteType>
+            <PaletteName>Bone</PaletteName>
+            <Contrast>0.5</Contrast>
+            <Brightness>0.5</Brightness>
+            <AlphaGainCurveCP1>
+              <X>0</X>
+              <Y>0</Y>
+            </AlphaGainCurveCP1>
+            <AlphaGainCurveCP2>
+              <X>1</X>
+              <Y>1</Y>
+            </AlphaGainCurveCP2>
+            <UseAlphaCurve>false</UseAlphaCurve>
+            <AlphaLutCurveMap>Linear</AlphaLutCurveMap>
+            <ParabolicAlphaCurvePower>1</ParabolicAlphaCurvePower>
+          </Palette>
+          <GainMax>224.99330139160156</GainMax>
+          <GainMin>11.836094856262207</GainMin>
+          <Semitransparent>false</Semitransparent>
+          <Visible>true</Visible>
+          <Load>true</Load>
+          <Tlp>false</Tlp>
+          <Flip>false</Flip>
+          <ComponentTagIdentifier>Background</ComponentTagIdentifier>
+          <FirstIdentifier>0</FirstIdentifier>
+          <SecondIdentifier>0</SecondIdentifier>
+          <HbOxyMapThreshold>0.01</HbOxyMapThreshold>
+          <HbO2OxyMapThreshold>0.01</HbO2OxyMapThreshold>
+          <OxyMapThresholdValue>0</OxyMapThresholdValue>
+          <LogarithmicScaling>false</LogarithmicScaling>
+          <RenderingWeight>1</RenderingWeight>
+          <FilterSettings>
+            <DataModelFrequencyFilterSetting>
+              <HighFrequency>0</HighFrequency>
+              <LowFrequency>100</LowFrequency>
+            </DataModelFrequencyFilterSetting>
+          </FilterSettings>
+          <RoiTableVisible>true</RoiTableVisible>
+        </DataModelImagingLayer>
+        <DataModelImagingLayer>
+          <Palette>
+            <PaletteType>DarkBlue</PaletteType>
+            <PaletteName>Blue</PaletteName>
+            <Contrast>0.5</Contrast>
+            <Brightness>0.5</Brightness>
+            <AlphaGainCurveCP1>
+              <X>0</X>
+              <Y>0</Y>
+            </AlphaGainCurveCP1>
+            <AlphaGainCurveCP2>
+              <X>1</X>
+              <Y>1</Y>
+            </AlphaGainCurveCP2>
+            <UseAlphaCurve>false</UseAlphaCurve>
+            <AlphaLutCurveMap>Linear</AlphaLutCurveMap>
+            <ParabolicAlphaCurvePower>1</ParabolicAlphaCurvePower>
+          </Palette>
+          <GainMax>0.12569758296012878</GainMax>
+          <GainMin>0</GainMin>
+          <Semitransparent>true</Semitransparent>
+          <Visible>true</Visible>
+          <Load>true</Load>
+          <Tlp>false</Tlp>
+          <Flip>false</Flip>
+          <ComponentTagIdentifier>Hb</ComponentTagIdentifier>
+          <FirstIdentifier>1</FirstIdentifier>
+          <SecondIdentifier>1</SecondIdentifier>
+          <HbOxyMapThreshold>0.01</HbOxyMapThreshold>
+          <HbO2OxyMapThreshold>0.01</HbO2OxyMapThreshold>
+          <OxyMapThresholdValue>0</OxyMapThresholdValue>
+          <LogarithmicScaling>false</LogarithmicScaling>
+          <RenderingWeight>1</RenderingWeight>
+          <FilterSettings>
+            <DataModelFrequencyFilterSetting>
+              <HighFrequency>0</HighFrequency>
+              <LowFrequency>100</LowFrequency>
+            </DataModelFrequencyFilterSetting>
+          </FilterSettings>
+          <RoiTableVisible>true</RoiTableVisible>
+        </DataModelImagingLayer>
+        <DataModelImagingLayer>
+          <Palette>
+            <PaletteType>DarkRed</PaletteType>
+            <PaletteName>Red</PaletteName>
+            <Contrast>0.5</Contrast>
+            <Brightness>0.5</Brightness>
+            <AlphaGainCurveCP1>
+              <X>0</X>
+              <Y>0</Y>
+            </AlphaGainCurveCP1>
+            <AlphaGainCurveCP2>
+              <X>1</X>
+              <Y>1</Y>
+            </AlphaGainCurveCP2>
+            <UseAlphaCurve>false</UseAlphaCurve>
+            <AlphaLutCurveMap>Linear</AlphaLutCurveMap>
+            <ParabolicAlphaCurvePower>1</ParabolicAlphaCurvePower>
+          </Palette>
+          <GainMax>0.13224606215953827</GainMax>
+          <GainMin>0</GainMin>
+          <Semitransparent>true</Semitransparent>
+          <Visible>true</Visible>
+          <Load>true</Load>
+          <Tlp>false</Tlp>
+          <Flip>false</Flip>
+          <ComponentTagIdentifier>HbO2</ComponentTagIdentifier>
+          <FirstIdentifier>2</FirstIdentifier>
+          <SecondIdentifier>1</SecondIdentifier>
+          <HbOxyMapThreshold>0.01</HbOxyMapThreshold>
+          <HbO2OxyMapThreshold>0.01</HbO2OxyMapThreshold>
+          <OxyMapThresholdValue>0</OxyMapThresholdValue>
+          <LogarithmicScaling>false</LogarithmicScaling>
+          <RenderingWeight>1</RenderingWeight>
+          <FilterSettings>
+            <DataModelFrequencyFilterSetting>
+              <HighFrequency>0</HighFrequency>
+              <LowFrequency>100</LowFrequency>
+            </DataModelFrequencyFilterSetting>
+          </FilterSettings>
+          <RoiTableVisible>true</RoiTableVisible>
+        </DataModelImagingLayer>
+      </ImageLayers>
+      <ImageLayersComposeMethod>Overlay</ImageLayersComposeMethod>
+      <IsOxyMapsEnabled>false</IsOxyMapsEnabled>
+      <VolumeZoomCenter3D>
+        <X>0</X>
+        <Y>0</Y>
+        <Z>0</Z>
+      </VolumeZoomCenter3D>
+      <CroppingPoint0>
+        <X>0</X>
+        <Y>0</Y>
+        <Z>0</Z>
+      </CroppingPoint0>
+      <CroppingPoint1>
+        <X>1</X>
+        <Y>1</Y>
+        <Z>1</Z>
+      </CroppingPoint1>
+      <MeasurementRulers2D>
+        <MeasurementRulersXY />
+        <MeasurementRulersXZ />
+        <MeasurementRulersYZ />
+      </MeasurementRulers2D>
+      <DrawingRois2D>
+        <Regions />
+      </DrawingRois2D>
+      <Show3DTexture>false</Show3DTexture>
+      <Show3DVolumeRender>false</Show3DVolumeRender>
+      <Show3DViews>false</Show3DViews>
+      <SelectedROIsStyle>None</SelectedROIsStyle>
+      <ShowMIP>true</ShowMIP>
+      <ShowMIPCrop>false</ShowMIPCrop>
+      <Z_SelectedPlane>0.5</Z_SelectedPlane>
+      <Y_SelectedPlane>0.5</Y_SelectedPlane>
+      <X_SelectedPlane>0.5</X_SelectedPlane>
+      <Texture3DCameraTransform>
+        <M11>1</M11>
+        <M12>0</M12>
+        <M13>0</M13>
+        <M14>0</M14>
+        <M21>0</M21>
+        <M22>1</M22>
+        <M23>0</M23>
+        <M24>0</M24>
+        <M31>0</M31>
+        <M32>0</M32>
+        <M33>1</M33>
+        <M34>0</M34>
+        <OffsetX>0</OffsetX>
+        <OffsetY>0</OffsetY>
+        <OffsetZ>0</OffsetZ>
+        <M44>1</M44>
+      </Texture3DCameraTransform>
+      <VolumeRenderCameraTransform>
+        <M11>1</M11>
+        <M12>0</M12>
+        <M13>0</M13>
+        <M14>0</M14>
+        <M21>0</M21>
+        <M22>1</M22>
+        <M23>0</M23>
+        <M24>0</M24>
+        <M31>0</M31>
+        <M32>0</M32>
+        <M33>1</M33>
+        <M34>0</M34>
+        <OffsetX>0</OffsetX>
+        <OffsetY>0</OffsetY>
+        <OffsetZ>0</OffsetZ>
+        <M44>1</M44>
+      </VolumeRenderCameraTransform>
+      <ShowVRWireFrame>false</ShowVRWireFrame>
+      <Show3DVolumeRenderMIP>false</Show3DVolumeRenderMIP>
+      <ImageGridLineType>None</ImageGridLineType>
+      <ImageGridLineStepSize>1</ImageGridLineStepSize>
+      <ImageGridLineColor>
+        <A>255</A>
+        <R>0</R>
+        <G>0</G>
+        <B>255</B>
+        <ScA>1</ScA>
+        <ScR>0</ScR>
+        <ScG>0</ScG>
+        <ScB>1</ScB>
+      </ImageGridLineColor>
+      <UltrasoundMinimumScaling>-1</UltrasoundMinimumScaling>
+      <UltrasoundMaximumScaling>1</UltrasoundMaximumScaling>
+      <BackgroundMinimumScaling>0.05</BackgroundMinimumScaling>
+      <BackgroundMaximumScaling>0.995</BackgroundMaximumScaling>
+      <ForegroundMinimumScaling>-1</ForegroundMinimumScaling>
+      <ForegroundMaximumScaling>1</ForegroundMaximumScaling>
+      <Visible3DGridPlanesTypes>All</Visible3DGridPlanesTypes>
+    </ImagingSettingsPreset>
+    <AdditionalViews>
+      <ImagingSettingsPresets />
+      <MaximizedViewIndex>-1</MaximizedViewIndex>
+    </AdditionalViews>
+    <PresetType>User</PresetType>
+    <CompatibleDetectorGUID>Imaging chamber</CompatibleDetectorGUID>
+  </OAMPreset>
+  <Log>
+    <TotalWarning>0</TotalWarning>
+    <TotalCritical>0</TotalCritical>
+    <LogItems />
+  </Log>
+</DataModelMsotProject>
