@@ -14,3 +14,4 @@ xarray
 pyopencl
 shapely
 nbsphinx
+ipython
