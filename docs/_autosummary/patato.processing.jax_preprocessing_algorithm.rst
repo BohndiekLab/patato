@@ -14,7 +14,10 @@ jax\_preprocessing\_algorithm
    .. autosummary::
       :toctree:
    
+      interpolate_detectors
       make_filter
+      partial_interpolate
+      subtract_mean
    
    
 

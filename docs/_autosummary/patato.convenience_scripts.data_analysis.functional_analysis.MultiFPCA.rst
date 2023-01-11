@@ -18,6 +18,8 @@ MultiFPCA
       ~MultiFPCA.__init__
       ~MultiFPCA.fit
       ~MultiFPCA.fit_transform
+      ~MultiFPCA.get_params
+      ~MultiFPCA.set_params
       ~MultiFPCA.transform
    
    

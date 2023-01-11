@@ -41,7 +41,9 @@ extensions = ["myst_parser",
 autosummary_generate = True
 autosummary_ignore_module_all = False
 
-autodoc_mock_imports = ["jax", "skfda", "pyopencl", "pylops", "simpa", "sklearn", "seaborn"]
+# mock-up imports for the libraries that are bit awkward to install, and the c++ extensions
+autodoc_mock_imports = ["simpa", "pacfish", "patato.recon.model_based.generate_model",
+                        "patato.recon.model_based.generate_model_refraction"]
 autosummary_mock_imports = autodoc_mock_imports
 
 # Add any paths that contain templates here, relative to this directory.

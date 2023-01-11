@@ -22,6 +22,9 @@ the community.
 * Please report any bugs or issues you find to our GitHub repository
 * Please do get involved! Contact Thomas Else (thomas.else@cruk.cam.ac.uk).
 
+.. automodule::
+   patato
+
 .. only:: latex
 
     User Guide

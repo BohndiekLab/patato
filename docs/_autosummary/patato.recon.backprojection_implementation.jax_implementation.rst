@@ -9,6 +9,14 @@ jax\_implementation
 
    
    
+   .. rubric:: Functions
+
+   .. autosummary::
+      :toctree:
+   
+      full_recon
+      recon_partial
+   
    
 
    

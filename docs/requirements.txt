@@ -15,3 +15,9 @@ pyopencl
 shapely
 nbsphinx
 ipython
+jax[cpu]
+seaborn
+pylops
+scikit-fda
+scikit-learn
+tabulate
