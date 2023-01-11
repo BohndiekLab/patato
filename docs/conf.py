@@ -41,7 +41,7 @@ extensions = ["myst_parser",
 autosummary_generate = True
 autosummary_ignore_module_all = False
 
-autodoc_mock_imports = ["jax", "skfda", "pyopencl", "pylops", "simpa"]
+autodoc_mock_imports = ["jax", "skfda", "pyopencl", "pylops", "simpa", "sklearn", "seaborn"]
 autosummary_mock_imports = autodoc_mock_imports
 
 # Add any paths that contain templates here, relative to this directory.
