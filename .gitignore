@@ -146,6 +146,6 @@ cython_debug/
 /temporary/
 /model_based/test_model.npz
 /models/
-/src/bohndieklab_utilities/examples/extracted_data/
-/src/bohndieklab_utilities/examples/output_images/
-/src/bohndieklab_utilities/examples/
+/patato/bohndieklab_utilities/examples/extracted_data/
+/patato/bohndieklab_utilities/examples/output_images/
+/patato/bohndieklab_utilities/examples/

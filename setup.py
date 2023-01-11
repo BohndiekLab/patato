@@ -31,11 +31,11 @@ requirements = [
 ]
 
 modelbased_c = Extension("patato.recon.model_based.generate_model",
-                         sources=["src/patato/recon/model_based/generate_model.cpp"],
+                         sources=["patato/recon/model_based/generate_model.cpp"],
                          language="c++", extra_compile_args=["-std=c++11"],
                          include_dirs=[pybind11.get_include()], )
 modelbased_c2 = Extension("patato.recon.model_based.generate_model_refraction",
-                          sources=["src/patato/recon/model_based/generate_model_refraction.cpp"],
+                          sources=["patato/recon/model_based/generate_model_refraction.cpp"],
                           language="c++", extra_compile_args=["-std=c++11"],
                           include_dirs=[pybind11.get_include()], )
 
@@ -49,7 +49,6 @@ setuptools.setup(
         include=["patato", "patato.*",
                  "convenience_scripts", "bohndieklab_utilities"]
     ),
-    package_dir={"": "src"},
     install_requires=requirements,
     package_data={"patato.processing.spectra.spectra_files": ["*.csv", "*.txt"]},
     entry_points={"console_scripts": [

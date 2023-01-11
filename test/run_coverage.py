@@ -2,13 +2,19 @@
 #  License: BSD-3
 
 from os.path import isfile
+
 import unittest
+import os
+import sys
+
+# make sure that we're using the installed version of patato.
+sys.path.insert(0, os.path.abspath('../'))
 
 import h5py
 import numpy as np
 from coverage import Coverage
 
-cov = Coverage(source=['../src/patato'], omit=["*test*"])
+cov = Coverage(source=['../patato'], omit=["*test*", "*convenience_scripts*", "*bohndieklab_utilities*"])
 cov.start()
 
 # noinspection PyPep8
@@ -21,7 +27,6 @@ from patato.io.ithera.tests.ithera_tests import TestITheraImport
 from patato.io.json.tests.test_reconstruction_reading import TestJSONLoading
 from patato.io.tests.test_msot_data import TestMSOTData
 
-import os
 
 os.environ["XLA_PYTHON_CLIENT_PREALLOCATE"] = "false"
 

@@ -49,6 +49,8 @@
    :toctree:
    :recursive:
 
+   patato.bohndieklab_utilities
+   patato.convenience_scripts
    patato.core
    patato.data
    patato.io

@@ -1,7 +1,7 @@
 MultiFPCA
 =========
 
-.. currentmodule:: convenience_scripts.data_analysis.functional_analysis
+.. currentmodule:: patato.convenience_scripts.data_analysis.functional_analysis
 
 .. autoclass:: MultiFPCA
    :members:
