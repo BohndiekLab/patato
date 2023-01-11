@@ -7,7 +7,7 @@ run the following in the command line:
 .. code-block:: console
 
     cd /path/to/patato
-    cd test
+    cd tests
     python run_coverage.py
 
 This will output ok for each successful test. Note some of the tests will not run without a GPU, decreasing the coverage.
