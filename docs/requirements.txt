@@ -1,0 +1,15 @@
+myst_parser
+sphinx_rtd_theme
+pydata_sphinx_theme
+sphinx_book_theme
+numpy
+pacfish
+h5py
+scipy
+pandas
+matplotlib
+dask
+cython
+xarray
+pyopencl
+shapely

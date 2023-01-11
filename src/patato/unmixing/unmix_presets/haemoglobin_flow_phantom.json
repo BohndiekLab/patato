@@ -1,0 +1,7 @@
+{
+"RESOLUTION_REDUCE": 1,
+"WAVELENGTH_RANGE": [700, 850],
+"SPECTRA": ["Hb", "HbO2"],
+"SO2": true,
+"SUFFIX": ""
+}

@@ -1,0 +1,15 @@
+{
+  "RESOLUTION_REDUCE": 3,
+  "WAVELENGTH_RANGE": [
+    700,
+    850
+  ],
+  "SPECTRA": [
+    "Hb",
+    "HbO2"
+  ],
+  "SO2": true,
+  "NONNEG": false,
+  "SUFFIX": "EW",
+  "WATER_CORR": true
+}
