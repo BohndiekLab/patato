@@ -4,6 +4,12 @@ PATATO: PhotoAcoustic Tomography Analysis TOolkit
 .. image:: https://readthedocs.org/projects/patato/badge/?version=latest
     :target: https://patato.readthedocs.io/en/latest/?badge=latest
     :alt: Documentation Status
+.. image:: https://img.shields.io/badge/License-BSD_3--Clause-blue.svg
+    :target: https://github.com/tomelse/patato/blob/main/LICENSE.MD
+    :alt: BSD 3-Clause License
+.. image:: https://badge.fury.io/py/patato.svg
+    :target: https://badge.fury.io/py/patato
+    :alt: PyPI version
 
 PATATO is an Open-Source project to enable the analysis of photoacoustic (PA)
 imaging data in a transparent, reproducible and extendable way.
