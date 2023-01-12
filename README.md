@@ -2,6 +2,7 @@
 [![Documentation Status](https://readthedocs.org/projects/patato/badge/?version=latest)](https://patato.readthedocs.io/en/latest/?badge=latest)
 [![License](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg)](https://github.com/tomelse/patato/blob/main/LICENSE.MD)
 [![PyPI version](https://badge.fury.io/py/patato.svg)](https://badge.fury.io/py/patato)
+[![Build](https://github.com/tomelse/patato/actions/workflows/build_wheels.yml/badge.svg)](https://github.com/tomelse/patato/actions/workflows/build_wheels.yml)
 
 [Documentation](https://patato.readthedocs.io/en/develop/)
 
