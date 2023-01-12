@@ -21,8 +21,9 @@ Installation
 +++++++++++++
 
 .. hint::
-    The reconstruction algorithms rely on JAX and CUDA to enable parallelisation and GPU support. You may need to
-    follow the instructions `on the jax website here <https://github.com/google/jax#installation>`_.
+    The reconstruction algorithms rely on JAX and CUDA to enable parallelisation and GPU support.
+    Follow the instructions `on the jax website here <https://github.com/google/jax#installation>`_ to enable GPU
+    support. Note that you must have a supported nVidia GPU and CUDA toolkit installed.
 
 Windows Installation
 --------------------
@@ -30,7 +31,7 @@ Windows Installation
 If you are using Windows, you may need to install an unofficial build of JAXLIB to support image
 reconstruction. See (`this GitHub repository <https://github.com/cloudhan/jax-windows-builder>`_) for more details.
 
-Option 1: Install using pip (not yet supported)
+Option 1: Install using pip
 ------------------------------------------------------
 
 Once you have Python installed, you can install PATATO using pip:

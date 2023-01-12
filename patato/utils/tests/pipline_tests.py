@@ -9,7 +9,7 @@ from ...core.image_structures.reconstruction_image import Reconstruction
 from ...core.image_structures.unmixed_image import UnmixedData
 from ...io.msot_data import PAData
 from ...processing.preprocessing_algorithm import DefaultMSOTPreProcessor
-from ...processing.spectra import OxyHaemoglobin, Haemoglobin
+from patato.unmixing.spectra import OxyHaemoglobin, Haemoglobin
 from ...recon import ReferenceBackprojection
 from ...unmixing.unmixer import SpectralUnmixer
 from ..run_pipeline import run_pipeline

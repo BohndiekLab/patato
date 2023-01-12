@@ -12,7 +12,7 @@ from ..core.image_structures.unmixed_image import UnmixedData
 from ..io.attribute_tags import UnmixingAttributeTags, GCAttributeTags
 from ..io.msot_data import PAData, HDF5Tags
 from ..processing.processing_algorithm import SpatialProcessingAlgorithm, ProcessingResult
-from ..processing.spectra import Spectrum, SPECTRA_NAMES
+from patato.unmixing.spectra import Spectrum, SPECTRA_NAMES
 from ..utils.time_series_analysis import find_gc_boundaries
 
 

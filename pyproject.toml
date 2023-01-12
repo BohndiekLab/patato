@@ -1,10 +1,34 @@
 [build-system]
-requires = ["setuptools", "wheel", "cython", "pybind11"]
+requires = ["setuptools", "wheel", "pybind11"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "patato"
 version = "0.0.1"
+dependencies = [
+    "requests",
+    "cython",
+    "shapely",
+    "pylops",
+    "h5py",
+    "typing_extensions",
+    "seaborn",
+    "pandas",
+    "scikit-learn",
+    "scikit-fda",
+    "xarray",
+    "numpy",
+    "scipy",
+    "tabulate",
+    "matplotlib",
+    "pyopencl",
+    "matplotlib_scalebar",
+    "dask",
+    "pybind11",
+    "jax[cpu]",
+    "simpa",
+    "; platform_system=='Windows'"
+]
 authors = [
   { name="Thomas Else", email="thomas.else@cruk.cam.ac.uk" },
 ]
@@ -21,3 +45,36 @@ classifiers = [
 "Homepage" = "https://github.com/tomelse/patato"
 "Bug Tracker" = "https://github.com/tomelse/patato/issues"
 "Documentation" = "https://patato.readthedocs.io"
+
+[tool.setuptools.packages.find]
+# All the following settings are optional:
+where = ["."]  # ["."] by default
+include = ["patato", "patato.*"]  # ["*"] by default
+exclude = []  # empty by default
+namespaces = true  # true by default
+
+[project.scripts]
+msot-import-ithera = "patato.convenience_scripts.convert_binary_to_hdf5:main"
+msot-draw-roi = "patato.convenience_scripts.draw_roi:main"
+msot-set-speed-of-sound = "patato.convenience_scripts.tune_speed_of_sound:main"
+msot-copy-roi = "patato.convenience_scripts.copy_rois:main"
+msot-generate-masks = "patato.convenience_scripts.generate_masks:main"
+msot-print-speeds = "patato.convenience_scripts.print_speeds:main"
+msot-rename-scans = "patato.convenience_scripts.rename_scan:main"
+msot-scan-status = "patato.convenience_scripts.scan_status:main"
+msot-unmix = "patato.convenience_scripts.unmix:main"
+msot-view = "patato.convenience_scripts.view:main"
+msot-reconstruct = "patato.convenience_scripts.process_msot:main"
+msot-analyse-dce = "patato.convenience_scripts.data_analysis.analyse_dce:main"
+msot-analyse-gc = "patato.convenience_scripts.data_analysis.analyse_gas_challenge:main"
+msot-split-rois = "patato.convenience_scripts.split_rois:main"
+msot-generate-core = "patato.convenience_scripts.generate_core:main"
+msot-convert-simpa = "patato.convenience_scripts.convert_simpa:main"
+
+[tool.setuptools.package-data]
+"patato.unmixing.spectra.spectra_files" = ["*.csv", "*.txt"]
+"patato.recon.recon_presets" = ["*.json"]
+"patato.unmixed.unmixed_presets" = ["*.json"]
+
+[tool.setuptools.exclude-package-data]
+"*" = [".gitattributes", ".gitignore"]

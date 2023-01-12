@@ -7,7 +7,7 @@ import unittest
 import os
 import sys
 
-# make sure that we're using the installed version of patato.
+# make sure that we're using the downloaded version of patato.
 sys.path.insert(0, os.path.abspath('../'))
 
 import h5py

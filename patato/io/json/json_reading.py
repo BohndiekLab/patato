@@ -132,7 +132,7 @@ def read_unmixing_preset(json_path: Union[str, dict], example_data: Optional[PAD
     spectra_names = settings[UnmixingAttributeTags.SPECTRA]
 
     # Initialize the spectral unmixer pipeline
-    from ...processing.spectra import SPECTRA_NAMES
+    from patato.unmixing.spectra import SPECTRA_NAMES
     spectra = [SPECTRA_NAMES[x]() for x in spectra_names]
 
     compute_so2 = settings[UnmixingAttributeTags.COMPUTE_SO2]

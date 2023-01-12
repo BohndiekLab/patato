@@ -22,7 +22,7 @@ except ImportError:
 
 from ..io.attribute_tags import PreprocessingAttributeTags
 import time
-from .spectra import SPECTRA_NAMES
+from patato.unmixing.spectra import SPECTRA_NAMES
 import logging
 
 

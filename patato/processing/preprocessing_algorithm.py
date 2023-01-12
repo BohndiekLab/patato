@@ -19,7 +19,7 @@ from scipy.fft import fft, ifft, fftshift, fftfreq
 
 from ..io.attribute_tags import PreprocessingAttributeTags
 
-from .spectra import SPECTRA_NAMES
+from patato.unmixing.spectra import SPECTRA_NAMES
 
 
 class DefaultMSOTPreProcessor(TimeSeriesProcessingAlgorithm):
