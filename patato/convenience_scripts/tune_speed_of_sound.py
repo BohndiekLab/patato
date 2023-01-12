@@ -85,7 +85,7 @@ def main():
 
         with open(preset) as json_file:
             settings = json.load(json_file)
-        print(json_file)
+
         pipeline = read_reconstruction_preset(settings)
 
         preprocessor: MSOTPreProcessor = pipeline
