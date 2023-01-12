@@ -31,12 +31,23 @@ Windows Installation
 If you are using Windows, you may need to install an unofficial build of JAXLIB to support image
 reconstruction. See (`this GitHub repository <https://github.com/cloudhan/jax-windows-builder>`_) for more details.
 
+Setting up CUDA the easy way
+-------------------------------------
+
+The easy way to setup the CUDA toolkit (needed for image reconstruction) is as follows:
+
+    conda install -c nvidia cuda-toolkit cudnn
+
 Option 1: Install using pip
 ------------------------------------------------------
 
 Once you have Python installed, you can install PATATO using pip:
 
     pip install patato
+
+To enable GPU support on Linux or Mac run:
+
+    pip install jax[gpu]
 
 Option 2: Install from source
 ------------------------------------

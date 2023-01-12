@@ -73,7 +73,7 @@ msot-convert-simpa = "patato.convenience_scripts.convert_simpa:main"
 [tool.setuptools.package-data]
 "patato.unmixing.spectra.spectra_files" = ["*.csv", "*.txt"]
 "patato.recon.recon_presets" = ["*.json"]
-"patato.unmixed.unmixed_presets" = ["*.json"]
+"patato.unmixing.unmixed_presets" = ["*.json"]
 
 [tool.setuptools.exclude-package-data]
 "*" = [".gitattributes", ".gitignore"]
