@@ -1,6 +1,11 @@
 name: Build
 
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - main
+
+#on: [push, pull_request]
 
 jobs:
   build_wheels:
