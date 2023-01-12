@@ -3,7 +3,7 @@
 
 import os
 import gdown
-from patato import PAData
+from .. import PAData
 
 
 def get_patato_data_folder():
