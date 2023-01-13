@@ -14,7 +14,7 @@ import h5py
 import numpy as np
 from coverage import Coverage
 
-cov = Coverage(source=['../patato'], omit=["*test*", "*convenience_scripts*", "*bohndieklab_utilities*"])
+cov = Coverage(source=['../patato'], omit=["*test*", "*convenience_scripts*", "*useful_utilities*"])
 cov.start()
 
 # noinspection PyPep8

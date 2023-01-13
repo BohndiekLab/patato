@@ -17,8 +17,7 @@ from ..utils.time_series_analysis import find_gc_boundaries
 
 
 class SpectralUnmixer(SpatialProcessingAlgorithm):
-    """
-
+    """The spectral unmixer. This takes in reconstruction data and spits out linearly spectrall unmixed data.
     """
     @staticmethod
     def re_grid(reconstruction: np.ndarray, scaling_factor: int):
@@ -89,6 +88,8 @@ class SpectralUnmixer(SpatialProcessingAlgorithm):
 
 
 class SO2Calculator(SpatialProcessingAlgorithm):
+    """The SO2 calculator. This takes in unmixed data and produces SO2 data.
+    """
     def run(self, spatial_data: UnmixedData, _, **kwargs):
         hb_axis = np.where(spatial_data.spectra == "Hb")[0][0]
         hbo2_axis = np.where(spatial_data.spectra == "HbO2")[0][0]
@@ -107,6 +108,8 @@ class SO2Calculator(SpatialProcessingAlgorithm):
 
 
 class THbCalculator(SpatialProcessingAlgorithm):
+    """The Total Haemoglobin calculator. This takes in unmixed data and produces THb data.
+    """
     def run(self, spatial_data: UnmixedData, _, **kwargs):
         hb_axis = np.where(spatial_data.spectra == "Hb")[0][0]
         hbo2_axis = np.where(spatial_data.spectra == "HbO2")[0][0]
@@ -123,6 +126,9 @@ class THbCalculator(SpatialProcessingAlgorithm):
 
 
 class GasChallengeAnalyser(SpatialProcessingAlgorithm):
+    """Analyser for oxygen-enhanced datasets. Takes in a time-series of sO2 data (or any other parameter) and produces
+    a delta sO2.
+    """
     def __init__(self, smoothing_window_size=10,
                  display_output=True, smoothing_sigma=2,
                  start_skip=0, challenge_type=1, buffer_width=5):
@@ -233,6 +239,8 @@ def find_dce_boundaries(roi_mask, icg, smoothing_window_size, display, smoothing
 
 
 class DCEAnalyser(SpatialProcessingAlgorithm):
+    """Analyser for DCE datasets. Takes in a time-series of ICG data and produces a delta ICG.
+    """
     def __init__(self, smoothing_window_size=10,
                  display_output=True, smoothing_sigma=2,
                  buffer_width=5, unmix_index=2):

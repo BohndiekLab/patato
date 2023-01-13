@@ -1,6 +1,10 @@
 #  Copyright (c) Thomas Else 2023.
 #  License: BSD-3
 
+"""
+``msot-reconstruct``: A script to reconstruct all MSOT data files in a folder.
+"""
+
 import argparse
 import glob
 import json

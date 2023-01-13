@@ -16,6 +16,8 @@ from shapely.geometry import Polygon, MultiPolygon
 
 
 class ROI:
+    """Class to store regions of interests.
+    """
     def get_area(self):
         return self.get_polygon().area
 

@@ -1,5 +1,9 @@
 #  Copyright (c) Thomas Else 2023.
 #  License: BSD-3
+"""
+``msot-set-speed-of-sound``: This module contains functions for setting the speed of sound for all datasets in a
+directory.
+"""
 
 import argparse
 import glob

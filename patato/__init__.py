@@ -43,10 +43,15 @@ PAT_MAXIMUM_BATCH_SIZE = int(environ.get("PAT_MAXIMUM_BATCH_SIZE", 5))
 
 """ DOCUMENTATION FIX: """
 # To add support for importing to sphinx documentation:
-__all_exports = [iTheraMSOT, PAData, SimpaImporter, OpenCLBackprojection,
-                 ModelBasedReconstruction, ReconstructionAlgorithm, MSOTPreProcessor, SpectralUnmixer,
-                 SO2Calculator, THbCalculator, Reconstruction, UnmixedData, ImageSequence, ROI,
-                 PATimeSeries, Backprojection]
+__all_exports = [MSOTPreProcessor,
+                 Backprojection, OpenCLBackprojection, ModelBasedReconstruction,
+                 SpectralUnmixer, SO2Calculator, THbCalculator,
+                 GasChallengeAnalyser, DCEAnalyser,
+                 PAData,
+                 SimpaImporter, iTheraMSOT,
+                 Reconstruction, UnmixedData, ImageSequence,
+                 ROI,
+                 PATimeSeries]
 
 for e in __all_exports:
     e.__module__ = __name__
