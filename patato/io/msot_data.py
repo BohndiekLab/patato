@@ -74,9 +74,8 @@ class PAData:
         self.scan_reader = scan_reader
         self.scan_writer = scan_writer
 
-        # TODO: need to keep track of what data can be sliced
-
         self.default_recon = None
+        self.default_unmixing_type = ""
         self.external_roi_interface = None
 
     def is_clinical(self):
@@ -208,7 +207,7 @@ class PAData:
         """
         return self.scan_reader.get_wavelengths()
 
-    def get_scan_images(self, group: str, ignore_default=False) -> Union[
+    def get_scan_images(self, group: str, ignore_default=False, suffix="") -> Union[
         Dict[Tuple[str, str], ImageSequence], ImageSequence]:
         """
         Get the scan images, e.g. reconstructions or so2 etc.
@@ -216,6 +215,11 @@ class PAData:
         Parameters
         ----------
         group : str
+            Group to get images from.
+        ignore_default : bool
+            Ignore the default reconstruction.
+        suffix : str
+            Suffix to add to the image number (e.g. for ICG unmixing).
 
         Returns
         -------
@@ -229,13 +233,14 @@ class PAData:
         if self.default_recon is None or ignore_default:
             return datasets.get(group, {})
         else:
-            return datasets.get(group, {}).get(self.default_recon, {})
+            image = (self.default_recon[0], self.default_recon[1] + suffix)
+            return datasets.get(group, {}).get(image, {})
 
     def get_scan_reconstructions(self):
         return self.get_scan_images(HDF5Tags.RECONSTRUCTION)
 
     def get_scan_unmixed(self):
-        return self.get_scan_images(HDF5Tags.UNMIXED)
+        return self.get_scan_images(HDF5Tags.UNMIXED, suffix=self.default_unmixing_type)
 
     def get_scan_so2(self):
         return self.get_scan_images(HDF5Tags.SO2)

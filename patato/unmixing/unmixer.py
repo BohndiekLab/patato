@@ -248,9 +248,9 @@ class DCEAnalyser(SpatialProcessingAlgorithm):
                                                                                                       ProcessingResult]]]]:
         rois = pa_data.get_rois()
         if not rois:
-            raise RuntimeError("No reference region available.")
+            raise ValueError("No reference region available.")
         elif ("reference_", "0") not in rois:
-            raise RuntimeError("No reference region available.")
+            raise ValueError("No reference region available.")
         icg = unmixed_data[:, self.unmix_index]
 
         roi_mask, _ = rois[("reference_", "0")].to_mask_slice(icg)

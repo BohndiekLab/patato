@@ -8,6 +8,7 @@ Image sequence - abstract classes for processing datasets from PA data.
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
+from typing import Tuple, Iterable
 
 import numpy as np
 import xarray
@@ -138,7 +139,7 @@ class DataSequence(ProcessingResult, ABC):
         sliced = (0, ) * end
         return d[sliced]
 
-    def imshow(self, ax=None, roi_mask: "ROI" = None,
+    def imshow(self, ax=None, roi_mask: Tuple["ROI", Iterable["ROI"]] = None,
                mask_roi=True,
                cmap=None, scale_kwargs=None, return_scalebar_dimension=False, scalebar=True,
                **kwargs):
@@ -151,11 +152,26 @@ class DataSequence(ProcessingResult, ABC):
             ax = plt.gca()
 
         if roi_mask is not None:
-            mask, image_slice = roi_mask.to_mask_slice(self)
-            image_slice = self.to_2d(image_slice)
-            display_image = np.squeeze(image_slice.numpy_array).astype(np.float)
-            if mask_roi:
-                display_image[~np.squeeze(mask)] = np.nan
+            if type(roi_mask) is not ROI:
+                try:
+                    mask, image_slice = roi_mask[0].to_mask_slice(self)
+                    image_slice = self.to_2d(image_slice)
+                    display_image = np.squeeze(image_slice.numpy_array).astype(np.float)
+                    overall_mask = np.zeros(display_image.shape, dtype=np.bool)
+                    for roi in roi_mask:
+                        mask, _ = roi.to_mask_slice(self)
+                        if mask_roi:
+                            overall_mask[np.squeeze(mask)] = True
+                    if mask_roi:
+                        display_image[~overall_mask] = np.nan
+                except TypeError:
+                    raise ValueError("roi_mask must be a ROI or a tuple of ROIs")
+            else:
+                mask, image_slice = roi_mask.to_mask_slice(self)
+                image_slice = self.to_2d(image_slice)
+                display_image = np.squeeze(image_slice.numpy_array).astype(np.float)
+                if mask_roi:
+                    display_image[~np.squeeze(mask)] = np.nan
         else:
             display_image = self.to_2d(self).numpy_array
 
