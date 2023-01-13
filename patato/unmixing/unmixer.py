@@ -126,6 +126,24 @@ class GasChallengeAnalyser(SpatialProcessingAlgorithm):
     def __init__(self, smoothing_window_size=10,
                  display_output=True, smoothing_sigma=2,
                  start_skip=0, challenge_type=1, buffer_width=5):
+        """
+        Gas challenge analyser.
+
+        Parameters
+        ----------
+        smoothing_window_size : int
+            The size of the window to use for smoothing the data.
+        display_output : bool
+            Whether to display the output, and ask for a response to confirm the fit is good.
+        smoothing_sigma : float
+            The sigma to use for the gaussian smoothing.
+        start_skip : int
+            The number of frames to skip at the start of the data.
+        challenge_type : int
+            The type of challenge to use. 1 is the standard challenge (air -> oxygen), -1 is the reverse (oxygen -> air).
+        buffer_width : int
+            The number of frames to use as a buffer at the start and end of the challenge.
+        """
         super().__init__()
         self.smoothing_window_size = smoothing_window_size
         self.display = display_output
@@ -137,6 +155,26 @@ class GasChallengeAnalyser(SpatialProcessingAlgorithm):
     def run(self, so2: SingleParameterData, pa_data: PAData, **kwargs) -> Optional[Tuple[SingleImage, dict,
                                                                                          Optional[List[
                                                                                              ProcessingResult]]]]:
+        """
+        This algorithm takes in a so2 time series and a PA data object (pa_data) and returns a tuple containing the
+        delta sO2 (change in sO2 between the baseline and the challenge), an empty dictionary (for compatibility with
+        other processing methods), and a list containing the mean and standard deviation of the baseline sO2.
+
+        Parameters
+        ----------
+        so2 : SingleParameterData
+            The sO2 time series.
+        pa_data : PAData
+            The PA data object.
+        kwargs : dict
+            Additional keyword arguments, provided for compatibility with other processing methods.
+
+        Returns
+        -------
+        Tuple[SingleImage, dict, Optional[List[ProcessingResult]]] or None
+            A tuple containing the delta sO2, an empty dictionary (for compatibility with other processing methods), and
+            a list containing the mean and standard deviation of the baseline sO2.
+        """
         rois = pa_data.get_rois()
         if not rois:
             raise RuntimeError("No reference region available.")
@@ -157,23 +195,34 @@ class GasChallengeAnalyser(SpatialProcessingAlgorithm):
                     steps = [steps[0], steps[1], steps[-1]]
                     print(steps)
         so2_measurements = so2.raw_data[:, 0]
+
+        # SO2 in the baseline region
         baseline_region = so2_measurements[steps[0]: steps[1] - self.buffer]
         baseline_so2 = np.mean(baseline_region, axis=0)
         baseline_so2_std = np.std(baseline_region, axis=0)
+
+        # SO2 in the challenge region
         post_so2 = so2_measurements[steps[1] + self.buffer: steps[2] - self.buffer]
-        delta_so2 = np.mean(post_so2, axis=0) - baseline_so2
+        delta_so2 = (np.mean(post_so2, axis=0) - baseline_so2)
 
         delta_output = SingleImage(delta_so2, [HDF5Tags.DELTA_SO2],
                                    attributes=so2.attributes,
                                    field_of_view=so2.fov_3d)
+
+        # Add meta data
         delta_output.hdf5_sub_name = so2.hdf5_sub_name
         delta_output.attributes[GCAttributeTags.STEPS] = steps
         delta_output.attributes[GCAttributeTags.BUFFER] = self.buffer
         delta_output.attributes[GCAttributeTags.SKIP_START] = self.start_skip
-        baseline_so2_output = SingleImage(baseline_so2, [HDF5Tags.BASELINE_SO2], attributes=delta_output.attributes)
+
+        # Add the extra outputs (baseline sO2 and baseline standard deviation)
+        baseline_so2_output = SingleImage(baseline_so2, [HDF5Tags.BASELINE_SO2],
+                                          attributes=delta_output.attributes,
+                                          field_of_view=so2.fov_3d)
         baseline_so2_output.hdf5_sub_name = so2.hdf5_sub_name
         baseline_so2_sigma_output = SingleImage(baseline_so2_std, [HDF5Tags.BASELINE_SO2_STANDARD_DEVIATION],
-                                                attributes=delta_output.attributes)
+                                                attributes=delta_output.attributes,
+                                                field_of_view=so2.fov_3d)
         baseline_so2_sigma_output.hdf5_sub_name = so2.hdf5_sub_name
         return delta_output, {}, [baseline_so2_output, baseline_so2_sigma_output]
 

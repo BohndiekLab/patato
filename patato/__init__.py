@@ -22,7 +22,7 @@ from .recon.reconstruction_algorithm import ReconstructionAlgorithm
 
 from .processing.jax_preprocessing_algorithm import MSOTPreProcessor
 
-from .unmixing.unmixer import SpectralUnmixer, SO2Calculator, THbCalculator
+from .unmixing.unmixer import SpectralUnmixer, SO2Calculator, THbCalculator, GasChallengeAnalyser, DCEAnalyser
 from .core.image_structures.reconstruction_image import Reconstruction
 from .core.image_structures.unmixed_image import UnmixedData
 from .core.image_structures.image_sequence import ImageSequence

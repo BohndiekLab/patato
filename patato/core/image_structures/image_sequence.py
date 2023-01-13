@@ -236,10 +236,7 @@ class DataSequence(ProcessingResult, ABC):
 
     @property
     def ax_1_labels(self):
-        if self.get_ax1_label_meaning() is not None:
-            return self.da.coords[self.get_ax1_label_meaning()]
-        else:
-            return None
+        return self.da.coords.get(self.get_ax1_label_meaning(), None)
 
     @property
     def ax_0_labels(self):
@@ -300,14 +297,14 @@ class ImageSequence(DataSequence):
     def __init__(self, raw_data, ax_1_labels=None,
                  algorithm_id="", field_of_view=None,
                  attributes=None, hdf5_sub_name=None, ax1_meaning=None):
-        # Quick bit of validation
-        if ax_1_labels is not None:
-            if raw_data.shape[1] != len(ax_1_labels):
-                raise ValueError("Axis 1 labels must match raw data size.")
-
         # Ax1 labels = e.g. Wavelength
         if ax1_meaning is None:
             ax1_meaning = self.get_ax1_label_meaning()
+
+        # Quick bit of validation
+        if ax_1_labels is not None and ax1_meaning is not None:
+            if raw_data.shape[1] != len(ax_1_labels):
+                raise ValueError("Axis 1 labels must match raw data size.")
 
         if type(field_of_view[0]) is not tuple:
             field_of_view = [(-x / 2, x / 2) if x is not None else (0, 0) for x in field_of_view]
@@ -328,6 +325,9 @@ class ImageSequence(DataSequence):
         if ax1_meaning is not None:
             dims.insert(1, ax1_meaning)
             coords[ax1_meaning] = ax_1_labels
+        else:
+            # If there isn't really an axis 1 (e.g. for delta so2).
+            coords[ax1_meaning] = ax_1_labels[0]
 
         DataSequence.__init__(self, raw_data, dims, coords, attributes,
                               hdf5_sub_name, algorithm_id)
