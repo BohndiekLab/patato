@@ -63,7 +63,7 @@ the community.
 
    Analysis Code <api/analysis_code>
    Convenience Scripts <api/convenience_scripts>
-   Bohndiek-Lab Specific Code <api/bohndieklab_utilities>
+   Useful Utilities <api/useful_utilities>
 
 .. only:: latex
 
