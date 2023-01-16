@@ -90,13 +90,39 @@ class SpectralUnmixer(SpatialProcessingAlgorithm):
 class SO2Calculator(SpatialProcessingAlgorithm):
     """The SO2 calculator. This takes in unmixed data and produces SO2 data.
     """
+    def __init__(self, algorithm_id="", nan_invalid=False):
+        super().__init__(algorithm_id)
+        self.nan_invalid = nan_invalid
+
     def run(self, spatial_data: UnmixedData, _, **kwargs):
+        """
+        Run the SO2 calculator.
+
+        Parameters
+        ----------
+        spatial_data : UnmixedData
+            The spatial data to process.
+        _ : None
+            Unused. This is here to make the interface consistent with the other algorithms.
+        _
+        kwargs
+            Unused.
+
+        Returns
+        -------
+        tuple of (SingleImage, dict, None)
+            The SO2 data, unused attributes, and unused by product. The first element is the only dataset that is used.
+            The second two are there to make the interface consistent with the other algorithms.
+        """
         hb_axis = np.where(spatial_data.spectra == "Hb")[0][0]
         hbo2_axis = np.where(spatial_data.spectra == "HbO2")[0][0]
         thb = spatial_data.raw_data[:, hb_axis] + spatial_data.raw_data[:, hbo2_axis]
         thb[thb == 0] = np.nan # Just so it can pass tests.
         so2 = spatial_data.raw_data[:, hbo2_axis] / thb
         so2 = so2[:, None]
+        if self.nan_invalid:
+            so2[so2 > 1] = np.nan
+            so2[so2 < 0] = np.nan
         output_data = SingleParameterData(so2, ["so2"],
                                           algorithm_id=self.algorithm_id,
                                           attributes=spatial_data.attributes,
