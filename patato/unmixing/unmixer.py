@@ -104,7 +104,6 @@ class SO2Calculator(SpatialProcessingAlgorithm):
             The spatial data to process.
         _ : None
             Unused. This is here to make the interface consistent with the other algorithms.
-        _
         kwargs
             Unused.
 
