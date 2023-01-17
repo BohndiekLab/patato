@@ -9,6 +9,8 @@ from ..hdf.fileimporter import ReaderInterface
 
 
 class SimpaImporter(ReaderInterface):
+    """An importer for HDF5 files created by the SIMPA toolkit.
+    """
     # Currently, aiming to just support 2D
     def _get_rois(self):
         return None

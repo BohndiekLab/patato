@@ -33,6 +33,8 @@ def xml_to_dict(x):
 
 
 class iTheraMSOT(ReaderInterface):
+    """An interface for iThera MSOT datasets.
+    """
     def _get_rois(self):
         # In future, can extend this to enable import of iThera ROIS.
         pass

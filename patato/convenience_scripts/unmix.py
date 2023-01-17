@@ -1,6 +1,10 @@
 #  Copyright (c) Thomas Else 2023.
 #  License: BSD-3
 
+"""
+``msot-unmix`` is a command line tool for unmixing MSOT data.
+"""
+
 import argparse
 import glob
 import json

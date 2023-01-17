@@ -8,6 +8,7 @@ Image sequence - abstract classes for processing datasets from PA data.
 from __future__ import annotations
 
 from abc import ABC, abstractmethod
+from typing import Tuple, Iterable
 
 import numpy as np
 import xarray
@@ -138,7 +139,7 @@ class DataSequence(ProcessingResult, ABC):
         sliced = (0, ) * end
         return d[sliced]
 
-    def imshow(self, ax=None, roi_mask: "ROI" = None,
+    def imshow(self, ax=None, roi_mask: Tuple["ROI", Iterable["ROI"]] = None,
                mask_roi=True,
                cmap=None, scale_kwargs=None, return_scalebar_dimension=False, scalebar=True,
                **kwargs):
@@ -151,11 +152,26 @@ class DataSequence(ProcessingResult, ABC):
             ax = plt.gca()
 
         if roi_mask is not None:
-            mask, image_slice = roi_mask.to_mask_slice(self)
-            image_slice = self.to_2d(image_slice)
-            display_image = np.squeeze(image_slice.numpy_array).astype(np.float)
-            if mask_roi:
-                display_image[~np.squeeze(mask)] = np.nan
+            if type(roi_mask) is not ROI:
+                try:
+                    mask, image_slice = roi_mask[0].to_mask_slice(self)
+                    image_slice = self.to_2d(image_slice)
+                    display_image = np.squeeze(image_slice.numpy_array).astype(np.float)
+                    overall_mask = np.zeros(display_image.shape, dtype=np.bool)
+                    for roi in roi_mask:
+                        mask, _ = roi.to_mask_slice(self)
+                        if mask_roi:
+                            overall_mask[np.squeeze(mask)] = True
+                    if mask_roi:
+                        display_image[~overall_mask] = np.nan
+                except TypeError:
+                    raise ValueError("roi_mask must be a ROI or a tuple of ROIs")
+            else:
+                mask, image_slice = roi_mask.to_mask_slice(self)
+                image_slice = self.to_2d(image_slice)
+                display_image = np.squeeze(image_slice.numpy_array).astype(np.float)
+                if mask_roi:
+                    display_image[~np.squeeze(mask)] = np.nan
         else:
             display_image = self.to_2d(self).numpy_array
 
@@ -236,10 +252,7 @@ class DataSequence(ProcessingResult, ABC):
 
     @property
     def ax_1_labels(self):
-        if self.get_ax1_label_meaning() is not None:
-            return self.da.coords[self.get_ax1_label_meaning()]
-        else:
-            return None
+        return self.da.coords.get(self.get_ax1_label_meaning(), None)
 
     @property
     def ax_0_labels(self):
@@ -300,14 +313,14 @@ class ImageSequence(DataSequence):
     def __init__(self, raw_data, ax_1_labels=None,
                  algorithm_id="", field_of_view=None,
                  attributes=None, hdf5_sub_name=None, ax1_meaning=None):
-        # Quick bit of validation
-        if ax_1_labels is not None:
-            if raw_data.shape[1] != len(ax_1_labels):
-                raise ValueError("Axis 1 labels must match raw data size.")
-
         # Ax1 labels = e.g. Wavelength
         if ax1_meaning is None:
             ax1_meaning = self.get_ax1_label_meaning()
+
+        # Quick bit of validation
+        if ax_1_labels is not None and ax1_meaning is not None:
+            if raw_data.shape[1] != len(ax_1_labels):
+                raise ValueError("Axis 1 labels must match raw data size.")
 
         if type(field_of_view[0]) is not tuple:
             field_of_view = [(-x / 2, x / 2) if x is not None else (0, 0) for x in field_of_view]
@@ -328,6 +341,9 @@ class ImageSequence(DataSequence):
         if ax1_meaning is not None:
             dims.insert(1, ax1_meaning)
             coords[ax1_meaning] = ax_1_labels
+        else:
+            # If there isn't really an axis 1 (e.g. for delta so2).
+            coords[ax1_meaning] = ax_1_labels[0]
 
         DataSequence.__init__(self, raw_data, dims, coords, attributes,
                               hdf5_sub_name, algorithm_id)

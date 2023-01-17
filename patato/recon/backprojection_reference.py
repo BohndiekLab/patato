@@ -13,7 +13,7 @@ import jax
 
 class ReferenceBackprojection(ReconstructionAlgorithm):
     """
-    Reference backprojection
+    Reference backprojection: Uses JAX in the background.
     """
 
     def reconstruct(self, time_series: np.ndarray,

@@ -2,7 +2,7 @@
 #  License: BSD-3
 
 """
-A script to convert iThera MSOT Data into the PATATO hdf5 format.
+``msot-import-ithera``: A script to convert iThera MSOT Data into the PATATO hdf5 format.
 """
 
 import argparse
