@@ -87,7 +87,7 @@ class Lipids(Spectrum):
     @staticmethod
     def get_spectrum(wavelengths: np.ndarray) -> np.ndarray:
         from pandas import read_table
-        print(os.path.realpath(__file__))
+        # print(os.path.realpath(__file__))
         folder = os.path.dirname(os.path.realpath(__file__))
         df = read_table(join(folder, "spectra_files", "lipids.txt"), skiprows=4)
         return np.interp(wavelengths, df["nm"], df["mu_a(1/m)"] / 300, np.nan, np.nan)

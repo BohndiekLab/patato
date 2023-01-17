@@ -24,7 +24,7 @@ class SingleImage(ImageSequence):
     save_output = True
 
     def get_hdf5_group_name(self):
-        return self.ax_1_labels[0]
+        return self.ax_1_labels.item()
 
     @staticmethod
     def get_ax1_labels_from_hdf5(dataset: "h5py.Dataset", file: "h5py.File") -> List[str]:

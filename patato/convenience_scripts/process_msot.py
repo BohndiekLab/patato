@@ -1,6 +1,10 @@
 #  Copyright (c) Thomas Else 2023.
 #  License: BSD-3
 
+"""
+``msot-reconstruct``: A script to reconstruct all MSOT data files in a folder.
+"""
+
 import argparse
 import glob
 import json
@@ -111,7 +115,7 @@ def main():
         print(data_file, pa_data.dataset.shape)
         if any(x == 0 for x in pa_data.dataset.shape):
             continue
-        print(pa_data.shape[1])
+
         run_pipeline(pipeline, pa_data.dataset, pa_data, n_batch=1 + 20 // pa_data.shape[1], output_file=output_file)
 
         if do_ipasc_export:

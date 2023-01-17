@@ -14,10 +14,9 @@ from ...io.attribute_tags import HDF5Tags
 
 
 class Reconstruction(ImageSequence):
+    """Data structure for reconstructed images.
+    """
     save_output = True
-    """
-    Data structure for reconstructed images.
-    """
     @staticmethod
     def is_single_instance():
         return False

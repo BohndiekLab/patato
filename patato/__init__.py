@@ -22,7 +22,7 @@ from .recon.reconstruction_algorithm import ReconstructionAlgorithm
 
 from .processing.jax_preprocessing_algorithm import MSOTPreProcessor
 
-from .unmixing.unmixer import SpectralUnmixer, SO2Calculator, THbCalculator
+from .unmixing.unmixer import SpectralUnmixer, SO2Calculator, THbCalculator, GasChallengeAnalyser, DCEAnalyser
 from .core.image_structures.reconstruction_image import Reconstruction
 from .core.image_structures.unmixed_image import UnmixedData
 from .core.image_structures.image_sequence import ImageSequence
@@ -43,10 +43,15 @@ PAT_MAXIMUM_BATCH_SIZE = int(environ.get("PAT_MAXIMUM_BATCH_SIZE", 5))
 
 """ DOCUMENTATION FIX: """
 # To add support for importing to sphinx documentation:
-__all_exports = [iTheraMSOT, PAData, SimpaImporter, OpenCLBackprojection,
-                 ModelBasedReconstruction, ReconstructionAlgorithm, MSOTPreProcessor, SpectralUnmixer,
-                 SO2Calculator, THbCalculator, Reconstruction, UnmixedData, ImageSequence, ROI,
-                 PATimeSeries, Backprojection]
+__all_exports = [MSOTPreProcessor,
+                 Backprojection, OpenCLBackprojection, ModelBasedReconstruction,
+                 SpectralUnmixer, SO2Calculator, THbCalculator,
+                 GasChallengeAnalyser, DCEAnalyser,
+                 PAData,
+                 SimpaImporter, iTheraMSOT,
+                 Reconstruction, UnmixedData, ImageSequence,
+                 ROI,
+                 PATimeSeries]
 
 for e in __all_exports:
     e.__module__ = __name__

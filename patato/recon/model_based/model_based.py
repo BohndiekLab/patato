@@ -24,8 +24,7 @@ except:
 
 
 class ModelBasedReconstruction(ReconstructionAlgorithm):
-    """
-
+    """Model based reconstruction algorithm processor.
     """
     def generate_model(self, detx, dety, fs, dx, nx, x_0, nt, gpu=True, cache=False, **kwargs):
         """

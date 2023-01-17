@@ -43,7 +43,7 @@ autosummary_ignore_module_all = False
 
 # mock-up imports for the libraries that are bit awkward to install, and the c++ extensions
 autodoc_mock_imports = ["simpa", "pacfish", "patato.recon.model_based.generate_model",
-                        "patato.recon.model_based.generate_model_refraction"]
+                        "patato.recon.model_based.generate_model_refraction", "gdown"]
 autosummary_mock_imports = autodoc_mock_imports
 
 # Add any paths that contain templates here, relative to this directory.

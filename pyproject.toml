@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "patato"
-version = "0.0.2"
+version = "0.1.1"
 dependencies = [
     "requests",
     "cython",
@@ -26,14 +26,16 @@ dependencies = [
     "dask",
     "pybind11",
     "jax[cpu]",
-    "simpa"
+    "simpa",
+    "wget",
+    "gdown"
 ]
 authors = [
   { name="Thomas Else", email="thomas.else@cruk.cam.ac.uk" },
 ]
 description = "A Python Toolkit for the analysis of photoacoustic tomography data."
 readme = "README.md"
-requires-python = ">=3.9"
+requires-python = ">=3.8"
 classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: BSD License",
@@ -73,7 +75,8 @@ msot-convert-simpa = "patato.convenience_scripts.convert_simpa:main"
 [tool.setuptools.package-data]
 "patato.unmixing.spectra.spectra_files" = ["*.csv", "*.txt"]
 "patato.recon.recon_presets" = ["*.json"]
-"patato.unmixed.unmixed_presets" = ["*.json"]
+"patato.unmixing.unmix_presets" = ["*.json"]
+"*" = ["*.cu", "*.cl"]
 
 [tool.setuptools.exclude-package-data]
 "*" = [".gitattributes", ".gitignore"]

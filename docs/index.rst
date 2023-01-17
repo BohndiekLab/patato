@@ -28,9 +28,6 @@ the community.
 * Please report any bugs or issues you find to our GitHub repository
 * Please do get involved! Contact Thomas Else (thomas.else@cruk.cam.ac.uk).
 
-.. automodule::
-   patato
-
 .. only:: latex
 
     User Guide
@@ -66,7 +63,7 @@ the community.
 
    Analysis Code <api/analysis_code>
    Convenience Scripts <api/convenience_scripts>
-   Bohndiek-Lab Specific Code <api/bohndieklab_utilities>
+   Useful Utilities <api/useful_utilities>
 
 .. only:: latex
 
