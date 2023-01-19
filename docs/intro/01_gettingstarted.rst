@@ -31,6 +31,12 @@ Windows Installation
 If you are using Windows, you may need to install an unofficial build of JAXLIB to support image
 reconstruction. See (`this GitHub repository <https://github.com/cloudhan/jax-windows-builder>`_) for more details.
 
+.. hint::
+    **WINDOWS ONLY**
+    The following sometimes works (but is not guaranteed to work, and may not be the latest version):
+
+        pip install jaxlib jax[cuda111] -f https://whls.blob.core.windows.net/unstable/index.html --use-deprecated legacy-resolver
+
 Setting up CUDA the easy way
 -------------------------------------
 
