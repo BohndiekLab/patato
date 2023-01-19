@@ -166,7 +166,7 @@ class OpenCLBackprojection(ReconstructionAlgorithm):
         except AttributeError:
             logging.debug("OpenCL can't release base data, continuing anyway...")
         queue.flush()
-        return numpy_output.reshape(original_shape + tuple(n_pixels))
+        return numpy_output.reshape(original_shape + tuple(n_pixels)[::-1])
 
     @staticmethod
     def get_algorithm_name() -> str:

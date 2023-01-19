@@ -20,15 +20,15 @@ def to_binary_mask(vertices, min_x, max_x, nx, min_y, max_y, ny):
     else:
         vert_path = vertices
     xs = np.linspace(min_x, max_x, nx)
-    ys = np.linspace(max_y, min_y, ny)
+    ys = np.linspace(min_y, max_y, ny)
     X, Y = np.meshgrid(xs, ys)
     points = np.array([X.flatten(), Y.flatten()]).T
     if type(vert_path) in [Polygon, MultiPolygon]:
         points = [Point(r) for r in points]
-        mask = np.array([vert_path.contains(r) for r in points]).reshape(X.shape)
+        mask = np.array([vert_path.contains(r) for r in points])#.reshape(X.shape)
     else:
         mask = vert_path.contains_points(points)
-    return mask.reshape((ny, nx))
+    return mask.reshape(X.shape)
 
 
 def get_polygon_mask(p, fov_x, fov_y, nx, ny):

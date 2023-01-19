@@ -22,7 +22,6 @@ int n_samples, __local float* local_sum, int frame_number, int frame_offset)
                 pow(z - detectors[det_id * 3 + 2], 2)))/length_scale;
     local_sum[loc_id] = 0.f;
 
-
     if (!(offset < 0 || offset >= n_samples))
     {
         local_sum[loc_id] = signal[(frame_number + frame_offset)*n_samples*n_det + det_id*n_samples + offset];
