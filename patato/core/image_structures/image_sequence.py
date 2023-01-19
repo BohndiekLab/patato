@@ -127,8 +127,12 @@ class DataSequence(ProcessingResult, ABC):
             return "x", "y"
 
     def to_2d(self):
-        s = (0, ) * (len(self.shape) - 3)
-        s = s + ((0, ) if self.shape[-3] == 1 else (slice(None), 0))
+        s = (0, ) * (len(self.shape) - self.n_im_dim)
+        if self.n_im_dim > 2:
+            slicer = [0] * self.n_im_dim
+            for i in np.argsort(self.shape[-self.n_im_dim:])[-2:]:
+                slicer[i] = slice(None)
+            s += tuple(slicer)
         return self[s]
 
     def imshow(self, ax=None, roi_mask: Tuple["ROI", Iterable["ROI"]] = None,
@@ -319,9 +323,9 @@ class ImageSequence(DataSequence):
         if type(field_of_view[0]) is not tuple:
             field_of_view = [(-x / 2, x / 2) if x is not None else (0, 0) for x in field_of_view]
 
-        xs = [np.linspace(x, y, N) for (x, y), N in zip(field_of_view, raw_data.shape[-3:])]
+        xs = [np.linspace(x, y, N) for (x, y), N in zip(field_of_view, raw_data.shape[-3:][::-1])]
 
-        dims = ["frames", "x", "y", "z"]
+        dims = ["frames", "z", "y", "x"]
         coords = {"frames": np.arange(raw_data.shape[0]),
                   "x": xs[0],
                   "y": xs[1],
