@@ -5,11 +5,11 @@ import unittest
 from os.path import join, split
 
 from ...core.image_structures.reconstruction_image import Reconstruction
-
 from ...core.image_structures.unmixed_image import UnmixedData
+from ...data.get_example_datasets import get_patato_data_folder
 from ...io.msot_data import PAData
 from ...processing.preprocessing_algorithm import DefaultMSOTPreProcessor
-from patato.unmixing.spectra import OxyHaemoglobin, Haemoglobin
+from ...unmixing.spectra import OxyHaemoglobin, Haemoglobin
 from ...recon import ReferenceBackprojection
 from ...unmixing.unmixer import SpectralUnmixer
 from ..run_pipeline import run_pipeline
@@ -17,8 +17,10 @@ from ..run_pipeline import run_pipeline
 
 class TestPipelines(unittest.TestCase):
     def test_full_run(self):
-        f = split(__file__)[0]
-        pa = PAData.from_hdf5(join(f, "../../../data/Scan_1.hdf5"))[0:1, 0:1]
+        data_folder = join(get_patato_data_folder(), "test")
+        dummy_dataset = join(data_folder, "Scan_1.hdf5")
+
+        pa = PAData.from_hdf5(dummy_dataset, "r+")[:, 0:2]
 
         preproc = DefaultMSOTPreProcessor(time_factor=3, detector_factor=2)
         reconstructor = ReferenceBackprojection([333, 1, 333], [0.025, 1, 0.025])

@@ -267,7 +267,7 @@ class PAData:
         """
         if type(dataset) == dict:
             raise NotImplementedError
-        new_dataset = SingleImage(operation(dataset.raw_data, axis=0)[0], [dataset.ax_1_labels],
+        new_dataset = SingleImage(operation(dataset.raw_data, axis=0)[0], dataset.ax_1_labels,
                                   field_of_view=dataset.fov_3d, attributes=dataset.attributes)
         return new_dataset
 

@@ -5,6 +5,7 @@ from functools import partial
 from typing import Union, Tuple, Optional, Dict
 
 import numpy as np
+from patato.io.attribute_tags import PreprocessingAttributeTags
 from scipy.signal.windows import hann
 
 from .processing_algorithm import TimeSeriesProcessingAlgorithm
@@ -265,6 +266,17 @@ class MSOTPreProcessor(TimeSeriesProcessingAlgorithm):
         # Convert timeseries into an xarray
         attributes = dict(time_series.attributes)
         attributes["fs"] *= self.time_factor
+        attributes[PreprocessingAttributeTags.IMPULSE_RESPONSE] = self.irf_correct
+        attributes[PreprocessingAttributeTags.PROCESSING_ALGORITHM] = self.get_algorithm_name()
+        attributes[PreprocessingAttributeTags.WINDOW_SIZE] = self.window
+        attributes[PreprocessingAttributeTags.ENVELOPE_DETECTION] = self.absolute == "abs"
+        attributes[PreprocessingAttributeTags.HILBERT_TRANSFORM] = self.hilbert
+        attributes[PreprocessingAttributeTags.DETECTOR_INTERPOLATION] = self.detector_factor
+        attributes[PreprocessingAttributeTags.TIME_INTERPOLATION] = self.time_factor
+        attributes[PreprocessingAttributeTags.LOW_PASS_FILTER] = self.lp_filter
+        attributes[PreprocessingAttributeTags.HIGH_PASS_FILTER] = self.hp_filter
+        attributes["UniversalBackProjection"] = self.ubp
+
         coords = dict(time_series.da.coords)
         coords["detectors"] = np.linspace(0, time_series.shape[-2] - 1,
                                           self.detector_factor * time_series.shape[-2])

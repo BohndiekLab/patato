@@ -126,18 +126,10 @@ class DataSequence(ProcessingResult, ABC):
         else:
             return "x", "y"
 
-    def to_2d(self, d):
-        s = d.shape
-        n = 0
-        end = 0
-        for i in range(len(s)):
-            if s[-(i+1)] != 1:
-                n += 1
-            if n == 2:
-                end = len(s) - (i+1)
-                break
-        sliced = (0, ) * end
-        return d[sliced]
+    def to_2d(self):
+        s = (0, ) * (len(self.shape) - 3)
+        s = s + ((0, ) if self.shape[-3] == 1 else (slice(None), 0))
+        return self[s]
 
     def imshow(self, ax=None, roi_mask: Tuple["ROI", Iterable["ROI"]] = None,
                mask_roi=True,
@@ -155,7 +147,7 @@ class DataSequence(ProcessingResult, ABC):
             if type(roi_mask) is not ROI:
                 try:
                     mask, image_slice = roi_mask[0].to_mask_slice(self)
-                    image_slice = self.to_2d(image_slice)
+                    image_slice = image_slice.to_2d()
                     display_image = np.squeeze(image_slice.numpy_array).astype(np.float)
                     overall_mask = np.zeros(display_image.shape, dtype=np.bool)
                     for roi in roi_mask:
@@ -168,12 +160,12 @@ class DataSequence(ProcessingResult, ABC):
                     raise ValueError("roi_mask must be a ROI or a tuple of ROIs")
             else:
                 mask, image_slice = roi_mask.to_mask_slice(self)
-                image_slice = self.to_2d(image_slice)
+                image_slice = image_slice.to_2d()
                 display_image = np.squeeze(image_slice.numpy_array).astype(np.float)
                 if mask_roi:
                     display_image[~np.squeeze(mask)] = np.nan
         else:
-            display_image = self.to_2d(self).numpy_array
+            display_image = self.to_2d().numpy_array
 
         interpolation = "nearest"
         if display_image.dtype == np.bool_:
@@ -184,6 +176,8 @@ class DataSequence(ProcessingResult, ABC):
         if np.iscomplexobj(display_image):
             display_image = np.real(display_image)
         display_image = np.squeeze(display_image)
+        if "origin" not in kwargs:
+            kwargs["origin"] = "lower"
         im = ax.imshow(display_image, extent=self.extent,
                        cmap=cmap, **kwargs, interpolation=interpolation)
         ax.axis("off")

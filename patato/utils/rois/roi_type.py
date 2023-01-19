@@ -49,8 +49,8 @@ class ROI:
         self.ax0_index = np.array(ax0_index)
 
     def to_mask_slice(self, image: "ImageSequence", return_selection=False):
-        mask = generate_mask(self.points, image.fov[0], image.shape_2d[0],
-                             image.fov[1], image.shape_2d[1])
+        mask = generate_mask(self.points, image.fov[0], image.shape_2d[-1],
+                             image.fov[1], image.shape_2d[-2])
         mask = mask.reshape(image.shape[-image.n_im_dim:])
         selection = slice(None, None)
         if image.ax_0_exists():

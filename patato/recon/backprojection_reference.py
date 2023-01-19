@@ -56,7 +56,7 @@ class ReferenceBackprojection(ReconstructionAlgorithm):
         output = recon_all(signal, geometry, dl, n_pixels[0], n_pixels[1], n_pixels[2],
                            dx, dy, dz)
 
-        return output.reshape(original_shape + tuple(n_pixels))
+        return output.reshape(original_shape + tuple(n_pixels)[::-1])
 
     @staticmethod
     def get_algorithm_name() -> str:

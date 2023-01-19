@@ -8,13 +8,14 @@ import os
 import sys
 
 # make sure that we're using the downloaded version of patato.
+
 sys.path.insert(0, os.path.abspath('../'))
 
 import h5py
 import numpy as np
 from coverage import Coverage
 
-cov = Coverage(source=['../patato'], omit=["*test*", "*convenience_scripts*", "*useful_utilities*"])
+cov = Coverage(source=['../patato'], omit=["*test*", "*/convenience_scripts/*", "*/useful_utilities/*"])
 cov.start()
 
 # noinspection PyPep8
@@ -26,6 +27,7 @@ from test_image_sequence import TestHDF5Load
 from patato.io.ithera.tests.ithera_tests import TestITheraImport
 from patato.io.json.tests.test_reconstruction_reading import TestJSONLoading
 from patato.io.tests.test_msot_data import TestMSOTData
+from patato.data.get_example_datasets import get_patato_data_folder
 
 
 os.environ["XLA_PYTHON_CLIENT_PREALLOCATE"] = "false"
@@ -51,8 +53,15 @@ def add_example_reconstruction(rs, shape):
     return recon
 
 
-if not isfile("../data/Scan_1.hdf5"):
-    f = h5py.File("../data/Scan_1.hdf5", "a")
+data_folder = os.path.join(get_patato_data_folder(), "test")
+if not os.path.exists(data_folder):
+    os.mkdir(data_folder)
+
+dummy_dataset = os.path.join(data_folder, "Scan_1.hdf5")
+
+# Create a dummy dataset for testing
+if not isfile(dummy_dataset):
+    f = h5py.File(dummy_dataset, "a")
     thetas = np.linspace(np.pi / 4, 7 * np.pi / 4, 256)
     geometry = np.array([np.cos(thetas), np.sin(thetas)]) * 0.04
     irf = np.zeros((2030,))

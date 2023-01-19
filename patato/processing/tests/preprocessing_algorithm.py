@@ -6,6 +6,7 @@ from os.path import split, join
 
 import numpy as np
 from ...core.image_structures.pa_time_data import PATimeSeries
+from ...data.get_example_datasets import get_patato_data_folder
 from ...io.msot_data import PAData
 
 from ..gpu_preprocessing_algorithm import DefaultMSOTPreProcessor, GPUMSOTPreProcessor
@@ -17,8 +18,10 @@ class TestPreprocessing(unittest.TestCase):
             import cupy as cp
         except ImportError:
             return None  # Skip test if cupy is not installed
-        f = split(__file__)[0]
-        pa = PAData.from_hdf5(join(f, "../../../data/Scan_1.hdf5"))[0:1, 0:1]
+        data_folder = join(get_patato_data_folder(), "test")
+        dummy_dataset = join(data_folder, "Scan_1.hdf5")
+
+        pa = PAData.from_hdf5(dummy_dataset, "r+")[:, 0:2]
 
         detectors_start = pa.get_scan_geometry()
 
@@ -38,8 +41,10 @@ class TestPreprocessing(unittest.TestCase):
         self.assert_(np.all(np.isclose(detectors_start[0], d["geometry"][0])))
 
     def test_overall_processing(self):
-        f = split(__file__)[0]
-        pa = PAData.from_hdf5(join(f, "../../../data/Scan_1.hdf5"))[0:1, 0:1]
+        data_folder = join(get_patato_data_folder(), "test")
+        dummy_dataset = join(data_folder, "Scan_1.hdf5")
+
+        pa = PAData.from_hdf5(dummy_dataset, "r+")[:, 0:2]
 
         detectors_start = pa.get_scan_geometry()
 
