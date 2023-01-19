@@ -67,6 +67,7 @@ Option 3: Install from source (editable)
 
 To install the development version of PATATO from GitHub and allow editing for development purposes:
 
+.. code-block:: bash
     cd /path/to/installation/directory
     git clone https://github.com/tomelse/MSOTAnalysis
     cd MSOTAnalysis
