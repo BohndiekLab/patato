@@ -193,13 +193,14 @@ class ROIDrawer:
 
     def _draw_image(self):
         self.main_image = self.image_axis.imshow(np.squeeze(self.image_data[self.i_index, self.j_index].raw_data),
-                                                 extent=self.extent, cmap=self.cmap)
+                                                 extent=self.extent, cmap=self.cmap, origin="lower")
         if self.overlay_data is not None:
             overlay_image = np.full_like(self.overlay_data[self.i_index, self.j_index].raw_data, np.nan)
             overlay_image[:] = self.overlay_data[self.i_index, self.j_index].raw_data
             overlay_image[overlay_image < self.overlay_threshold] = np.nan
             self.overlay_image = self.image_axis.imshow(np.squeeze(overlay_image),
-                                                        extent=self.overlay_extent, cmap=self.overlay_cmap)
+                                                        extent=self.overlay_extent, cmap=self.overlay_cmap,
+                                                        origin="lower")
 
     @property
     def i_index(self):

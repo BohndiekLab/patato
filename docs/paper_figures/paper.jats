@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE article PUBLIC "-//NLM//DTD JATS (Z39.96) Journal Publishing DTD v1.2 20190208//EN"
+                  "JATS-publishing1.dtd">
+<article xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:xlink="http://www.w3.org/1999/xlink" dtd-version="1.2" article-type="other">
+<front>
+<journal-meta>
+<journal-id></journal-id>
+<journal-title-group>
+<journal-title>Journal of Open Source Software</journal-title>
+<abbrev-journal-title>JOSS</abbrev-journal-title>
+</journal-title-group>
+<issn publication-format="electronic">2475-9066</issn>
+<publisher>
+<publisher-name>Open Journals</publisher-name>
+</publisher>
+</journal-meta>
+<article-meta>
+<article-id pub-id-type="publisher-id">0</article-id>
+<article-id pub-id-type="doi">N/A</article-id>
+<title-group>
+<article-title>PATATO: A Python Photoacoustic Analysis
+Toolkit</article-title>
+</title-group>
+<contrib-group>
+<contrib contrib-type="author">
+<contrib-id contrib-id-type="orcid">https://orcid.org/0000-0002-2652-4190</contrib-id>
+<name>
+<surname>Else</surname>
+<given-names>Thomas R.</given-names>
+</name>
+<xref ref-type="aff" rid="aff-1"/>
+<xref ref-type="aff" rid="aff-2"/>
+</contrib>
+<contrib contrib-type="author">
+<name>
+<surname>Gröhl</surname>
+<given-names>Janek</given-names>
+</name>
+<xref ref-type="aff" rid="aff-1"/>
+<xref ref-type="aff" rid="aff-2"/>
+</contrib>
+<contrib contrib-type="author">
+<name>
+<surname>Hacker</surname>
+<given-names>Lina</given-names>
+</name>
+<xref ref-type="aff" rid="aff-1"/>
+<xref ref-type="aff" rid="aff-2"/>
+</contrib>
+<contrib contrib-type="author" corresp="yes">
+<name>
+<surname>Bohndiek</surname>
+<given-names>Sarah E.</given-names>
+</name>
+<xref ref-type="aff" rid="aff-1"/>
+<xref ref-type="aff" rid="aff-2"/>
+<xref ref-type="corresp" rid="cor-1"><sup>*</sup></xref>
+</contrib>
+<aff id="aff-1">
+<institution-wrap>
+<institution>CRUK Cambridge Institute, University of Cambridge,
+UK</institution>
+</institution-wrap>
+</aff>
+<aff id="aff-2">
+<institution-wrap>
+<institution>Department of Physics, University of Cambridge,
+UK</institution>
+</institution-wrap>
+</aff>
+</contrib-group>
+<author-notes>
+<corresp id="cor-1">* E-mail: <email></email></corresp>
+</author-notes>
+<volume>¿VOL?</volume>
+<issue>¿ISSUE?</issue>
+<fpage>¿PAGE?</fpage>
+<permissions>
+<copyright-statement>Authors of papers retain copyright and release the
+work under a Creative Commons Attribution 4.0 International License (CC
+BY 4.0)</copyright-statement>
+<copyright-year>2022</copyright-year>
+<copyright-holder>The article authors</copyright-holder>
+<license license-type="open-access" xlink:href="https://creativecommons.org/licenses/by/4.0/">
+<license-p>Authors of papers retain copyright and release the work under
+a Creative Commons Attribution 4.0 International License (CC BY
+4.0)</license-p>
+</license>
+</permissions>
+<kwd-group kwd-group-type="author">
+<kwd>Python, Photoacoustics, Imaging, Medical Imaging, Tomography,
+Optoacoustics, MSOT, Reconstruction, Backprojection</kwd>
+</kwd-group>
+</article-meta>
+</front>
+<body>
+<sec id="summary">
+  <title>Summary</title>
+  <p>PATATO is a toolkit for processing and analyzing tomographic
+  photoacoustic data. It offers fast implementations of commonly-used
+  methods, including pre-processing, reconstruction, and time-series
+  data analysis, via a convenient command-line interface or Python API.
+  The toolkit utilizes
+  <ext-link ext-link-type="uri" xlink:href="https://jax.readthedocs.io/">JAX</ext-link>
+  for GPU-accelerated pre-processing and backprojection, and
+  <ext-link ext-link-type="uri" xlink:href="https://numpy.org/doc/stable/index.html">NumPy</ext-link>
+  for less intensive algorithms and easy integration with other
+  pipelines. PATATO can take in data from many different sources, and
+  outputs can be saved in HDF5 format for further analysis and easy
+  transfer to other languages like R or MATLAB. The toolkit is
+  open-source, hosted on
+  <ext-link ext-link-type="uri" xlink:href="https://github.com/tomelse/patato">GitHub</ext-link>
+  and
+  <ext-link ext-link-type="uri" xlink:href="https://pypi.org/project/patato/">PyPi</ext-link>,
+  and welcomes contributions, bug-reports, and feedback. Detailed
+  examples and an API reference is available at
+  <ext-link ext-link-type="uri" xlink:href="https://patato.readthedocs.io/en/latest/">https://patato.readthedocs.io/en/latest/</ext-link>.</p>
+</sec>
+<sec id="statement-of-need">
+  <title>Statement of Need</title>
+  <p>As a relatively new field, photoacoustic imaging (PAI) often lacks
+  standardization in image processing methods. Despite the numerous
+  algorithms published in literature for reconstruction, spectral
+  analysis, and post-processing, access to the underlying code is
+  limited, making it challenging to use the most current and effective
+  methods. This lack of transparency also hinders reproducibility and
+  slows the adoption of new methods within the community. While other
+  tools for photoacoustic image reconstruction and analysis have been
+  developed, they all lack open-source code for GPU acceleration, and
+  have limited documentation, making it difficult to extend their
+  functionality. PATATO offers an open-source solution with accelerated
+  reconstruction algorithms, end-to-end analysis, an easy-to-use
+  interface, open data format integration, and an extensible
+  structure.</p>
+  <p>Like many other imaging techniques, PAI requires multiple
+  processing steps, many of which are computationally intensive. A
+  typical pipeline for generating PA images includes filtering and
+  interpolation of time-series data, delay-and-sum reconstruction, and
+  linear spectral unmixing. The first two steps are particularly
+  computationally intensive and require GPU implementations for
+  efficient processing of large datasets, which can sometimes consist of
+  thousands of frames. Additionally, the resulting images are highly
+  sensitive to the parameters used, such as the cut-off frequency for
+  filters, highlighting the need for efficient and transparent
+  implementations of these algorithms to ensure consistent biological
+  conclusions across datasets. In PATATO, these computationally
+  intensive algorithms are implemented using JAX, a high-performance
+  numerical computing toolkit, enabling GPU acceleration and consistent
+  implementations between CPU and GPU. Additionally, PATATO stores all
+  reconstruction parameters in the HDF5 file, making it easy to
+  reproduce the precise analysis.</p>
+</sec>
+<sec id="example-datasets">
+  <title>Example Datasets</title>
+  <p>Some example datasets are included in PATATO to demonstrate its key
+  features and to allow benchmarking of different algorithms. Two
+  devices were used to collect this data, a circular-array pre-clinical
+  system (MSOT inVision, iThera Medical) and a handheld clinical PA
+  system (MSOT Acuity, iThera Medical). The properties of the two
+  systems are summarised below for reference.</p>
+  <table-wrap>
+    <table>
+      <colgroup>
+        <col width="39%" />
+        <col width="21%" />
+        <col width="40%" />
+      </colgroup>
+      <thead>
+        <tr>
+          <th></th>
+          <th><bold>Pre-Clinical</bold></th>
+          <th><bold>Clinical</bold></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><bold>Transducer Number</bold></td>
+          <td>256</td>
+          <td>256</td>
+        </tr>
+        <tr>
+          <td><bold>Sampling Frequency (MHz)</bold></td>
+          <td>40</td>
+          <td>40</td>
+        </tr>
+        <tr>
+          <td><bold>Transducer Coverage (degrees)</bold></td>
+          <td>125</td>
+          <td>270</td>
+        </tr>
+        <tr>
+          <td><bold>Wavelengths (nm)</bold></td>
+          <td>660 to 1300</td>
+          <td>660 to 1300</td>
+        </tr>
+        <tr>
+          <td><bold>Example Datasets</bold></td>
+          <td>Phantom</td>
+          <td>Phantom scan and time-series scans: Oxygen-Enhanced (OE),
+          and Dynamic Contrast-Enhanced (DCE)</td>
+        </tr>
+      </tbody>
+    </table>
+  </table-wrap>
+  <sec id="phantom-data">
+    <title>Phantom Data</title>
+    <p>Phantom imaging data is provided for both the clinical and
+    pre-clinical imaging systems.</p>
+  </sec>
+  <sec id="oxygen-enhanced-and-dynamic-contrast-enhanced-data">
+    <title>Oxygen Enhanced and Dynamic Contrast Enhanced Data</title>
+    <p>Examplar data is provided for oxygen enhanced (OE) and dynamic
+    contrast enhanced (DCE) imaging. In the OE experiment, a mouse was
+    imaged continuously under inhaled anaesthesia (1-2% isofluorane)
+    while breathing air. After five minutes, the breathing gas was
+    changed to 100% oxygen. Consequently, there is an increase in the
+    blood oxygenation, which can be measured using PAI. In the DCE
+    experiment, a bolus of the PA contrast agent indocyanine green (ICG)
+    was injected while imaging. The results of the analysis procedure
+    provided by PATATO are shown below. These datasets can be accessed
+    directly from PATATO, and this analysis can be reproduced, as
+    <ext-link ext-link-type="uri" xlink:href="https://patato.readthedocs.io/en/latest/examples">described
+    in the documentation</ext-link>.</p>
+    <fig>
+      <caption><p>An example of the time-series data analysis methods
+      applied to one scan. A: example images of the increase in blood
+      oxygenation after the oxygen challenge
+      (<inline-formula><alternatives>
+      <tex-math><![CDATA[\Delta sO_2]]></tex-math>
+      <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>Δ</mml:mi><mml:mi>s</mml:mi><mml:msub><mml:mi>O</mml:mi><mml:mn>2</mml:mn></mml:msub></mml:mrow></mml:math></alternatives></inline-formula>)
+      and increase in unmixed ICG signal after the ICG bolus injection
+      (<inline-formula><alternatives>
+      <tex-math><![CDATA[\Delta ICG]]></tex-math>
+      <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>Δ</mml:mi><mml:mi>I</mml:mi><mml:mi>C</mml:mi><mml:mi>G</mml:mi></mml:mrow></mml:math></alternatives></inline-formula>).
+      B and C: Plots of the mean tumour <inline-formula><alternatives>
+      <tex-math><![CDATA[sO_2]]></tex-math>
+      <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>s</mml:mi><mml:msub><mml:mi>O</mml:mi><mml:mn>2</mml:mn></mml:msub></mml:mrow></mml:math></alternatives></inline-formula>
+      and <inline-formula><alternatives>
+      <tex-math><![CDATA[ICG]]></tex-math>
+      <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>I</mml:mi><mml:mi>C</mml:mi><mml:mi>G</mml:mi></mml:mrow></mml:math></alternatives></inline-formula>
+      respectively over time. Also showing the calculation procedure for
+      the corresponding <inline-formula><alternatives>
+      <tex-math><![CDATA[\Delta sO_2]]></tex-math>
+      <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>Δ</mml:mi><mml:mi>s</mml:mi><mml:msub><mml:mi>O</mml:mi><mml:mn>2</mml:mn></mml:msub></mml:mrow></mml:math></alternatives></inline-formula>
+      and <inline-formula><alternatives>
+      <tex-math><![CDATA[\Delta ICG]]></tex-math>
+      <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>Δ</mml:mi><mml:mi>I</mml:mi><mml:mi>C</mml:mi><mml:mi>G</mml:mi></mml:mrow></mml:math></alternatives></inline-formula>.
+      D: Plot of the pixel-wise values showing a strong positive
+      correlation between <inline-formula><alternatives>
+      <tex-math><![CDATA[\Delta sO_2]]></tex-math>
+      <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>Δ</mml:mi><mml:mi>s</mml:mi><mml:msub><mml:mi>O</mml:mi><mml:mn>2</mml:mn></mml:msub></mml:mrow></mml:math></alternatives></inline-formula>
+      and <inline-formula><alternatives>
+      <tex-math><![CDATA[\Delta ICG]]></tex-math>
+      <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>Δ</mml:mi><mml:mi>I</mml:mi><mml:mi>C</mml:mi><mml:mi>G</mml:mi></mml:mrow></mml:math></alternatives></inline-formula>.</p></caption>
+      <graphic mimetype="image" mime-subtype="png" xlink:href="media/dce_oe_plot.png" xlink:title="" />
+    </fig>
+    <sec id="mouse-imaging-methods">
+      <title>Mouse Imaging Methods</title>
+      <p>All animal procedures were conducted in accordance with project
+      (PE12C2B96) and personal licenses (I33984279) issued under the
+      United Kingdom Animals (Scientific Procedures) Act, 1986, and were
+      approved locally under compliance form number CFSB2022. PC3 cell
+      suspensions were injected into both flanks of nude (BALB/C) mice,
+      <inline-formula><alternatives>
+      <tex-math><![CDATA[1.5\times 10^6]]></tex-math>
+      <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mn>1.5</mml:mn><mml:mo>×</mml:mo><mml:msup><mml:mn>10</mml:mn><mml:mn>6</mml:mn></mml:msup></mml:mrow></mml:math></alternatives></inline-formula>
+      cells in <inline-formula><alternatives>
+      <tex-math><![CDATA[100\mu l]]></tex-math>
+      <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mn>100</mml:mn><mml:mi>μ</mml:mi><mml:mi>l</mml:mi></mml:mrow></mml:math></alternatives></inline-formula>
+      containing a 1:1 mixture of PBS and matrigel. Mice were imaged and
+      culled once the tumours had reached a size of approximately
+      <inline-formula><alternatives>
+      <tex-math><![CDATA[1 cm]]></tex-math>
+      <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mn>1</mml:mn><mml:mi>c</mml:mi><mml:mi>m</mml:mi></mml:mrow></mml:math></alternatives></inline-formula>
+      in diameter. Detailed methods for this procedure have been
+      published previously
+      (<xref alt="Tomaszewski et al., 2018" rid="ref-Tomaszewski2018" ref-type="bibr">Tomaszewski
+      et al., 2018</xref>).</p>
+    </sec>
+  </sec>
+</sec>
+<sec id="acknowledgements">
+  <title>Acknowledgements</title>
+  <p>We’d like to thank a number of members of our lab for their helpful
+  feedback, particularly Mariam-Eleni Oraiopoulou, Ellie Bunce and
+  Thierry Lefebvre.</p>
+</sec>
+</body>
+<back>
+<ref-list>
+  <ref id="ref-Tomaszewski2018">
+    <element-citation publication-type="article-journal">
+      <person-group person-group-type="author">
+        <name><surname>Tomaszewski</surname><given-names>Michal R.</given-names></name>
+        <name><surname>Gehrung</surname><given-names>Marcel</given-names></name>
+        <name><surname>Joseph</surname><given-names>James</given-names></name>
+        <name><surname>Gonzalez</surname><given-names>Isabel Quiros</given-names></name>
+        <name><surname>Disselhorst</surname><given-names>Jonathan A.</given-names></name>
+        <name><surname>Bohndiek</surname><given-names>Sarah E.</given-names></name>
+      </person-group>
+      <article-title>Oxygen-enhanced and dynamic contrast-enhanced optoacoustic tomography provide surrogate biomarkers of tumour vascular function, hypoxia and necrosis.</article-title>
+      <source>Cancer Research</source>
+      <publisher-name>American Association for Cancer Research Inc.</publisher-name>
+      <year iso-8601-date="2018-08">2018</year><month>08</month>
+      <volume>78</volume>
+      <issn>0008-5472</issn>
+      <uri>http://cancerres.aacrjournals.org/lookup/doi/10.1158/0008-5472.CAN-18-1033</uri>
+      <pub-id pub-id-type="doi">10.1158/0008-5472.CAN-18-1033</pub-id>
+      <fpage>canres.1033.2018</fpage>
+      <lpage></lpage>
+    </element-citation>
+  </ref>
+</ref-list>
+</back>
+</article>
