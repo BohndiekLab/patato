@@ -155,7 +155,7 @@ def main():
         v_line_a = ax2.axvline(np.nanmin(image))
         v_line_b = ax2.axvline(np.nanmax(image))
 
-        p = ax.imshow(image, cmap=oa_cmap, extent=extent)
+        p = ax.imshow(image, cmap=oa_cmap, extent=extent, origin="lower")
         xlabels = np.linspace(extent[0], extent[1], image.shape[0])
         ylabels = np.linspace(extent[2], extent[3], image.shape[1])
         if ax3 is not None:
