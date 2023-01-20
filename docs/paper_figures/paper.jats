@@ -205,7 +205,23 @@ Optoacoustics, MSOT, Reconstruction, Backprojection</kwd>
   <sec id="phantom-data">
     <title>Phantom Data</title>
     <p>Phantom imaging data is provided for both the clinical and
-    pre-clinical imaging systems.</p>
+    pre-clinical imaging systems. This can be used for the optimisation
+    and comparison of different image reconstruction algorithms. The
+    clinical phantom is based on a copolymer-in-oil protocol published
+    previously
+    (<xref alt="Hacker et al., 2021" rid="ref-Hacker2021" ref-type="bibr">Hacker
+    et al., 2021</xref>). A ‘staircase’ inclusion containing a tenfold
+    higher concentration of nigrosin (a strong optical absorber) was
+    created using a 3D-printed mould. The base material component
+    contained 0.018% w/v nigrosin, the inclusion contained 0.18% w/v
+    nigrosin. The preclinical phantom is an agarose phantom containing
+    2.1% v/v intralipid and 1.5% w/v agar. A 40 nmol solution of
+    indocyanine green (ICG) was injected into the tube as an
+    inclusion.</p>
+    <fig>
+      <caption><p>Phantom figure</p></caption>
+      <graphic mimetype="image" mime-subtype="png" xlink:href="media/test_figure.png" xlink:title="" />
+    </fig>
   </sec>
   <sec id="oxygen-enhanced-and-dynamic-contrast-enhanced-data">
     <title>Oxygen Enhanced and Dynamic Contrast Enhanced Data</title>
@@ -232,7 +248,8 @@ Optoacoustics, MSOT, Reconstruction, Backprojection</kwd>
       (<inline-formula><alternatives>
       <tex-math><![CDATA[\Delta ICG]]></tex-math>
       <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>Δ</mml:mi><mml:mi>I</mml:mi><mml:mi>C</mml:mi><mml:mi>G</mml:mi></mml:mrow></mml:math></alternatives></inline-formula>).
-      B and C: Plots of the mean tumour <inline-formula><alternatives>
+      Colour scale images are overlaid on 700 nm photoacoustic images. B
+      and C: Plots of the mean tumour <inline-formula><alternatives>
       <tex-math><![CDATA[sO_2]]></tex-math>
       <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>s</mml:mi><mml:msub><mml:mi>O</mml:mi><mml:mn>2</mml:mn></mml:msub></mml:mrow></mml:math></alternatives></inline-formula>
       and <inline-formula><alternatives>
@@ -251,7 +268,8 @@ Optoacoustics, MSOT, Reconstruction, Backprojection</kwd>
       <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>Δ</mml:mi><mml:mi>s</mml:mi><mml:msub><mml:mi>O</mml:mi><mml:mn>2</mml:mn></mml:msub></mml:mrow></mml:math></alternatives></inline-formula>
       and <inline-formula><alternatives>
       <tex-math><![CDATA[\Delta ICG]]></tex-math>
-      <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>Δ</mml:mi><mml:mi>I</mml:mi><mml:mi>C</mml:mi><mml:mi>G</mml:mi></mml:mrow></mml:math></alternatives></inline-formula>.</p></caption>
+      <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>Δ</mml:mi><mml:mi>I</mml:mi><mml:mi>C</mml:mi><mml:mi>G</mml:mi></mml:mrow></mml:math></alternatives></inline-formula>.
+      Scalebar = 5 mm.</p></caption>
       <graphic mimetype="image" mime-subtype="png" xlink:href="media/dce_oe_plot.png" xlink:title="" />
     </fig>
     <sec id="mouse-imaging-methods">
@@ -308,6 +326,30 @@ Optoacoustics, MSOT, Reconstruction, Backprojection</kwd>
       <pub-id pub-id-type="doi">10.1158/0008-5472.CAN-18-1033</pub-id>
       <fpage>canres.1033.2018</fpage>
       <lpage></lpage>
+    </element-citation>
+  </ref>
+  <ref id="ref-Hacker2021">
+    <element-citation publication-type="article-journal">
+      <person-group person-group-type="author">
+        <name><surname>Hacker</surname><given-names>Lina</given-names></name>
+        <name><surname>Joseph</surname><given-names>James</given-names></name>
+        <name><surname>Ivory</surname><given-names>Aoife M.</given-names></name>
+        <name><surname>Saed</surname><given-names>Mohand O.</given-names></name>
+        <name><surname>Zeqiri</surname><given-names>Bajram</given-names></name>
+        <name><surname>Rajagopal</surname><given-names>Srinath</given-names></name>
+        <name><surname>Bohndiek</surname><given-names>Sarah E.</given-names></name>
+      </person-group>
+      <article-title>A copolymer-in-oil tissue-mimicking material with tuneable acoustic and optical characteristics for photoacoustic imaging phantoms</article-title>
+      <source>IEEE transactions on medical imaging</source>
+      <publisher-name>IEEE Trans Med Imaging</publisher-name>
+      <year iso-8601-date="2021-12">2021</year><month>12</month>
+      <volume>40</volume>
+      <issn>1558-254X</issn>
+      <uri>https://pubmed.ncbi.nlm.nih.gov/34152979/</uri>
+      <pub-id pub-id-type="doi">10.1109/TMI.2021.3090857</pub-id>
+      <pub-id pub-id-type="pmid">34152979</pub-id>
+      <fpage>3593</fpage>
+      <lpage>3603</lpage>
     </element-citation>
   </ref>
 </ref-list>
