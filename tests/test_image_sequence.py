@@ -58,7 +58,7 @@ class TestHDF5Load(unittest.TestCase):
         for i in range(11):
             self.assertEqual(data[0, i].ax_1_labels.item(), np.linspace(700, 900, 11)[i])
         self.assertEqual(data[0].cmap, "bone")
-        self.assertEqual(data[0].two_dims(), ("x", "y"))
+        self.assertEqual(data[0].two_dims(), ("y", "z"))
 
         with self.assertRaises(IndexError):
             print(data[1])
