@@ -31,3 +31,96 @@
    url = {https://pubmed.ncbi.nlm.nih.gov/34152979/},
    year = {2021},
 }
+@article{Lutzweiler2013,
+   abstract = {This paper comprehensively reviews the emerging topic of optoacoustic imaging from the image reconstruction and quantification perspective. Optoacoustic imaging combines highly attractive features, including rich contrast and high versatility in sensing diverse biological targets, excellent spatial resolution not compromised by light scattering, and relatively low cost of implementation. Yet, living objects present a complex target for optoacoustic imaging due to the presence of a highly heterogeneous tissue background in the form of strong spatial variations of scattering and absorption. Extracting quantified information on the actual distribution of tissue chromophores and other biomarkers constitutes therefore a challenging problem. Image quantification is further compromised by some frequently-used approximated inversion formulae. In this review, the currently available optoacoustic image reconstruction and quantification approaches are assessed, including back-projection and model-based inversion algorithms, sparse signal representation, wavelet-based approaches, methods for reduction of acoustic artifacts as well as multi-spectral methods for visualization of tissue bio-markers. Applicability of the different methodologies is further analyzed in the context of real-life performance in small animal and clinical in-vivo imaging scenarios. © 2013 by the authors; licensee MDPI, Basel, Switzerland.},
+   author = {Christian Lutzweiler and Daniel Razansky},
+   doi = {10.3390/s130607345},
+   issn = {14248220},
+   issue = {6},
+   journal = {Sensors (Switzerland)},
+   keywords = {Image reconstruction,Inverse problem,Light transport,Multispectral optoacoustic tomography,Optoacoustic imaging,Photoacoustic tomography,Quantification,Spectroscopic imaging},
+   month = {6},
+   pages = {7345-7384},
+   title = {Optoacoustic imaging and tomography: Reconstruction approaches and outstanding challenges in image performance and quantification},
+   volume = {13},
+   url = {http://www.mdpi.com/1424-8220/13/6/7345},
+   year = {2013},
+}
+
+@misc{Lafci2022,
+  doi = {10.48550/ARXIV.2206.08612},
+  
+  url = {https://arxiv.org/abs/2206.08612},
+  
+  author = {Lafci, Berkan and Ozdemir, Firat and Deán-Ben, Xosé Luís and Razansky, Daniel and Perez-Cruz, Fernando},
+  
+  keywords = {Image and Video Processing (eess.IV), Computer Vision and Pattern Recognition (cs.CV), FOS: Electrical engineering, electronic engineering, information engineering, FOS: Electrical engineering, electronic engineering, information engineering, FOS: Computer and information sciences, FOS: Computer and information sciences},
+  
+  title = {OADAT: Experimental and Synthetic Clinical Optoacoustic Data for Standardized Image Processing},
+  
+  publisher = {arXiv},
+  
+  year = {2022},
+  
+  copyright = {Creative Commons Attribution Non Commercial Share Alike 4.0 International}
+}
+
+@article{OKelly2021,
+   abstract = {Multispectral photoacoustic tomography enables the resolution of spectral components of a tissue or sample at high spatiotemporal resolution. With the availability of commercial instruments, the acquisition of data using this modality has become consistent and standardized. However, the analysis of such data is often hampered by opaque processing algorithms, which are challenging to verify and validate from a user perspective. Furthermore, such tools are inflexible, often locking users into a restricted set of processing motifs, which may not be able to accommodate the demands of diverse experiments. To address these needs, we have developed a Reconstruction, Analysis, and Filtering Toolbox to support the analysis of photoacoustic imaging data. The toolbox includes several algorithms to improve the overall quantification of photoacoustic imaging, including non-negative constraints and multispectral filters. We demonstrate various use cases, including dynamic imaging challenges and quantification of drug effect, and describe the ability of the toolbox to be parallelized on a high performance computing cluster.},
+   author = {Devin O’Kelly and James Campbell and Jeni L. Gerberich and Paniz Karbasi and Venkat Malladi and Andrew Jamieson and Liqiang Wang and Ralph P. Mason},
+   doi = {10.1038/s41598-021-97726-1},
+   isbn = {0123456789},
+   issn = {2045-2322},
+   issue = {1},
+   journal = {Scientific Reports 2021 11:1},
+   keywords = {Cancer imaging,Software},
+   month = {10},
+   pages = {1-18},
+   pmid = {34615891},
+   publisher = {Nature Publishing Group},
+   title = {A scalable open-source MATLAB toolbox for reconstruction and analysis of multispectral optoacoustic tomography data},
+   volume = {11},
+   url = {https://www.nature.com/articles/s41598-021-97726-1},
+   year = {2021},
+}
+
+@article{Shen2020,
+   abstract = {Photoacoustic tomography (PAT) has become a fast-evolving biomedical imaging modality in recent years. In PAT, image reconstruction is a critical step to produce high-quality photoacoustic images from raw photoacoustic signals. To date, algorithms based on back projection are the most widely used image reconstruction techniques due to their simplicity and computational efficiency. However, images reconstructed by back projection contain negative values, especially at the edge of photoacoustic sources, which have no physical meaning and are essentially undesired artifacts. In this work, we study the formation mechanism, fundamental causes and removal strategies of the negativity artifacts in back-projection-based PAT. Our results show that limited detector bandwidth and limited view angle are two fundamental causes of negativity artifacts. When the bandwidth of a detector is limited, back-projection signals will be distorted as a result of the loss of frequency contents and negativity artifacts thus appear. When the view angle of the detector is limited, photoacoustic signals propagating in three-dimensional space will be partially lost, resulting in negativity artifacts. Post-processing strategies, such as envelope detection and forced zeroing can be used to remove the negativity artifacts but may cause problems. Since negativity artifacts are a common image quality degradation factor in PAT, understanding their characteristics may expedite the development of novel artifact-removal techniques and artifact-free image reconstruction algorithms, which are of importance to correct image interpretation and quantitative imaging.},
+   author = {Kang Shen and Songde Liu and Ting Feng and Jie Yuan and Benpeng Zhu and Chao Tian},
+   doi = {10.1088/1361-6463/ABC37D},
+   issn = {0022-3727},
+   issue = {7},
+   journal = {Journal of Physics D: Applied Physics},
+   month = {11},
+   pages = {074001},
+   publisher = {IOP Publishing},
+   title = {Negativity artifacts in back-projection based photoacoustic tomography},
+   volume = {54},
+   url = {https://iopscience.iop.org/article/10.1088/1361-6463/abc37d https://iopscience.iop.org/article/10.1088/1361-6463/abc37d/meta},
+   year = {2020},
+}
+
+@software{jax2018github,
+  author = {James Bradbury and Roy Frostig and Peter Hawkins and Matthew James Johnson and Chris Leary and Dougal Maclaurin and George Necula and Adam Paszke and Jake Vander{P}las and Skye Wanderman-{M}ilne and Qiao Zhang},
+  title = {{JAX}: composable transformations of {P}ython+{N}um{P}y programs},
+  url = {http://github.com/google/jax},
+  version = {0.3.13},
+  year = {2018},
+}
+
+@article{Joseph2017,
+   abstract = {Optoacoustic tomography (OT) is now widely used in preclinical imaging; however, the precision (repeatability and reproducibility) of OT has yet to be determined. Methods: We used a commercial small-animal OT system. Measurements in stable phantoms were used to independently assess the impact of system variables on precision (using coefficient of variation, COV), including acquisition wavelength, rotational position, and frame averaging. Variables due to animal handling and physiology, such as anatomic placement and anesthesia conditions, were then assessed in healthy nude mice using the left kidney and spleen as reference organs. Temporal variation was assessed by repeated measurements over hours and days both in phantoms and in vivo. Sensitivity to small-molecule dyes was determined in phantoms and in vivo; precision was assessed in vivo using IRDye800CW. Results: OT COV in a stable phantom was less than 2.8% across all wavelengths over 30 d. The factors with the greatest impact on signal repeatability in phantoms were rotational position and user experience, both of which still resulted in a COV of less than 4% at 700 nm. Anatomic region-ofinterest size showed the highest variation, at 12% and 18% COV in the kidney and spleen, respectively; however, functional SO2 measurements based on a standard operating procedure showed an exceptional reproducibility of less than 4% COV. COV for repeated injections of IRDye800CW was 6.6%. Sources of variability for in vivo data included respiration rate, degree of user experience, and animal placement. Conclusion: Data acquired with our smallanimal OT system were highly repeatable and reproducible across subjects and over time. Therefore, longitudinal OT studies may be performed with high confidence when our standard operating procedure is followed.},
+   author = {James Joseph and Michal R. Tomaszewski and Isabel Quiros-Gonzalez and Judith Weber and Joanna Brunker and Sarah E. Bohndiek},
+   doi = {10.2967/jnumed.116.182311},
+   issn = {0161-5505},
+   issue = {5},
+   journal = {Journal of Nuclear Medicine},
+   keywords = {In vivo imaging,Optoacoustic imaging,Phantoms,Repeatability,Reproducibility},
+   month = {5},
+   pages = {807-814},
+   publisher = {Society of Nuclear Medicine Inc.},
+   title = {Evaluation of Precision in Optoacoustic Tomography for Preclinical Imaging in Living Subjects},
+   volume = {58},
+   url = {http://jnm.snmjournals.org/lookup/doi/10.2967/jnumed.116.182311},
+   year = {2017},
+}

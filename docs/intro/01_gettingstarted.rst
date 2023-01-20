@@ -42,7 +42,7 @@ Setting up CUDA the easy way
 
 The easy way to setup the CUDA toolkit (needed for image reconstruction) is as follows:
 
-    conda install -c anaconda cudatoolkit cudnn
+    conda install -c conda-forge cudatoolkit-dev cudnn
 
 Option 1: Install using pip
 ------------------------------------------------------
