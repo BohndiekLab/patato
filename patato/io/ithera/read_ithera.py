@@ -50,7 +50,7 @@ class iTheraMSOT(ReaderInterface):
         try:
             f = xml_to_dict(self.xml_tree.getElementsByTagName("ReconNodes")[0])
         except IndexError:
-            return None
+            return {}
         reconstructions = []
         rec_list = f[1] if type(f[1]) == list else [f[1]]
 
@@ -84,7 +84,7 @@ class iTheraMSOT(ReaderInterface):
 
             rec = Reconstruction(recon, self._get_wavelengths(),
                                  attributes=pat_attributes,
-                                 field_of_view=fov)
+                                 field_of_view=fov, hdf5_sub_name="iThera " + attributes["Name"])
             reconstructions.append(rec)
         rec_dict = {}
         n_rec = {}
@@ -98,7 +98,7 @@ class iTheraMSOT(ReaderInterface):
         if rec_dict:
             return {"recons": rec_dict}
         else:
-            return None
+            return {}
 
     def get_speed_of_sound(self):
         return None

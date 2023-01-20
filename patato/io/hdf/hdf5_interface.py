@@ -12,6 +12,7 @@ from ...core.image_structures.pa_time_data import PATimeSeries
 from ...io.attribute_tags import HDF5Tags, ROITags, UnmixingAttributeTags, ReconAttributeTags
 from ...io.hdf.fileimporter import WriterInterface, ReaderInterface
 from ...utils.rois.roi_type import ROI
+import json
 
 if TYPE_CHECKING:
     import numpy as np
@@ -159,7 +160,10 @@ class HDF5Writer(WriterInterface):
                     attr = image_data.attributes[a][b]
                     if type(attr) == str:
                         attr = bytes(attr, "utf-8")
-                    dataset.attrs[b] = attr
+                    try:
+                        dataset.attrs[b] = attr
+                    except TypeError:
+                        dataset.attrs[b] = json.dumps(attr)
             else:
                 attr = image_data.attributes[a]
                 if type(attr) == str:
@@ -347,7 +351,11 @@ class HDF5Reader(ReaderInterface):
         return self.file[HDF5Tags.SCAN_GEOMETRY][:]
 
     def get_us_data(self):
-        return self.file[HDF5Tags.ULTRASOUND], self.file[HDF5Tags.ULTRASOUND].attrs[HDF5Tags.ULTRASOUND_FIELD_OF_VIEW]
+        if HDF5Tags.ULTRASOUND in self.file:
+            return self.file.get(HDF5Tags.ULTRASOUND, None), \
+                   self.file[HDF5Tags.ULTRASOUND].attrs[HDF5Tags.ULTRASOUND_FIELD_OF_VIEW]
+        else:
+            return None, {}
 
     def get_us_offsets(self):
         return self.file[HDF5Tags.ULTRASOUND_FRAME_OFFSET]
