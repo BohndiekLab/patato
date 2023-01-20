@@ -171,7 +171,7 @@ class DataSequence(ProcessingResult, ABC):
         else:
             display_image = self.to_2d().numpy_array
 
-        interpolation = "nearest"
+        interpolation = "antialiased"
         if display_image.dtype == np.bool_:
             interpolation = "nearest"
 

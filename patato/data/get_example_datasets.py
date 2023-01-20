@@ -76,8 +76,8 @@ def get_msot_phantom_example(image_type="clinical"):
     dataset : PAData
         The MSOT dataset.
     """
-    data_sources = {"clinical": "",
-                    "preclinical": ""}
+    data_sources = {"clinical": "https://drive.google.com/uc?id=117bWefATJ-J2BlnFwhTOJKxZ6zLPo71a",
+                    "preclinical": "https://drive.google.com/uc?id=11DAiTrzwtvm1iMCpj9qyfaoWjydzCZGm"}
 
     data_path = os.path.join(get_patato_data_folder(), f'{image_type}-msot-data.hdf5')
     folder = os.path.split(data_path)[0]
