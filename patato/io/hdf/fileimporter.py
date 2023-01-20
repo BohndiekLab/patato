@@ -264,7 +264,7 @@ class ReaderInterface(metaclass=ABCMeta):
                     for reconstruction_type in all_datasets[dataset_type]:
                         if all_datasets[dataset_type][reconstruction_type]:
                             all_datasets[dataset_type][reconstruction_type] = \
-                            all_datasets[dataset_type][reconstruction_type][s]
+                                all_datasets[dataset_type][reconstruction_type][s]
         return all_datasets
 
     @abstractmethod
@@ -311,8 +311,10 @@ class WriterInterface(metaclass=ABCMeta):
         self.set_us_offsets(reader.get_us_offsets())
         self.set_water_absorption(*reader.get_water_absorption())
         if reader.get_datasets() is not None:
-            for recon in reader.get_datasets():
-                self.add_image(recon)
+            for _, image_group in reader.get_datasets().items():
+                for key in sorted(image_group, key=lambda x: int(x[1])):
+                    recon = image_group[key]
+                    self.add_image(recon)
         self.set_scan_comment(reader.get_scan_comment())
         self.set_sampling_frequency(reader.get_sampling_frequency())
 

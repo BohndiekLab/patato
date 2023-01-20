@@ -72,6 +72,6 @@ class TestUnmixing(unittest.TestCase):
         self.assertIsNotNone(pa.get_rois())
         self.assertIsNotNone(pa.summary_measurements())
 
-        self.assertEqual(u.shape, (3, 2, 100, 100, 1))
-        self.assertEqual(s.shape, (3, 1, 100, 100, 1))
-        self.assertEqual(t.shape, (3, 1, 100, 100, 1))
+        self.assertEqual(u.shape, (3, 2, 1, 333, 333))
+        self.assertEqual(s.shape, (3, 1, 1, 333, 333))
+        self.assertEqual(t.shape, (3, 1, 1, 333, 333))
