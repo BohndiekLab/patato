@@ -9,7 +9,7 @@ import numpy as np
 if TYPE_CHECKING:
     from ..io.msot_data import PAData
 
-from seaborn import color_palette
+from seaborn.palettes import color_palette
 
 
 def split_roi_left_right(data: "PAData", base_roi="", split_template="unnamed"):

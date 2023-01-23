@@ -10,7 +10,6 @@ from patato import iTheraMSOT
 
 from .. import PAData
 
-
 def get_patato_data_folder():
     """Get the folder where patato data is stored.
 
@@ -19,6 +18,8 @@ def get_patato_data_folder():
     folder : str
         The folder where patato data is stored.
     """
+    if os.environ["PAT_DATA_FOLDER"] == "TEMP":
+        os.environ["PAT_DATA_FOLDER"] = mkdtemp()
     return os.path.expanduser(os.environ.get("PAT_DATA_FOLDER", "~/patato_example_data"))
 
 
@@ -76,8 +77,8 @@ def get_msot_phantom_example(image_type="clinical"):
     dataset : PAData
         The MSOT dataset.
     """
-    data_sources = {"clinical": "",
-                    "preclinical": ""}
+    data_sources = {"clinical": "https://drive.google.com/uc?id=117bWefATJ-J2BlnFwhTOJKxZ6zLPo71a",
+                    "preclinical": "https://drive.google.com/uc?id=11DAiTrzwtvm1iMCpj9qyfaoWjydzCZGm"}
 
     data_path = os.path.join(get_patato_data_folder(), f'{image_type}-msot-data.hdf5')
     folder = os.path.split(data_path)[0]

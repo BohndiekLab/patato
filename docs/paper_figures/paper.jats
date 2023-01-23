@@ -123,14 +123,20 @@ Optoacoustics, MSOT, Reconstruction, Backprojection</kwd>
   algorithms published in literature for reconstruction, spectral
   analysis, and post-processing, access to the underlying code is
   limited, making it challenging to use the most current and effective
-  methods. This lack of transparency also hinders reproducibility and
-  slows the adoption of new methods within the community. While other
-  tools for photoacoustic image reconstruction and analysis have been
-  developed, they all lack open-source code for GPU acceleration, and
-  have limited documentation, making it difficult to extend their
-  functionality. PATATO offers an open-source solution with accelerated
-  reconstruction algorithms, end-to-end analysis, an easy-to-use
-  interface, open data format integration, and an extensible
+  methods
+  (<xref alt="Lutzweiler &amp; Razansky, 2013" rid="ref-Lutzweiler2013" ref-type="bibr">Lutzweiler
+  &amp; Razansky, 2013</xref>). This lack of transparency may hinder
+  reproducibility and slow the adoption of new methods within the
+  community. While other tools for photoacoustic image reconstruction
+  and analysis have been developed, they all lack open-source code for
+  GPU acceleration and have limited documentation, making it difficult
+  to extend their functionality
+  (<xref alt="Lafci et al., 2022" rid="ref-Lafci2022" ref-type="bibr">Lafci
+  et al., 2022</xref>;
+  <xref alt="O’Kelly et al., 2021" rid="ref-OKelly2021" ref-type="bibr">O’Kelly
+  et al., 2021</xref>). PATATO offers an open-source solution with
+  accelerated reconstruction algorithms, end-to-end analysis, an
+  easy-to-use interface, open data format integration, and an extensible
   structure.</p>
   <p>Like many other imaging techniques, PAI requires multiple
   processing steps, many of which are computationally intensive. A
@@ -143,12 +149,16 @@ Optoacoustics, MSOT, Reconstruction, Backprojection</kwd>
   sensitive to the parameters used, such as the cut-off frequency for
   filters, highlighting the need for efficient and transparent
   implementations of these algorithms to ensure consistent biological
-  conclusions across datasets. In PATATO, these computationally
-  intensive algorithms are implemented using JAX, a high-performance
-  numerical computing toolkit, enabling GPU acceleration and consistent
-  implementations between CPU and GPU. Additionally, PATATO stores all
-  reconstruction parameters in the HDF5 file, making it easy to
-  reproduce the precise analysis.</p>
+  conclusions across datasets
+  (<xref alt="Shen et al., 2020" rid="ref-Shen2020" ref-type="bibr">Shen
+  et al., 2020</xref>). In PATATO, these computationally intensive
+  algorithms are implemented using JAX, a high-performance numerical
+  computing toolkit, enabling GPU acceleration and consistent
+  implementations between CPU and GPU
+  (<xref alt="Bradbury et al., 2018" rid="ref-jax2018github" ref-type="bibr">Bradbury
+  et al., 2018</xref>). Additionally, PATATO stores all reconstruction
+  parameters in the HDF5 file, making it straightforward to reproduce
+  analyses.</p>
 </sec>
 <sec id="example-datasets">
   <title>Example Datasets</title>
@@ -205,7 +215,27 @@ Optoacoustics, MSOT, Reconstruction, Backprojection</kwd>
   <sec id="phantom-data">
     <title>Phantom Data</title>
     <p>Phantom imaging data is provided for both the clinical and
-    pre-clinical imaging systems.</p>
+    pre-clinical imaging systems. This can be used for the optimisation
+    and comparison of different image reconstruction algorithms. The
+    clinical phantom is based on a copolymer-in-oil protocol published
+    previously
+    (<xref alt="Hacker et al., 2021" rid="ref-Hacker2021" ref-type="bibr">Hacker
+    et al., 2021</xref>). A ‘staircase’ inclusion containing a tenfold
+    higher concentration of nigrosin (a strong optical absorber) was
+    created using a 3D-printed mould. The base material component
+    contained 0.018% w/v nigrosin, the inclusion contained 0.18% w/v
+    nigrosin. The preclinical phantom is an agarose phantom containing
+    2.1% v/v intralipid and 1.5% w/v agar
+    (<xref alt="Joseph et al., 2017" rid="ref-Joseph2017" ref-type="bibr">Joseph
+    et al., 2017</xref>). A 40 nmol solution of indocyanine green (ICG)
+    was injected into the tube as an inclusion.</p>
+    <fig>
+      <caption><p>Single wavelength reconstructions at 840 nm of the two
+      phantoms. Left: staircase phantom imaged with the MSOT Acuity.
+      Right: ICG phantom with inclusion in the centre imaged with MSOT
+      inVision.</p></caption>
+      <graphic mimetype="image" mime-subtype="png" xlink:href="media/test_figure.png" xlink:title="" />
+    </fig>
   </sec>
   <sec id="oxygen-enhanced-and-dynamic-contrast-enhanced-data">
     <title>Oxygen Enhanced and Dynamic Contrast Enhanced Data</title>
@@ -232,7 +262,8 @@ Optoacoustics, MSOT, Reconstruction, Backprojection</kwd>
       (<inline-formula><alternatives>
       <tex-math><![CDATA[\Delta ICG]]></tex-math>
       <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>Δ</mml:mi><mml:mi>I</mml:mi><mml:mi>C</mml:mi><mml:mi>G</mml:mi></mml:mrow></mml:math></alternatives></inline-formula>).
-      B and C: Plots of the mean tumour <inline-formula><alternatives>
+      Colour scale images are overlaid on 700 nm photoacoustic images. B
+      and C: Plots of the mean tumour <inline-formula><alternatives>
       <tex-math><![CDATA[sO_2]]></tex-math>
       <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>s</mml:mi><mml:msub><mml:mi>O</mml:mi><mml:mn>2</mml:mn></mml:msub></mml:mrow></mml:math></alternatives></inline-formula>
       and <inline-formula><alternatives>
@@ -251,7 +282,8 @@ Optoacoustics, MSOT, Reconstruction, Backprojection</kwd>
       <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>Δ</mml:mi><mml:mi>s</mml:mi><mml:msub><mml:mi>O</mml:mi><mml:mn>2</mml:mn></mml:msub></mml:mrow></mml:math></alternatives></inline-formula>
       and <inline-formula><alternatives>
       <tex-math><![CDATA[\Delta ICG]]></tex-math>
-      <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>Δ</mml:mi><mml:mi>I</mml:mi><mml:mi>C</mml:mi><mml:mi>G</mml:mi></mml:mrow></mml:math></alternatives></inline-formula>.</p></caption>
+      <mml:math display="inline" xmlns:mml="http://www.w3.org/1998/Math/MathML"><mml:mrow><mml:mi>Δ</mml:mi><mml:mi>I</mml:mi><mml:mi>C</mml:mi><mml:mi>G</mml:mi></mml:mrow></mml:math></alternatives></inline-formula>.
+      Scalebar = 5 mm.</p></caption>
       <graphic mimetype="image" mime-subtype="png" xlink:href="media/dce_oe_plot.png" xlink:title="" />
     </fig>
     <sec id="mouse-imaging-methods">
@@ -308,6 +340,152 @@ Optoacoustics, MSOT, Reconstruction, Backprojection</kwd>
       <pub-id pub-id-type="doi">10.1158/0008-5472.CAN-18-1033</pub-id>
       <fpage>canres.1033.2018</fpage>
       <lpage></lpage>
+    </element-citation>
+  </ref>
+  <ref id="ref-Hacker2021">
+    <element-citation publication-type="article-journal">
+      <person-group person-group-type="author">
+        <name><surname>Hacker</surname><given-names>Lina</given-names></name>
+        <name><surname>Joseph</surname><given-names>James</given-names></name>
+        <name><surname>Ivory</surname><given-names>Aoife M.</given-names></name>
+        <name><surname>Saed</surname><given-names>Mohand O.</given-names></name>
+        <name><surname>Zeqiri</surname><given-names>Bajram</given-names></name>
+        <name><surname>Rajagopal</surname><given-names>Srinath</given-names></name>
+        <name><surname>Bohndiek</surname><given-names>Sarah E.</given-names></name>
+      </person-group>
+      <article-title>A copolymer-in-oil tissue-mimicking material with tuneable acoustic and optical characteristics for photoacoustic imaging phantoms</article-title>
+      <source>IEEE transactions on medical imaging</source>
+      <publisher-name>IEEE Trans Med Imaging</publisher-name>
+      <year iso-8601-date="2021-12">2021</year><month>12</month>
+      <volume>40</volume>
+      <issn>1558-254X</issn>
+      <uri>https://pubmed.ncbi.nlm.nih.gov/34152979/</uri>
+      <pub-id pub-id-type="doi">10.1109/TMI.2021.3090857</pub-id>
+      <pub-id pub-id-type="pmid">34152979</pub-id>
+      <fpage>3593</fpage>
+      <lpage>3603</lpage>
+    </element-citation>
+  </ref>
+  <ref id="ref-Lutzweiler2013">
+    <element-citation publication-type="article-journal">
+      <person-group person-group-type="author">
+        <name><surname>Lutzweiler</surname><given-names>Christian</given-names></name>
+        <name><surname>Razansky</surname><given-names>Daniel</given-names></name>
+      </person-group>
+      <article-title>Optoacoustic imaging and tomography: Reconstruction approaches and outstanding challenges in image performance and quantification</article-title>
+      <source>Sensors (Switzerland)</source>
+      <year iso-8601-date="2013-06">2013</year><month>06</month>
+      <volume>13</volume>
+      <uri>http://www.mdpi.com/1424-8220/13/6/7345</uri>
+      <pub-id pub-id-type="doi">10.3390/s130607345</pub-id>
+      <fpage>7345</fpage>
+      <lpage>7384</lpage>
+    </element-citation>
+  </ref>
+  <ref id="ref-Lafci2022">
+    <element-citation>
+      <person-group person-group-type="author">
+        <name><surname>Lafci</surname><given-names>Berkan</given-names></name>
+        <name><surname>Ozdemir</surname><given-names>Firat</given-names></name>
+        <name><surname>Deán-Ben</surname><given-names>Xosé Luís</given-names></name>
+        <name><surname>Razansky</surname><given-names>Daniel</given-names></name>
+        <name><surname>Perez-Cruz</surname><given-names>Fernando</given-names></name>
+      </person-group>
+      <article-title>OADAT: Experimental and synthetic clinical optoacoustic data for standardized image processing</article-title>
+      <publisher-name>arXiv</publisher-name>
+      <year iso-8601-date="2022">2022</year>
+      <uri>https://arxiv.org/abs/2206.08612</uri>
+      <pub-id pub-id-type="doi">10.48550/ARXIV.2206.08612</pub-id>
+    </element-citation>
+  </ref>
+  <ref id="ref-OKelly2021">
+    <element-citation publication-type="article-journal">
+      <person-group person-group-type="author">
+        <name><surname>O’Kelly</surname><given-names>Devin</given-names></name>
+        <name><surname>Campbell</surname><given-names>James</given-names></name>
+        <name><surname>Gerberich</surname><given-names>Jeni L.</given-names></name>
+        <name><surname>Karbasi</surname><given-names>Paniz</given-names></name>
+        <name><surname>Malladi</surname><given-names>Venkat</given-names></name>
+        <name><surname>Jamieson</surname><given-names>Andrew</given-names></name>
+        <name><surname>Wang</surname><given-names>Liqiang</given-names></name>
+        <name><surname>Mason</surname><given-names>Ralph P.</given-names></name>
+      </person-group>
+      <article-title>A scalable open-source MATLAB toolbox for reconstruction and analysis of multispectral optoacoustic tomography data</article-title>
+      <source>Scientific Reports 2021 11:1</source>
+      <publisher-name>Nature Publishing Group</publisher-name>
+      <year iso-8601-date="2021-10">2021</year><month>10</month>
+      <volume>11</volume>
+      <isbn>0123456789</isbn>
+      <issn>2045-2322</issn>
+      <uri>https://www.nature.com/articles/s41598-021-97726-1</uri>
+      <pub-id pub-id-type="doi">10.1038/s41598-021-97726-1</pub-id>
+      <pub-id pub-id-type="pmid">34615891</pub-id>
+      <fpage>1</fpage>
+      <lpage>18</lpage>
+    </element-citation>
+  </ref>
+  <ref id="ref-Shen2020">
+    <element-citation publication-type="article-journal">
+      <person-group person-group-type="author">
+        <name><surname>Shen</surname><given-names>Kang</given-names></name>
+        <name><surname>Liu</surname><given-names>Songde</given-names></name>
+        <name><surname>Feng</surname><given-names>Ting</given-names></name>
+        <name><surname>Yuan</surname><given-names>Jie</given-names></name>
+        <name><surname>Zhu</surname><given-names>Benpeng</given-names></name>
+        <name><surname>Tian</surname><given-names>Chao</given-names></name>
+      </person-group>
+      <article-title>Negativity artifacts in back-projection based photoacoustic tomography</article-title>
+      <source>Journal of Physics D: Applied Physics</source>
+      <publisher-name>IOP Publishing</publisher-name>
+      <year iso-8601-date="2020-11">2020</year><month>11</month>
+      <volume>54</volume>
+      <issn>0022-3727</issn>
+      <uri>https://iopscience.iop.org/article/10.1088/1361-6463/abc37d https://iopscience.iop.org/article/10.1088/1361-6463/abc37d/meta</uri>
+      <pub-id pub-id-type="doi">10.1088/1361-6463/ABC37D</pub-id>
+      <fpage>074001</fpage>
+      <lpage></lpage>
+    </element-citation>
+  </ref>
+  <ref id="ref-jax2018github">
+    <element-citation publication-type="book">
+      <person-group person-group-type="author">
+        <name><surname>Bradbury</surname><given-names>James</given-names></name>
+        <name><surname>Frostig</surname><given-names>Roy</given-names></name>
+        <name><surname>Hawkins</surname><given-names>Peter</given-names></name>
+        <name><surname>Johnson</surname><given-names>Matthew James</given-names></name>
+        <name><surname>Leary</surname><given-names>Chris</given-names></name>
+        <name><surname>Maclaurin</surname><given-names>Dougal</given-names></name>
+        <name><surname>Necula</surname><given-names>George</given-names></name>
+        <name><surname>Paszke</surname><given-names>Adam</given-names></name>
+        <name><surname>VanderPlas</surname><given-names>Jake</given-names></name>
+        <name><surname>Wanderman-Milne</surname><given-names>Skye</given-names></name>
+        <name><surname>Zhang</surname><given-names>Qiao</given-names></name>
+      </person-group>
+      <source>JAX: Composable transformations of Python+NumPy programs</source>
+      <year iso-8601-date="2018">2018</year>
+      <uri>http://github.com/google/jax</uri>
+    </element-citation>
+  </ref>
+  <ref id="ref-Joseph2017">
+    <element-citation publication-type="article-journal">
+      <person-group person-group-type="author">
+        <name><surname>Joseph</surname><given-names>James</given-names></name>
+        <name><surname>Tomaszewski</surname><given-names>Michal R.</given-names></name>
+        <name><surname>Quiros-Gonzalez</surname><given-names>Isabel</given-names></name>
+        <name><surname>Weber</surname><given-names>Judith</given-names></name>
+        <name><surname>Brunker</surname><given-names>Joanna</given-names></name>
+        <name><surname>Bohndiek</surname><given-names>Sarah E.</given-names></name>
+      </person-group>
+      <article-title>Evaluation of precision in optoacoustic tomography for preclinical imaging in living subjects</article-title>
+      <source>Journal of Nuclear Medicine</source>
+      <publisher-name>Society of Nuclear Medicine Inc.</publisher-name>
+      <year iso-8601-date="2017-05">2017</year><month>05</month>
+      <volume>58</volume>
+      <issn>0161-5505</issn>
+      <uri>http://jnm.snmjournals.org/lookup/doi/10.2967/jnumed.116.182311</uri>
+      <pub-id pub-id-type="doi">10.2967/jnumed.116.182311</pub-id>
+      <fpage>807</fpage>
+      <lpage>814</lpage>
     </element-citation>
   </ref>
 </ref-list>

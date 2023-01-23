@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "patato"
-version = "0.1.4"
+version = "0.2.0"
 dependencies = [
     "requests",
     "cython",
@@ -20,22 +20,20 @@ dependencies = [
     "scipy",
     "tabulate",
     "matplotlib",
-    "pyopencl",
     "matplotlib_scalebar",
     "dask",
     "pybind11",
-    "jax[cpu]",
-    "simpa",
+    "jax[cpu]; platform_system!='Windows'",
     "wget",
-    "gdown",
-    "zipfile"
+    "gdown"
 ]
+
 authors = [
   { name="Thomas Else", email="thomas.else@cruk.cam.ac.uk" },
 ]
 description = "A Python Toolkit for the analysis of photoacoustic tomography data."
 readme = "README.md"
-requires-python = ">=3.8"
+requires-python = ">=3.8,<3.11"
 classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: BSD License",
@@ -58,17 +56,10 @@ namespaces = true  # true by default
 msot-import-ithera = "patato.convenience_scripts.convert_binary_to_hdf5:main"
 msot-draw-roi = "patato.convenience_scripts.draw_roi:main"
 msot-set-speed-of-sound = "patato.convenience_scripts.tune_speed_of_sound:main"
-msot-copy-roi = "patato.convenience_scripts.copy_rois:main"
-msot-print-speeds = "patato.convenience_scripts.print_speeds:main"
-msot-rename-scans = "patato.convenience_scripts.rename_scan:main"
-msot-scan-status = "patato.convenience_scripts.scan_status:main"
 msot-unmix = "patato.convenience_scripts.unmix:main"
-msot-view = "patato.convenience_scripts.view:main"
 msot-reconstruct = "patato.convenience_scripts.process_msot:main"
 msot-analyse-dce = "patato.convenience_scripts.data_analysis.analyse_dce:main"
 msot-analyse-gc = "patato.convenience_scripts.data_analysis.analyse_gas_challenge:main"
-msot-split-rois = "patato.convenience_scripts.split_rois:main"
-msot-generate-core = "patato.convenience_scripts.generate_core:main"
 msot-convert-simpa = "patato.convenience_scripts.convert_simpa:main"
 
 [tool.setuptools.package-data]

@@ -8,7 +8,11 @@ import numpy as np
 from .backprojection_implementation.jax_implementation import full_recon
 from .reconstruction_algorithm import ReconstructionAlgorithm
 
-import jax
+try:
+    import jax
+except ImportError:
+    print("WARNING: JAX must be installed to support the standard backprojection algorithm and filtering.")
+    jax = None
 
 
 class ReferenceBackprojection(ReconstructionAlgorithm):

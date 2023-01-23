@@ -29,10 +29,10 @@ class BackprojectionTest(unittest.TestCase):
         # self.assertAlmostEqual(np.mean(r.values), 643.466579199574)
 
     def test_opencl_reconstruction(self):
-        import jax
-        if jax.devices()[0].platform == "cpu":
-            # Don't test opencl reconstruction on a cpu - painfully slow.
-            return None
+        try:
+            import pyopencl
+        except ImportError:
+            return  # Skip test if pyopencl is not installed
         data_folder = join(get_patato_data_folder(), "test")
         dummy_dataset = join(data_folder, "Scan_1.hdf5")
 

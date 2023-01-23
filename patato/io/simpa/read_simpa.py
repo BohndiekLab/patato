@@ -2,7 +2,12 @@
 #  License: BSD-3
 
 import numpy as np
-import simpa as sp
+
+try:
+    import simpa as sp
+except ImportError:
+    sp = None
+
 from ...core.image_structures.reconstruction_image import Reconstruction
 from ..attribute_tags import ReconAttributeTags
 from ..hdf.fileimporter import ReaderInterface
