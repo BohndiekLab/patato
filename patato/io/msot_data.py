@@ -743,7 +743,11 @@ class PAData:
                 measurements.append(self.get_scan_so2())
             elif m == "icg":
                 unmixed = self.get_scan_unmixed()
-                n = [i for i, l in enumerate(unmixed.ax_1_labels) if l.lower() == "icg"][0]
+                n = [i for i, l in enumerate(unmixed.ax_1_labels) if l.lower() == "icg"]
+                if len(n) == 0:
+                    print("No icg channel found")
+                    continue
+                n= n[0]
                 measurements.append(unmixed[:, n: n + 1])
             elif m == "dso2":
                 measurements.append(self.get_scan_dso2())

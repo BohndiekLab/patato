@@ -255,7 +255,11 @@ class DataSequence(ProcessingResult, ABC):
 
     @property
     def ax_1_labels(self):
-        return self.da.coords.get(self.get_ax1_label_meaning(), None)
+        r = np.asarray(self.da.coords.get(self.get_ax1_label_meaning(), []))
+        if r.ndim == 0 and r.item() is None:
+            return r.item()
+        else:
+            return r
 
     @property
     def ax_0_labels(self):
