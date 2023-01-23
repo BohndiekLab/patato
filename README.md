@@ -17,6 +17,7 @@ The tool supports many file formats, such as the International Photoacoustic Sta
 In order to use PATATO, you must have a Python environment set up on your computer. We recommend using Anaconda (http://anaconda.com) to run Python, particularly if you are using Windows. You may wish to setup a separate Anaconda environment to install PATATO to minimise conflicts between dependency versions.
 
 ```shell
+pip install --upgrade pip setuptools
 pip install patato
 ```
 
