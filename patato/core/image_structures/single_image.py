@@ -3,7 +3,7 @@ Defines a datatype for datasets that have been processed to only have one value 
 """
 
 #  Copyright (c) Thomas Else 2023.
-#  License: BSD-3
+#  License: MIT
 
 from typing import List, TYPE_CHECKING
 

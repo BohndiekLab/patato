@@ -3,7 +3,7 @@ PA raw data implements the data structure for photoacoustic time series data.
 """
 
 #  Copyright (c) Thomas Else 2023.
-#  License: BSD-3
+#  License: MIT
 
 from abc import ABC, abstractmethod
 from typing import TYPE_CHECKING

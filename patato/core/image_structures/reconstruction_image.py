@@ -3,7 +3,7 @@ This defines the data structure for reconstructed images.
 """
 
 #  Copyright (c) Thomas Else 2023.
-#  License: BSD-3
+#  License: MIT
 
 from __future__ import annotations
 

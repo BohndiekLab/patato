@@ -1,5 +1,5 @@
 #  Copyright (c) Thomas Else 2023.
-#  License: BSD-3
+#  License: MIT
 
 """
 ``msot-convert-simpa``: A script to convert simpa HDF5 output into the PATATO hdf5 format.

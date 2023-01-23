@@ -8,7 +8,7 @@ For examples of how to use PATATO, please see the examples page.
 """
 
 #  Copyright (c) Thomas Else 2023.
-#  License: BSD-3
+#  License: MIT
 
 from os import environ
 from .io.ithera.read_ithera import iTheraMSOT

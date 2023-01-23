@@ -3,7 +3,7 @@ Image sequence - abstract classes for processing datasets from PA data.
 """
 
 #  Copyright (c) Thomas Else 2023.
-#  License: BSD-3
+#  License: MIT
 
 from __future__ import annotations
 
