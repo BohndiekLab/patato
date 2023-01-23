@@ -32,7 +32,7 @@ authors = [
 ]
 description = "A Python Toolkit for the analysis of photoacoustic tomography data."
 readme = "README.md"
-requires-python = ">=3.7"
+requires-python = ">=3.7,<3.11"
 classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: BSD License",
