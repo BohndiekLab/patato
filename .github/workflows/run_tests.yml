@@ -11,7 +11,7 @@ on:
       - main
 
 env:
-  PAT_DATA_FOLDER: "/tmp"
+  PAT_DATA_FOLDER: "tmp"
 
 jobs:
   build:
