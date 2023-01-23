@@ -37,7 +37,7 @@ jobs:
     - if: runner.os == 'Windows'
       run: |
         pip install jaxlib -f https://whls.blob.core.windows.net/unstable/index.html --use-deprecated legacy-resolver
-        pip install jax
+        pip install jax[cpu]
     - name: Run tests
       run: |
         cd tests
