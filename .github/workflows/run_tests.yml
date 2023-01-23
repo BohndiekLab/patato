@@ -11,7 +11,7 @@ on:
       - main
 
 env:
-  PAT_DATA_FOLDER: /data
+  PAT_DATA_FOLDER: TEMP
 
 jobs:
   build:
