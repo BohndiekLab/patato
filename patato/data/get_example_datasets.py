@@ -10,7 +10,6 @@ from patato import iTheraMSOT
 
 from .. import PAData
 
-
 def get_patato_data_folder():
     """Get the folder where patato data is stored.
 
@@ -19,6 +18,8 @@ def get_patato_data_folder():
     folder : str
         The folder where patato data is stored.
     """
+    if os.environ["PAT_DATA_FOLDER"] == "TEMP":
+        os.environ["PAT_DATA_FOLDER"] = mkdtemp()
     return os.path.expanduser(os.environ.get("PAT_DATA_FOLDER", "~/patato_example_data"))
 
 
