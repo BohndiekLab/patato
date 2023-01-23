@@ -1,8 +1,12 @@
 #  Copyright (c) Thomas Else 2023.
 #  License: BSD-3
 
-import jax
-import jax.numpy as jnp
+try:
+    import jax
+    import jax.numpy as jnp
+except ImportError:
+    jax = None
+    jnp = None
 from functools import partial
 
 

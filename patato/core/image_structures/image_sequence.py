@@ -23,7 +23,12 @@ except ImportError:
     cp = None
 
 from xarray import DataArray
-import jax.numpy as jnp
+
+try:
+    import jax.numpy as jnp
+except ImportError:
+    jnp = None
+
 if jnp.DeviceArray not in xarray.core.variable.NON_NUMPY_SUPPORTED_ARRAY_TYPES:
     xarray.core.variable.NON_NUMPY_SUPPORTED_ARRAY_TYPES += (jnp.DeviceArray, )
 from dask.array.core import Array as DaskArray

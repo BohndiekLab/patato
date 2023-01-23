@@ -10,8 +10,12 @@ from scipy.signal.windows import hann
 
 from .processing_algorithm import TimeSeriesProcessingAlgorithm
 
-import jax.numpy as jnp
-import jax
+try:
+    import jax.numpy as jnp
+    import jax
+except ImportError:
+    jnp = None
+    jax = None
 
 from ..core.image_structures.pa_time_data import PATimeSeries
 
