@@ -8,6 +8,7 @@
 import argparse
 import glob
 import json
+import os.path
 from os.path import join
 
 import numpy as np
@@ -46,7 +47,12 @@ def main():
     with open(preset) as json_file:
         settings = json.load(json_file)
 
-    for data_file in sorted(glob.glob(join(DATA_FOLDER, "**", "*.hdf5"), recursive=True), key=sort_key):
+    if os.path.isfile(DATA_FOLDER):
+        data_files = [DATA_FOLDER]
+    else:
+        data_files = sorted(glob.glob(join(DATA_FOLDER, "**", "*.hdf5"), recursive=True), key=sort_key)
+
+    for data_file in data_files:
         print("Processing", data_file)
         data = PAData.from_hdf5(data_file, "r+")
 

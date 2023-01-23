@@ -418,8 +418,14 @@ def main():
     args = p.parse_args()
 
     DATA_FOLDER = args.input
+
+    if os.path.isfile(DATA_FOLDER):
+        data_files = [DATA_FOLDER]
+    else:
+        data_files = sorted(glob.glob(join(DATA_FOLDER, "**", "*.hdf5"), recursive=True), key=sort_key)
+
     print(args.input)
-    for file in sorted(glob.glob(join(DATA_FOLDER, "**", "*.hdf5"), recursive=True), key=sort_key):
+    for file in data_files:
         if args.filter is not None:
             if split(file)[-1] != "Scan_" + args.filter + ".hdf5":
                 continue

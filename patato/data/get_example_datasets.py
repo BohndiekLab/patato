@@ -2,10 +2,12 @@
 #  License: MIT
 
 import os
+import shutil
 import zipfile
 from tempfile import mkdtemp
+from tqdm.auto import tqdm
 
-import gdown
+import requests
 from patato import iTheraMSOT
 
 from .. import PAData
@@ -23,6 +25,17 @@ def get_patato_data_folder():
     return os.path.expanduser(os.environ.get("PAT_DATA_FOLDER", "~/patato_example_data"))
 
 
+def download_file(file_from, file_to):
+    print(f"Downloading {file_from} to {file_to}... Might take a while.")
+    with requests.get(file_from, stream=True) as file_data:
+        # Get the total file size
+        total_length = int(file_data.headers.get("Content-Length"))
+        # Download the file
+        with tqdm.wrapattr(file_data.raw, "read", total=total_length, desc="") as raw:
+            with open(file_to, "wb") as output:
+                shutil.copyfileobj(raw, output)
+
+
 def get_msot_time_series_example(image_type="so2"):
     """Get a time series of MSOT images.
 
@@ -31,8 +44,9 @@ def get_msot_time_series_example(image_type="so2"):
     dataset : PAData
         The MSOT dataset.
     """
-    data_sources = {"so2": "https://drive.google.com/uc?id=1la0i2qEpg_80Q92ScWVF-H_DNfV87Vzh",
-                    "icg": "https://drive.google.com/uc?id=1lZF4VMlnbreDIQSixj0LBfRgd9JlqhUR"}
+
+    data_sources = {"so2": "https://github.com/tomelse/patato-data/raw/main/In%20Vivo%20Data/Scan_9.hdf5",
+                    "icg": "https://github.com/tomelse/patato-data/raw/main/In%20Vivo%20Data/Scan_10.hdf5"}
 
     data_path = os.path.join(get_patato_data_folder(), f'{image_type}-timeseries-data.hdf5')
     folder = os.path.split(data_path)[0]
@@ -40,8 +54,7 @@ def get_msot_time_series_example(image_type="so2"):
         os.mkdir(folder)
     if not os.path.exists(data_path):
         # Download the data
-        gdown.download(data_sources[image_type],
-                       data_path, quiet=False)
+        download_file(data_sources[image_type], data_path)
     return PAData.from_hdf5(data_path)
 
 
@@ -53,8 +66,8 @@ def get_ithera_msot_time_series_example(image_type="so2"):
     dataset : PAData
         The MSOT dataset.
     """
-    data_sources = {"so2": "https://drive.google.com/uc?id=1lhO81fxcq1VUQ3H2FeHtcTujADuZwDyQ",
-                    "icg": "https://drive.google.com/uc?id=1lctq09X6xrCC33usr5SoIkhJJByYZuRt"}
+    data_sources = {"so2": "https://github.com/tomelse/patato-data/raw/main/In%20Vivo%20Data/Scan_9.zip",
+                    "icg": "https://github.com/tomelse/patato-data/raw/main/In%20Vivo%20Data/Scan_10.zip"}
 
     data_path = os.path.join(get_patato_data_folder(), f'{image_type}-ithera_data')
     filenames = {"so2": "Scan_9", "icg": "Scan_10"}
@@ -63,8 +76,9 @@ def get_ithera_msot_time_series_example(image_type="so2"):
         os.mkdir(folder)
     if not os.path.exists(data_path):
         # Download the data
-        f = gdown.download(data_sources[image_type], os.path.join(mkdtemp(), "patato_temp.zip"), quiet=False)
-        with zipfile.ZipFile(f, 'r') as zip_ref:
+        zip_file = os.path.join(mkdtemp(), "patato_temp.zip")
+        download_file(data_sources[image_type], zip_file)
+        with zipfile.ZipFile(zip_file, 'r') as zip_ref:
             zip_ref.extractall(data_path)
     return PAData(iTheraMSOT(os.path.join(data_path, filenames[image_type])))
 
@@ -77,8 +91,8 @@ def get_msot_phantom_example(image_type="clinical"):
     dataset : PAData
         The MSOT dataset.
     """
-    data_sources = {"clinical": "https://drive.google.com/uc?id=117bWefATJ-J2BlnFwhTOJKxZ6zLPo71a",
-                    "preclinical": "https://drive.google.com/uc?id=11DAiTrzwtvm1iMCpj9qyfaoWjydzCZGm"}
+    data_sources = {"clinical": "https://github.com/tomelse/patato-data/raw/main/Phantoms/Scan_2.hdf5",
+                    "preclinical": "https://github.com/tomelse/patato-data/raw/main/Phantoms/Preclinical/Scan_10.hdf5"}
 
     data_path = os.path.join(get_patato_data_folder(), f'{image_type}-msot-data.hdf5')
     folder = os.path.split(data_path)[0]
@@ -86,7 +100,5 @@ def get_msot_phantom_example(image_type="clinical"):
         os.mkdir(folder)
     if not os.path.exists(data_path):
         # Download the data
-        gdown.download(data_sources[image_type],
-                       data_path, quiet=False)
+        download_file(data_sources[image_type], data_path)
     return PAData.from_hdf5(data_path)
-

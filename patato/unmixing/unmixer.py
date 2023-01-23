@@ -60,7 +60,7 @@ class SpectralUnmixer(SpatialProcessingAlgorithm):
         # Unmix.
         unmixed = np.einsum('ij...,jk->ik...', recon_data, self.pseudo_inverse)
 
-        output_data = UnmixedData(unmixed, self.chromophore_names,
+        output_data = UnmixedData(unmixed.astype(np.float32), self.chromophore_names,
                                   algorithm_id=self.algorithm_id,
                                   attributes=reconstruction.attributes,
                                   field_of_view=reconstruction.fov_3d)
@@ -122,7 +122,7 @@ class SO2Calculator(SpatialProcessingAlgorithm):
         if self.nan_invalid:
             so2[so2 > 1] = np.nan
             so2[so2 < 0] = np.nan
-        output_data = SingleParameterData(so2, ["so2"],
+        output_data = SingleParameterData(so2.astype(np.float32), ["so2"],
                                           algorithm_id=self.algorithm_id,
                                           attributes=spatial_data.attributes,
                                           field_of_view=spatial_data.fov_3d)
@@ -140,7 +140,7 @@ class THbCalculator(SpatialProcessingAlgorithm):
         hbo2_axis = np.where(spatial_data.spectra == "HbO2")[0][0]
         thb = spatial_data.raw_data[:, hb_axis] + spatial_data.raw_data[:, hbo2_axis]
         thb = thb[:, None]
-        output_data = SingleParameterData(thb, ["thb"],
+        output_data = SingleParameterData(thb.astype(np.float32), ["thb"],
                                           algorithm_id=self.algorithm_id,
                                           attributes=spatial_data.attributes,
                                           field_of_view=spatial_data.fov_3d)

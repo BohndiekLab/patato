@@ -687,13 +687,13 @@ class PAData:
             file = filename
         return cls(HDF5Reader(file), HDF5Writer(file))
 
-    def save_hdf5(self, filename: str, update=False):
+    def save_hdf5(self, filename: str):
         file = h5py.File(filename, "a")
         writer = HDF5Writer(file)
-        return writer.save_file(self.scan_reader, update=update)
+        return writer.save_file(self.scan_reader)
 
-    def save_to_hdf5(self, filename, update=False):
-        return self.save_hdf5(filename, update)
+    def save_to_hdf5(self, filename):
+        return self.save_hdf5(filename)
 
     @property
     def dataset(self):
@@ -743,7 +743,11 @@ class PAData:
                 measurements.append(self.get_scan_so2())
             elif m == "icg":
                 unmixed = self.get_scan_unmixed()
-                n = [i for i, l in enumerate(unmixed.ax_1_labels) if l.lower() == "icg"][0]
+                n = [i for i, l in enumerate(unmixed.ax_1_labels) if l.lower() == "icg"]
+                if len(n) == 0:
+                    print("No icg channel found")
+                    continue
+                n= n[0]
                 measurements.append(unmixed[:, n: n + 1])
             elif m == "dso2":
                 measurements.append(self.get_scan_dso2())

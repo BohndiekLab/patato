@@ -25,7 +25,7 @@ Option 1: Install using pip
 
 Once you have Python installed, you can install PATATO using pip:
 
-..code-block:: bash
+.. code-block:: bash
     pip install --upgrade pip setuptools
     pip install patato
 
@@ -34,7 +34,7 @@ Windows Installation
 On Windows, you also need to install JAX to do fast image reconstruction, there is no official JAX support in Windows,
 so you need to install it using an unofficial wheel. You can find the wheel here:
 
-..code-block:: bash
+.. code-block:: bash
     pip install jaxlib -f https://whls.blob.core.windows.net/unstable/index.html --use-deprecated legacy-resolver
     pip install jax[cpu]
 
