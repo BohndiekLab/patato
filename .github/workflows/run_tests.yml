@@ -11,7 +11,7 @@ on:
       - main
 
 env:
-  PAT_DATA_FOLDER: ""
+  PAT_DATA_FOLDER: $HOME/data
 
 jobs:
   build:
