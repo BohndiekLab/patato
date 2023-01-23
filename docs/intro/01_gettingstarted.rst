@@ -25,6 +25,8 @@ Option 1: Install using pip
 
 Once you have Python installed, you can install PATATO using pip:
 
+..code-block:: bash
+    pip install --upgrade pip setuptools
     pip install patato
 
 Windows Installation
