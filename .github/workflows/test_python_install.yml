@@ -10,6 +10,9 @@ on:
       - develop
       - main
 
+env:
+  PAT_DATA_FOLDER: "/tmp"
+
 jobs:
   build:
 
