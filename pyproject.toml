@@ -27,8 +27,7 @@ dependencies = [
     "jax[cpu]",
     "simpa",
     "wget",
-    "gdown",
-    "zipfile"
+    "gdown"
 ]
 authors = [
   { name="Thomas Else", email="thomas.else@cruk.cam.ac.uk" },
