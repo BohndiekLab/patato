@@ -20,12 +20,10 @@ dependencies = [
     "scipy",
     "tabulate",
     "matplotlib",
-    "pyopencl",
     "matplotlib_scalebar",
     "dask",
     "pybind11",
     "jax[cpu]",
-    "simpa",
     "wget",
     "gdown"
 ]
