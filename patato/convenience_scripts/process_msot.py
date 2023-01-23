@@ -1,5 +1,5 @@
 #  Copyright (c) Thomas Else 2023.
-#  License: BSD-3
+#  License: MIT
 
 """
 ``msot-reconstruct``: A script to reconstruct all MSOT data files in a folder.

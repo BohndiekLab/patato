@@ -3,7 +3,7 @@ This defines the data structure for unmixed datasets.
 """
 
 #  Copyright (c) Thomas Else 2023.
-#  License: BSD-3
+#  License: MIT
 
 from typing import Optional, TYPE_CHECKING
 

@@ -4,9 +4,9 @@ PATATO: PhotoAcoustic Tomography Analysis TOolkit
 .. image:: https://readthedocs.org/projects/patato/badge/?version=latest
     :target: https://patato.readthedocs.io/en/latest/?badge=latest
     :alt: Documentation Status
-.. image:: https://img.shields.io/badge/License-BSD_3--Clause-blue.svg
+.. image:: https://img.shields.io/badge/License-MIT-yellow.svg
     :target: https://github.com/tomelse/patato/blob/main/LICENSE.MD
-    :alt: BSD 3-Clause License
+    :alt: MIT License
 .. image:: https://badge.fury.io/py/patato.svg
     :target: https://badge.fury.io/py/patato
     :alt: PyPI version

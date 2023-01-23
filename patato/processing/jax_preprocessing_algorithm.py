@@ -1,5 +1,5 @@
 #  Copyright (c) Thomas Else 2023.
-#  License: BSD-3
+#  License: MIT
 
 from functools import partial
 from typing import Union, Tuple, Optional, Dict

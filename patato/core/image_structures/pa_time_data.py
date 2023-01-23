@@ -3,7 +3,7 @@ pa_time_data. Defines the time-domain version of PARawData class.
 """
 
 #  Copyright (c) Thomas Else 2023.
-#  License: BSD-3
+#  License: MIT
 
 from typing import TYPE_CHECKING
 

@@ -1,5 +1,5 @@
 #  Copyright (c) Thomas Else 2023.
-#  License: BSD-3
+#  License: MIT
 
 """
 ``msot-draw-roi``: A script to draw regions of interest interactively on datasets..

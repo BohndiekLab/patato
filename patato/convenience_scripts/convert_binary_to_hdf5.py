@@ -1,5 +1,5 @@
 #  Copyright (c) Thomas Else 2023.
-#  License: BSD-3
+#  License: MIT
 
 """
 ``msot-import-ithera``: A script to convert iThera MSOT Data into the PATATO hdf5 format.

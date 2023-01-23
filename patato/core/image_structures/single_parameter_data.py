@@ -3,7 +3,7 @@ This defines the data structure for single parameter datasets like sO2 and THb.
 """
 
 #  Copyright (c) Thomas Else 2023.
-#  License: BSD-3
+#  License: MIT
 
 from ..image_structures.image_sequence import ImageSequence
 
