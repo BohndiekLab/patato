@@ -17,8 +17,10 @@ The tool supports many file formats, such as the International Photoacoustic Sta
 In order to use PATATO, you must have a Python environment set up on your computer. We recommend using Anaconda (http://anaconda.com) to run Python, particularly if you are using Windows. You may wish to setup a separate Anaconda environment to install PATATO to minimise conflicts between dependency versions.
 
 ```shell
-pip install git+https://github.com/tomelse/MSOTAnalysis
+pip install patato
 ```
+
+To setup support for image reconstruction on Windows, or for GPU support, please follow the installation guide in the documentation.
 
 ## Documentation, examples and contributing
 Documentation for PATATO can be found at https://patato.readthedocs.io/en/latest/?badge=latest.
