@@ -157,7 +157,7 @@ class DataSequence(ProcessingResult, ABC):
                 try:
                     mask, image_slice = roi_mask[0].to_mask_slice(self)
                     image_slice = image_slice.to_2d()
-                    display_image = np.squeeze(image_slice.numpy_array).astype(np.float)
+                    display_image = np.squeeze(image_slice.numpy_array).astype(np.float64)
                     overall_mask = np.zeros(display_image.shape, dtype=np.bool)
                     for roi in roi_mask:
                         mask, _ = roi.to_mask_slice(self)
@@ -170,7 +170,7 @@ class DataSequence(ProcessingResult, ABC):
             else:
                 mask, image_slice = roi_mask.to_mask_slice(self)
                 image_slice = image_slice.to_2d()
-                display_image = np.squeeze(image_slice.numpy_array).astype(np.float)
+                display_image = np.squeeze(image_slice.numpy_array).astype(np.float64)
                 if mask_roi:
                     display_image[~np.squeeze(mask)] = np.nan
         else:
