@@ -28,7 +28,7 @@ class SimpaImporter(ReaderInterface):
         return self._get_segmentation().shape
 
     def _get_segmentation(self):
-        seg = sp.get_data_field_from_simpa_output(self.file, sp.Tags.DATA_FIELD_SEGMENTATION)[None, None, :, None, :]
+        seg = sp.get_data_field_from_simpa_output(self.file, sp.Tags.DATA_FIELD_SEGMENTATION)
         return seg
 
     def get_scan_comment(self):
@@ -71,7 +71,7 @@ class SimpaImporter(ReaderInterface):
         self.filename = filename
 
         self._simpa_fov = [self.file["settings"]["voxel_spacing_mm"] * self._original_shape()[i] / 1000 for i in
-                           [2, 0, 4]]
+                           [-1, -2, -3]]
 
         self.wavelengths = self.file["settings"]["wavelengths"]
 
