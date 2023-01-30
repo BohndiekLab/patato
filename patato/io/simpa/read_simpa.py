@@ -28,7 +28,7 @@ class SimpaImporter(ReaderInterface):
         return self._get_segmentation().shape
 
     def _get_segmentation(self):
-        seg = sp.get_data_field_from_simpa_output(self.file, sp.Tags.DATA_FIELD_SEGMENTATION)[None, None, :, None, :]
+        seg = sp.get_data_field_from_simpa_output(self.file, sp.Tags.DATA_FIELD_SEGMENTATION)
         return seg
 
     def get_scan_comment(self):
@@ -39,7 +39,7 @@ class SimpaImporter(ReaderInterface):
 
     def _simpa_get_initial_pressure(self, wavelength):
         return sp.get_data_field_from_simpa_output(self.file, sp.Tags.DATA_FIELD_INITIAL_PRESSURE,
-                                                   wavelength)[:, None, :]
+                                                   wavelength)
 
     def _get_datasets(self):
         wavelengths = self.wavelengths
@@ -50,9 +50,9 @@ class SimpaImporter(ReaderInterface):
         for i, w in enumerate(wavelengths):
             recon_data[0, i] = self._simpa_get_initial_pressure(w)
 
-        attributes = {ReconAttributeTags.X_NUMBER_OF_PIXELS: recon_data.shape[-3],
-                      ReconAttributeTags.Y_NUMBER_OF_PIXELS: 1,
-                      ReconAttributeTags.Z_NUMBER_OF_PIXELS: recon_data.shape[-1],
+        attributes = {ReconAttributeTags.X_NUMBER_OF_PIXELS: recon_data.shape[-1],
+                      ReconAttributeTags.Y_NUMBER_OF_PIXELS: recon_data.shape[-2],
+                      ReconAttributeTags.Z_NUMBER_OF_PIXELS: recon_data.shape[-3],
                       ReconAttributeTags.X_FIELD_OF_VIEW: self._simpa_fov[0],
                       ReconAttributeTags.Y_FIELD_OF_VIEW: self._simpa_fov[1],
                       ReconAttributeTags.Z_FIELD_OF_VIEW: self._simpa_fov[2]}
@@ -71,7 +71,7 @@ class SimpaImporter(ReaderInterface):
         self.filename = filename
 
         self._simpa_fov = [self.file["settings"]["voxel_spacing_mm"] * self._original_shape()[i] / 1000 for i in
-                           [2, 0, 4]]
+                           [-1, -2, -3]]
 
         self.wavelengths = self.file["settings"]["wavelengths"]
 

@@ -45,8 +45,8 @@ def get_msot_time_series_example(image_type="so2"):
         The MSOT dataset.
     """
 
-    data_sources = {"so2": "https://github.com/tomelse/patato-data/raw/main/In%20Vivo%20Data/Scan_9.hdf5",
-                    "icg": "https://github.com/tomelse/patato-data/raw/main/In%20Vivo%20Data/Scan_10.hdf5"}
+    data_sources = {"so2": "https://www.repository.cam.ac.uk/bitstream/handle/1810/345836/invivo_oe.hdf5?sequence=6&isAllowed=y",
+                    "icg": "https://www.repository.cam.ac.uk/bitstream/handle/1810/345836/invivo_dce.hdf5?sequence=7&isAllowed=y"}
 
     data_path = os.path.join(get_patato_data_folder(), f'{image_type}-timeseries-data.hdf5')
     folder = os.path.split(data_path)[0]
@@ -66,8 +66,8 @@ def get_ithera_msot_time_series_example(image_type="so2"):
     dataset : PAData
         The MSOT dataset.
     """
-    data_sources = {"so2": "https://github.com/tomelse/patato-data/raw/main/In%20Vivo%20Data/Scan_9.zip",
-                    "icg": "https://github.com/tomelse/patato-data/raw/main/In%20Vivo%20Data/Scan_10.zip"}
+    data_sources = {"so2": "https://www.repository.cam.ac.uk/bitstream/handle/1810/345836/ithera_invivo_oe.zip?sequence=4&isAllowed=y",
+                    "icg": "https://www.repository.cam.ac.uk/bitstream/handle/1810/345836/ithera_invivo_dce.zip?sequence=5&isAllowed=y"}
 
     data_path = os.path.join(get_patato_data_folder(), f'{image_type}-ithera_data')
     filenames = {"so2": "Scan_9", "icg": "Scan_10"}
@@ -91,8 +91,8 @@ def get_msot_phantom_example(image_type="clinical"):
     dataset : PAData
         The MSOT dataset.
     """
-    data_sources = {"clinical": "https://github.com/tomelse/patato-data/raw/main/Phantoms/Scan_2.hdf5",
-                    "preclinical": "https://github.com/tomelse/patato-data/raw/main/Phantoms/Preclinical/Scan_10.hdf5"}
+    data_sources = {"clinical": "https://www.repository.cam.ac.uk/bitstream/handle/1810/345836/clinical_phantom.hdf5?sequence=8&isAllowed=y",
+                    "preclinical": "hhttps://www.repository.cam.ac.uk/bitstream/handle/1810/345836/preclinical_phantom.hdf5?sequence=3&isAllowed=y"}
 
     data_path = os.path.join(get_patato_data_folder(), f'{image_type}-msot-data.hdf5')
     folder = os.path.split(data_path)[0]

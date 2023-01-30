@@ -40,7 +40,8 @@ def main():
 
     if prefix is None:
         prefix = ""
-        raise RuntimeWarning("Warning: You should usually set a prefix for this analysis.")
+        print("Hint: You should usually set a prefix for this analysis. Use command line option -p GC for example"
+              "if your scans are labelled with GC in the name.")
 
     for file in sorted(glob.glob(join(data_folder, "*.hdf5")), key=sort_key):
         data = PAData.from_hdf5(file, "r+")
@@ -64,7 +65,6 @@ def main():
                 run_pipeline(analyser, so2_data, data, -1, True)
         except RuntimeError:
             print("---- SCAN NOT PROCESSED (no reference region) ---")
-        data.file.close()
 
 
 if __name__ == "__main__":
