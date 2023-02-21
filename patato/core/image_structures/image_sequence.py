@@ -142,9 +142,8 @@ class DataSequence(ProcessingResult, ABC):
 
     def imshow(self, ax=None, roi_mask: Tuple["ROI", Iterable["ROI"]] = None,
                mask_roi=True,
-               cmap=None, scale_kwargs=None, return_scalebar_dimension=False, scalebar=True,
+               cmap=None, scale_kwargs=None, return_scalebar_dimension=False, scalebar=True, transpose=False, log=False,
                **kwargs):
-        # TODO: make roi_mask take an array
         if scale_kwargs is None:
             scale_kwargs = {}
 
@@ -187,7 +186,15 @@ class DataSequence(ProcessingResult, ABC):
         display_image = np.squeeze(display_image)
         if "origin" not in kwargs:
             kwargs["origin"] = "lower"
-        im = ax.imshow(display_image, extent=self.extent,
+        if transpose:
+            extent = self.extent[2:] + self.extent[:2]
+            display_image = display_image.T
+        else:
+            extent = self.extent
+        
+        if log:
+            display_image = np.log(display_image)
+        im = ax.imshow(display_image, extent=extent,
                        cmap=cmap, **kwargs, interpolation=interpolation)
         ax.axis("off")
         if scalebar:
