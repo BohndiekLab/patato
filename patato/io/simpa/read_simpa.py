@@ -64,7 +64,6 @@ class SimpaImporter(ReaderInterface):
         # recon_data = recon_data.swapaxes(0, 3).copy()
 
         recon_class = Reconstruction(recon_data, self._get_wavelengths(),
-                                     algorithm_id=None,
                                      attributes=dict(attributes),
                                      field_of_view=self._simpa_fov, hdf5_sub_name="initial_pressure")
 
