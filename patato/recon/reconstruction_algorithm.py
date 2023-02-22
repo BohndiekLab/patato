@@ -57,6 +57,15 @@ class ReconstructionAlgorithm(TimeSeriesProcessingAlgorithm, ABC):
         irf = pa_data.get_impulse_response() if pa_data is not None else None
         wavelengths = time_series.da.coords.get("wavelengths") if pa_data is None else pa_data.get_wavelengths()
 
+        if type(self.field_of_view[0]) in [tuple, list, np.ndarray]:
+            # Off centre field_of_view
+            fov = [abs(x1 - x0) for (x1, x0) in self.field_of_view]
+            geometry = np.array(geometry)
+            for i in range(len(self.field_of_view)):
+               geometry[:, i] -= np.mean(self.field_of_view[i])
+        else:
+            fov = self.field_of_view
+        
         # Process in batches to avoid GPU running out of memory.
         if time_series.shape[0] * time_series.shape[1] > PAT_MAXIMUM_BATCH_SIZE != -1:
             new_recons = []
@@ -65,7 +74,7 @@ class ReconstructionAlgorithm(TimeSeriesProcessingAlgorithm, ABC):
             ts_raw = ts_raw.reshape((-1,) + shape[-2:])
             for i in range(0, ts_raw.shape[0], PAT_MAXIMUM_BATCH_SIZE):
                 raw = self.reconstruct(ts_raw[i:i + PAT_MAXIMUM_BATCH_SIZE], time_series.attributes["fs"],
-                                       geometry, self.n_pixels, self.field_of_view, speed_of_sound,
+                                       geometry, self.n_pixels, fov, speed_of_sound,
                                        irf=irf, **kwargs, **self.custom_params)
                 new_recons.append(np.asarray(raw))
             raw_data = np.concatenate(new_recons, axis=0).reshape(shape[:2] + new_recons[0].shape[1:])
@@ -74,7 +83,7 @@ class ReconstructionAlgorithm(TimeSeriesProcessingAlgorithm, ABC):
                                         time_series.attributes["fs"],
                                         geometry,
                                         self.n_pixels,
-                                        self.field_of_view,
+                                        fov,
                                         speed_of_sound,
                                         irf=irf,
                                         **kwargs, **self.custom_params)

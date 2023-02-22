@@ -57,8 +57,8 @@ def convert_ithera_msot_binary_to_hdf5(input_path: str, output_path: str, update
     print("\n".join(errors))
 
 
-def convert_simpa(input_path: str, output_path: str, update: bool = False,
-                  use_user_defined_scan_name: bool = False, slice_n=None):
+def convert_simpa(input_path: str, output_path: str,
+                  use_user_defined_scan_name: bool = False):
     """
     This method converts simpa files to HDF5 format.
 
@@ -79,7 +79,7 @@ def convert_simpa(input_path: str, output_path: str, update: bool = False,
     for scan_path in scan_paths:
         print("WORKING ON", scan_path)
 
-        scan = SimpaImporter(scan_path, z_slices=slice_n)
+        scan = SimpaImporter(scan_path)
         user_defined_scan_name = scan.get_scan_name()
 
         if use_user_defined_scan_name:
@@ -92,5 +92,5 @@ def convert_simpa(input_path: str, output_path: str, update: bool = False,
         print(scan_name)
         print("SAVING AS", join(output_path, scan_name + ".hdf5"))
 
-        scan.save_to_hdf5(join(output_path, scan_name + ".hdf5"), update)
+        scan.save_to_hdf5(join(output_path, scan_name + ".hdf5"))
         print("Saved to HDF5.")
