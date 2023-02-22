@@ -29,6 +29,8 @@ class SimpaImporter(ReaderInterface):
 
     def _get_segmentation(self):
         seg = sp.get_data_field_from_simpa_output(self.file, sp.Tags.DATA_FIELD_SEGMENTATION)
+        if seg.ndim == 2:
+            seg = seg[:, :, None]
         return seg
 
     def get_scan_comment(self):
@@ -38,15 +40,18 @@ class SimpaImporter(ReaderInterface):
         return 1 / self.file["settings"]["dt_acoustic_sim"]
 
     def _simpa_get_initial_pressure(self, wavelength):
-        return sp.get_data_field_from_simpa_output(self.file, sp.Tags.DATA_FIELD_INITIAL_PRESSURE,
-                                                   wavelength)
+        recon = sp.get_data_field_from_simpa_output(self.file, sp.Tags.DATA_FIELD_INITIAL_PRESSURE,
+                                                    wavelength)
+        if recon.ndim == 2:
+            recon = recon[:, :, None]
+        return recon
 
     def _get_datasets(self):
         wavelengths = self.wavelengths
         recon_size = self._simpa_get_initial_pressure(wavelengths[0]).shape
 
         recon_data = np.zeros((1, len(self.wavelengths),) + recon_size)
-
+        
         for i, w in enumerate(wavelengths):
             recon_data[0, i] = self._simpa_get_initial_pressure(w)
 
@@ -59,34 +64,24 @@ class SimpaImporter(ReaderInterface):
         # recon_data = recon_data.swapaxes(0, 3).copy()
 
         recon_class = Reconstruction(recon_data, self._get_wavelengths(),
-                                     algorithm_id=None,
                                      attributes=dict(attributes),
-                                     field_of_view=self._simpa_fov)
+                                     field_of_view=self._simpa_fov, hdf5_sub_name="initial_pressure")
 
         return {"recons": {("initial_pressure", "0"): recon_class}}
 
-    def __init__(self, filename, z_slices=None):
+    def __init__(self, filename):
         super().__init__()
         self.file = sp.load_hdf5(filename)
         self.filename = filename
-
-        self._simpa_fov = [self.file["settings"]["voxel_spacing_mm"] * self._original_shape()[i] / 1000 for i in
-                           [-1, -2, -3]]
+        
+        z0, _, x0, _, y0, _ = self.file["digital_device"].get_detection_geometry().get_field_of_view_mm()/1000
+        nz, ny, nx = self._original_shape()
+        dx = self.file["settings"]["voxel_spacing_mm"]/1000
+        self._simpa_fov = [(x0, x0+dx*nx), (y0, y0+dx*ny), (z0, z0+dx*nz)]
 
         self.wavelengths = self.file["settings"]["wavelengths"]
 
-        # if z_slices == "middle":
-        #     z_slices = self._original_shape()[1] // 2
-        #
-        # if z_slices is None:
-        #     self.slices = [slice(None, None)]
-        # else:
-        #     if type(z_slices) == int:
-        #         self.slices = [slice(z_slices, z_slices + 1 if z_slices != -1 else None)]
-        #     else:
-        #         self.slices = z_slices
-        # self.nz = self._original_shape()[1] if z_slices is None else 1
-        self.nz = 1
+        self.nz = 1 # for backwards compatibility
 
     def get_scan_datetime(self):
         return 0
@@ -122,7 +117,7 @@ class SimpaImporter(ReaderInterface):
         return np.arange(self.nz * len(self.wavelengths)).reshape((self.nz, len(self.wavelengths)))
 
     def _get_sensor_geometry(self):
-        g = self.file["digital_device"].detection_geometry.get_detector_element_positions_base_mm()
+        g = self.file["digital_device"].get_detection_geometry().get_detector_element_positions_accounting_for_field_of_view()
         return g / 1000
 
     def get_us_data(self):
