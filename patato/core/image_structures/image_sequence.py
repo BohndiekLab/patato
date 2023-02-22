@@ -336,7 +336,7 @@ class ImageSequence(DataSequence):
             if raw_data.shape[1] != len(ax_1_labels):
                 raise ValueError("Axis 1 labels must match raw data size.")
 
-        if type(field_of_view[0]) is not tuple:
+        if type(field_of_view[0]) not in [tuple, list, np.ndarray]:
             field_of_view = [(-x / 2, x / 2) if x is not None else (0, 0) for x in field_of_view]
 
         xs = [np.linspace(x, y, N) for (x, y), N in zip(field_of_view, raw_data.shape[-3:][::-1])]
