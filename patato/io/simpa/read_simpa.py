@@ -66,11 +66,11 @@ class SimpaImporter(ReaderInterface):
         recon_class = Reconstruction(recon_data, self._get_wavelengths(),
                                      algorithm_id=None,
                                      attributes=dict(attributes),
-                                     field_of_view=self._simpa_fov)
+                                     field_of_view=self._simpa_fov, hdf5_sub_name="initial_pressure")
 
         return {"recons": {("initial_pressure", "0"): recon_class}}
 
-    def __init__(self, filename, z_slices=None):
+    def __init__(self, filename):
         super().__init__()
         self.file = sp.load_hdf5(filename)
         self.filename = filename
