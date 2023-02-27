@@ -36,10 +36,12 @@ def get_polygon_mask(p, fov_x, fov_y, nx, ny):
         fov_x = [-fov_x/2, fov_x/2]
         fov_y = [-fov_y/2, fov_y/2]
     if type(p) == Polygon:
-        mask = to_binary_mask(np.array(p.exterior.coords.xy).T, fov_x[0], fov_x[1], fov_y[0], fov_y[1],
+        mask = to_binary_mask(np.array(p.exterior.coords.xy).T, -fov_x / 2, fov_x / 2, nx,
+                              -fov_y / 2, fov_y / 2,
                               ny)
         for interior in p.interiors:
-            mask &= ~to_binary_mask(np.array(interior.coords.xy).T, fov_x[0], fov_x[1], fov_y[0], fov_y[1],
+            mask &= ~to_binary_mask(np.array(interior.coords.xy).T, -fov_x / 2, fov_x / 2, nx,
+                                    -fov_y / 2, fov_y / 2,
                                     ny)
     elif type(p) == MultiPolygon:
         mask = get_polygon_mask(p.geoms[0], fov_x, fov_y, nx, ny)
