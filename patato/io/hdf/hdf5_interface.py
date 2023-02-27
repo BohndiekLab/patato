@@ -97,7 +97,7 @@ class HDF5Writer(WriterInterface):
     def set_pa_data(self, raw_data):
         if type(raw_data) == PATimeSeries:
             raw_data = raw_data.da
-        self.file.create_dataset(HDF5Tags.RAW_DATA, data=raw_data, dtype=np.uint16)
+        self.file.create_dataset(HDF5Tags.RAW_DATA, data=raw_data)
 
     def set_scan_name(self, scan_name: str):
         self.file.attrs[HDF5Tags.SCAN_NAME] = scan_name

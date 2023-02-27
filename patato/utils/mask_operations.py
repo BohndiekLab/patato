@@ -32,6 +32,9 @@ def to_binary_mask(vertices, min_x, max_x, nx, min_y, max_y, ny):
 
 
 def get_polygon_mask(p, fov_x, fov_y, nx, ny):
+    if type(fov_x) not in [list, tuple, np.ndarray]:
+        fov_x = [-fov_x/2, fov_x/2]
+        fov_y = [-fov_y/2, fov_y/2]
     if type(p) == Polygon:
         mask = to_binary_mask(np.array(p.exterior.coords.xy).T, -fov_x / 2, fov_x / 2, nx,
                               -fov_y / 2, fov_y / 2,
@@ -55,11 +58,13 @@ def generate_mask(vertices, fov_x, nx, fov_y=None, ny=None):
         fov_y = fov_x
     if ny is None:
         ny = nx
-
+    if type(fov_x) not in [list, tuple, np.ndarray]:
+        fov_x = [-fov_x/2, fov_x/2]
+        fov_y = [-fov_y/2, fov_y/2]
     if type(vertices) in [Polygon, MultiPolygon]:
         mask = get_polygon_mask(vertices, fov_x, fov_y, nx, ny)
     else:
-        mask = to_binary_mask(vertices, -fov_x / 2, fov_x / 2, nx, -fov_y / 2, fov_y / 2, ny)
+        mask = to_binary_mask(vertices, fov_x[0], fov_x[1], nx, fov_y[0], fov_y[1], ny)
 
     return mask
 
