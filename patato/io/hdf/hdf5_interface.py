@@ -259,7 +259,13 @@ class HDF5Writer(WriterInterface):
             recon_groups = [HDF5Tags.RECONSTRUCTION,
                             HDF5Tags.UNMIXED,
                             HDF5Tags.SO2,
-                            HDF5Tags.THB]
+                            HDF5Tags.THB,
+                            HDF5Tags.DELTA_SO2,
+                            HDF5Tags.DELTA_ICG,
+                            HDF5Tags.BASELINE_ICG,
+                            HDF5Tags.BASELINE_SO2,
+                            HDF5Tags.BASELINE_SO2_STANDARD_DEVIATION,
+                            HDF5Tags.BASELINE_ICG_SIGMA]
         if name is None:
             for group in recon_groups:
                 if group in self.file:
