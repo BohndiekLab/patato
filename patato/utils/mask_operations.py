@@ -44,8 +44,9 @@ def get_polygon_mask(p, fov_x, fov_y, nx, ny):
                                     fov_y[0], fov_y[1],
                                     ny)
     elif type(p) == MultiPolygon:
-        mask = get_polygon_mask(p.geoms[0], fov_x, fov_y, nx, ny)
-        for g in p.geoms[1:]:
+        geoms = list(p.geoms)
+        mask = get_polygon_mask(geoms[0], fov_x, fov_y, nx, ny)
+        for g in geoms[1:]:
             mask |= get_polygon_mask(g, fov_x, fov_y, nx, ny)
     else:
         print("WARNING: something strange happening...")
