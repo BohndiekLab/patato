@@ -56,7 +56,8 @@ def load_image_from_hdf5(cls, dataset, file):
     elif ax_1_meaning == "SPECTRA":
         ax_1_labels = dataset.attrs["SPECTRA"]
     elif ax_1_meaning is None:
-        ax_1_labels = None
+        # For dso2 etc.
+        ax_1_labels = np.array([dataset.name.split("/")[-3]])
     elif dataset_da.shape[1] == 1:
         ax_1_labels = np.array([dataset.name.split("/")[-3]])
     else:
