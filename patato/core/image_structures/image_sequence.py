@@ -357,7 +357,7 @@ class ImageSequence(DataSequence):
             coords[ax1_meaning] = ax_1_labels
         else:
             # If there isn't really an axis 1 (e.g. for delta so2).
-            coords[ax1_meaning] = ax_1_labels[0]
+            coords[ax1_meaning] = None
 
         DataSequence.__init__(self, raw_data, dims, coords, attributes,
                               hdf5_sub_name, algorithm_id)
