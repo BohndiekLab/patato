@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "patato"
-version = "0.2.3"
+version = "0.2.4"
 dependencies = [
     "requests",
     "cython",
@@ -41,8 +41,8 @@ classifiers = [
 ]
 
 [project.urls]
-"Homepage" = "https://github.com/tomelse/patato"
-"Bug Tracker" = "https://github.com/tomelse/patato/issues"
+"Homepage" = "https://github.com/bohndieklab/patato"
+"Bug Tracker" = "https://github.com/bohndieklab/patato/issues"
 "Documentation" = "https://patato.readthedocs.io"
 
 [tool.setuptools.packages.find]
