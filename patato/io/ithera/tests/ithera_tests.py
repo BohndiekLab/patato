@@ -7,10 +7,12 @@ import numpy as np
 from .... import DefaultMSOTPreProcessor, ReferenceBackprojection
 from ....data import get_ithera_msot_time_series_example, get_msot_time_series_example
 import matplotlib.pyplot as plt
+import matplotlib
 
 
 class TestITheraImport(unittest.TestCase):
     def test_overall_processing(self):
+        matplotlib.use('Agg')
         pa_1 = get_ithera_msot_time_series_example("so2")
         pa_2 = get_msot_time_series_example("so2")
 
