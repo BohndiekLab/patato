@@ -1,8 +1,11 @@
-# PATATO: PhotoAcoustic Tomography Analysis TOolkit
 [![Documentation Status](https://readthedocs.org/projects/patato/badge/?version=latest)](https://patato.readthedocs.io/en/latest/?badge=latest)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/tomelse/patato/blob/main/LICENSE.MD)
 [![PyPI version](https://badge.fury.io/py/patato.svg)](https://badge.fury.io/py/patato)
 [![Build](https://github.com/tomelse/patato/actions/workflows/build_wheels.yml/badge.svg)](https://github.com/tomelse/patato/actions/workflows/build_wheels.yml)
+
+![Logo](docs/logos/PATATO%20Logo_1_Combination.png "Logo")
+
+# PATATO: PhotoAcoustic Tomography Analysis TOolkit
 
 [Documentation](https://patato.readthedocs.io/en/develop/)
 
