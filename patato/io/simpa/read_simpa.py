@@ -37,6 +37,8 @@ class SimpaImporter(ReaderInterface):
         return ""
 
     def _get_sampling_frequency(self):
+        if "dt_acoustic_sim" not in self.file["settings"]:
+            return 1
         return 1 / self.file["settings"]["dt_acoustic_sim"]
 
     def _simpa_get_initial_pressure(self, wavelength):
@@ -87,12 +89,15 @@ class SimpaImporter(ReaderInterface):
         return 0
 
     def _get_pa_data(self):
-        attrs = {"fs": self.get_sampling_frequency()}
-        pa = np.array([sp.get_data_field_from_simpa_output(self.file, sp.Tags.DATA_FIELD_TIME_SERIES_DATA, w) for w in
-                       self.wavelengths])
+        try:
+            attrs = {"fs": self.get_sampling_frequency()}
+            pa = np.array([sp.get_data_field_from_simpa_output(self.file, sp.Tags.DATA_FIELD_TIME_SERIES_DATA, w) for w in
+                           self.wavelengths])
 
-        return (pa[None],
-                attrs)
+            return (pa[None],
+                    attrs)
+        except KeyError:
+            return (np.full((1, len(self.wavelengths), 256, 2), np.nan), {})
 
     def get_scan_name(self):
         return self.filename
