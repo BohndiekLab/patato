@@ -8,6 +8,59 @@ import pandas as pd
 
 from ..utils.process_study import get_hdf5_files
 
+import matplotlib.transforms as transforms
+import matplotlib
+
+def add_axis_label(ax, label, manual_x=0, manual_y=0, font_size="large"):
+    fig = ax.get_figure()
+    fig.canvas.draw()
+    bbox = ax.get_tightbbox(fig.canvas.get_renderer())
+    
+    x, y = fig.transSubfigure.inverted().transform([bbox.x0, bbox.y1])
+    transform = fig.transSubfigure
+    if ax.get_subplotspec().is_first_col():
+        transform = transforms.blended_transform_factory(ax.get_figure().transSubfigure, transform)
+        x = 0
+        transform += transforms.ScaledTranslation(matplotlib.rcParams['figure.constrained_layout.w_pad'], 0, 
+            ax.get_figure().dpi_scale_trans)
+    manual_x *= matplotlib.font_manager.font_scalings.get(font_size, 1)
+    manual_y *= matplotlib.font_manager.font_scalings.get(font_size, 1)
+    if manual_x != 0 or manual_y !=0:
+        transform += transforms.ScaledTranslation(manual_x, manual_y, 
+            ax.get_figure().dpi_scale_trans)
+    return fig.text(x, y, label, fontsize=font_size, fontweight="bold", 
+                    va="top", ha="left", transform=transform)
+                    
+def add_subfigure_label(subfig, ax, label, manual_x=0, manual_y=0, font_size="large"):
+    manual_x *= matplotlib.font_manager.font_scalings.get(font_size, 1)
+    manual_y *= matplotlib.font_manager.font_scalings.get(font_size, 1)
+    t = subfig.suptitle(label, ha="left", va="top", fontweight="bold", fontsize=font_size)
+    subfig.canvas.draw()
+    t.set_x(0)
+    transform = subfig.transSubfigure + transforms.ScaledTranslation(matplotlib.rcParams['figure.constrained_layout.w_pad'], 
+    0, 
+    subfig.get_figure().dpi_scale_trans)
+    if manual_x != 0 or manual_y !=0:
+        transform += transforms.ScaledTranslation(manual_x, manual_y, 
+            ax.get_figure().dpi_scale_trans)
+    t.set_transform(transform)
+    return t
+
+def linear_regression(x, y, constant=True, x_predict=None):
+    import statsmodels.api as sm 
+    if constant:
+        x = sm.add_constant(x)
+    model = sm.OLS(y, x)
+    result = model.fit()
+    # prediction = result.get_prediction()
+    if x_predict is None:
+        x_predict = x
+    else:
+        x_predict = sm.add_constant(x_predict)
+    prediction = result.get_prediction(x_predict)
+    return prediction, result
+       
+    
 
 def process_scan_name(template: str, scan_name: str) -> dict:
     """
