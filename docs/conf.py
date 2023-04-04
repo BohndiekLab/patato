@@ -62,6 +62,7 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 html_theme = 'sphinx_book_theme'
 
 html_logo = "logos/PATATO Logo_1_Combination.png"
+html_favicon = "logos/favicon.ico"
 html_theme_options = {
     "repository_url": "https://github.com/bohndieklab/patato",
     "use_repository_button": True,
