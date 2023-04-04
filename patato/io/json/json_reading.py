@@ -69,6 +69,9 @@ def read_reconstruction_preset(json_path: Union[str, dict]):
     # Number of pixels x and y
     reconstruction_algorithm = RECONSTRUCTION_NAMES[settings[ReconAttributeTags.RECONSTRUCTION_ALGORITHM]]
 
+    # Whether to do universal backprojection.
+    ubp = settings.get("UBP", False)
+    print("Doing ubp?", ubp)
     step_1 = preprocessing_algorithm(time_factor=time_interpolation_factor,
                                      detector_factor=detector_interpolation_factor,
                                      irf=correct_for_impulse_response,
@@ -76,7 +79,8 @@ def read_reconstruction_preset(json_path: Union[str, dict]):
                                      lp_filter=filter_lowpass,
                                      hp_filter=filter_highpass,
                                      filter_window_size=window_size,
-                                     absolute=absolute_transformation
+                                     absolute=absolute_transformation,
+                                     universal_backprojection=ubp
                                      )
     step_2 = reconstruction_algorithm((number_of_pixels_x, number_of_pixels_y, number_of_pixels_z),
                                       (field_of_view_x, field_of_view_y, field_of_view_z),
