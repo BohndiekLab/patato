@@ -21,7 +21,7 @@ sys.path.insert(0, os.path.abspath('../'))
 # -- Project information -----------------------------------------------------
 
 project = 'PATATO'
-copyright = '2022, Thomas Else'
+copyright = '2023, Thomas Else'
 author = 'Thomas Else'
 
 # -- General configuration ---------------------------------------------------
@@ -61,9 +61,9 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 #
 html_theme = 'sphinx_book_theme'
 
-# html_logo = "potato logo.png"
+html_logo = "logos/PATATO Logo_1_Combination.png"
 html_theme_options = {
-    "repository_url": "https://github.com/tomelse/patato",
+    "repository_url": "https://github.com/bohndieklab/patato",
     "use_repository_button": True,
     "use_download_button": True,
 }
