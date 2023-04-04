@@ -58,7 +58,7 @@ Option 2: Install from source
 
 To install the most recent version of PATATO from GitHub:
 
-    pip install git+https://github.com/tomelse/MSOTAnalysis
+    pip install git+https://github.com/tomelse/patato
 
 Option 3: Install from source (editable)
 ----------------------------------------------------------
@@ -69,6 +69,6 @@ To install the development version of PATATO from GitHub and allow editing for d
    :caption: Install PATATO from source.
 
         cd /path/to/installation/directory
-        git clone https://github.com/tomelse/MSOTAnalysis
-        cd MSOTAnalysis
+        git clone https://github.com/tomelse/patato
+        cd patato
         pip install -e .
