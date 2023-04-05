@@ -2,7 +2,7 @@
 #  License: MIT
 
 """
-``msot-reconstruct``: A script to reconstruct all MSOT data files in a folder.
+``patato-reconstruct``: A script to reconstruct all MSOT data files in a folder.
 """
 
 import argparse

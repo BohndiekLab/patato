@@ -2,7 +2,7 @@
 #  License: MIT
 
 """
-``msot-convert-simpa``: A script to convert simpa HDF5 output into the PATATO hdf5 format.
+``patato-convert-simpa``: A script to convert simpa HDF5 output into the PATATO hdf5 format.
 """
 
 import argparse

@@ -2,7 +2,7 @@
 #  License: MIT
 
 """
-``msot-draw-roi``: A script to draw regions of interest interactively on datasets..
+``patato-draw-roi``: A script to draw regions of interest interactively on datasets..
 """
 
 import argparse

@@ -62,7 +62,7 @@ Converts all scans within a folder to hdf5 format. Outputs hdf5 format files in 
 
 .. code-block:: console
 
-    msot-import-ithera /path/to/itherastudyfolder /path/to/processeddatafolder
+    patato-import-ithera /path/to/itherastudyfolder /path/to/processeddatafolder
 
 
 2. Set speed of sounds for each scan
@@ -81,7 +81,7 @@ You can also change the default speed of sound in the second argument.
 
 .. code-block:: console
 
-    msot-set-speed-of-sound /path/to/processeddatafolder 1465
+    patato-set-speed-of-sound /path/to/processeddatafolder 1465
 
 3. Reconstruct scan(s)
 ^^^^^^^^^^^^^^^^^^^^^^^^
@@ -96,7 +96,7 @@ The argument here can now be either a file or a folder.
 
 .. code-block:: console
 
-    msot-reconstruct /path/to/processeddatafolder
+    patato-reconstruct /path/to/processeddatafolder
 
 4. Spectral unmixing
 ^^^^^^^^^^^^^^^^^^^^^^
@@ -113,15 +113,15 @@ I take the scan I always include GC_SS in the name, so I filter this).
 
 .. code-block:: console
 
-    msot-unmix /path/to/processeddatafolder
+    patato-unmix /path/to/processeddatafolder
 
 5. Draw regions of interest
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-To draw regions of interest, use the ``msot-draw-roi`` command. This gives an interactive interface
+To draw regions of interest, use the ``patato-draw-roi`` command. This gives an interactive interface
 with which you can draw polygons around a region that can be analysed later.
 You can also specify the position (e.g. ``-n tumour -p left``).
 
 .. code-block:: console
 
-    msot-draw-roi /path/to/processeddatafolder -n ROINAME
+    patato-draw-roi /path/to/processeddatafolder -n ROINAME

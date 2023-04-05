@@ -2,7 +2,7 @@
 #  License: MIT
 
 """
-``msot-unmix`` is a command line tool for unmixing MSOT data.
+``patato-unmix`` is a command line tool for unmixing MSOT data.
 """
 
 import argparse

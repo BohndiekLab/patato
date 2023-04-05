@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "patato"
-version = "0.2.4"
+version = "0.3.0"
 dependencies = [
     "requests",
     "cython",
@@ -53,14 +53,14 @@ exclude = []  # empty by default
 namespaces = true  # true by default
 
 [project.scripts]
-msot-import-ithera = "patato.convenience_scripts.convert_binary_to_hdf5:main"
-msot-draw-roi = "patato.convenience_scripts.draw_roi:main"
-msot-set-speed-of-sound = "patato.convenience_scripts.tune_speed_of_sound:main"
-msot-unmix = "patato.convenience_scripts.unmix:main"
-msot-reconstruct = "patato.convenience_scripts.process_msot:main"
-msot-analyse-dce = "patato.convenience_scripts.data_analysis.analyse_dce:main"
-msot-analyse-gc = "patato.convenience_scripts.data_analysis.analyse_gas_challenge:main"
-msot-convert-simpa = "patato.convenience_scripts.convert_simpa:main"
+patato-import-ithera = "patato.convenience_scripts.convert_binary_to_hdf5:main"
+patato-draw-roi = "patato.convenience_scripts.draw_roi:main"
+patato-set-speed-of-sound = "patato.convenience_scripts.tune_speed_of_sound:main"
+patato-unmix = "patato.convenience_scripts.unmix:main"
+patato-reconstruct = "patato.convenience_scripts.process_msot:main"
+patato-analyse-dce = "patato.convenience_scripts.data_analysis.analyse_dce:main"
+patato-analyse-gc = "patato.convenience_scripts.data_analysis.analyse_gas_challenge:main"
+patato-convert-simpa = "patato.convenience_scripts.convert_simpa:main"
 
 [tool.setuptools.package-data]
 "patato.unmixing.spectra.spectra_files" = ["*.csv", "*.txt"]
