@@ -33,5 +33,5 @@ def main():
         study_output = join(args.output, study_name)
         if not exists(study_output):
             makedirs(study_output)
-        system(f"msot-import-ithera \"{folder}\" \"{study_output}\"" + (
+        system(f"patato-import-ithera \"{folder}\" \"{study_output}\"" + (
             " -g True" if args.dontgetrecons else ""))
