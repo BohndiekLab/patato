@@ -7,7 +7,7 @@ The default image processing pipeline is as follows:
 
 .. code-block:: bash
 
-    msot-import-ithera /path/to/ithera/study/folder /path/to/data/folder
+    patato-import-ithera /path/to/ithera/study/folder /path/to/data/folder
 
 For the iThera importation, pass in the study folder, which contains Scan_1, Scan_2 etc. All of these will be processed,
 producing Scan_1.hdf5, Scan_2.hdf5 etc in the data folder.
@@ -16,32 +16,32 @@ producing Scan_1.hdf5, Scan_2.hdf5 etc in the data folder.
 
 .. code-block:: bash
 
-    msot-set-speed-of-sound /path/to/data/folder 1500
+    patato-set-speed-of-sound /path/to/data/folder 1500
 
 3. The image reconstruction algorithm is applied to each scan.
 
 .. code-block:: bash
 
-    msot-reconstruct /path/to/data/folder
+    patato-reconstruct /path/to/data/folder
 
 4. Spectral unmixing can be applied.
 
 .. code-block:: bash
 
-    msot-unmix /path/to/data/folder
+    patato-unmix /path/to/data/folder
 
 5. Regions of interest can be drawn over the images for further analysis.
 
 .. code-block:: bash
 
-    msot-draw-roi /path/to/data/folder
+    patato-draw-roi /path/to/data/folder
 
 6. Time series analysis can be applied.
 
 .. code-block:: bash
 
-    msot-analyse-gc /path/to/data/folder --display True
-    msot-analyse-dce /path/to/data/folder --display True
+    patato-analyse-gc /path/to/data/folder --display True
+    patato-analyse-dce /path/to/data/folder --display True
 
 7. Further analysis can be done in Python (see examples).
 

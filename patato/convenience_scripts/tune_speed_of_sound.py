@@ -1,7 +1,7 @@
 #  Copyright (c) Thomas Else 2023.
 #  License: MIT
 """
-``msot-set-speed-of-sound``: This module contains functions for setting the speed of sound for all datasets in a
+``patato-set-speed-of-sound``: This module contains functions for setting the speed of sound for all datasets in a
 directory.
 """
 
