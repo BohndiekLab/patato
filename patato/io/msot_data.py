@@ -681,9 +681,9 @@ class PAData:
 
     @classmethod
     def from_hdf5(cls, filename: Union[str, h5py.File], mode: str = "r"):
-        if type(filename) == str:
+        try:
             file = h5py.File(filename, mode)
-        else:
+        except TypeError:
             file = filename
         return cls(HDF5Reader(file), HDF5Writer(file))
 
