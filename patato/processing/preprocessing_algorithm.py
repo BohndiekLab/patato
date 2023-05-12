@@ -90,7 +90,7 @@ class DefaultMSOTPreProcessor(TimeSeriesProcessingAlgorithm):
         new_time_series.attributes[PreprocessingAttributeTags.TIME_INTERPOLATION] = self.time_factor
         new_time_series.attributes[PreprocessingAttributeTags.LOW_PASS_FILTER] = self.lp_filter
         new_time_series.attributes[PreprocessingAttributeTags.HIGH_PASS_FILTER] = self.hp_filter
-        attributes["CorrectionFactorApplied"] = overall_correction_factor is not None
+        new_time_series.attributes["CorrectionFactorApplied"] = overall_correction_factor is not None
 
         return new_time_series, new_parameters, None
 
