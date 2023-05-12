@@ -11,6 +11,7 @@ import numpy as np
 
 from ...core.image_structures.image_sequence import ImageSequence
 from ...io.attribute_tags import HDF5Tags
+import warnings
 
 
 class Reconstruction(ImageSequence):
@@ -35,3 +36,8 @@ class Reconstruction(ImageSequence):
     @classmethod
     def from_numpy(cls, data, wavelength):
         return cls()
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        if "CorrectionFactorApplied" not in self.attributes:
+            warnings.warn("Old version of PATATO used to generate this data. We recommend to re-run the image reconstruction.")

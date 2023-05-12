@@ -75,6 +75,9 @@ def init_argparse():
     parser.add_argument('-l', '--logoverlay', type=bool, help="Log of overlay", default=False)
     parser.add_argument('-g', '--start_scan_number', type=int, help="Start drawing at scan n", default=None)
     parser.add_argument('-i', '--interpolation', type=bool, help="Interpolate between ROI slices", default=False)
+    parser.add_argument('-w', '--wavelength', type=float, help="Default wavelength", default=0)
+    parser.add_argument("--loadall", type=bool, default=False, help="Preload data to memory.")
+    parser.add_argument("--drawallrois", type=bool, default=False, help="Display all rois on all slices.")
     return parser
 
 
@@ -119,7 +122,7 @@ class ROIDrawer:
             roi_points = roi_data.points
 
             if np.isclose(self.match_frames[self.i_index, self.j_index],
-                          roi_data.attributes.get(self.frame_type, 1.0)):
+                          roi_data.attributes.get(self.frame_type, 1.0)) or self.draw_all_rois:
                 roi_close = close_loop(roi_points)
                 roi_plot = self.image_axis.plot(roi_close[:, 0], roi_close[:, 1], picker=True,
                                                 label=r + "/" + n, c=colour, scalex=False,
@@ -276,7 +279,6 @@ class ROIDrawer:
         self.pa_data.close()
 
     def on_key_press(self, event):
-        sys.stdout.flush()
         if event.key == "up":
             self.selection_n += 1
             self.selection_n %= len(self.roi_lines)
@@ -294,7 +296,9 @@ class ROIDrawer:
 
     def __init__(self, pa_data, image_data: ImageSequence, image_extent, overlay=None,
                  overlay_threshold=None, overlay_extent=None,
-                 roi_name="unnamed", roi_position="", interpolation=False):
+                 roi_name="unnamed", roi_position="", interpolation=False,
+                 draw_all_rois=False, start_wl=0):
+        self.draw_all_rois = draw_all_rois
         clinical = pa_data.is_clinical()
         self.frame_type = "z" if not clinical else "repetition"
         self.match_frames = pa_data.get_z_positions() if not clinical else pa_data.get_repetition_numbers()
@@ -337,7 +341,7 @@ class ROIDrawer:
 
         if self.image_data.shape[1] != 1:
             self.wavelength = Slider(self.ax_slide, "Wavelength", 0,
-                                     self.image_data.shape[1] - 1, valinit=0, valstep=1)
+                                     self.image_data.shape[1] - 1, valinit=start_wl, valstep=1)
         else:
             Constant = namedtuple("ConstantWidget", ["val", "on_changed"])
             self.wavelength = Constant(val=0, on_changed=lambda x: None)
@@ -437,6 +441,7 @@ def main():
                     continue
 
         data = PAData.from_hdf5(file, "r+")
+        wl_i = np.argmin(np.abs(data.get_wavelengths() - args.wavelength))
 
         if args.filtername is not None:
             if str.lower(args.filtername) not in str.lower(data.get_scan_name()):
@@ -464,7 +469,12 @@ def main():
             print(f"Multiple reconstructions available, using {method}.")
 
         recon = data.get_scan_reconstructions()[method]
-
+        
+        # Load to memory:
+        if args.loadall:
+            print("Loading all")
+            recon.raw_data = recon.raw_data[:]
+        
         extents = recon.extent
 
         thb = data.get_scan_thb()
@@ -473,7 +483,7 @@ def main():
             recon = thb[(method, "0")]
 
         roi_drawerer = ROIDrawer(data, recon, extents, roi_name=args.name, roi_position=args.position,
-                                 interpolation=args.interpolation)
+                                 interpolation=args.interpolation, draw_all_rois=args.drawallrois, start_wl = wl_i)
 
 
 if __name__ == "__main__":

@@ -97,6 +97,7 @@ class GPUMSOTPreProcessor(DefaultMSOTPreProcessor):
         new_time_series.attributes[PreprocessingAttributeTags.TIME_INTERPOLATION] = self.time_factor
         new_time_series.attributes[PreprocessingAttributeTags.LOW_PASS_FILTER] = self.lp_filter
         new_time_series.attributes[PreprocessingAttributeTags.HIGH_PASS_FILTER] = self.hp_filter
+        new_time_series.attributes["CorrectionFactorApplied"] = overall_correction_factor is not None
 
         # TODO: replace pa_data with new attributes for further processing steps.
 

@@ -3,10 +3,10 @@ Installation
 
 In order to use PATATO, you must have a Python environment set up on your computer. We recommend using
 Anaconda (http://anaconda.com) to run Python, particularly if you are using Windows. You may wish to setup
-a separate Anaconda environment to install PATATO to minimise conflicts between dependency versions.
+a separate Anaconda environment to install PATATO, to minimise conflicts between dependency versions.
 
 .. tip::
-    If you are using Anaconda, you may wish to create a new environment to install PATATO to. This can be
+    If you are using Anaconda, you may wish to create a new environment before installing PATATO. This can be
     done by running the following command in the Anaconda prompt:
 
         conda create -n patato python=3.9

@@ -17,6 +17,8 @@ except ImportError:
     jnp = None
     jax = None
 
+import warnings
+
 from ..core.image_structures.pa_time_data import PATimeSeries
 
 # Specify Array type
@@ -179,7 +181,7 @@ class MSOTPreProcessor(TimeSeriesProcessingAlgorithm):
         """
         self.filter = jnp.array(make_filter(n_samples, fs, irf, self.hilbert, self.lp_filter, self.hp_filter))
 
-    def _run(self, time_series: Array, detectors: Array, **kwargs):
+    def _run(self, time_series: Array, detectors: Array, overall_correction_factor, **kwargs):
         """
         Run the preprocessing step on a given time series and detectors. This allows batch processing,
          e.g. if the data doesn't fit into memory.
@@ -188,6 +190,7 @@ class MSOTPreProcessor(TimeSeriesProcessingAlgorithm):
         ----------
         time_series : Array
         detectors   : Array
+        overall_correction_factor: Array
         kwargs    : dict
 
         Returns
@@ -198,7 +201,10 @@ class MSOTPreProcessor(TimeSeriesProcessingAlgorithm):
         time_series = jnp.array(time_series.reshape((-1,) + shape[-2:]))
         detectors = jnp.array(detectors)
 
+        # Subtract mean
         time_series = subtract_mean(time_series)
+
+        # Apply filters
         time_series_ft = jnp.fft.fft(time_series)
 
         time_series_ft = time_series_ft * self.filter.reshape((1,) * (time_series.ndim - 1) + (-1,))
@@ -212,6 +218,7 @@ class MSOTPreProcessor(TimeSeriesProcessingAlgorithm):
         if self.ubp:
             time_series -= jnp.gradient(time_series, axis=-1)*jnp.arange(time_series.shape[-1])
 
+        # Interpolate in time domain and detector domain
         if not (self.detector_factor == 1 and self.time_factor == 1):
             full_interpolate = jax.vmap(partial_interpolate, in_axes=(0, None, None), out_axes=0)
             time_series = full_interpolate(time_series,
@@ -219,6 +226,14 @@ class MSOTPreProcessor(TimeSeriesProcessingAlgorithm):
                                            self.detector_factor)
             detectors = interpolate_detectors(detectors, self.detector_factor)
         time_series = time_series.reshape(shape[:-2] + time_series.shape[1:])
+
+        # Apply energy correction factor:
+        if overall_correction_factor is not None:
+            extend = (slice(None, None),) * overall_correction_factor.ndim + (None, None)
+            time_series /= overall_correction_factor[extend]
+        else:
+            warnings.warn("No energy correction factor applied.")
+
         return time_series, detectors
 
     def run(self, time_series, pa_data=None, irf=None, detectors=None, **kwargs) -> Tuple[
@@ -248,6 +263,11 @@ class MSOTPreProcessor(TimeSeriesProcessingAlgorithm):
         if detectors is None and pa_data is not None:
             detectors = pa_data.get_scan_geometry()
 
+        if pa_data is not None:
+            overall_correction_factor = pa_data.get_overall_correction_factor()
+        else:
+            overall_correction_factor = None
+
         # Sampling frequency
         fs = time_series.attributes["fs"]
 
@@ -260,12 +280,15 @@ class MSOTPreProcessor(TimeSeriesProcessingAlgorithm):
             ts_raw = time_series.raw_data
             shape = ts_raw.shape
             ts_raw = ts_raw.reshape((-1,) + shape[-2:])
+            overall_correction_factor = overall_correction_factor.flatten()
             for i in range(0, ts_raw.shape[0], PAT_MAXIMUM_BATCH_SIZE):
-                new_ts, new_detectors = self._run(ts_raw[i:i + PAT_MAXIMUM_BATCH_SIZE], detectors)
+                new_ts, new_detectors = self._run(ts_raw[i:i + PAT_MAXIMUM_BATCH_SIZE], detectors,
+                                                  overall_correction_factor[i:i + PAT_MAXIMUM_BATCH_SIZE])
                 new_timeseries.append(np.asarray(new_ts))
             new_ts = np.concatenate(new_timeseries, axis=0).reshape(shape[:2] + new_timeseries[0].shape[-2:])
         else:
-            new_ts, new_detectors = self._run(time_series.raw_data, detectors)
+            new_ts, new_detectors = self._run(time_series.raw_data, detectors,
+                                              overall_correction_factor)
 
         # Convert timeseries into an xarray
         attributes = dict(time_series.attributes)
@@ -280,6 +303,7 @@ class MSOTPreProcessor(TimeSeriesProcessingAlgorithm):
         attributes[PreprocessingAttributeTags.LOW_PASS_FILTER] = self.lp_filter
         attributes[PreprocessingAttributeTags.HIGH_PASS_FILTER] = self.hp_filter
         attributes["UniversalBackProjection"] = self.ubp
+        attributes["CorrectionFactorApplied"] = overall_correction_factor is not None
 
         coords = dict(time_series.da.coords)
         coords["detectors"] = np.linspace(0, time_series.shape[-2] - 1,
