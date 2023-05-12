@@ -9,7 +9,7 @@ import numpy as np
 from ...core.image_structures.reconstruction_image import Reconstruction
 from ..hdf.fileimporter import ReaderInterface
 from ..ithera import load_ithera_irf
-
+import warnings
 
 def xml_to_dict(x):
     if x.nodeType == 3:
@@ -60,9 +60,13 @@ class iTheraMSOT(ReaderInterface):
             guid = r["GUID"]
             file = join(self.scan_folder, "RECONs", guid + ".bin")
             ns = [r["FIELD-OF-VIEW"]["PixelCount"][a] for a in "XYZ"]
-            recon = np.memmap(file, dtype=np.single)[:self.nframes * self.nwavelengths * ns[0] * ns[1] * ns[2]].reshape(
-                (self.nframes,
-                 self.nwavelengths,) + tuple(ns))
+            try:
+                recon = np.memmap(file, dtype=np.single)[:self.nframes * self.nwavelengths * ns[0] * ns[1] * ns[2]].reshape(
+                   (self.nframes,
+                    self.nwavelengths,) + tuple(ns))
+            except ValueError:
+                warnings.warn("Warning: unable to import iThera reconstruction. Skipping.")
+                continue
             fov = [r["FIELD-OF-VIEW"]["Extents"][a] for a in "XYZ"]
 
             attributes = {x: r[x] for x in r.keys() if x != "ReconFrames"}
