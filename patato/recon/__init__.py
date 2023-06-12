@@ -1,6 +1,13 @@
 #  Copyright (c) Thomas Else 2023.
 #  License: MIT
 
+"""
+PATATO reconstruction module
+============================
+
+This module provides functions for reconstructing photoacoustic data.
+"""
+
 from typing import Sequence
 
 from .backprojection_opencl import OpenCLBackprojection

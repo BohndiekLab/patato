@@ -1,6 +1,13 @@
 #  Copyright (c) Thomas Else 2023.
 #  License: MIT
 
+"""
+PATATO utility module
+=====================
+
+This module provides utility functions for PATATO that are used in several other modules.
+"""
+
 from os.path import split
 from typing import Tuple
 

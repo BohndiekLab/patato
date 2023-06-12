@@ -2,10 +2,10 @@
 #  License: MIT
 
 """
-PATATO Data
-===========
+PATATO data examples
+====================
 
-PATATO Data - an interface for exemplar data and basic simulations.
+PATATO data - an interface for exemplar data and basic simulations to illustrate the core features of PATATO.
 """
 
 from .simulated_datasets import get_basic_p0, generate_basic_simulation
