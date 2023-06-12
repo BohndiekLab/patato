@@ -92,7 +92,7 @@ def get_msot_phantom_example(image_type="clinical"):
         The MSOT dataset.
     """
     data_sources = {"clinical": "https://www.repository.cam.ac.uk/bitstream/handle/1810/345836/clinical_phantom.hdf5?sequence=8&isAllowed=y",
-                    "preclinical": "hhttps://www.repository.cam.ac.uk/bitstream/handle/1810/345836/preclinical_phantom.hdf5?sequence=3&isAllowed=y"}
+                    "preclinical": "https://www.repository.cam.ac.uk/bitstream/handle/1810/345836/preclinical_phantom.hdf5?sequence=3&isAllowed=y"}
 
     data_path = os.path.join(get_patato_data_folder(), f'{image_type}-msot-data.hdf5')
     folder = os.path.split(data_path)[0]

@@ -20,7 +20,7 @@ from .recon.backprojection_reference import ReferenceBackprojection
 from .recon.model_based.model_based import ModelBasedReconstruction
 from .recon.reconstruction_algorithm import ReconstructionAlgorithm
 
-from .processing.jax_preprocessing_algorithm import MSOTPreProcessor
+from .processing.jax_preprocessing_algorithm import PreProcessor
 
 from .unmixing.unmixer import SpectralUnmixer, SO2Calculator, THbCalculator, GasChallengeAnalyser, DCEAnalyser
 from .core.image_structures.reconstruction_image import Reconstruction
@@ -36,14 +36,16 @@ from .core.image_structures.pa_time_data import PATimeSeries
 Backprojection = ReferenceBackprojection
 
 # For backwards compatibility:
-DefaultMSOTPreProcessor = MSOTPreProcessor
-GPUMSOTPreProcessor = MSOTPreProcessor
+DefaultMSOTPreProcessor = PreProcessor
+MSOTPreProcessor = PreProcessor
+GPUMSOTPreProcessor = PreProcessor
+
 
 PAT_MAXIMUM_BATCH_SIZE = int(environ.get("PAT_MAXIMUM_BATCH_SIZE", 5))
 
 """ DOCUMENTATION FIX: """
 # To add support for importing to sphinx documentation:
-__all_exports = [MSOTPreProcessor,
+__all_exports = [PreProcessor,
                  Backprojection, OpenCLBackprojection, ModelBasedReconstruction,
                  SpectralUnmixer, SO2Calculator, THbCalculator,
                  GasChallengeAnalyser, DCEAnalyser,

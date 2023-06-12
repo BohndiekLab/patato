@@ -4,7 +4,7 @@
 import unittest
 from os.path import join, split
 
-from .... import SpectralUnmixer, MSOTPreProcessor
+from .... import SpectralUnmixer, PreProcessor
 from ....io.json.json_reading import read_reconstruction_preset, read_unmixing_preset
 from ....processing.preprocessing_algorithm import DefaultMSOTPreProcessor
 from ....processing.gpu_preprocessing_algorithm import GPUMSOTPreProcessor
@@ -15,7 +15,7 @@ class TestJSONLoading(unittest.TestCase):
         folder, _ = split(__file__)
         pipeline = read_reconstruction_preset(join(folder, "../../../recon/recon_presets/backproject_standard_xz.json"))
 
-        self.assertIn(type(pipeline), [MSOTPreProcessor, DefaultMSOTPreProcessor, GPUMSOTPreProcessor])
+        self.assertIn(type(pipeline), [PreProcessor, DefaultMSOTPreProcessor, GPUMSOTPreProcessor])
 
     def test_load_unmixed_preset(self):
         folder, _ = split(__file__)

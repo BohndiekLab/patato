@@ -121,7 +121,7 @@ def make_filter(n_samples: int, fs: float, irf: Array, hilbert: bool, lp_filter:
     return output
 
 
-class MSOTPreProcessor(TimeSeriesProcessingAlgorithm):
+class PreProcessor(TimeSeriesProcessingAlgorithm):
     """ Preprocesses MSOT time series data. Uses JAX in the background.
     """
 

@@ -21,7 +21,7 @@ except ImportError:
     Array = None
 
 from .. import read_reconstruction_preset
-from .. import MSOTPreProcessor
+from .. import PreProcessor
 from .. import ReconstructionAlgorithm, get_default_recon_preset, OpenCLBackprojection
 from .. import sort_key
 
@@ -92,7 +92,7 @@ def main():
 
         pipeline = read_reconstruction_preset(settings)
 
-        preprocessor: MSOTPreProcessor = pipeline
+        preprocessor: PreProcessor = pipeline
         preprocessor.time_factor = 1
         preprocessor.detector_factor = 1
         reconstructor: ReconstructionAlgorithm = pipeline.children[0]
