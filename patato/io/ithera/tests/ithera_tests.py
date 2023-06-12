@@ -40,5 +40,6 @@ class TestITheraImport(unittest.TestCase):
         new_t2, d2, _ = preproc.run(pa_2.get_time_series()[0:1, 0:1], pa_2[0:1, 0:1])
         rec2, _, _ = recon.run(new_t2, pa_2[0:1, 0:1], 1500, **d2)
 
-        self.assertTrue(np.all(pa_1.get_time_series().raw_data[()] == pa_2.get_time_series().raw_data[()]))
+	# The HDF5 version was downsampled so that it could be uploaded.
+        self.assertTrue(np.all(pa_1.get_time_series().raw_data[::2] == pa_2.get_time_series().raw_data[()]))
         self.assertTrue(np.all(new_t1.raw_data[()] == new_t2.raw_data[()]))
