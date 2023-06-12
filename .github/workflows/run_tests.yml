@@ -1,4 +1,4 @@
-name: Run Python tests
+name: Run tests and coverage
 
 on:
   push:
@@ -32,7 +32,7 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         python -m pip install flake8 pytest
-        pip install -e .
+        pip install .
         pip install coverage
     - if: runner.os == 'Windows'
       run: |
