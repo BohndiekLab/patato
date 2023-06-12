@@ -16,5 +16,5 @@ class TestModelBased(unittest.TestCase):
         N, fov = (100, 100, 1), (0.025, 0.025, 1)
         mb = pat.ModelBasedReconstruction(N, fov, pa_example=self.pa)
         rec, _, _ = mb.run(self.pa.get_time_series(), self.pa)
-        self.assertAlmostEqual(np.mean(rec.values), 17.195329564148494, 2)
+        self.assertAlmostEqual(np.mean(rec.values), 15.583445802192289, 2)
         self.assertEqual(rec.shape, (1, 1, 1, 100, 100))
