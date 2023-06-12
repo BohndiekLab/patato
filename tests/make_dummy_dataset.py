@@ -30,7 +30,7 @@ def add_example_reconstruction(rs, shape):
 
 def make_dummy_dataset():
     data_folder = os.path.join(get_patato_data_folder(), "test")
-    os.mkdirs(data_folder, exist_ok=True)
+    os.makedirs(data_folder, exist_ok=True)
     file = os.path.join(data_folder, "Scan_1.hdf5")
     if os.path.exists(file):
         return
