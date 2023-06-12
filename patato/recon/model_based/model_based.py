@@ -205,7 +205,6 @@ class ModelBasedReconstruction(ReconstructionAlgorithm):
             nt = kwargs["nt"]
 
             gpu = kwargs.get("gpu", cuda_enabled)
-            print("GPU", gpu)
             cache = kwargs.get("cache", False)
 
             self._model = self.generate_model(detx, dety, fs, dx, nx, x_0, nt, gpu=gpu, cache=cache, **kwargs_model)
