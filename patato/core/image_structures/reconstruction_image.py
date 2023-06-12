@@ -7,13 +7,10 @@ This defines the data structure for reconstructed images.
 
 from __future__ import annotations
 
-import os
-
 import numpy as np
 
 from ...core.image_structures.image_sequence import ImageSequence
 from ...io.attribute_tags import HDF5Tags
-import warnings
 
 
 class Reconstruction(ImageSequence):

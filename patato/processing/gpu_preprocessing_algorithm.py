@@ -9,7 +9,6 @@ from .processing_algorithm import ProcessingResult, TimeSeriesProcessingAlgorith
 
 if TYPE_CHECKING:
     from ..io.msot_data import PAData
-    from ..core.image_structures.pa_raw_data import PARawData
 
 from ..core.image_structures.pa_time_data import PATimeSeries
 
