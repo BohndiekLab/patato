@@ -39,7 +39,7 @@ extensions = ["myst_parser",
               ]
 
 autosummary_generate = True
-autosummary_ignore_module_all = True
+autosummary_ignore_module_all = False
 
 # mock-up imports for the libraries that are bit awkward to install, and the c++ extensions
 autodoc_mock_imports = ["simpa", "pacfish", "patato.recon.model_based.generate_model",
