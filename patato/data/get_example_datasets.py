@@ -32,8 +32,9 @@ def get_patato_data_folder():
 def download_file(file_from, file_to):
     print(f"Downloading {file_from} to {file_to}... Might take a while.")
     with requests.get(file_from, stream=True) as file_data:
+        # print(dict(file_data.headers))
         # Get the total file size
-        total_length = int(file_data.headers.get("Content-Length"))
+        total_length = len(file_data.content)
         # Download the file
         with tqdm.wrapattr(file_data.raw, "read", total=total_length, desc="") as raw:
             with open(file_to, "wb") as output:

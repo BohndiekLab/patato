@@ -15,6 +15,8 @@ from ...utils.mask_operations import interpolate_rois
 
 
 def slice_1d(data, test_data, slices, dim=-1):
+    if data is None:
+        return None
     def slice_wl(slice_data, item, wl_axis):
         if wl_axis == 0 and type(item) is not tuple:
             r = slice_data[item]
