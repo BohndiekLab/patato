@@ -86,7 +86,7 @@ class ModelBasedReconstruction(ReconstructionAlgorithm):
 
         ndet = detx.shape[0]
         if irf is not None:
-            convolve_irf = Convolve1D(nt * ndet, irf, dims=(ndet, nt), dir=1, offset=nt // 2,
+            convolve_irf = Convolve1D((ndet, nt), irf, axis=1, offset=nt // 2,
                                       dtype=np.float32)
 
             def matvec(x):
@@ -140,7 +140,7 @@ class ModelBasedReconstruction(ReconstructionAlgorithm):
             else:
                 inv_args["iter_lim"] = iter_lim
             return lambda y: regularized_inversion(full_model, y,
-                                                   [reg], epsRs=[reg_lambda], show=True, **inv_args)[0]
+                                                   [reg], epsRs=[reg_lambda], show=False, **inv_args)[0]
         else:
             self._full_model = full_model
             self._reg = reg
@@ -155,7 +155,7 @@ class ModelBasedReconstruction(ReconstructionAlgorithm):
                 niter_outer=iter_lim[0],
                 niter_inner=iter_lim[1],
                 epsRL1s=[reg_lambda[0], reg_lambda[0]],
-                show=True, **inv_args
+                show=False, **inv_args
             )[0]
 
     def __init__(self,
@@ -177,6 +177,7 @@ class ModelBasedReconstruction(ReconstructionAlgorithm):
             kwargs["fs_model"] = pa_example.get_sampling_frequency()
             kwargs["nt"] = pa_example.get_time_series().shape[-1]
             kwargs_model["c"] = pa_example.get_speed_of_sound()
+            kwargs_model["irf_model"] = pa_example.get_impulse_response()
 
         # Note that super init puts kwargs in self.custom_params
         if "geometry" in kwargs:
@@ -300,7 +301,7 @@ class ModelBasedReconstruction(ReconstructionAlgorithm):
             else:
                 output[i] = result
 
-        return output.reshape(or_shape[:2] + output.shape[-3:])
+        return output.reshape(or_shape[:-2] + output.shape[-3:])
 
     @staticmethod
     def get_algorithm_name() -> str:

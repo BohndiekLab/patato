@@ -39,6 +39,7 @@ jobs:
         pip install jaxlib -f https://whls.blob.core.windows.net/unstable/index.html --use-deprecated legacy-resolver
         pip install jax[cpu]
     - name: Linting
+      run: |
         ruff --format=github --select=E9,F63,F7,F82 --target-version=py37 . # Should do wider tests in the future.
     - name: Run tests
       run: |
