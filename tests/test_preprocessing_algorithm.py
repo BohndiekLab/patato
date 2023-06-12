@@ -9,7 +9,8 @@ from patato import PreProcessor
 from patato.core.image_structures.pa_time_data import PATimeSeries
 from patato.data.get_example_datasets import get_msot_time_series_example
 
-from patato.processing.gpu_preprocessing_algorithm import DefaultMSOTPreProcessor, GPUMSOTPreProcessor
+from patato.processing.gpu_preprocessing_algorithm import GPUMSOTPreProcessor
+from patato.processing.preprocessing_algorithm import NumpyPreProcessor
 
 
 class TestPreprocessing(unittest.TestCase):
@@ -43,8 +44,8 @@ class TestPreprocessing(unittest.TestCase):
         new_t = self._test_preprocessor(GPUMSOTPreProcessor)
         print(np.mean(new_t[0, 0].values))
 
-    def test_overall_processing(self):
-        new_t = self._test_preprocessor(DefaultMSOTPreProcessor)
+    def test_numpy_processing(self):
+        new_t = self._test_preprocessor(NumpyPreProcessor)
         print(np.mean(new_t[0, 0].values))
 
     def test_jax_preprocessing(self):

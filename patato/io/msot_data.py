@@ -12,7 +12,6 @@ import xarray
 
 from .hdf.fileimporter import ReaderInterface, WriterInterface
 from .hdf.hdf5_interface import HDF5Reader, HDF5Writer
-from ..core.image_structures.pa_fourier_data import PAFourierDomain
 from ..core.image_structures.pa_time_data import PATimeSeries
 from ..core.image_structures.single_image import SingleImage
 from ..core.image_structures.single_parameter_data import SingleParameterData
@@ -484,24 +483,7 @@ class PAData:
 
         """
         dataset = self.scan_reader.get_pa_data()
-        if type(dataset) is PAFourierDomain:
-            return dataset.to_time_domain()
-        elif type(dataset) is not PATimeSeries:
-            raise ValueError("raw_data attribute must be either TimeSeries or FourierDomain type.")
-        else:
-            return dataset
-
-    def get_fft(self) -> PAFourierDomain:
-        """
-
-        Returns
-        -------
-
-        """
-        dataset = self.scan_reader.get_pa_data()
-        if type(dataset) is PATimeSeries:
-            return dataset.to_fourier_domain()
-        elif not type(dataset) is PAFourierDomain:
+        if type(dataset) is not PATimeSeries:
             raise ValueError("raw_data attribute must be either TimeSeries or FourierDomain type.")
         else:
             return dataset

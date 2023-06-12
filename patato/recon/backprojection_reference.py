@@ -11,7 +11,9 @@ from .reconstruction_algorithm import ReconstructionAlgorithm
 try:
     import jax
 except ImportError:
-    print("WARNING: JAX must be installed to support the standard backprojection algorithm and filtering.")
+    print("""WARNING: JAX must be installed to support the standard backprojection algorithm and filtering.
+    Alternatively, try the Numpy implementations.
+    """)
     jax = None
 
 

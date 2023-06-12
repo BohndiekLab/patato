@@ -60,7 +60,6 @@ class TestUnmixing(unittest.TestCase):
         self.assertIsNotNone(pa.get_scan_so2_frequency_sum(fnum=3))
         self.assertIsNone(pa.get_segmentation())
         self.assertIsNotNone(pa.get_recon_types())
-        self.assertIsNotNone(pa.get_fft())
         self.assertIsNotNone(pa.get_recon_types())
         self.assertIsNotNone(pa.get_scan_dso2())
         self.assertIsNotNone(pa.get_scan_baseline_so2())

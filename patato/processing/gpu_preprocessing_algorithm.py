@@ -117,8 +117,11 @@ class GPUMSOTPreProcessor(TimeSeriesProcessingAlgorithm):
         # Apply a fourier domain filter.
 
         t = time.time()
-        time_series = time_series.to_fourier_domain()
-        time_series = self.apply_filter(time_series, ft_filter=ft_filter, absolute=self.absolute)
+        time_series_ft = fft(time_series.raw_data, axis=-1)
+        time_series_ft = self.apply_filter(time_series_ft, ft_filter=ft_filter)
+
+        operation = cp.real if self.absolute == "real" or self.absolute is None else cp.imag if self.absolute == "imag" else cp.abs
+        time_series.raw_data = operation(ifft(time_series_ft, axis=-1))
 
         # Go back to the time domain.
         time_series = time_series.to_time_domain()
@@ -195,13 +198,10 @@ class GPUMSOTPreProcessor(TimeSeriesProcessingAlgorithm):
         return new_data, {"geometry": detectors.get()}
 
     @staticmethod
-    def apply_filter(pa_data: PARawData, ft_filter, absolute=False) -> PATimeSeries:
-        pa_fft = pa_data.to_fourier_domain()
-        extend = (None,) * (pa_fft.raw_data.ndim - 1) + (slice(None, None),)
-        pa_fft.raw_data *= ft_filter[extend]
-        operation = cp.real if absolute == "real" or absolute is None else cp.imag if absolute == "imag" else cp.abs
-        pa_time = pa_fft.to_time_domain(operation)
-        return pa_time
+    def apply_filter(pa_data: cp.ndarray, ft_filter) -> cp.ndarray:
+        extend = (None,) * (pa_data.ndim - 1) + (slice(None, None),)
+        pa_data *= ft_filter[extend]
+        return pa_data
 
     @staticmethod
     def make_filter(n_samples, fs, irf,

@@ -122,11 +122,13 @@ class NumpyPreProcessor(TimeSeriesProcessingAlgorithm):
         time_series.raw_data = raw_data - np.mean(raw_data, axis=-1)[extend]
 
         # Apply a fourier domain filter.
-        time_series = time_series.to_fourier_domain()
-        time_series = self.apply_filter(time_series, ft_filter=ft_filter, absolute=self.absolute)
+        time_series_ft = fft(time_series.raw_data, axis=-1)
+        time_series_ft = self.apply_filter(time_series_ft, ft_filter=ft_filter)
 
         # Go back to the time domain.
-        time_series = time_series.to_time_domain()
+        operation = np.real if self.absolute == "real" or self.absolute is None else np.imag if self.absolute == "imag" else np.abs
+        time_series_td = operation(ifft(time_series_ft, axis=-1))
+        time_series.raw_data = time_series_td
 
         # Apply interpolation in time and detector domains.
         time_series, interp_params = self.interpolate(time_series, detectors)
@@ -180,13 +182,10 @@ class NumpyPreProcessor(TimeSeriesProcessingAlgorithm):
         return new_data, {"geometry": detectors}
 
     @staticmethod
-    def apply_filter(pa_data: PARawData, ft_filter, absolute=False) -> PATimeSeries:
-        pa_fft = pa_data.to_fourier_domain()
-        extend = (None,) * (pa_fft.raw_data.ndim - 1) + (slice(None, None),)
-        pa_fft.raw_data *= ft_filter[extend]
-        operation = np.real if absolute == "real" or absolute is None else np.imag if absolute == "imag" else np.abs
-        pa_time = pa_fft.to_time_domain(operation)
-        return pa_time
+    def apply_filter(pa_data: np.ndarray, ft_filter) -> np.ndarray:
+        extend = (None,) * (pa_data.ndim - 1) + (slice(None, None),)
+        pa_data *= ft_filter[extend]
+        return pa_data
 
     @staticmethod
     def make_filter(n_samples, fs, irf,

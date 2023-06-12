@@ -14,7 +14,6 @@ from ...core.image_structures.image_sequence import DataSequence
 from ...io.attribute_tags import HDF5Tags
 
 if TYPE_CHECKING:
-    from ...core.image_structures.pa_fourier_data import PAFourierDomain
     from ...core.image_structures.pa_time_data import PATimeSeries
 
 
@@ -64,26 +63,3 @@ class PARawData(DataSequence, ABC):
 
         """
         return HDF5Tags.WAVELENGTH
-
-    @abstractmethod
-    def to_time_domain(self, from_complex=np.imag) -> "PATimeSeries":
-        """
-
-        Parameters
-        ----------
-        from_complex
-
-        Returns
-        -----------
-        PATimeSeries
-        """
-        pass
-
-    @abstractmethod
-    def to_fourier_domain(self) -> "PAFourierDomain":
-        """
-        Returns
-        -------
-        PAFourierDomain
-        """
-        pass

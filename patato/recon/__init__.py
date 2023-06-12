@@ -13,7 +13,7 @@ from typing import Sequence
 from .backprojection_opencl import OpenCLBackprojection
 from .backprojection_reference import ReferenceBackprojection
 from .reconstruction_algorithm import ReconstructionAlgorithm
-from .numpy.recon import SlowBackprojection
+from .numpy_backprojection.recon import SlowBackprojection
 from ..io.msot_data import PAData
 
 RECONSTRUCTION_METHODS: Sequence[type(ReconstructionAlgorithm)] = [OpenCLBackprojection,
