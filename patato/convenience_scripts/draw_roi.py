@@ -14,9 +14,8 @@ import matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.widgets import Slider, Button, RangeSlider, PolygonSelector
-from .. import ImageSequence
-from .. import ROI, PAData
-from .. import sort_key
+from .. import ImageSequence, ROI, PAData
+from ..utils import sort_key
 from scipy.optimize import least_squares
 
 if matplotlib.get_backend() == "MacOSX":

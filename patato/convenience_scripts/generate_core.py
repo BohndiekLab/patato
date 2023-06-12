@@ -6,7 +6,7 @@ import glob
 from os.path import split, join
 
 from .. import PAData
-from .. import sort_key
+from ..utils import sort_key
 from ..utils.roi_operations import add_rim_core_data
 
 

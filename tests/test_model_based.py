@@ -5,12 +5,13 @@ import unittest
 import patato as pat
 
 import numpy as np
-from patato.data import get_msot_time_series_example
+
+from patato import PAData
 
 
 class TestModelBased(unittest.TestCase):
     def setUp(self) -> None:
-        self.pa = get_msot_time_series_example("so2")[0:1, 0:1]
+        self.pa = PAData.from_hdf5("test_data.hdf5")
 
     def test_model_based_reconstruction(self):
         N, fov = (100, 100, 1), (0.025, 0.025, 1)

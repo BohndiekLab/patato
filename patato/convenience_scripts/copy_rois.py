@@ -8,7 +8,7 @@ from os.path import join
 
 import h5py
 import numpy as np
-from .. import sort_key
+from ..utils import sort_key
 
 
 def init_argparse():

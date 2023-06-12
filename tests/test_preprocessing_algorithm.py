@@ -5,7 +5,7 @@ import unittest
 
 import numpy as np
 
-from patato import PreProcessor
+from patato import PreProcessor, PAData
 from patato.core.image_structures.pa_time_data import PATimeSeries
 from patato.data.get_example_datasets import get_msot_time_series_example
 
@@ -15,7 +15,7 @@ from patato.processing.preprocessing_algorithm import NumpyPreProcessor
 
 class TestPreprocessing(unittest.TestCase):
     def setUp(self) -> None:
-        self.pa = get_msot_time_series_example("so2")[0:2, 0:2]
+        self.pa = PAData.from_hdf5("test_data.hdf5")
 
     def _test_preprocessor(self, pre_processor):
         detectors_start = self.pa.get_scan_geometry()

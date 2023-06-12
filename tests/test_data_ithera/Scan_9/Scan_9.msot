@@ -1,0 +1,2095 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataModelMsotProject xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <FolderName>Scan_9</FolderName>
+  <FriendlyName>Scan_9</FriendlyName>
+  <CreationTime>2020-10-01T12:32:32.6291456+01:00</CreationTime>
+  <DataModelVersion>2.2</DataModelVersion>
+  <Scientist>MSOT</Scientist>
+  <CustomerName>Cambridge University</CustomerName>
+  <HARDWARE-DESC xmlns="Header_Schema">
+    <AMPLIFICATION>0</AMPLIFICATION>
+    <SAMPLING-FREQUENCY unit="Hz" unit-modifier="M">40</SAMPLING-FREQUENCY>
+    <AD-RANGE unit="V" unit-modifier="none">0</AD-RANGE>
+    <POWER unit="J" unit-modifier="none">0</POWER>
+    <TRANSDUCER>msot2</TRANSDUCER>
+    <LASER-CALIBRATION-FILE-PATH>C:\ProgramData\iThera\MSOTSystem\LaserEnergyCal_P1296__CH1_2020818_HG.bin</LASER-CALIBRATION-FILE-PATH>
+    <LASER-CHANNEL-NUMBER>None</LASER-CHANNEL-NUMBER>
+    <GEOMETRY>spherical</GEOMETRY>
+    <SETUP-TYPE>Msot2</SETUP-TYPE>
+    <AXIAL-OFFSET>0</AXIAL-OFFSET>
+    <LIGHTSPOT-SIZE>0</LIGHTSPOT-SIZE>
+    <BACKGROUND-ABSORPTION-UPPER-SLIDER-LIMIT>0.3</BACKGROUND-ABSORPTION-UPPER-SLIDER-LIMIT>
+    <BACKGROUND-ABSORPTION-LOWER-SLIDER-LIMIT>0</BACKGROUND-ABSORPTION-LOWER-SLIDER-LIMIT>
+    <BACKGROUND-OXYGENATION-UPPER-SLIDER-LIMIT>100</BACKGROUND-OXYGENATION-UPPER-SLIDER-LIMIT>
+    <BACKGROUND-OXYGENATION-LOWER-SLIDER-LIMIT>0</BACKGROUND-OXYGENATION-LOWER-SLIDER-LIMIT>
+    <SPEED-OF-SOUND-UPPER-SLIDER-LIMI.>50</SPEED-OF-SOUND-UPPER-SLIDER-LIMI.>
+    <SPEED-OF-SOUND-LOWER-SLIDER-LIMIT>-50</SPEED-OF-SOUND-LOWER-SLIDER-LIMIT>
+    <SPEED-OF-SOUND-BASE>-90</SPEED-OF-SOUND-BASE>
+    <COUPLANT-SPEED-OF-SOUND>0</COUPLANT-SPEED-OF-SOUND>
+    <COUPLANT-CENTER-OF-ROTATION>0</COUPLANT-CENTER-OF-ROTATION>
+    <MIN-COUPLANT-CENTER-OF-ROTATION-OFFSET>0</MIN-COUPLANT-CENTER-OF-ROTATION-OFFSET>
+    <MAX-COUPLANT-CENTER-OF-ROTATION-OFFSET>0</MAX-COUPLANT-CENTER-OF-ROTATION-OFFSET>
+    <COUPLANT-CURVATURE-RADIUS>0</COUPLANT-CURVATURE-RADIUS>
+    <FRAME-DESC>
+      <PROJECTION wavelength-ref="all" number="1">
+        <VALUE axis-ref="1">0.02890018718562214</VALUE>
+        <VALUE axis-ref="2">-0.028373036154701561</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="2">
+        <VALUE axis-ref="1">0.029417545780916019</VALUE>
+        <VALUE axis-ref="2">-0.027836271306116239</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="3">
+        <VALUE axis-ref="1">0.029924936640654921</VALUE>
+        <VALUE axis-ref="2">-0.027290074515339619</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="4">
+        <VALUE axis-ref="1">0.0304221878423423</VALUE>
+        <VALUE axis-ref="2">-0.02673463085373053</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="5">
+        <VALUE axis-ref="1">0.030909130899166939</VALUE>
+        <VALUE axis-ref="2">-0.026170128525824309</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="6">
+        <VALUE axis-ref="1">0.031385600817092393</VALUE>
+        <VALUE axis-ref="2">-0.02559675880556226</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="7">
+        <VALUE axis-ref="1">0.031851436150762982</VALUE>
+        <VALUE axis-ref="2">-0.025014715971481059</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="8">
+        <VALUE axis-ref="1">0.032306479058207341</VALUE>
+        <VALUE axis-ref="2">-0.0244241972408841</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="9">
+        <VALUE axis-ref="1">0.03275057535432109</VALUE>
+        <VALUE axis-ref="2">-0.02382540270301713</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="10">
+        <VALUE axis-ref="1">0.033183574563110281</VALUE>
+        <VALUE axis-ref="2">-0.0232185352512707</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="11">
+        <VALUE axis-ref="1">0.03360532996867819</VALUE>
+        <VALUE axis-ref="2">-0.022603800514432521</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="12">
+        <VALUE axis-ref="1">0.034015698664937977</VALUE>
+        <VALUE axis-ref="2">-0.021981406787012891</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="13">
+        <VALUE axis-ref="1">0.034414541604034531</VALUE>
+        <VALUE axis-ref="2">-0.021351564958667</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="14">
+        <VALUE axis-ref="1">0.034801723643458841</VALUE>
+        <VALUE axis-ref="2">-0.0207144884427378</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="15">
+        <VALUE axis-ref="1">0.03517711359183931</VALUE>
+        <VALUE axis-ref="2">-0.02007039310394378</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="16">
+        <VALUE axis-ref="1">0.035540584253394077</VALUE>
+        <VALUE axis-ref="2">-0.0194194971852362</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="17">
+        <VALUE axis-ref="1">0.035892012471029668</VALUE>
+        <VALUE axis-ref="2">-0.018762021233850339</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="18">
+        <VALUE axis-ref="1">0.036231279168071</VALUE>
+        <VALUE axis-ref="2">-0.018098188026576149</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="19">
+        <VALUE axis-ref="1">0.036558269388608983</VALUE>
+        <VALUE axis-ref="2">-0.017428222494273352</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="20">
+        <VALUE axis-ref="1">0.036872872336451722</VALUE>
+        <VALUE axis-ref="2">-0.0167523516456566</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="21">
+        <VALUE axis-ref="1">0.037174981412666307</VALUE>
+        <VALUE axis-ref="2">-0.016070804490376771</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="22">
+        <VALUE axis-ref="1">0.037464494251698441</VALUE>
+        <VALUE axis-ref="2">-0.01538381196142407</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="23">
+        <VALUE axis-ref="1">0.037741312756057563</VALUE>
+        <VALUE axis-ref="2">-0.014691606836879581</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="24">
+        <VALUE axis-ref="1">0.038005343129555877</VALUE>
+        <VALUE axis-ref="2">-0.01399442366104155</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="25">
+        <VALUE axis-ref="1">0.038256495909089951</VALUE>
+        <VALUE axis-ref="2">-0.01329249866495325</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="26">
+        <VALUE axis-ref="1">0.038494685994954009</VALUE>
+        <VALUE axis-ref="2">-0.012586069686359259</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="27">
+        <VALUE axis-ref="1">0.038719832679674861</VALUE>
+        <VALUE axis-ref="2">-0.01187537608911747</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="28">
+        <VALUE axis-ref="1">0.038931859675358491</VALUE>
+        <VALUE axis-ref="2">-0.0111606586820938</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="29">
+        <VALUE axis-ref="1">0.039130695139539207</VALUE>
+        <VALUE axis-ref="2">-0.010442159637567431</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="30">
+        <VALUE axis-ref="1">0.039316271699522488</VALUE>
+        <VALUE axis-ref="2">-0.00972012240917403</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="31">
+        <VALUE axis-ref="1">0.039488526475213261</VALUE>
+        <VALUE axis-ref="2">-0.00899479164941474</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="32">
+        <VALUE axis-ref="1">0.039647401100422017</VALUE>
+        <VALUE axis-ref="2">-0.00826641312675908</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="33">
+        <VALUE axis-ref="1">0.039792841742641367</VALUE>
+        <VALUE axis-ref="2">-0.00753523364236959</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="34">
+        <VALUE axis-ref="1">0.039924799121286492</VALUE>
+        <VALUE axis-ref="2">-0.00680150094647661</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="35">
+        <VALUE axis-ref="1">0.040043228524393112</VALUE>
+        <VALUE axis-ref="2">-0.00606546365443152</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="36">
+        <VALUE axis-ref="1">0.040148089823767677</VALUE>
+        <VALUE axis-ref="2">-0.00532737116246676</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="37">
+        <VALUE axis-ref="1">0.040239347488584112</VALUE>
+        <VALUE axis-ref="2">-0.00458747356319135</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="38">
+        <VALUE axis-ref="1">0.040316970597423042</VALUE>
+        <VALUE axis-ref="2">-0.00384602156085038</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="39">
+        <VALUE axis-ref="1">0.040380932848749058</VALUE>
+        <VALUE axis-ref="2">-0.00310326638637727</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="40">
+        <VALUE axis-ref="1">0.040431212569822662</VALUE>
+        <VALUE axis-ref="2">-0.00235945971226764</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="41">
+        <VALUE axis-ref="1">0.040467792724043737</VALUE>
+        <VALUE axis-ref="2">-0.00161485356730346</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="42">
+        <VALUE axis-ref="1">0.040490660916724222</VALUE>
+        <VALUE axis-ref="2">-0.00086970025115651</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="43">
+        <VALUE axis-ref="1">0.040499809399287837</VALUE>
+        <VALUE axis-ref="2">-0.00012425224890012</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="44">
+        <VALUE axis-ref="1">0.040495235071895612</VALUE>
+        <VALUE axis-ref="2">0.00062123785454202</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="45">
+        <VALUE axis-ref="1">0.0404769394844962</VALUE>
+        <VALUE axis-ref="2">0.0013665174599808</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="46">
+        <VALUE axis-ref="1">0.040444928836300742</VALUE>
+        <VALUE axis-ref="2">0.00211133403955148</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="47">
+        <VALUE axis-ref="1">0.040399213973682291</VALUE>
+        <VALUE axis-ref="2">0.00285543522227937</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="48">
+        <VALUE axis-ref="1">0.0403398103865007</VALUE>
+        <VALUE axis-ref="2">0.00359856887959225</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="49">
+        <VALUE axis-ref="1">0.040266738202854112</VALUE>
+        <VALUE axis-ref="2">0.00434048321075076</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="50">
+        <VALUE axis-ref="1">0.040180022182258773</VALUE>
+        <VALUE axis-ref="2">0.00508092682816763</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="51">
+        <VALUE axis-ref="1">0.040079691707259633</VALUE>
+        <VALUE axis-ref="2">0.00581964884258693</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="52">
+        <VALUE axis-ref="1">0.039965780773474513</VALUE>
+        <VALUE axis-ref="2">0.00655639894809453</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="53">
+        <VALUE axis-ref="1">0.039838327978075079</VALUE>
+        <VALUE axis-ref="2">0.00729092750693083</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="54">
+        <VALUE axis-ref="1">0.039697376506708751</VALUE>
+        <VALUE axis-ref="2">0.00802298563407712</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="55">
+        <VALUE axis-ref="1">0.039542974118865863</VALUE>
+        <VALUE axis-ref="2">0.00875232528158689</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="56">
+        <VALUE axis-ref="1">0.039375173131696917</VALUE>
+        <VALUE axis-ref="2">0.00947869932263351</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="57">
+        <VALUE axis-ref="1">0.039194030402285758</VALUE>
+        <VALUE axis-ref="2">0.01020186163524579</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="58">
+        <VALUE axis-ref="1">0.0389996073083842</VALUE>
+        <VALUE axis-ref="2">0.010921567185703061</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="59">
+        <VALUE axis-ref="1">0.038791969727615082</VALUE>
+        <VALUE axis-ref="2">0.01163757211156155</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="60">
+        <VALUE axis-ref="1">0.038571188015150512</VALUE>
+        <VALUE axis-ref="2">0.0123496338042838</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="61">
+        <VALUE axis-ref="1">0.038337336979872981</VALUE>
+        <VALUE axis-ref="2">0.01305751099144333</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="62">
+        <VALUE axis-ref="1">0.038090495859027372</VALUE>
+        <VALUE axis-ref="2">0.013760963818476491</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="63">
+        <VALUE axis-ref="1">0.037830748291372493</VALUE>
+        <VALUE axis-ref="2">0.01445975392995392</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="64">
+        <VALUE axis-ref="1">0.037558182288841252</VALUE>
+        <VALUE axis-ref="2">0.015153644550344051</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="65">
+        <VALUE axis-ref="1">0.037272890206718978</VALUE>
+        <VALUE axis-ref="2">0.015842400564241289</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="66">
+        <VALUE axis-ref="1">0.036974968712350127</VALUE>
+        <VALUE axis-ref="2">0.01652578859603164</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="67">
+        <VALUE axis-ref="1">0.036664518752383808</VALUE>
+        <VALUE axis-ref="2">0.01720357708896891</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="68">
+        <VALUE axis-ref="1">0.036341645518569443</VALUE>
+        <VALUE axis-ref="2">0.017875536383634531</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="69">
+        <VALUE axis-ref="1">0.036006458412113918</VALUE>
+        <VALUE axis-ref="2">0.018541438795754529</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="70">
+        <VALUE axis-ref="1">0.03565907100661251</VALUE>
+        <VALUE axis-ref="2">0.019201058693347279</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="71">
+        <VALUE axis-ref="1">0.035299601009566021</VALUE>
+        <VALUE axis-ref="2">0.0198541725731758</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="72">
+        <VALUE axis-ref="1">0.03492817022249714</VALUE>
+        <VALUE axis-ref="2">0.020500559136478792</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="73">
+        <VALUE axis-ref="1">0.034544904499679729</VALUE>
+        <VALUE axis-ref="2">0.021139999363954758</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="74">
+        <VALUE axis-ref="1">0.034149933705494739</VALUE>
+        <VALUE axis-ref="2">0.02177227658997365</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="75">
+        <VALUE axis-ref="1">0.033743391670427482</VALUE>
+        <VALUE axis-ref="2">0.022397176575991121</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="76">
+        <VALUE axis-ref="1">0.033325416145720967</VALUE>
+        <VALUE axis-ref="2">0.023014487583140331</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="77">
+        <VALUE axis-ref="1">0.032896148756700758</VALUE>
+        <VALUE axis-ref="2">0.023624000443976782</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="78">
+        <VALUE axis-ref="1">0.032455734954787173</VALUE>
+        <VALUE axis-ref="2">0.024225508633351871</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="79">
+        <VALUE axis-ref="1">0.032004323968211047</VALUE>
+        <VALUE axis-ref="2">0.024818808338391091</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="80">
+        <VALUE axis-ref="1">0.031542068751449777</VALUE>
+        <VALUE axis-ref="2">0.02540369852755334</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="81">
+        <VALUE axis-ref="1">0.031069125933400731</VALUE>
+        <VALUE axis-ref="2">0.02597998101874761</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="82">
+        <VALUE axis-ref="1">0.03058565576430973</VALUE>
+        <VALUE axis-ref="2">0.026547460546484429</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="83">
+        <VALUE axis-ref="1">0.030091822061472429</VALUE>
+        <VALUE axis-ref="2">0.027105944828038759</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="84">
+        <VALUE axis-ref="1">0.029587792153727019</VALUE>
+        <VALUE axis-ref="2">0.027655244628602551</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="85">
+        <VALUE axis-ref="1">0.02907373682475713</VALUE>
+        <VALUE axis-ref="2">0.028195173825404259</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="86">
+        <VALUE axis-ref="1">0.028549830255224149</VALUE>
+        <VALUE axis-ref="2">0.028725549470774062</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="87">
+        <VALUE axis-ref="1">0.02801624996374839</VALUE>
+        <VALUE axis-ref="2">0.02924619185413322</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="88">
+        <VALUE axis-ref="1">0.027473176746759389</VALUE>
+        <VALUE axis-ref="2">0.029756924562886519</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="89">
+        <VALUE axis-ref="1">0.026920794617235469</VALUE>
+        <VALUE axis-ref="2">0.0302575745421973</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="90">
+        <VALUE axis-ref="1">0.026359290742353429</VALUE>
+        <VALUE axis-ref="2">0.030747972153624719</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="91">
+        <VALUE axis-ref="1">0.02578885538006951</VALUE>
+        <VALUE axis-ref="2">0.031227951232603461</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="92">
+        <VALUE axis-ref="1">0.025209681814653068</VALUE>
+        <VALUE axis-ref="2">0.031697349144746333</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="93">
+        <VALUE axis-ref="1">0.024621966291194831</VALUE>
+        <VALUE axis-ref="2">0.032156006840950657</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="94">
+        <VALUE axis-ref="1">0.024025907949111889</VALUE>
+        <VALUE axis-ref="2">0.032603768911290028</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="95">
+        <VALUE axis-ref="1">0.02342170875467205</VALUE>
+        <VALUE axis-ref="2">0.033040483637672723</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="96">
+        <VALUE axis-ref="1">0.022809573432560279</VALUE>
+        <VALUE axis-ref="2">0.033466003045249382</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="97">
+        <VALUE axis-ref="1">0.022189709396510559</VALUE>
+        <VALUE axis-ref="2">0.03388018295255224</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="98">
+        <VALUE axis-ref="1">0.021562326679026519</VALUE>
+        <VALUE axis-ref="2">0.034282883020349111</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="99">
+        <VALUE axis-ref="1">0.020927637860214818</VALUE>
+        <VALUE axis-ref="2">0.034673966799195377</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="100">
+        <VALUE axis-ref="1">0.02028585799575525</VALUE>
+        <VALUE axis-ref="2">0.035053301775668053</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="101">
+        <VALUE axis-ref="1">0.01963720454403204</VALUE>
+        <VALUE axis-ref="2">0.035420759417266127</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="102">
+        <VALUE axis-ref="1">0.01898189729245103</VALUE>
+        <VALUE axis-ref="2">0.03577621521596213</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="103">
+        <VALUE axis-ref="1">0.018320158282967718</VALUE>
+        <VALUE axis-ref="2">0.036119548730389882</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="104">
+        <VALUE axis-ref="1">0.017652211736851348</VALUE>
+        <VALUE axis-ref="2">0.03645064362665449</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="105">
+        <VALUE axis-ref="1">0.016978283978710571</VALUE>
+        <VALUE axis-ref="2">0.036769387717750492</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="106">
+        <VALUE axis-ref="1">0.01629860335980644</VALUE>
+        <VALUE axis-ref="2">0.037075673001574848</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="107">
+        <VALUE axis-ref="1">0.015613400180678709</VALUE>
+        <VALUE axis-ref="2">0.037369395697522088</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="108">
+        <VALUE axis-ref="1">0.01492290661311158</VALUE>
+        <VALUE axis-ref="2">0.037650456281648842</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="109">
+        <VALUE axis-ref="1">0.014227356621465469</VALUE>
+        <VALUE axis-ref="2">0.037918759520396271</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="110">
+        <VALUE axis-ref="1">0.01352698588340138</VALUE>
+        <VALUE axis-ref="2">0.0381742145028586</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="111">
+        <VALUE axis-ref="1">0.012822031710024721</VALUE>
+        <VALUE axis-ref="2">0.038416734671587079</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="112">
+        <VALUE axis-ref="1">0.01211273296547564</VALUE>
+        <VALUE axis-ref="2">0.038646237851918779</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="113">
+        <VALUE axis-ref="1">0.01139932998599319</VALUE>
+        <VALUE axis-ref="2">0.038862646279820383</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="114">
+        <VALUE axis-ref="1">0.01068206449848068</VALUE>
+        <VALUE axis-ref="2">0.039065886628237421</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="115">
+        <VALUE axis-ref="1">0.00996117953859968</VALUE>
+        <VALUE axis-ref="2">0.039255890031940223</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="116">
+        <VALUE axis-ref="1">0.00923691936842087</VALUE>
+        <VALUE axis-ref="2">0.039432592110857888</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="117">
+        <VALUE axis-ref="1">0.00850952939365902</VALUE>
+        <VALUE axis-ref="2">0.039595932991892652</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="118">
+        <VALUE axis-ref="1">0.00777925608052064</VALUE>
+        <VALUE axis-ref="2">0.03974585732920706</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="119">
+        <VALUE axis-ref="1">0.00704634687219228</VALUE>
+        <VALUE axis-ref="2">0.039882314322977119</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="120">
+        <VALUE axis-ref="1">0.00631105010499775</VALUE>
+        <VALUE axis-ref="2">0.040005257736605182</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="121">
+        <VALUE axis-ref="1">0.00557361492425268</VALUE>
+        <VALUE axis-ref="2">0.040114645912386511</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="122">
+        <VALUE axis-ref="1">0.00483429119984514</VALUE>
+        <VALUE axis-ref="2">0.040210441785624537</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="123">
+        <VALUE axis-ref="1">0.00409332944157053</VALUE>
+        <VALUE axis-ref="2">0.040292612897189627</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="124">
+        <VALUE axis-ref="1">0.00335098071424971</VALUE>
+        <VALUE axis-ref="2">0.04036113140451747</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="125">
+        <VALUE axis-ref="1">0.00260749655265923</VALUE>
+        <VALUE axis-ref="2">0.040415974091043139</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="126">
+        <VALUE axis-ref="1">0.00186312887630204</VALUE>
+        <VALUE axis-ref="2">0.040457122374067712</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="127">
+        <VALUE axis-ref="1">0.00111812990404811</VALUE>
+        <VALUE axis-ref="2">0.040484562311054739</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="128">
+        <VALUE axis-ref="1">0.00037275206867343</VALUE>
+        <VALUE axis-ref="2">0.040498284604354541</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="129">
+        <VALUE axis-ref="1">-0.00037275206867343</VALUE>
+        <VALUE axis-ref="2">0.040498284604354541</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="130">
+        <VALUE axis-ref="1">-0.00111812990404811</VALUE>
+        <VALUE axis-ref="2">0.040484562311054739</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="131">
+        <VALUE axis-ref="1">-0.00186312887630204</VALUE>
+        <VALUE axis-ref="2">0.040457122374067712</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="132">
+        <VALUE axis-ref="1">-0.00260749655265923</VALUE>
+        <VALUE axis-ref="2">0.040415974091043139</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="133">
+        <VALUE axis-ref="1">-0.00335098071424971</VALUE>
+        <VALUE axis-ref="2">0.04036113140451747</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="134">
+        <VALUE axis-ref="1">-0.00409332944157053</VALUE>
+        <VALUE axis-ref="2">0.040292612897189627</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="135">
+        <VALUE axis-ref="1">-0.00483429119984514</VALUE>
+        <VALUE axis-ref="2">0.040210441785624537</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="136">
+        <VALUE axis-ref="1">-0.00557361492425268</VALUE>
+        <VALUE axis-ref="2">0.040114645912386511</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="137">
+        <VALUE axis-ref="1">-0.00631105010499775</VALUE>
+        <VALUE axis-ref="2">0.040005257736605182</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="138">
+        <VALUE axis-ref="1">-0.00704634687219228</VALUE>
+        <VALUE axis-ref="2">0.039882314322977119</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="139">
+        <VALUE axis-ref="1">-0.00777925608052064</VALUE>
+        <VALUE axis-ref="2">0.03974585732920706</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="140">
+        <VALUE axis-ref="1">-0.00850952939365902</VALUE>
+        <VALUE axis-ref="2">0.039595932991892652</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="141">
+        <VALUE axis-ref="1">-0.00923691936842087</VALUE>
+        <VALUE axis-ref="2">0.039432592110857888</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="142">
+        <VALUE axis-ref="1">-0.00996117953859968</VALUE>
+        <VALUE axis-ref="2">0.039255890031940223</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="143">
+        <VALUE axis-ref="1">-0.01068206449848068</VALUE>
+        <VALUE axis-ref="2">0.039065886628237421</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="144">
+        <VALUE axis-ref="1">-0.01139932998599319</VALUE>
+        <VALUE axis-ref="2">0.038862646279820383</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="145">
+        <VALUE axis-ref="1">-0.01211273296547564</VALUE>
+        <VALUE axis-ref="2">0.038646237851918779</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="146">
+        <VALUE axis-ref="1">-0.012822031710024721</VALUE>
+        <VALUE axis-ref="2">0.038416734671587079</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="147">
+        <VALUE axis-ref="1">-0.01352698588340138</VALUE>
+        <VALUE axis-ref="2">0.0381742145028586</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="148">
+        <VALUE axis-ref="1">-0.014227356621465469</VALUE>
+        <VALUE axis-ref="2">0.037918759520396271</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="149">
+        <VALUE axis-ref="1">-0.01492290661311158</VALUE>
+        <VALUE axis-ref="2">0.037650456281648842</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="150">
+        <VALUE axis-ref="1">-0.015613400180678709</VALUE>
+        <VALUE axis-ref="2">0.037369395697522088</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="151">
+        <VALUE axis-ref="1">-0.01629860335980644</VALUE>
+        <VALUE axis-ref="2">0.037075673001574848</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="152">
+        <VALUE axis-ref="1">-0.016978283978710571</VALUE>
+        <VALUE axis-ref="2">0.036769387717750492</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="153">
+        <VALUE axis-ref="1">-0.017652211736851348</VALUE>
+        <VALUE axis-ref="2">0.03645064362665449</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="154">
+        <VALUE axis-ref="1">-0.018320158282967718</VALUE>
+        <VALUE axis-ref="2">0.036119548730389882</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="155">
+        <VALUE axis-ref="1">-0.01898189729245103</VALUE>
+        <VALUE axis-ref="2">0.03577621521596213</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="156">
+        <VALUE axis-ref="1">-0.01963720454403204</VALUE>
+        <VALUE axis-ref="2">0.035420759417266127</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="157">
+        <VALUE axis-ref="1">-0.02028585799575525</VALUE>
+        <VALUE axis-ref="2">0.035053301775668053</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="158">
+        <VALUE axis-ref="1">-0.020927637860214818</VALUE>
+        <VALUE axis-ref="2">0.034673966799195377</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="159">
+        <VALUE axis-ref="1">-0.021562326679026519</VALUE>
+        <VALUE axis-ref="2">0.034282883020349111</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="160">
+        <VALUE axis-ref="1">-0.022189709396510559</VALUE>
+        <VALUE axis-ref="2">0.03388018295255224</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="161">
+        <VALUE axis-ref="1">-0.022809573432560279</VALUE>
+        <VALUE axis-ref="2">0.033466003045249382</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="162">
+        <VALUE axis-ref="1">-0.02342170875467205</VALUE>
+        <VALUE axis-ref="2">0.033040483637672723</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="163">
+        <VALUE axis-ref="1">-0.024025907949111889</VALUE>
+        <VALUE axis-ref="2">0.032603768911290028</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="164">
+        <VALUE axis-ref="1">-0.024621966291194831</VALUE>
+        <VALUE axis-ref="2">0.032156006840950657</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="165">
+        <VALUE axis-ref="1">-0.025209681814653068</VALUE>
+        <VALUE axis-ref="2">0.031697349144746333</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="166">
+        <VALUE axis-ref="1">-0.02578885538006951</VALUE>
+        <VALUE axis-ref="2">0.031227951232603461</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="167">
+        <VALUE axis-ref="1">-0.026359290742353429</VALUE>
+        <VALUE axis-ref="2">0.030747972153624719</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="168">
+        <VALUE axis-ref="1">-0.026920794617235469</VALUE>
+        <VALUE axis-ref="2">0.0302575745421973</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="169">
+        <VALUE axis-ref="1">-0.027473176746759389</VALUE>
+        <VALUE axis-ref="2">0.029756924562886519</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="170">
+        <VALUE axis-ref="1">-0.02801624996374839</VALUE>
+        <VALUE axis-ref="2">0.02924619185413322</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="171">
+        <VALUE axis-ref="1">-0.028549830255224149</VALUE>
+        <VALUE axis-ref="2">0.028725549470774062</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="172">
+        <VALUE axis-ref="1">-0.02907373682475713</VALUE>
+        <VALUE axis-ref="2">0.028195173825404259</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="173">
+        <VALUE axis-ref="1">-0.029587792153727019</VALUE>
+        <VALUE axis-ref="2">0.027655244628602551</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="174">
+        <VALUE axis-ref="1">-0.030091822061472429</VALUE>
+        <VALUE axis-ref="2">0.027105944828038759</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="175">
+        <VALUE axis-ref="1">-0.03058565576430973</VALUE>
+        <VALUE axis-ref="2">0.026547460546484429</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="176">
+        <VALUE axis-ref="1">-0.031069125933400731</VALUE>
+        <VALUE axis-ref="2">0.02597998101874761</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="177">
+        <VALUE axis-ref="1">-0.031542068751449777</VALUE>
+        <VALUE axis-ref="2">0.02540369852755334</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="178">
+        <VALUE axis-ref="1">-0.032004323968211047</VALUE>
+        <VALUE axis-ref="2">0.024818808338391091</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="179">
+        <VALUE axis-ref="1">-0.032455734954787173</VALUE>
+        <VALUE axis-ref="2">0.024225508633351871</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="180">
+        <VALUE axis-ref="1">-0.032896148756700758</VALUE>
+        <VALUE axis-ref="2">0.023624000443976782</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="181">
+        <VALUE axis-ref="1">-0.033325416145720967</VALUE>
+        <VALUE axis-ref="2">0.023014487583140331</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="182">
+        <VALUE axis-ref="1">-0.033743391670427482</VALUE>
+        <VALUE axis-ref="2">0.022397176575991121</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="183">
+        <VALUE axis-ref="1">-0.034149933705494739</VALUE>
+        <VALUE axis-ref="2">0.02177227658997365</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="184">
+        <VALUE axis-ref="1">-0.034544904499679729</VALUE>
+        <VALUE axis-ref="2">0.021139999363954758</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="185">
+        <VALUE axis-ref="1">-0.03492817022249714</VALUE>
+        <VALUE axis-ref="2">0.020500559136478792</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="186">
+        <VALUE axis-ref="1">-0.035299601009566021</VALUE>
+        <VALUE axis-ref="2">0.0198541725731758</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="187">
+        <VALUE axis-ref="1">-0.03565907100661251</VALUE>
+        <VALUE axis-ref="2">0.019201058693347279</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="188">
+        <VALUE axis-ref="1">-0.036006458412113918</VALUE>
+        <VALUE axis-ref="2">0.018541438795754529</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="189">
+        <VALUE axis-ref="1">-0.036341645518569443</VALUE>
+        <VALUE axis-ref="2">0.017875536383634531</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="190">
+        <VALUE axis-ref="1">-0.036664518752383808</VALUE>
+        <VALUE axis-ref="2">0.01720357708896891</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="191">
+        <VALUE axis-ref="1">-0.036974968712350127</VALUE>
+        <VALUE axis-ref="2">0.01652578859603164</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="192">
+        <VALUE axis-ref="1">-0.037272890206718978</VALUE>
+        <VALUE axis-ref="2">0.015842400564241289</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="193">
+        <VALUE axis-ref="1">-0.037558182288841252</VALUE>
+        <VALUE axis-ref="2">0.015153644550344051</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="194">
+        <VALUE axis-ref="1">-0.037830748291372493</VALUE>
+        <VALUE axis-ref="2">0.01445975392995392</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="195">
+        <VALUE axis-ref="1">-0.038090495859027372</VALUE>
+        <VALUE axis-ref="2">0.013760963818476491</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="196">
+        <VALUE axis-ref="1">-0.038337336979872981</VALUE>
+        <VALUE axis-ref="2">0.01305751099144333</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="197">
+        <VALUE axis-ref="1">-0.038571188015150512</VALUE>
+        <VALUE axis-ref="2">0.0123496338042838</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="198">
+        <VALUE axis-ref="1">-0.038791969727615082</VALUE>
+        <VALUE axis-ref="2">0.01163757211156155</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="199">
+        <VALUE axis-ref="1">-0.0389996073083842</VALUE>
+        <VALUE axis-ref="2">0.010921567185703061</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="200">
+        <VALUE axis-ref="1">-0.039194030402285758</VALUE>
+        <VALUE axis-ref="2">0.01020186163524579</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="201">
+        <VALUE axis-ref="1">-0.039375173131696917</VALUE>
+        <VALUE axis-ref="2">0.00947869932263351</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="202">
+        <VALUE axis-ref="1">-0.039542974118865863</VALUE>
+        <VALUE axis-ref="2">0.00875232528158689</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="203">
+        <VALUE axis-ref="1">-0.039697376506708751</VALUE>
+        <VALUE axis-ref="2">0.00802298563407712</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="204">
+        <VALUE axis-ref="1">-0.039838327978075079</VALUE>
+        <VALUE axis-ref="2">0.00729092750693083</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="205">
+        <VALUE axis-ref="1">-0.039965780773474513</VALUE>
+        <VALUE axis-ref="2">0.00655639894809453</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="206">
+        <VALUE axis-ref="1">-0.040079691707259633</VALUE>
+        <VALUE axis-ref="2">0.00581964884258693</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="207">
+        <VALUE axis-ref="1">-0.040180022182258773</VALUE>
+        <VALUE axis-ref="2">0.00508092682816763</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="208">
+        <VALUE axis-ref="1">-0.040266738202854112</VALUE>
+        <VALUE axis-ref="2">0.00434048321075076</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="209">
+        <VALUE axis-ref="1">-0.0403398103865007</VALUE>
+        <VALUE axis-ref="2">0.00359856887959225</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="210">
+        <VALUE axis-ref="1">-0.040399213973682291</VALUE>
+        <VALUE axis-ref="2">0.00285543522227937</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="211">
+        <VALUE axis-ref="1">-0.040444928836300742</VALUE>
+        <VALUE axis-ref="2">0.00211133403955148</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="212">
+        <VALUE axis-ref="1">-0.0404769394844962</VALUE>
+        <VALUE axis-ref="2">0.0013665174599808</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="213">
+        <VALUE axis-ref="1">-0.040495235071895612</VALUE>
+        <VALUE axis-ref="2">0.00062123785454202</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="214">
+        <VALUE axis-ref="1">-0.040499809399287837</VALUE>
+        <VALUE axis-ref="2">-0.00012425224890012</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="215">
+        <VALUE axis-ref="1">-0.040490660916724222</VALUE>
+        <VALUE axis-ref="2">-0.00086970025115651</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="216">
+        <VALUE axis-ref="1">-0.040467792724043737</VALUE>
+        <VALUE axis-ref="2">-0.00161485356730346</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="217">
+        <VALUE axis-ref="1">-0.040431212569822662</VALUE>
+        <VALUE axis-ref="2">-0.00235945971226764</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="218">
+        <VALUE axis-ref="1">-0.040380932848749058</VALUE>
+        <VALUE axis-ref="2">-0.00310326638637727</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="219">
+        <VALUE axis-ref="1">-0.040316970597423042</VALUE>
+        <VALUE axis-ref="2">-0.00384602156085038</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="220">
+        <VALUE axis-ref="1">-0.040239347488584112</VALUE>
+        <VALUE axis-ref="2">-0.00458747356319135</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="221">
+        <VALUE axis-ref="1">-0.040148089823767677</VALUE>
+        <VALUE axis-ref="2">-0.00532737116246676</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="222">
+        <VALUE axis-ref="1">-0.040043228524393112</VALUE>
+        <VALUE axis-ref="2">-0.00606546365443152</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="223">
+        <VALUE axis-ref="1">-0.039924799121286492</VALUE>
+        <VALUE axis-ref="2">-0.00680150094647661</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="224">
+        <VALUE axis-ref="1">-0.039792841742641367</VALUE>
+        <VALUE axis-ref="2">-0.00753523364236959</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="225">
+        <VALUE axis-ref="1">-0.039647401100422017</VALUE>
+        <VALUE axis-ref="2">-0.00826641312675908</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="226">
+        <VALUE axis-ref="1">-0.039488526475213261</VALUE>
+        <VALUE axis-ref="2">-0.00899479164941474</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="227">
+        <VALUE axis-ref="1">-0.039316271699522488</VALUE>
+        <VALUE axis-ref="2">-0.00972012240917403</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="228">
+        <VALUE axis-ref="1">-0.039130695139539207</VALUE>
+        <VALUE axis-ref="2">-0.010442159637567431</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="229">
+        <VALUE axis-ref="1">-0.038931859675358491</VALUE>
+        <VALUE axis-ref="2">-0.0111606586820938</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="230">
+        <VALUE axis-ref="1">-0.038719832679674861</VALUE>
+        <VALUE axis-ref="2">-0.01187537608911747</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="231">
+        <VALUE axis-ref="1">-0.038494685994954009</VALUE>
+        <VALUE axis-ref="2">-0.012586069686359259</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="232">
+        <VALUE axis-ref="1">-0.038256495909089951</VALUE>
+        <VALUE axis-ref="2">-0.01329249866495325</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="233">
+        <VALUE axis-ref="1">-0.038005343129555877</VALUE>
+        <VALUE axis-ref="2">-0.01399442366104155</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="234">
+        <VALUE axis-ref="1">-0.037741312756057563</VALUE>
+        <VALUE axis-ref="2">-0.014691606836879581</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="235">
+        <VALUE axis-ref="1">-0.037464494251698441</VALUE>
+        <VALUE axis-ref="2">-0.01538381196142407</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="236">
+        <VALUE axis-ref="1">-0.037174981412666307</VALUE>
+        <VALUE axis-ref="2">-0.016070804490376771</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="237">
+        <VALUE axis-ref="1">-0.036872872336451722</VALUE>
+        <VALUE axis-ref="2">-0.0167523516456566</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="238">
+        <VALUE axis-ref="1">-0.036558269388608983</VALUE>
+        <VALUE axis-ref="2">-0.017428222494273352</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="239">
+        <VALUE axis-ref="1">-0.036231279168071</VALUE>
+        <VALUE axis-ref="2">-0.018098188026576149</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="240">
+        <VALUE axis-ref="1">-0.035892012471029668</VALUE>
+        <VALUE axis-ref="2">-0.018762021233850339</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="241">
+        <VALUE axis-ref="1">-0.035540584253394077</VALUE>
+        <VALUE axis-ref="2">-0.0194194971852362</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="242">
+        <VALUE axis-ref="1">-0.03517711359183931</VALUE>
+        <VALUE axis-ref="2">-0.02007039310394378</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="243">
+        <VALUE axis-ref="1">-0.034801723643458841</VALUE>
+        <VALUE axis-ref="2">-0.0207144884427378</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="244">
+        <VALUE axis-ref="1">-0.034414541604034531</VALUE>
+        <VALUE axis-ref="2">-0.021351564958667</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="245">
+        <VALUE axis-ref="1">-0.034015698664937977</VALUE>
+        <VALUE axis-ref="2">-0.021981406787012891</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="246">
+        <VALUE axis-ref="1">-0.03360532996867819</VALUE>
+        <VALUE axis-ref="2">-0.022603800514432521</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="247">
+        <VALUE axis-ref="1">-0.033183574563110281</VALUE>
+        <VALUE axis-ref="2">-0.0232185352512707</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="248">
+        <VALUE axis-ref="1">-0.03275057535432109</VALUE>
+        <VALUE axis-ref="2">-0.02382540270301713</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="249">
+        <VALUE axis-ref="1">-0.032306479058207341</VALUE>
+        <VALUE axis-ref="2">-0.0244241972408841</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="250">
+        <VALUE axis-ref="1">-0.031851436150762982</VALUE>
+        <VALUE axis-ref="2">-0.025014715971481059</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="251">
+        <VALUE axis-ref="1">-0.031385600817092393</VALUE>
+        <VALUE axis-ref="2">-0.02559675880556226</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="252">
+        <VALUE axis-ref="1">-0.030909130899166939</VALUE>
+        <VALUE axis-ref="2">-0.026170128525824309</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="253">
+        <VALUE axis-ref="1">-0.0304221878423423</VALUE>
+        <VALUE axis-ref="2">-0.02673463085373053</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="254">
+        <VALUE axis-ref="1">-0.029924936640654921</VALUE>
+        <VALUE axis-ref="2">-0.027290074515339619</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="255">
+        <VALUE axis-ref="1">-0.029417545780916019</VALUE>
+        <VALUE axis-ref="2">-0.027836271306116239</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+      <PROJECTION wavelength-ref="all" number="256">
+        <VALUE axis-ref="1">-0.02890018718562214</VALUE>
+        <VALUE axis-ref="2">-0.028373036154701561</VALUE>
+        <VALUE axis-ref="3">0</VALUE>
+      </PROJECTION>
+    </FRAME-DESC>
+    <DAQFirmwareVersion>3.3</DAQFirmwareVersion>
+    <DAQTriggerDelay>0</DAQTriggerDelay>
+    <DAQTriggerDelayStepSize>200</DAQTriggerDelayStepSize>
+  </HARDWARE-DESC>
+  <MEASUREMENT-DESC WATER-ABSORPTION-CALCULATION-METHOD="Scan" LEnergy-normalization="PerPulse" xmlns="Header_Schema">
+    <ULTRA-SOUND-PRESENT>false</ULTRA-SOUND-PRESENT>
+    <ULTRA-SOUND-RESOLUTION>0</ULTRA-SOUND-RESOLUTION>
+    <INITIAL-ENERGY unit="J" unit-modifier="none">0</INITIAL-ENERGY>
+    <VERTICAL-DEPTH unit="m" unit-modifier="m">2</VERTICAL-DEPTH>
+    <REPETITION-RATE unit="Hz" unit-modifier="none">10</REPETITION-RATE>
+    <TEMPERATURE unit="C" unit-modifier="none">0</TEMPERATURE>
+    <VERTICAL-STEPS>1</VERTICAL-STEPS>
+    <AVERAGES-PER-PROJECTION>6</AVERAGES-PER-PROJECTION>
+    <NUMBER-OF-FRAMES>6</NUMBER-OF-FRAMES>
+    <RECORDED-LENGTH>2030</RECORDED-LENGTH>
+    <PATH-LENGTH-IN-WATER unit="m" unit-modifier="c">0.03</PATH-LENGTH-IN-WATER>
+    <WATER-ABSORPTION-COEFFICIENTS>
+      <WATER-ABSORPTION-COEFFICIENT number="1" coefficient="0.647" />
+    </WATER-ABSORPTION-COEFFICIENTS>
+    <WATER-ABSORPTION-CALCULATION-FILE>WaterAbsorptionVsWavelength_D2O.bin</WATER-ABSORPTION-CALCULATION-FILE>
+    <AVERAGE-ENERGY-TABLE>
+      <AVRAGE-ENERGY unit="J" unit-modifier="m" number="1">74.079649122807012</AVRAGE-ENERGY>
+    </AVERAGE-ENERGY-TABLE>
+    <WAVELENGTHS>
+      <WAVELENGTH unit="m" unit-modifier="n" number="1">700</WAVELENGTH>
+    </WAVELENGTHS>
+    <COORDINATE-DEFINITION>
+      <AXIS number="1" unit="m" unit-modifier="none">x</AXIS>
+      <AXIS number="2" unit="m" unit-modifier="none">y</AXIS>
+      <AXIS number="3" unit="m" unit-modifier="m">z</AXIS>
+    </COORDINATE-DEFINITION>
+    <SEQUENCE>by-wavelength</SEQUENCE>
+    <PROJECTIONS />
+  </MEASUREMENT-DESC>
+  <ScanNode>
+    <Name>201001_05_GC_SS</Name>
+    <Comment />
+    <zAxisUnit>mm</zAxisUnit>
+    <NumberOfSlices>1510</NumberOfSlices>
+    <Wavelengths>
+      <Wavelength unit="m" unit-modifier="n" number="1">700</Wavelength>
+    </Wavelengths>
+    <TrimSpeedOfSound>43</TrimSpeedOfSound>
+    <CouplantCorrection>false</CouplantCorrection>
+    <TrimCouplantCenterOfRotation>0</TrimCouplantCenterOfRotation>
+    <ImagingObjectStart>201</ImagingObjectStart>
+    <ImagingObjectLength>130</ImagingObjectLength>
+    <DeviceSN>1-14-02</DeviceSN>
+    <TransducerSN>9967H103H104</TransducerSN>
+    <LaserSN>P1296</LaserSN>
+    <DAQ_MACaddress>00:11:1C:01:7E:19 </DAQ_MACaddress>
+    <SW_Version>3.8.1.08</SW_Version>
+    <ScanFrames>
+      <DataModelScanFrame>
+        <Frame timestamp="637371523560823431" ultraSound-frame-offset="-1">
+          <Z-POS axis-ref="3">59.650000000000006</Z-POS>
+          <X-POS axis-ref="1">4.97</X-POS>
+          <Y-POS axis-ref="2">6.02</Y-POS>
+          <TEMPERATURE unit="C" unit-modifier="none">33.269999999999996</TEMPERATURE>
+          <WAVELENGTH unit="m" unit-modifier="n">700</WAVELENGTH>
+          <POWER unit="J" unit-modifier="m">1193.8654300273377</POWER>
+          <DIODE-READOUT unit="V" unit-modifier="none">2684.8333333333335</DIODE-READOUT>
+          <LASER-ENERGY unit="J" unit-modifier="m">74.641996406876572</LASER-ENERGY>
+          <RUN>1</RUN>
+          <REPETITION>1</REPETITION>
+        </Frame>
+        <IDOffset>0</IDOffset>
+      </DataModelScanFrame>
+    </ScanFrames>
+    <IsVentral>false</IsVentral>
+    <AnimalLibType>Female Mouse</AnimalLibType>
+  </ScanNode>
+  <ReconNodes />
+  <MspNodes />
+  <RoiNodes />
+  <StudyPreset>
+    <PresetIdentifier>739392b2-e3a1-4cdc-914d-8a4394b19b4b</PresetIdentifier>
+    <PresetVersion>0</PresetVersion>
+    <Name>Gas Challenge SS</Name>
+    <IsDefaultPreset>true</IsDefaultPreset>
+    <MspPresets>
+      <DataModelMspPreset>
+        <SubstractOneFromMany>true</SubstractOneFromMany>
+        <Method>regression</Method>
+        <DiscardNegativeValues>true</DiscardNegativeValues>
+        <IcaComponents>4</IcaComponents>
+        <UserSelectedSpectra>
+          <string>Hb</string>
+          <string>HbO2</string>
+        </UserSelectedSpectra>
+        <BgWavelength unit="m" unit-modifier="n" number="0">800</BgWavelength>
+        <BgWavelengthFrame>1</BgWavelengthFrame>
+        <DifferenceWavelength unit="m" unit-modifier="n" number="0">730</DifferenceWavelength>
+      </DataModelMspPreset>
+    </MspPresets>
+    <ReconPresets>
+      <DataModelReconPreset>
+        <SystemReconPresetsVersion>1</SystemReconPresetsVersion>
+        <Method>model_lin</Method>
+        <SystemReconPresets>
+          <ReconstructionPreset>
+            <Name>20mm(75um)</Name>
+            <Resolution>276</Resolution>
+            <Projections>512</Projections>
+            <RoiLow>0.0305</RoiLow>
+            <RoiHigh>0.0505</RoiHigh>
+            <UltraSoundPixelSize>0.00018</UltraSoundPixelSize>
+            <ProdigyDataSet>Half</ProdigyDataSet>
+            <ProdigyDaq>SA</ProdigyDaq>
+            <ProdigySubImageIncrement>64</ProdigySubImageIncrement>
+            <ProdigyCUDATime>150</ProdigyCUDATime>
+            <ProdigyInterpolation>2</ProdigyInterpolation>
+            <TimeRes>3</TimeRes>
+            <FilterLow>50000</FilterLow>
+            <FilterHigh>6500000</FilterHigh>
+            <FilterType>FIR</FilterType>
+            <Nz>1</Nz>
+            <RoiZlow>0.01</RoiZlow>
+            <RoiZhigh>0</RoiZhigh>
+            <AThreshold>0.001</AThreshold>
+            <Threshold>0.01</Threshold>
+            <MaxSupportedFrameRate>0</MaxSupportedFrameRate>
+          </ReconstructionPreset>
+          <ReconstructionPreset>
+            <Name>25mm(75um)</Name>
+            <Resolution>332</Resolution>
+            <Projections>512</Projections>
+            <RoiLow>0.028</RoiLow>
+            <RoiHigh>0.053</RoiHigh>
+            <UltraSoundPixelSize>0.00018</UltraSoundPixelSize>
+            <ProdigyDataSet>Half</ProdigyDataSet>
+            <ProdigyDaq>SA</ProdigyDaq>
+            <ProdigySubImageIncrement>64</ProdigySubImageIncrement>
+            <ProdigyCUDATime>150</ProdigyCUDATime>
+            <ProdigyInterpolation>2</ProdigyInterpolation>
+            <TimeRes>3</TimeRes>
+            <FilterLow>50000</FilterLow>
+            <FilterHigh>6500000</FilterHigh>
+            <FilterType>FIR</FilterType>
+            <Nz>1</Nz>
+            <RoiZlow>0.01</RoiZlow>
+            <RoiZhigh>0</RoiZhigh>
+            <AThreshold>0.001</AThreshold>
+            <Threshold>0.01</Threshold>
+            <MaxSupportedFrameRate>0</MaxSupportedFrameRate>
+          </ReconstructionPreset>
+          <ReconstructionPreset>
+            <Name>30mm(100um)</Name>
+            <Resolution>300</Resolution>
+            <Projections>512</Projections>
+            <RoiLow>0.0255</RoiLow>
+            <RoiHigh>0.0555</RoiHigh>
+            <UltraSoundPixelSize>0.00018</UltraSoundPixelSize>
+            <ProdigyDataSet>Half</ProdigyDataSet>
+            <ProdigyDaq>SA</ProdigyDaq>
+            <ProdigySubImageIncrement>64</ProdigySubImageIncrement>
+            <ProdigyCUDATime>150</ProdigyCUDATime>
+            <ProdigyInterpolation>2</ProdigyInterpolation>
+            <TimeRes>3</TimeRes>
+            <FilterLow>50000</FilterLow>
+            <FilterHigh>6500000</FilterHigh>
+            <FilterType>FIR</FilterType>
+            <Nz>1</Nz>
+            <RoiZlow>0.01</RoiZlow>
+            <RoiZhigh>0</RoiZhigh>
+            <AThreshold>0.001</AThreshold>
+            <Threshold>0.01</Threshold>
+            <MaxSupportedFrameRate>0</MaxSupportedFrameRate>
+          </ReconstructionPreset>
+          <ReconstructionPreset>
+            <Name>50mm(200um)</Name>
+            <Resolution>252</Resolution>
+            <Projections>512</Projections>
+            <RoiLow>0.0155</RoiLow>
+            <RoiHigh>0.0655</RoiHigh>
+            <UltraSoundPixelSize>0.00018</UltraSoundPixelSize>
+            <ProdigyDataSet>Half</ProdigyDataSet>
+            <ProdigyDaq>SA</ProdigyDaq>
+            <ProdigySubImageIncrement>64</ProdigySubImageIncrement>
+            <ProdigyCUDATime>150</ProdigyCUDATime>
+            <ProdigyInterpolation>2</ProdigyInterpolation>
+            <TimeRes>3</TimeRes>
+            <FilterLow>50000</FilterLow>
+            <FilterHigh>6500000</FilterHigh>
+            <FilterType>FIR</FilterType>
+            <Nz>1</Nz>
+            <RoiZlow>0.01</RoiZlow>
+            <RoiZhigh>0</RoiZhigh>
+            <AThreshold>0.001</AThreshold>
+            <Threshold>0.01</Threshold>
+            <MaxSupportedFrameRate>0</MaxSupportedFrameRate>
+          </ReconstructionPreset>
+        </SystemReconPresets>
+        <SelectedPresetIndex>1</SelectedPresetIndex>
+        <DisableLowPass>false</DisableLowPass>
+        <FilterLow>50000</FilterLow>
+        <FilterHigh>6500000</FilterHigh>
+        <DepthCorrection>false</DepthCorrection>
+        <BackgroundAbsorption>0.1</BackgroundAbsorption>
+        <BackgroundOxygenation>70</BackgroundOxygenation>
+        <ReducedScatteringCoefficient>10</ReducedScatteringCoefficient>
+        <ImpulseResponse>true</ImpulseResponse>
+        <SensitivityMap>false</SensitivityMap>
+        <UserSoundTrim>0</UserSoundTrim>
+        <ProdigyFrequency>6</ProdigyFrequency>
+        <ProdigyPower>PL20</ProdigyPower>
+        <ProdigySV>1460</ProdigySV>
+      </DataModelReconPreset>
+    </ReconPresets>
+    <ExprerimentPreset>
+      <PreviewMode>FullSequence</PreviewMode>
+      <DisplayAllWavelengths>true</DisplayAllWavelengths>
+      <ContinuousAcquisitionMode>false</ContinuousAcquisitionMode>
+      <FramesPerWavelength>6</FramesPerWavelength>
+      <AverageFramesPerWavelength>true</AverageFramesPerWavelength>
+      <RepetitionsPerSlice>1</RepetitionsPerSlice>
+      <PreferredBackroundWL>850</PreferredBackroundWL>
+      <DefaultLaserTriggerRate>10</DefaultLaserTriggerRate>
+      <WavelengthSet>
+        <Items>
+          <double>700</double>
+          <double>730</double>
+          <double>750</double>
+          <double>760</double>
+          <double>770</double>
+          <double>800</double>
+          <double>820</double>
+          <double>840</double>
+          <double>850</double>
+          <double>880</double>
+        </Items>
+      </WavelengthSet>
+      <TimeRunSet>
+        <UseEqualIntervals>true</UseEqualIntervals>
+        <PeriodicInterval>2015-01-01T00:01:00</PeriodicInterval>
+        <RepeatAcquisition>true</RepeatAcquisition>
+        <RepeatLimit>1</RepeatLimit>
+        <RepeatWithoutDelay>true</RepeatWithoutDelay>
+        <ScheduleItemsIntervals />
+      </TimeRunSet>
+      <USVisible>false</USVisible>
+      <SelectiveFrameAveraging>
+        <REFWAVELENGTH>0</REFWAVELENGTH>
+        <CORRTHRES>0</CORRTHRES>
+        <MAXAVERAGES>1</MAXAVERAGES>
+        <FRAMECORRTHRES>0</FRAMECORRTHRES>
+        <CONFLIMIT>0</CONFLIMIT>
+      </SelectiveFrameAveraging>
+      <DesiredWaterTemperature>34</DesiredWaterTemperature>
+      <IsMultipleMspLivePreviewEnabled>false</IsMultipleMspLivePreviewEnabled>
+    </ExprerimentPreset>
+    <ImagingSettingsPreset>
+      <AutoScaling>true</AutoScaling>
+      <ScalingMode>FullViewAuto</ScalingMode>
+      <Rotation>
+        <M11>1</M11>
+        <M12>0</M12>
+        <M21>0</M21>
+        <M22>1</M22>
+        <OffsetX>0</OffsetX>
+        <OffsetY>0</OffsetY>
+      </Rotation>
+      <Zoom>1</Zoom>
+      <ImageLayers />
+      <ImageLayersComposeMethod>Overlay</ImageLayersComposeMethod>
+      <IsOxyMapsEnabled>false</IsOxyMapsEnabled>
+      <VolumeZoomCenter3D>
+        <X>0</X>
+        <Y>0</Y>
+        <Z>0</Z>
+      </VolumeZoomCenter3D>
+      <CroppingPoint0>
+        <X>0</X>
+        <Y>0</Y>
+        <Z>0</Z>
+      </CroppingPoint0>
+      <CroppingPoint1>
+        <X>1</X>
+        <Y>1</Y>
+        <Z>1</Z>
+      </CroppingPoint1>
+      <MeasurementRulers2D>
+        <MeasurementRulersXY />
+        <MeasurementRulersXZ />
+        <MeasurementRulersYZ />
+      </MeasurementRulers2D>
+      <DrawingRois2D>
+        <Regions />
+      </DrawingRois2D>
+      <Show3DTexture>false</Show3DTexture>
+      <Show3DVolumeRender>false</Show3DVolumeRender>
+      <Show3DViews>false</Show3DViews>
+      <SelectedROIsStyle>None</SelectedROIsStyle>
+      <ShowMIP>true</ShowMIP>
+      <ShowMIPCrop>false</ShowMIPCrop>
+      <Z_SelectedPlane>0.5</Z_SelectedPlane>
+      <Y_SelectedPlane>0.5</Y_SelectedPlane>
+      <X_SelectedPlane>0.5</X_SelectedPlane>
+      <Texture3DCameraTransform>
+        <M11>1</M11>
+        <M12>0</M12>
+        <M13>0</M13>
+        <M14>0</M14>
+        <M21>0</M21>
+        <M22>1</M22>
+        <M23>0</M23>
+        <M24>0</M24>
+        <M31>0</M31>
+        <M32>0</M32>
+        <M33>1</M33>
+        <M34>0</M34>
+        <OffsetX>0</OffsetX>
+        <OffsetY>0</OffsetY>
+        <OffsetZ>0</OffsetZ>
+        <M44>1</M44>
+      </Texture3DCameraTransform>
+      <VolumeRenderCameraTransform>
+        <M11>1</M11>
+        <M12>0</M12>
+        <M13>0</M13>
+        <M14>0</M14>
+        <M21>0</M21>
+        <M22>1</M22>
+        <M23>0</M23>
+        <M24>0</M24>
+        <M31>0</M31>
+        <M32>0</M32>
+        <M33>1</M33>
+        <M34>0</M34>
+        <OffsetX>0</OffsetX>
+        <OffsetY>0</OffsetY>
+        <OffsetZ>0</OffsetZ>
+        <M44>1</M44>
+      </VolumeRenderCameraTransform>
+      <ShowVRWireFrame>false</ShowVRWireFrame>
+      <Show3DVolumeRenderMIP>false</Show3DVolumeRenderMIP>
+      <ImageGridLineType>None</ImageGridLineType>
+      <ImageGridLineStepSize>1</ImageGridLineStepSize>
+      <ImageGridLineColor>
+        <A>255</A>
+        <R>0</R>
+        <G>0</G>
+        <B>255</B>
+        <ScA>1</ScA>
+        <ScR>0</ScR>
+        <ScG>0</ScG>
+        <ScB>1</ScB>
+      </ImageGridLineColor>
+      <UltrasoundMinimumScaling>-1</UltrasoundMinimumScaling>
+      <UltrasoundMaximumScaling>1</UltrasoundMaximumScaling>
+      <BackgroundMinimumScaling>0.05</BackgroundMinimumScaling>
+      <BackgroundMaximumScaling>0.995</BackgroundMaximumScaling>
+      <ForegroundMinimumScaling>-1</ForegroundMinimumScaling>
+      <ForegroundMaximumScaling>1</ForegroundMaximumScaling>
+      <Visible3DGridPlanesTypes>All</Visible3DGridPlanesTypes>
+    </ImagingSettingsPreset>
+    <AdditionalViews>
+      <ImagingSettingsPresets />
+      <MaximizedViewIndex>-1</MaximizedViewIndex>
+    </AdditionalViews>
+    <PresetType>User</PresetType>
+    <CompatibleDetectorGUID>Imaging chamber</CompatibleDetectorGUID>
+  </StudyPreset>
+  <OAMPreset>
+    <PresetIdentifier>739392b2-e3a1-4cdc-914d-8a4394b19b4b</PresetIdentifier>
+    <PresetVersion>0</PresetVersion>
+    <Name>Gas Challenge SS</Name>
+    <IsDefaultPreset>true</IsDefaultPreset>
+    <MspPresets>
+      <DataModelMspPreset>
+        <SubstractOneFromMany>true</SubstractOneFromMany>
+        <Method>regression</Method>
+        <DiscardNegativeValues>true</DiscardNegativeValues>
+        <IcaComponents>4</IcaComponents>
+        <UserSelectedSpectra>
+          <string>Hb</string>
+          <string>HbO2</string>
+        </UserSelectedSpectra>
+        <BgWavelength unit="m" unit-modifier="n" number="0">800</BgWavelength>
+        <BgWavelengthFrame>1</BgWavelengthFrame>
+        <DifferenceWavelength unit="m" unit-modifier="n" number="0">730</DifferenceWavelength>
+      </DataModelMspPreset>
+    </MspPresets>
+    <ReconPresets>
+      <DataModelReconPreset>
+        <SystemReconPresetsVersion>1</SystemReconPresetsVersion>
+        <Method>model_lin</Method>
+        <SystemReconPresets>
+          <ReconstructionPreset>
+            <Name>20mm(75um)</Name>
+            <Resolution>276</Resolution>
+            <Projections>512</Projections>
+            <RoiLow>0.0305</RoiLow>
+            <RoiHigh>0.0505</RoiHigh>
+            <UltraSoundPixelSize>0.00018</UltraSoundPixelSize>
+            <ProdigyDataSet>Half</ProdigyDataSet>
+            <ProdigyDaq>SA</ProdigyDaq>
+            <ProdigySubImageIncrement>64</ProdigySubImageIncrement>
+            <ProdigyCUDATime>150</ProdigyCUDATime>
+            <ProdigyInterpolation>2</ProdigyInterpolation>
+            <TimeRes>3</TimeRes>
+            <FilterLow>50000</FilterLow>
+            <FilterHigh>6500000</FilterHigh>
+            <FilterType>FIR</FilterType>
+            <Nz>1</Nz>
+            <RoiZlow>0</RoiZlow>
+            <RoiZhigh>0</RoiZhigh>
+            <AThreshold>0.001</AThreshold>
+            <Threshold>0.01</Threshold>
+            <MaxSupportedFrameRate>0</MaxSupportedFrameRate>
+          </ReconstructionPreset>
+          <ReconstructionPreset>
+            <Name>25mm(75um)</Name>
+            <Resolution>332</Resolution>
+            <Projections>512</Projections>
+            <RoiLow>0.028</RoiLow>
+            <RoiHigh>0.053</RoiHigh>
+            <UltraSoundPixelSize>0.00018</UltraSoundPixelSize>
+            <ProdigyDataSet>Half</ProdigyDataSet>
+            <ProdigyDaq>SA</ProdigyDaq>
+            <ProdigySubImageIncrement>64</ProdigySubImageIncrement>
+            <ProdigyCUDATime>150</ProdigyCUDATime>
+            <ProdigyInterpolation>2</ProdigyInterpolation>
+            <TimeRes>3</TimeRes>
+            <FilterLow>50000</FilterLow>
+            <FilterHigh>6500000</FilterHigh>
+            <FilterType>FIR</FilterType>
+            <Nz>1</Nz>
+            <RoiZlow>0</RoiZlow>
+            <RoiZhigh>0</RoiZhigh>
+            <AThreshold>0.001</AThreshold>
+            <Threshold>0.01</Threshold>
+            <MaxSupportedFrameRate>0</MaxSupportedFrameRate>
+          </ReconstructionPreset>
+          <ReconstructionPreset>
+            <Name>30mm(100um)</Name>
+            <Resolution>300</Resolution>
+            <Projections>512</Projections>
+            <RoiLow>0.0255</RoiLow>
+            <RoiHigh>0.0555</RoiHigh>
+            <UltraSoundPixelSize>0.00018</UltraSoundPixelSize>
+            <ProdigyDataSet>Half</ProdigyDataSet>
+            <ProdigyDaq>SA</ProdigyDaq>
+            <ProdigySubImageIncrement>64</ProdigySubImageIncrement>
+            <ProdigyCUDATime>150</ProdigyCUDATime>
+            <ProdigyInterpolation>2</ProdigyInterpolation>
+            <TimeRes>3</TimeRes>
+            <FilterLow>50000</FilterLow>
+            <FilterHigh>6500000</FilterHigh>
+            <FilterType>FIR</FilterType>
+            <Nz>1</Nz>
+            <RoiZlow>0</RoiZlow>
+            <RoiZhigh>0</RoiZhigh>
+            <AThreshold>0.001</AThreshold>
+            <Threshold>0.01</Threshold>
+            <MaxSupportedFrameRate>0</MaxSupportedFrameRate>
+          </ReconstructionPreset>
+          <ReconstructionPreset>
+            <Name>50mm(200um)</Name>
+            <Resolution>252</Resolution>
+            <Projections>512</Projections>
+            <RoiLow>0.0155</RoiLow>
+            <RoiHigh>0.0655</RoiHigh>
+            <UltraSoundPixelSize>0.00018</UltraSoundPixelSize>
+            <ProdigyDataSet>Half</ProdigyDataSet>
+            <ProdigyDaq>SA</ProdigyDaq>
+            <ProdigySubImageIncrement>64</ProdigySubImageIncrement>
+            <ProdigyCUDATime>150</ProdigyCUDATime>
+            <ProdigyInterpolation>2</ProdigyInterpolation>
+            <TimeRes>3</TimeRes>
+            <FilterLow>50000</FilterLow>
+            <FilterHigh>6500000</FilterHigh>
+            <FilterType>FIR</FilterType>
+            <Nz>1</Nz>
+            <RoiZlow>0</RoiZlow>
+            <RoiZhigh>0</RoiZhigh>
+            <AThreshold>0.001</AThreshold>
+            <Threshold>0.01</Threshold>
+            <MaxSupportedFrameRate>0</MaxSupportedFrameRate>
+          </ReconstructionPreset>
+        </SystemReconPresets>
+        <SelectedPresetIndex>1</SelectedPresetIndex>
+        <DisableLowPass>false</DisableLowPass>
+        <FilterLow>50000</FilterLow>
+        <FilterHigh>6500000</FilterHigh>
+        <DepthCorrection>false</DepthCorrection>
+        <BackgroundAbsorption>0.1</BackgroundAbsorption>
+        <BackgroundOxygenation>70</BackgroundOxygenation>
+        <ReducedScatteringCoefficient>10</ReducedScatteringCoefficient>
+        <ImpulseResponse>true</ImpulseResponse>
+        <SensitivityMap>false</SensitivityMap>
+        <UserSoundTrim>43</UserSoundTrim>
+        <ProdigyFrequency>6</ProdigyFrequency>
+        <ProdigyPower>PL20</ProdigyPower>
+        <ProdigySV>1460</ProdigySV>
+      </DataModelReconPreset>
+    </ReconPresets>
+    <ExprerimentPreset>
+      <PreviewMode>FullSequence</PreviewMode>
+      <DisplayAllWavelengths>true</DisplayAllWavelengths>
+      <ContinuousAcquisitionMode>false</ContinuousAcquisitionMode>
+      <FramesPerWavelength>6</FramesPerWavelength>
+      <AverageFramesPerWavelength>true</AverageFramesPerWavelength>
+      <RepetitionsPerSlice>1</RepetitionsPerSlice>
+      <PreferredBackroundWL>850</PreferredBackroundWL>
+      <DefaultLaserTriggerRate>10</DefaultLaserTriggerRate>
+      <WavelengthSet>
+        <Items>
+          <double>700</double>
+          <double>730</double>
+          <double>750</double>
+          <double>760</double>
+          <double>770</double>
+          <double>800</double>
+          <double>820</double>
+          <double>840</double>
+          <double>850</double>
+          <double>880</double>
+        </Items>
+      </WavelengthSet>
+      <TimeRunSet>
+        <UseEqualIntervals>true</UseEqualIntervals>
+        <PeriodicInterval>2015-01-01T00:01:00</PeriodicInterval>
+        <RepeatAcquisition>true</RepeatAcquisition>
+        <RepeatLimit>1</RepeatLimit>
+        <RepeatWithoutDelay>true</RepeatWithoutDelay>
+        <ScheduleItemsIntervals />
+      </TimeRunSet>
+      <USVisible>false</USVisible>
+      <SelectiveFrameAveraging>
+        <REFWAVELENGTH>0</REFWAVELENGTH>
+        <CORRTHRES>0</CORRTHRES>
+        <MAXAVERAGES>1</MAXAVERAGES>
+        <FRAMECORRTHRES>0</FRAMECORRTHRES>
+        <CONFLIMIT>0</CONFLIMIT>
+      </SelectiveFrameAveraging>
+      <DesiredWaterTemperature>34</DesiredWaterTemperature>
+      <IsMultipleMspLivePreviewEnabled>false</IsMultipleMspLivePreviewEnabled>
+    </ExprerimentPreset>
+    <ImagingSettingsPreset>
+      <AutoScaling>true</AutoScaling>
+      <ScalingMode>IndividualAuto</ScalingMode>
+      <Rotation>
+        <M11>1</M11>
+        <M12>0</M12>
+        <M21>0</M21>
+        <M22>1</M22>
+        <OffsetX>0</OffsetX>
+        <OffsetY>0</OffsetY>
+      </Rotation>
+      <Zoom>1</Zoom>
+      <ImageLayers>
+        <DataModelImagingLayer>
+          <Palette>
+            <PaletteType>Bone</PaletteType>
+            <PaletteName>Bone</PaletteName>
+            <Contrast>0.5</Contrast>
+            <Brightness>0.5</Brightness>
+            <AlphaGainCurveCP1>
+              <X>0</X>
+              <Y>0</Y>
+            </AlphaGainCurveCP1>
+            <AlphaGainCurveCP2>
+              <X>1</X>
+              <Y>1</Y>
+            </AlphaGainCurveCP2>
+            <UseAlphaCurve>false</UseAlphaCurve>
+            <AlphaLutCurveMap>Linear</AlphaLutCurveMap>
+            <ParabolicAlphaCurvePower>1</ParabolicAlphaCurvePower>
+          </Palette>
+          <GainMax>309.25836181640625</GainMax>
+          <GainMin>-45.361724853515625</GainMin>
+          <Semitransparent>false</Semitransparent>
+          <Visible>true</Visible>
+          <Load>true</Load>
+          <Tlp>false</Tlp>
+          <Flip>false</Flip>
+          <ComponentTagIdentifier>Background</ComponentTagIdentifier>
+          <FirstIdentifier>0</FirstIdentifier>
+          <SecondIdentifier>0</SecondIdentifier>
+          <HbOxyMapThreshold>0.01</HbOxyMapThreshold>
+          <HbO2OxyMapThreshold>0.01</HbO2OxyMapThreshold>
+          <OxyMapThresholdValue>0</OxyMapThresholdValue>
+          <LogarithmicScaling>false</LogarithmicScaling>
+          <RenderingWeight>1</RenderingWeight>
+          <FilterSettings>
+            <DataModelFrequencyFilterSetting>
+              <HighFrequency>0</HighFrequency>
+              <LowFrequency>100</LowFrequency>
+            </DataModelFrequencyFilterSetting>
+          </FilterSettings>
+          <RoiTableVisible>true</RoiTableVisible>
+        </DataModelImagingLayer>
+        <DataModelImagingLayer>
+          <Palette>
+            <PaletteType>DarkBlue</PaletteType>
+            <PaletteName>Blue</PaletteName>
+            <Contrast>0.5</Contrast>
+            <Brightness>0.5</Brightness>
+            <AlphaGainCurveCP1>
+              <X>0</X>
+              <Y>0</Y>
+            </AlphaGainCurveCP1>
+            <AlphaGainCurveCP2>
+              <X>1</X>
+              <Y>1</Y>
+            </AlphaGainCurveCP2>
+            <UseAlphaCurve>false</UseAlphaCurve>
+            <AlphaLutCurveMap>Linear</AlphaLutCurveMap>
+            <ParabolicAlphaCurvePower>1</ParabolicAlphaCurvePower>
+          </Palette>
+          <GainMax>0.3601343035697937</GainMax>
+          <GainMin>0</GainMin>
+          <Semitransparent>true</Semitransparent>
+          <Visible>true</Visible>
+          <Load>true</Load>
+          <Tlp>false</Tlp>
+          <Flip>false</Flip>
+          <ComponentTagIdentifier>Hb</ComponentTagIdentifier>
+          <FirstIdentifier>1</FirstIdentifier>
+          <SecondIdentifier>1</SecondIdentifier>
+          <HbOxyMapThreshold>0.01</HbOxyMapThreshold>
+          <HbO2OxyMapThreshold>0.01</HbO2OxyMapThreshold>
+          <OxyMapThresholdValue>0</OxyMapThresholdValue>
+          <LogarithmicScaling>false</LogarithmicScaling>
+          <RenderingWeight>1</RenderingWeight>
+          <FilterSettings>
+            <DataModelFrequencyFilterSetting>
+              <HighFrequency>0</HighFrequency>
+              <LowFrequency>100</LowFrequency>
+            </DataModelFrequencyFilterSetting>
+          </FilterSettings>
+          <RoiTableVisible>true</RoiTableVisible>
+        </DataModelImagingLayer>
+        <DataModelImagingLayer>
+          <Palette>
+            <PaletteType>DarkRed</PaletteType>
+            <PaletteName>Red</PaletteName>
+            <Contrast>0.5</Contrast>
+            <Brightness>0.5</Brightness>
+            <AlphaGainCurveCP1>
+              <X>0</X>
+              <Y>0</Y>
+            </AlphaGainCurveCP1>
+            <AlphaGainCurveCP2>
+              <X>1</X>
+              <Y>1</Y>
+            </AlphaGainCurveCP2>
+            <UseAlphaCurve>false</UseAlphaCurve>
+            <AlphaLutCurveMap>Linear</AlphaLutCurveMap>
+            <ParabolicAlphaCurvePower>1</ParabolicAlphaCurvePower>
+          </Palette>
+          <GainMax>0.29303461313247681</GainMax>
+          <GainMin>0</GainMin>
+          <Semitransparent>true</Semitransparent>
+          <Visible>true</Visible>
+          <Load>true</Load>
+          <Tlp>false</Tlp>
+          <Flip>false</Flip>
+          <ComponentTagIdentifier>HbO2</ComponentTagIdentifier>
+          <FirstIdentifier>2</FirstIdentifier>
+          <SecondIdentifier>1</SecondIdentifier>
+          <HbOxyMapThreshold>0.01</HbOxyMapThreshold>
+          <HbO2OxyMapThreshold>0.01</HbO2OxyMapThreshold>
+          <OxyMapThresholdValue>0</OxyMapThresholdValue>
+          <LogarithmicScaling>false</LogarithmicScaling>
+          <RenderingWeight>1</RenderingWeight>
+          <FilterSettings>
+            <DataModelFrequencyFilterSetting>
+              <HighFrequency>0</HighFrequency>
+              <LowFrequency>100</LowFrequency>
+            </DataModelFrequencyFilterSetting>
+          </FilterSettings>
+          <RoiTableVisible>true</RoiTableVisible>
+        </DataModelImagingLayer>
+      </ImageLayers>
+      <ImageLayersComposeMethod>Overlay</ImageLayersComposeMethod>
+      <IsOxyMapsEnabled>false</IsOxyMapsEnabled>
+      <VolumeZoomCenter3D>
+        <X>0</X>
+        <Y>0</Y>
+        <Z>0</Z>
+      </VolumeZoomCenter3D>
+      <CroppingPoint0>
+        <X>0</X>
+        <Y>0</Y>
+        <Z>0</Z>
+      </CroppingPoint0>
+      <CroppingPoint1>
+        <X>1</X>
+        <Y>1</Y>
+        <Z>1</Z>
+      </CroppingPoint1>
+      <MeasurementRulers2D>
+        <MeasurementRulersXY />
+        <MeasurementRulersXZ />
+        <MeasurementRulersYZ />
+      </MeasurementRulers2D>
+      <DrawingRois2D>
+        <Regions />
+      </DrawingRois2D>
+      <Show3DTexture>false</Show3DTexture>
+      <Show3DVolumeRender>false</Show3DVolumeRender>
+      <Show3DViews>false</Show3DViews>
+      <SelectedROIsStyle>None</SelectedROIsStyle>
+      <ShowMIP>true</ShowMIP>
+      <ShowMIPCrop>false</ShowMIPCrop>
+      <Z_SelectedPlane>0.5</Z_SelectedPlane>
+      <Y_SelectedPlane>0.5</Y_SelectedPlane>
+      <X_SelectedPlane>0.5</X_SelectedPlane>
+      <Texture3DCameraTransform>
+        <M11>1</M11>
+        <M12>0</M12>
+        <M13>0</M13>
+        <M14>0</M14>
+        <M21>0</M21>
+        <M22>1</M22>
+        <M23>0</M23>
+        <M24>0</M24>
+        <M31>0</M31>
+        <M32>0</M32>
+        <M33>1</M33>
+        <M34>0</M34>
+        <OffsetX>0</OffsetX>
+        <OffsetY>0</OffsetY>
+        <OffsetZ>0</OffsetZ>
+        <M44>1</M44>
+      </Texture3DCameraTransform>
+      <VolumeRenderCameraTransform>
+        <M11>1</M11>
+        <M12>0</M12>
+        <M13>0</M13>
+        <M14>0</M14>
+        <M21>0</M21>
+        <M22>1</M22>
+        <M23>0</M23>
+        <M24>0</M24>
+        <M31>0</M31>
+        <M32>0</M32>
+        <M33>1</M33>
+        <M34>0</M34>
+        <OffsetX>0</OffsetX>
+        <OffsetY>0</OffsetY>
+        <OffsetZ>0</OffsetZ>
+        <M44>1</M44>
+      </VolumeRenderCameraTransform>
+      <ShowVRWireFrame>false</ShowVRWireFrame>
+      <Show3DVolumeRenderMIP>false</Show3DVolumeRenderMIP>
+      <ImageGridLineType>None</ImageGridLineType>
+      <ImageGridLineStepSize>1</ImageGridLineStepSize>
+      <ImageGridLineColor>
+        <A>255</A>
+        <R>0</R>
+        <G>0</G>
+        <B>255</B>
+        <ScA>1</ScA>
+        <ScR>0</ScR>
+        <ScG>0</ScG>
+        <ScB>1</ScB>
+      </ImageGridLineColor>
+      <UltrasoundMinimumScaling>-1</UltrasoundMinimumScaling>
+      <UltrasoundMaximumScaling>1</UltrasoundMaximumScaling>
+      <BackgroundMinimumScaling>0.05</BackgroundMinimumScaling>
+      <BackgroundMaximumScaling>0.995</BackgroundMaximumScaling>
+      <ForegroundMinimumScaling>-1</ForegroundMinimumScaling>
+      <ForegroundMaximumScaling>1</ForegroundMaximumScaling>
+      <Visible3DGridPlanesTypes>All</Visible3DGridPlanesTypes>
+    </ImagingSettingsPreset>
+    <AdditionalViews>
+      <ImagingSettingsPresets />
+      <MaximizedViewIndex>-1</MaximizedViewIndex>
+    </AdditionalViews>
+    <PresetType>User</PresetType>
+    <CompatibleDetectorGUID>Imaging chamber</CompatibleDetectorGUID>
+  </OAMPreset>
+  <Log>
+    <TotalWarning>0</TotalWarning>
+    <TotalCritical>0</TotalCritical>
+    <LogItems />
+  </Log>
+</DataModelMsotProject>
