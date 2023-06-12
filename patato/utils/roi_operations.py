@@ -8,12 +8,13 @@ import numpy as np
 
 if TYPE_CHECKING:
     from ..io.msot_data import PAData
+    from .rois.roi_type import ROI
 
 from seaborn.palettes import color_palette
 
 
 def split_roi_left_right(data: "PAData", base_roi="", split_template="unnamed"):
-    from ..io.msot_data import ROI
+    from .rois.roi_type import ROI
     # Initial implementation - only supports one "dividing" roi.
     data_rois = data.get_rois()
 

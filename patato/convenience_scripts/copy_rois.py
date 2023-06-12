@@ -13,7 +13,8 @@ from .. import sort_key
 
 def init_argparse():
     map = {"TRUE": True, "FALSE": False, "T": True, "F": False, "YES": True, "NO": False, "Y": True, "N": False}
-    map_fn = lambda x: map[x.upper()]
+    def map_fn(x):
+        return map[x.upper()]
     parser = argparse.ArgumentParser(description="Copy ROIs between scans made of same thing at same time.")
     parser.add_argument('input', type=str, help="Data Folder")
     parser.add_argument('-r', '--regex', default=None, type=str, help="Regex for parsing name")

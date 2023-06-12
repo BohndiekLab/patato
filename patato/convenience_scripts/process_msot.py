@@ -57,7 +57,6 @@ def main():
 
     clear_recons = args.clear
     recompute_recon = args.repeat
-    speed_of_sound = args.speed
     run_number = args.run
     if run_number is None:
         run_number = slice(None, None)

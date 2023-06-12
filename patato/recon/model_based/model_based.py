@@ -9,11 +9,14 @@ from pylops.optimization.leastsquares import regularized_inversion
 from pylops.signalprocessing import Convolve1D, Convolve2D
 from scipy.sparse.linalg import LinearOperator as CPULinOp
 
+import warnings
+
 from .cuda_implementation import get_model as get_model_gpu_single_c
 from .cuda_implementation_refraction import get_model as get_model_gpu_double_c
-from .numpy_implementation import generate_model as get_model_cpu_single_c
+from .numpy_implementation import get_model as get_model_cpu_single_c
 from .. import ReconstructionAlgorithm
 from ...core.image_structures.pa_time_data import PATimeSeries
+from ... import PAData
 
 try:
     cuda_enabled = True
@@ -52,7 +55,7 @@ class ModelBasedReconstruction(ReconstructionAlgorithm):
             LinearOperator = GPULinOp
         else:
             get_model_double_c = get_model_cpu_single_c
-            get_model_single_c = get_model_gpu_single_c
+            get_model_single_c = get_model_cpu_single_c
             LinearOperator = CPULinOp
         model_type = self.custom_params.get("model_type", "single_sos")
         regulariser = self.custom_params.get("regulariser", self.custom_params.get("regularizer", None))
@@ -159,19 +162,29 @@ class ModelBasedReconstruction(ReconstructionAlgorithm):
                  n_pixels: Sequence[int],
                  field_of_view: Sequence[float],
                  kwargs_model=None,
+                 pa_example: "PAData"=None,
                  **kwargs):
+        if kwargs.get("regulariser", None) is None:
+            kwargs["regulariser"] = "identity"
         super().__init__(n_pixels, field_of_view, **kwargs)
         self._model_matrix = None
         self._raw_model = None
         if kwargs_model is None:
             kwargs_model = {}
+
+        if pa_example is not None:
+            kwargs["geometry"] = pa_example.get_scan_geometry()
+            kwargs["fs_model"] = pa_example.get_sampling_frequency()
+            kwargs["nt"] = pa_example.get_time_series().shape[-1]
+            kwargs_model["c"] = pa_example.get_speed_of_sound()
+
         # Note that super init puts kwargs in self.custom_params
-        if "detectors" in kwargs:
+        if "geometry" in kwargs:
             # identify x and y:
-            detectors = kwargs["detectors"]
+            detectors = kwargs["geometry"]
             indices = []
             for i in range(3):
-                if np.all(kwargs["detectors"][:, i] != 0.):
+                if np.all(kwargs["geometry"][:, i] != 0.):
                     indices.append(i)
             self._indices = indices
 
@@ -189,6 +202,7 @@ class ModelBasedReconstruction(ReconstructionAlgorithm):
             nt = kwargs["nt"]
 
             gpu = kwargs.get("gpu", cuda_enabled)
+            print("GPU", gpu)
             cache = kwargs.get("cache", False)
 
             self._model = self.generate_model(detx, dety, fs, dx, nx, x_0, nt, gpu=gpu, cache=cache, **kwargs_model)
@@ -199,6 +213,8 @@ class ModelBasedReconstruction(ReconstructionAlgorithm):
             self._x_0 = None
             self._model = None
             self._indices = None
+        warnings.warn("This class is experimental. If you would like to contribute to further development of this "
+                      "approach, please get in touch.")
 
     def pre_prepare_data(self, x: PATimeSeries):
         """
@@ -244,8 +260,10 @@ class ModelBasedReconstruction(ReconstructionAlgorithm):
             detectors = geometry
             indices = []
             for i in range(3):
-                if np.all(kwargs["detectors"][:, i] != 0.):
+                if np.all(kwargs["geometry"][:, i] != 0.):
                     indices.append(i)
+
+            assert len(indices) == 2
             detx = detectors[:, indices[0]]
             dety = detectors[:, indices[1]]
 
@@ -269,7 +287,8 @@ class ModelBasedReconstruction(ReconstructionAlgorithm):
         output_shape = [1, 1, 1]
         for i in indices:
             output_shape[i] = nx
-        output_shape = tuple(output_shape)
+        # Reverse output shape to be (z, y, x) order
+        output_shape = tuple(output_shape[::-1])
 
         t = t.reshape((np.product(t.shape[:-2]),) + t.shape[-2:])
         output = np.zeros((t.shape[0],) + output_shape)

@@ -6,7 +6,7 @@ from scipy.sparse import csr_matrix, vstack
 
 from os.path import join, exists, dirname
 from .generate_model import calculate_element
-from tqdm import tqdm
+from tqdm.auto import tqdm
 
 
 def get_hash(*x):

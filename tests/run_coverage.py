@@ -25,6 +25,7 @@ from test_image_sequence import TestHDF5Load
 from test_ithera import TestITheraImport
 from test_reconstruction_reading import TestJSONLoading
 from test_msot_data import TestMSOTData
+from test_model_based import TestModelBased
 from patato.data.get_example_datasets import get_patato_data_folder
 
 
@@ -143,6 +144,7 @@ alltests.addTest(unittest.makeSuite(TestUnmixing))
 alltests.addTest(unittest.makeSuite(TestPipelines))
 alltests.addTest(unittest.makeSuite(TestHDF5Load))
 alltests.addTest(unittest.makeSuite(TestJSONLoading))
+alltests.addTest(unittest.makeSuite(TestModelBased))
 
 result = unittest.TextTestRunner(verbosity=2).run(alltests)
 

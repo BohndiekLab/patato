@@ -2,14 +2,13 @@
 #  License: MIT
 
 import unittest
-from os.path import join, split
+from os.path import join
 
 from patato import PreProcessor
 from patato.core.image_structures.reconstruction_image import Reconstruction
 from patato.core.image_structures.unmixed_image import UnmixedData
 from patato.data.get_example_datasets import get_patato_data_folder
 from patato.io.msot_data import PAData
-from patato.processing.preprocessing_algorithm import NumpyPreProcessor
 from patato.unmixing.spectra import OxyHaemoglobin, Haemoglobin
 from patato.recon import ReferenceBackprojection
 from patato.unmixing.unmixer import SpectralUnmixer

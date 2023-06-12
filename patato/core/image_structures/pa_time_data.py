@@ -5,10 +5,8 @@ pa_time_data. Defines the time-domain version of PARawData class.
 #  Copyright (c) Thomas Else 2023.
 #  License: MIT
 
-from typing import TYPE_CHECKING
 
 import numpy as np
-import scipy.fft
 import xarray
 
 from ..image_structures.pa_raw_data import PARawData

@@ -160,7 +160,7 @@ class GPUMSOTPreProcessor(TimeSeriesProcessingAlgorithm):
             new_detector_ind = cp.linspace(0, detectors.shape[0] - 1, self.detector_factor * detectors.shape[0])
 
         # Interpolate in the sample domain
-        sample_ind = cp.arange(signal.shape[-1])
+        cp.arange(signal.shape[-1])
         new_samp_ind = cp.arange((signal.shape[-1] - 1) * self.time_factor + 1) / self.time_factor
         if exact_ratios:
             new_samp_ind = cp.linspace(0, signal.shape[-1] - 1, self.time_factor * signal.shape[-1])

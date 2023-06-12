@@ -1,18 +1,15 @@
-#  Copyright (c) Thomas Else 2023.
-#  License: MIT
-
 import numpy as np
 import pacfish as pf
 from pacfish import MetaDatum
 
 
-class TomHDF5AdapterToIPASCFormat(pf.BaseAdapter):
+class PatHDF5AdapterToIPASCFormat(pf.BaseAdapter):
     def generate_device_meta_data(self) -> dict:
         return {}
 
     def __init__(self, hdf5_file):
         self.hdf5_file = hdf5_file
-        super(TomHDF5AdapterToIPASCFormat, self).__init__()
+        super(PatHDF5AdapterToIPASCFormat, self).__init__()
 
     def generate_binary_data(self) -> np.ndarray:
         # iThera definition: [frames, wavelengths, detectors, time_series]
@@ -49,5 +46,3 @@ class TomHDF5AdapterToIPASCFormat(pf.BaseAdapter):
         if metadata_tag == pf.MetadataAcquisitionTags.ACQUISITION_WAVELENGTHS:
             return np.asarray(self.hdf5_file["wavelengths"])
         return None
-
-

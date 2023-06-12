@@ -2,14 +2,11 @@
 #  License: MIT
 
 import unittest
-from os.path import join, split
 
 import numpy as np
 
-from patato import Reconstruction, SO2Calculator, SpectralUnmixer, THbCalculator, ReferenceBackprojection
-from patato.io.msot_data import PAData
-from patato.processing.preprocessing_algorithm import NumpyPreProcessor
-from patato.data.get_example_datasets import get_patato_data_folder, get_msot_time_series_example
+from patato import Reconstruction, SO2Calculator, SpectralUnmixer, THbCalculator
+from patato.data.get_example_datasets import get_msot_time_series_example
 
 
 class TestUnmixing(unittest.TestCase):

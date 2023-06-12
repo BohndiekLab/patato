@@ -5,16 +5,15 @@ PA raw data implements the data structure for photoacoustic time series data.
 #  Copyright (c) Thomas Else 2023.
 #  License: MIT
 
-from abc import ABC, abstractmethod
+from abc import ABC
 from typing import TYPE_CHECKING
 
-import numpy as np
 
 from ...core.image_structures.image_sequence import DataSequence
 from ...io.attribute_tags import HDF5Tags
 
 if TYPE_CHECKING:
-    from ...core.image_structures.pa_time_data import PATimeSeries
+    pass
 
 
 class PARawData(DataSequence, ABC):

@@ -66,7 +66,6 @@ def main():
         run_number = 0
 
     # TODO: implement ultrasound threshold overlay
-    us_threshold = args.usthreshold
     log = args.log
 
     files = sorted(glob.glob(os.path.join(data_folder, "**", "*.hdf5"), recursive=True), key=sort_key)

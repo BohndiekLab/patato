@@ -1,12 +1,10 @@
 #  Copyright (c) Thomas Else 2023.
 #  License: MIT
 import unittest
-from os.path import join
 
 import numpy as np
 
-from patato.data.get_example_datasets import get_patato_data_folder, get_msot_time_series_example
-from patato.io.msot_data import PAData
+from patato.data.get_example_datasets import get_msot_time_series_example
 
 
 class TestMSOTData(unittest.TestCase):

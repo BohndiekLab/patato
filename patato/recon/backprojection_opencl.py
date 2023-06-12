@@ -34,7 +34,7 @@ def validate_opencl_input(signal: np.ndarray, fs, detectors, n_pixels, field_of_
         detectors = detectors.copy()
     assert type(n_pixels[0]) in [int, np.int32]
     field_of_view = tuple(float(x) for x in field_of_view)
-    if not (type(speed_of_sound) in [float, np.float32, np.float64]):
+    if type(speed_of_sound) not in [float, np.float32, np.float64]:
         speed_of_sound = float(speed_of_sound)
     return signal, fs, detectors, n_pixels, field_of_view, speed_of_sound
 

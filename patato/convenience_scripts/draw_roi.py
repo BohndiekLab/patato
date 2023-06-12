@@ -7,7 +7,6 @@
 
 import argparse
 import glob
-import sys
 from collections import namedtuple
 from os.path import join, split
 
@@ -482,7 +481,7 @@ def main():
         if args.drawthb:
             recon = thb[(method, "0")]
 
-        roi_drawerer = ROIDrawer(data, recon, extents, roi_name=args.name, roi_position=args.position,
+        ROIDrawer(data, recon, extents, roi_name=args.name, roi_position=args.position,
                                  interpolation=args.interpolation, draw_all_rois=args.drawallrois, start_wl = wl_i)
 
 
