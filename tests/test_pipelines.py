@@ -14,8 +14,13 @@ from patato.recon import ReferenceBackprojection
 from patato.unmixing.unmixer import SpectralUnmixer
 from patato.utils.run_pipeline import run_pipeline
 
+from make_dummy_dataset import make_dummy_dataset
+
 
 class TestPipelines(unittest.TestCase):
+    def setUp(self) -> None:
+        make_dummy_dataset()
+
     def test_full_run(self):
         data_folder = join(get_patato_data_folder(), "test")
         dummy_dataset = join(data_folder, "Scan_1.hdf5")

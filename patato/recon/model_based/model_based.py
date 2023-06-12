@@ -82,7 +82,9 @@ class ModelBasedReconstruction(ReconstructionAlgorithm):
         # Force dodgy duck typing to enable product with irf convolution.
         model_matrix.matvec = lambda x: None
 
-        irf = kwargs.get("irf_model", None) or self.custom_params.get("irf_model")
+        irf = kwargs.get("irf_model", None)
+        if irf is None:
+            irf = self.custom_params.get("irf_model", None)
 
         ndet = detx.shape[0]
         if irf is not None:
@@ -177,7 +179,7 @@ class ModelBasedReconstruction(ReconstructionAlgorithm):
             kwargs["fs_model"] = pa_example.get_sampling_frequency()
             kwargs["nt"] = pa_example.get_time_series().shape[-1]
             kwargs_model["c"] = pa_example.get_speed_of_sound()
-            kwargs_model["irf_model"] = pa_example.get_impulse_response()
+            kwargs_model["irf_model"] = pa_example.get_impulse_response()[:]
 
         # Note that super init puts kwargs in self.custom_params
         if "geometry" in kwargs:
