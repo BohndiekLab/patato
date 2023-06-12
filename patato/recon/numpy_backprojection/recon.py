@@ -7,7 +7,7 @@ import numpy as np
 from .. import ReconstructionAlgorithm
 
 # Add a loading bar
-from tqdm.notebook import tqdm
+from tqdm.auto import tqdm
 
 
 class SlowBackprojection(ReconstructionAlgorithm):
