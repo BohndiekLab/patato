@@ -7,6 +7,8 @@ This defines the data structure for reconstructed images.
 
 from __future__ import annotations
 
+import os
+
 import numpy as np
 
 from ...core.image_structures.image_sequence import ImageSequence
@@ -15,9 +17,11 @@ import warnings
 
 
 class Reconstruction(ImageSequence):
-    """Data structure for reconstructed images.
+    """
+    Data structure for reconstructed images.
     """
     save_output = True
+
     @staticmethod
     def is_single_instance():
         return False
@@ -33,11 +37,5 @@ class Reconstruction(ImageSequence):
     def wavelengths(self):
         return np.array(self.ax_1_labels)
 
-    @classmethod
-    def from_numpy(cls, data, wavelength):
-        return cls()
-    
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        if "CorrectionFactorApplied" not in self.attributes:
-            warnings.warn("Old version of PATATO used to generate this data. We recommend to re-run the image reconstruction.")

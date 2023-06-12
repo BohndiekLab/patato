@@ -124,7 +124,6 @@ class GPUMSOTPreProcessor(TimeSeriesProcessingAlgorithm):
         time_series.raw_data = operation(ifft(time_series_ft, axis=-1))
 
         # Go back to the time domain.
-        time_series = time_series.to_time_domain()
         logging.debug(f"Filter took {time.time() - t}s")
 
         # Apply interpolation in time and detector domains.
