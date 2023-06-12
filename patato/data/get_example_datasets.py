@@ -48,8 +48,7 @@ def get_msot_time_series_example(image_type="so2"):
 
     data_path = os.path.join(get_patato_data_folder(), f'{image_type}-timeseries-data.hdf5')
     folder = os.path.split(data_path)[0]
-    if not os.path.exists(folder):
-        os.mkdir(folder)
+    os.mkdirs(folder, exist_ok=True)
     if not os.path.exists(data_path):
         # Download the data
         download_file(data_sources[image_type], data_path)
@@ -73,7 +72,7 @@ def get_ithera_msot_time_series_example(image_type="so2"):
     filenames = {"so2": "Scan_9", "icg": "Scan_10"}
     folder = os.path.split(data_path)[0]
     if folder and not os.path.exists(folder):
-        os.mkdir(folder)
+        os.mkdirs(folder, exist_ok=True)
     if not os.path.exists(data_path):
         # Download the data
         zip_file = os.path.join(get_patato_data_folder(), "patato_temp.zip")
@@ -98,7 +97,7 @@ def get_msot_phantom_example(image_type="clinical"):
     data_path = os.path.join(get_patato_data_folder(), f'{image_type}-msot-data.hdf5')
     folder = os.path.split(data_path)[0]
     if not os.path.exists(folder):
-        os.mkdir(folder)
+        os.mkdirs(folder, exist_ok=True)
     if not os.path.exists(data_path):
         # Download the data
         download_file(data_sources[image_type], data_path)

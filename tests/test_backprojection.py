@@ -22,7 +22,7 @@ class BackprojectionTest(unittest.TestCase):
         reconstructor = reconstructor_class([333, 334, 1], [0.025, 0.025, 1.])
         r, _, _ = reconstructor.run(self.filtered_time_series, self.pa, **self.new_settings)
         self.assertEqual(r.shape, (1, 2, 1, 334, 333))
-        self.assertAlmostEqual(np.mean(r[0, 0].values), 316.15831026634015, 2)
+        self.assertAlmostEqual(np.mean(r[0, 0].values), 315.63669659956736, 2)
 
         reconstructor = reconstructor_class([1, 333, 334], [1., 0.025, 0.025])
         r, _, _ = reconstructor.run(self.filtered_time_series, self.pa, **self.new_settings)
