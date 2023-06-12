@@ -50,7 +50,7 @@ classifiers = [
 where = ["."]  # ["."] by default
 include = ["patato", "patato.*"]  # ["*"] by default
 exclude = []  # empty by default
-namespaces = true  # true by default
+namespaces = false  # true by default
 
 [project.scripts]
 patato-import-ithera = "patato.convenience_scripts.convert_binary_to_hdf5:main"
