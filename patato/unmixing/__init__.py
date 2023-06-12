@@ -2,7 +2,7 @@
 #  License: MIT
 
 """
-PATATO unmixing module
+Unmixing module
 ======================
 
 This module provides functions for commonly-used spectral analysis procedures in photoacoustic imaging.

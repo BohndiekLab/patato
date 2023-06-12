@@ -2,7 +2,7 @@
 #  License: MIT
 
 """
-PATATO time-series data processing module
+Time-series data processing module
 =========================================
 
 This module provides functions for commonly-used pre-processing procedures used in photoacoustic imaging.

@@ -2,7 +2,7 @@
 #  License: MIT
 
 """
-PATATO data examples
+Data examples
 ====================
 
 PATATO data - an interface for exemplar data and basic simulations to illustrate the core features of PATATO.

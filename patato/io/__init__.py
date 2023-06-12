@@ -2,7 +2,7 @@
 #  License: MIT
 
 """
-PATATO input/output module
+Input/output module
 ==========================
 
 I/O module for patato. Provides interfaces to HDF5 format, simpa and iThera.

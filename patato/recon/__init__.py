@@ -2,7 +2,7 @@
 #  License: MIT
 
 """
-PATATO reconstruction module
+Reconstruction module
 ============================
 
 This module provides functions for reconstructing photoacoustic data.

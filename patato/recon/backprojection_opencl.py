@@ -41,6 +41,8 @@ def validate_opencl_input(signal: np.ndarray, fs, detectors, n_pixels, field_of_
 
 class OpenCLBackprojection(ReconstructionAlgorithm):
     """
+    An OpenCL implemntation of the photoacoustic backprojection.
+
     Note: this class will be deprecated in future. It is maintained for backwards compatibility with non-nvidia
     GPUs.
     """

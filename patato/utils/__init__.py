@@ -2,7 +2,7 @@
 #  License: MIT
 
 """
-PATATO utility module
+Utility module
 =====================
 
 This module provides utility functions for PATATO that are used in several other modules.
