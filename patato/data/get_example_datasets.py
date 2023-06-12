@@ -84,6 +84,7 @@ def get_ithera_msot_time_series_example(image_type="so2"):
         download_file(data_sources[image_type], zip_file)
         with zipfile.ZipFile(zip_file, 'r') as zip_ref:
             zip_ref.extractall(data_path)
+        print(f"Extracted data to {data_path}")
     return PAData(iTheraMSOT(os.path.join(data_path, filenames[image_type])))
 
 

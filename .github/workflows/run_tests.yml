@@ -11,7 +11,7 @@ on:
       - main
 
 env:
-  PAT_DATA_FOLDER: TEMP
+  PAT_DATA_FOLDER: ${{ github.workspace }}/data
 
 jobs:
   build:
