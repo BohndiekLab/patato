@@ -70,6 +70,8 @@ def get_ithera_msot_time_series_example(image_type="so2"):
     dataset : PAData
         The MSOT dataset.
     """
+    import glob
+    print(glob.glob(get_patato_data_folder() + "/*"))
     data_sources = {"so2": "https://www.repository.cam.ac.uk/bitstream/handle/1810/345836/ithera_invivo_oe.zip",
                     "icg": "https://www.repository.cam.ac.uk/bitstream/handle/1810/345836/ithera_invivo_dce.zip"}
 
@@ -80,7 +82,7 @@ def get_ithera_msot_time_series_example(image_type="so2"):
         os.mkdir(folder)
     if not os.path.exists(data_path):
         # Download the data
-        zip_file = os.path.join(mkdtemp(), "patato_temp.zip")
+        zip_file = os.path.join(get_patato_data_folder(), "patato_temp.zip")
         download_file(data_sources[image_type], zip_file)
         with zipfile.ZipFile(zip_file, 'r') as zip_ref:
             zip_ref.extractall(data_path)
