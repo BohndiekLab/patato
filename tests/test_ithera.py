@@ -4,8 +4,8 @@
 import unittest
 
 import numpy as np
-from .... import DefaultMSOTPreProcessor, ReferenceBackprojection
-from ....data import get_ithera_msot_time_series_example, get_msot_time_series_example
+from patato import DefaultMSOTPreProcessor, ReferenceBackprojection
+from patato.data import get_ithera_msot_time_series_example, get_msot_time_series_example
 import matplotlib.pyplot as plt
 import matplotlib
 

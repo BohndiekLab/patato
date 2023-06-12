@@ -9,7 +9,7 @@ dependencies = [
     "requests",
     "cython",
     "shapely",
-    "pylops",
+    "pylops", # Check version compatibility with pylops
     "h5py",
     "typing_extensions",
     "seaborn",
@@ -30,11 +30,28 @@ dependencies = [
 
 authors = [
   { name="Thomas Else", email="thomas.else@cruk.cam.ac.uk" },
+  { name="Janek Grohl" },
 ]
 description = "A Python Toolkit for the analysis of photoacoustic tomography data."
 readme = "README.md"
 requires-python = ">=3.8,<3.11"
+
+keywords = [
+    "photoacoustics",
+    "jax",
+    "tomography",
+    "reconstruction",
+    "spectral unmixing",
+    "dynamic contrast enhanced",
+    "backprojection",
+    "model based"
+]
+
+license = { file = "LICENSE.MD", name = "LGPL-3.0" }
+
 classifiers = [
+    "Intended Audience :: Education",
+    "Intended Audience :: Science/Research",
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",

@@ -5,8 +5,7 @@ from __future__ import annotations
 
 from typing import Union, TYPE_CHECKING, Tuple, Optional
 
-from .preprocessing_algorithm import DefaultMSOTPreProcessor
-from .processing_algorithm import ProcessingResult
+from .processing_algorithm import ProcessingResult, TimeSeriesProcessingAlgorithm
 
 if TYPE_CHECKING:
     from ..io.msot_data import PAData
@@ -26,7 +25,7 @@ from patato.unmixing.spectra import SPECTRA_NAMES
 import logging
 
 
-class GPUMSOTPreProcessor(DefaultMSOTPreProcessor):
+class GPUMSOTPreProcessor(TimeSeriesProcessingAlgorithm):
     @staticmethod
     def get_algorithm_name() -> str:
         return "GPU Standard Preprocessor"

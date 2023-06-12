@@ -7,8 +7,6 @@ import unittest
 import os
 import sys
 
-# make sure that we're using the downloaded version of patato.
-
 sys.path.insert(0, os.path.abspath('../'))
 
 import h5py
@@ -19,14 +17,14 @@ cov = Coverage(source=['../patato'], omit=["*test*", "*/convenience_scripts/*", 
 cov.start()
 
 # noinspection PyPep8
-from patato.processing.tests.preprocessing_algorithm import TestPreprocessing
-from patato.recon.tests.backprojection_test import BackprojectionTest
-from patato.unmixing.tests.unmixing_test import TestUnmixing
-from patato.utils.tests.pipline_tests import TestPipelines
+from test_preprocessing_algorithm import TestPreprocessing
+from test_backprojection import BackprojectionTest
+from test_unmixing import TestUnmixing
+from test_pipelines import TestPipelines
 from test_image_sequence import TestHDF5Load
-from patato.io.ithera.tests.ithera_tests import TestITheraImport
-from patato.io.json.tests.test_reconstruction_reading import TestJSONLoading
-from patato.io.tests.test_msot_data import TestMSOTData
+from test_ithera import TestITheraImport
+from test_reconstruction_reading import TestJSONLoading
+from test_msot_data import TestMSOTData
 from patato.data.get_example_datasets import get_patato_data_folder
 
 

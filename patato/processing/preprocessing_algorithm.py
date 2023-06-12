@@ -22,13 +22,28 @@ from ..io.attribute_tags import PreprocessingAttributeTags
 from patato.unmixing.spectra import SPECTRA_NAMES
 
 
-class DefaultMSOTPreProcessor(TimeSeriesProcessingAlgorithm):
+class NumpyPreProcessor(TimeSeriesProcessingAlgorithm):
     @staticmethod
     def get_algorithm_name() -> str:
+        """
+        Get the name of the algorithm.
+
+        Returns
+        -------
+        str or None
+        """
         return "CPU Standard Preprocessor"
 
     @staticmethod
     def get_hdf5_group_name() -> Union[str, None]:
+        """
+        Return the name of the group in the HDF5 file
+
+        Returns
+        -------
+        str or None
+
+        """
         return None
 
     def __init__(self, time_factor=3, detector_factor=2,

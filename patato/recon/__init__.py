@@ -13,10 +13,12 @@ from typing import Sequence
 from .backprojection_opencl import OpenCLBackprojection
 from .backprojection_reference import ReferenceBackprojection
 from .reconstruction_algorithm import ReconstructionAlgorithm
+from .numpy.recon import SlowBackprojection
 from ..io.msot_data import PAData
 
 RECONSTRUCTION_METHODS: Sequence[type(ReconstructionAlgorithm)] = [OpenCLBackprojection,
-                                                                   ReferenceBackprojection]
+                                                                   ReferenceBackprojection,
+                                                                   SlowBackprojection]
 
 RECONSTRUCTION_NAMES = {x.get_algorithm_name(): x for x in RECONSTRUCTION_METHODS}
 
@@ -58,15 +60,3 @@ def get_default_recon_preset(data: PAData):
 
     preset += "_" + axes
     return os.path.join(root_folder, preset + ".json")
-
-
-def get_default_unmixing_preset():
-    """
-
-    Returns
-    -------
-
-    """
-    import os
-    root_folder = os.path.join(os.path.dirname(os.path.realpath(__file__)), "../unmixing/unmix_presets")
-    return os.path.join(root_folder, "haemoglobin.json")
