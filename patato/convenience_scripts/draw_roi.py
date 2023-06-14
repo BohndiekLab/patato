@@ -7,7 +7,6 @@
 
 import argparse
 import glob
-import sys
 from collections import namedtuple
 from os.path import join, split
 
@@ -15,9 +14,8 @@ import matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.widgets import Slider, Button, RangeSlider, PolygonSelector
-from .. import ImageSequence
-from .. import ROI, PAData
-from .. import sort_key
+from .. import ImageSequence, ROI, PAData
+from ..utils import sort_key
 from scipy.optimize import least_squares
 
 if matplotlib.get_backend() == "MacOSX":
@@ -482,7 +480,7 @@ def main():
         if args.drawthb:
             recon = thb[(method, "0")]
 
-        roi_drawerer = ROIDrawer(data, recon, extents, roi_name=args.name, roi_position=args.position,
+        ROIDrawer(data, recon, extents, roi_name=args.name, roi_position=args.position,
                                  interpolation=args.interpolation, draw_all_rois=args.drawallrois, start_wl = wl_i)
 
 

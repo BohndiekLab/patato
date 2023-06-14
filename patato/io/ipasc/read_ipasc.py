@@ -9,7 +9,8 @@ from ..hdf.fileimporter import ReaderInterface
 
 
 class IPASCInterface(ReaderInterface):
-    """An interface for iThera MSOT datasets.
+    """
+    An interface for iThera MSOT datasets.
     """
     def _get_rois(self):
         pass

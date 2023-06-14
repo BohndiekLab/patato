@@ -1,6 +1,14 @@
 #  Copyright (c) Thomas Else 2023.
 #  License: MIT
 
+"""
+Useful utilities module
+==============================
+
+This module provides miscellaneous functions and classes that are useful for PATATO.
+They are largely independent of the other modules and minimally documented.
+"""
+
 from typing import Optional
 
 import numpy as np

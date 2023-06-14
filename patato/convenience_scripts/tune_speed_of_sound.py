@@ -13,6 +13,8 @@ import os
 import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.widgets import Slider, Button, RangeSlider
+
+from patato.recon import get_default_recon_preset
 from .. import PAData
 
 try:
@@ -20,10 +22,9 @@ try:
 except ImportError:
     Array = None
 
-from .. import read_reconstruction_preset
-from .. import PreProcessor
-from .. import ReconstructionAlgorithm, get_default_recon_preset, OpenCLBackprojection
-from .. import sort_key
+from .. import read_reconstruction_preset, PreProcessor,  OpenCLBackprojection
+from ..recon.reconstruction_algorithm import ReconstructionAlgorithm
+from ..utils import sort_key
 
 
 def main():
@@ -66,7 +67,6 @@ def main():
         run_number = 0
 
     # TODO: implement ultrasound threshold overlay
-    us_threshold = args.usthreshold
     log = args.log
 
     files = sorted(glob.glob(os.path.join(data_folder, "**", "*.hdf5"), recursive=True), key=sort_key)

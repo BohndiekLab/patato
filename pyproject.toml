@@ -4,12 +4,12 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "patato"
-version = "0.4.0"
+version = "0.5.0"
 dependencies = [
     "requests",
     "cython",
     "shapely",
-    "pylops",
+    "pylops", # Check version compatibility with pylops
     "h5py",
     "typing_extensions",
     "seaborn",
@@ -30,11 +30,28 @@ dependencies = [
 
 authors = [
   { name="Thomas Else", email="thomas.else@cruk.cam.ac.uk" },
+  { name="Janek Grohl" },
 ]
 description = "A Python Toolkit for the analysis of photoacoustic tomography data."
 readme = "README.md"
 requires-python = ">=3.8,<3.11"
+
+keywords = [
+    "photoacoustics",
+    "jax",
+    "tomography",
+    "reconstruction",
+    "spectral unmixing",
+    "dynamic contrast enhanced",
+    "backprojection",
+    "model based"
+]
+
+license = { file = "LICENSE.MD", name = "LGPL-3.0" }
+
 classifiers = [
+    "Intended Audience :: Education",
+    "Intended Audience :: Science/Research",
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
@@ -50,7 +67,7 @@ classifiers = [
 where = ["."]  # ["."] by default
 include = ["patato", "patato.*"]  # ["*"] by default
 exclude = []  # empty by default
-namespaces = true  # true by default
+namespaces = false  # true by default
 
 [project.scripts]
 patato-import-ithera = "patato.convenience_scripts.convert_binary_to_hdf5:main"

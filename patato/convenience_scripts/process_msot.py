@@ -12,10 +12,9 @@ import logging
 import os
 
 from .. import PAData
-from .. import get_default_recon_preset
+from ..recon import get_default_recon_preset
 from .. import read_reconstruction_preset
-from .. import run_pipeline
-from .. import sort_key
+from ..utils import run_pipeline, sort_key
 
 
 def main():
@@ -57,7 +56,6 @@ def main():
 
     clear_recons = args.clear
     recompute_recon = args.repeat
-    speed_of_sound = args.speed
     run_number = args.run
     if run_number is None:
         run_number = slice(None, None)

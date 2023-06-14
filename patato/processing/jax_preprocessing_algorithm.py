@@ -134,7 +134,6 @@ class PreProcessor(TimeSeriesProcessingAlgorithm):
         -------
         str or None
         """
-        # Return the name of the algorithm
         return "Standard Preprocessor"
 
     @staticmethod

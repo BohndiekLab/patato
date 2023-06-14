@@ -9,11 +9,14 @@ from pylops.optimization.leastsquares import regularized_inversion
 from pylops.signalprocessing import Convolve1D, Convolve2D
 from scipy.sparse.linalg import LinearOperator as CPULinOp
 
+import warnings
+
 from .cuda_implementation import get_model as get_model_gpu_single_c
 from .cuda_implementation_refraction import get_model as get_model_gpu_double_c
-from .numpy_implementation import generate_model as get_model_cpu_single_c
+from .numpy_implementation import get_model as get_model_cpu_single_c
 from .. import ReconstructionAlgorithm
 from ...core.image_structures.pa_time_data import PATimeSeries
+from ... import PAData
 
 try:
     cuda_enabled = True
@@ -52,7 +55,7 @@ class ModelBasedReconstruction(ReconstructionAlgorithm):
             LinearOperator = GPULinOp
         else:
             get_model_double_c = get_model_cpu_single_c
-            get_model_single_c = get_model_gpu_single_c
+            get_model_single_c = get_model_cpu_single_c
             LinearOperator = CPULinOp
         model_type = self.custom_params.get("model_type", "single_sos")
         regulariser = self.custom_params.get("regulariser", self.custom_params.get("regularizer", None))
@@ -79,11 +82,13 @@ class ModelBasedReconstruction(ReconstructionAlgorithm):
         # Force dodgy duck typing to enable product with irf convolution.
         model_matrix.matvec = lambda x: None
 
-        irf = kwargs.get("irf_model", None) or self.custom_params.get("irf_model")
+        irf = kwargs.get("irf_model", None)
+        if irf is None:
+            irf = self.custom_params.get("irf_model", None)
 
         ndet = detx.shape[0]
         if irf is not None:
-            convolve_irf = Convolve1D(nt * ndet, irf, dims=(ndet, nt), dir=1, offset=nt // 2,
+            convolve_irf = Convolve1D((ndet, nt), irf, axis=1, offset=nt // 2,
                                       dtype=np.float32)
 
             def matvec(x):
@@ -137,7 +142,7 @@ class ModelBasedReconstruction(ReconstructionAlgorithm):
             else:
                 inv_args["iter_lim"] = iter_lim
             return lambda y: regularized_inversion(full_model, y,
-                                                   [reg], epsRs=[reg_lambda], show=True, **inv_args)[0]
+                                                   [reg], epsRs=[reg_lambda], show=False, **inv_args)[0]
         else:
             self._full_model = full_model
             self._reg = reg
@@ -152,26 +157,37 @@ class ModelBasedReconstruction(ReconstructionAlgorithm):
                 niter_outer=iter_lim[0],
                 niter_inner=iter_lim[1],
                 epsRL1s=[reg_lambda[0], reg_lambda[0]],
-                show=True, **inv_args
+                show=False, **inv_args
             )[0]
 
     def __init__(self,
                  n_pixels: Sequence[int],
                  field_of_view: Sequence[float],
                  kwargs_model=None,
+                 pa_example: "PAData"=None,
                  **kwargs):
+        if kwargs.get("regulariser", None) is None:
+            kwargs["regulariser"] = "identity"
         super().__init__(n_pixels, field_of_view, **kwargs)
         self._model_matrix = None
         self._raw_model = None
         if kwargs_model is None:
             kwargs_model = {}
+
+        if pa_example is not None:
+            kwargs["geometry"] = pa_example.get_scan_geometry()
+            kwargs["fs_model"] = pa_example.get_sampling_frequency()
+            kwargs["nt"] = pa_example.get_time_series().shape[-1]
+            kwargs_model["c"] = pa_example.get_speed_of_sound()
+            kwargs_model["irf_model"] = pa_example.get_impulse_response()[:]
+
         # Note that super init puts kwargs in self.custom_params
-        if "detectors" in kwargs:
+        if "geometry" in kwargs:
             # identify x and y:
-            detectors = kwargs["detectors"]
+            detectors = kwargs["geometry"]
             indices = []
             for i in range(3):
-                if np.all(kwargs["detectors"][:, i] != 0.):
+                if np.all(kwargs["geometry"][:, i] != 0.):
                     indices.append(i)
             self._indices = indices
 
@@ -199,6 +215,8 @@ class ModelBasedReconstruction(ReconstructionAlgorithm):
             self._x_0 = None
             self._model = None
             self._indices = None
+        warnings.warn("This class is experimental. If you would like to contribute to further development of this "
+                      "approach, please get in touch.")
 
     def pre_prepare_data(self, x: PATimeSeries):
         """
@@ -244,8 +262,10 @@ class ModelBasedReconstruction(ReconstructionAlgorithm):
             detectors = geometry
             indices = []
             for i in range(3):
-                if np.all(kwargs["detectors"][:, i] != 0.):
+                if np.all(kwargs["geometry"][:, i] != 0.):
                     indices.append(i)
+
+            assert len(indices) == 2
             detx = detectors[:, indices[0]]
             dety = detectors[:, indices[1]]
 
@@ -269,7 +289,8 @@ class ModelBasedReconstruction(ReconstructionAlgorithm):
         output_shape = [1, 1, 1]
         for i in indices:
             output_shape[i] = nx
-        output_shape = tuple(output_shape)
+        # Reverse output shape to be (z, y, x) order
+        output_shape = tuple(output_shape[::-1])
 
         t = t.reshape((np.product(t.shape[:-2]),) + t.shape[-2:])
         output = np.zeros((t.shape[0],) + output_shape)
@@ -281,7 +302,7 @@ class ModelBasedReconstruction(ReconstructionAlgorithm):
             else:
                 output[i] = result
 
-        return output.reshape(or_shape[:2] + output.shape[-3:])
+        return output.reshape(or_shape[:-2] + output.shape[-3:])
 
     @staticmethod
     def get_algorithm_name() -> str:

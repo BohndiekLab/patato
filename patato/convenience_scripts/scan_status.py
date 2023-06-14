@@ -6,7 +6,7 @@ import glob
 from os.path import join
 
 import h5py
-from .. import sort_key
+from ..utils import sort_key
 
 
 def init_argparse():

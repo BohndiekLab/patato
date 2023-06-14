@@ -2,5 +2,9 @@
 #  License: MIT
 
 """
-Core datastructures.
+Core datastructures
+===================
+
+Core datastructure for PATATO. This module provides structures such as Reconstruction, UnmixedData etc., providing
+commonly-used functions.
 """

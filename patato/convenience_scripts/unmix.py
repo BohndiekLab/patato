@@ -13,10 +13,9 @@ from os.path import join
 
 import numpy as np
 from .. import PAData
-from .. import get_default_unmixing_preset
+from ..unmixing import get_default_unmixing_preset
 from .. import read_unmixing_preset
-from .. import run_pipeline
-from .. import sort_key
+from ..utils import run_pipeline, sort_key
 
 
 def init_argparse():

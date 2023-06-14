@@ -4,17 +4,17 @@
 import unittest
 
 import numpy as np
-from .... import DefaultMSOTPreProcessor, ReferenceBackprojection
-from ....data import get_ithera_msot_time_series_example, get_msot_time_series_example
+from patato import DefaultMSOTPreProcessor, ReferenceBackprojection, PAData, iTheraMSOT
+from patato.data import get_ithera_msot_time_series_example, get_msot_time_series_example
 import matplotlib.pyplot as plt
 import matplotlib
 
 
 class TestITheraImport(unittest.TestCase):
     def test_overall_processing(self):
-        matplotlib.use('Agg')
-        pa_1 = get_ithera_msot_time_series_example("so2")
-        pa_2 = get_msot_time_series_example("so2")
+        # matplotlib.use('Agg')
+        pa_1 = PAData(iTheraMSOT("test_data_ithera/Scan_9"))
+        pa_2 = PAData.from_hdf5("test_data.hdf5")
 
         self.assertEqual(pa_1.get_scan_name(), pa_2.get_scan_name())
         self.assertEqual(pa_1.scan_reader.get_scan_comment(), pa_2.scan_reader.get_scan_comment())
@@ -40,6 +40,5 @@ class TestITheraImport(unittest.TestCase):
         new_t2, d2, _ = preproc.run(pa_2.get_time_series()[0:1, 0:1], pa_2[0:1, 0:1])
         rec2, _, _ = recon.run(new_t2, pa_2[0:1, 0:1], 1500, **d2)
 
-	# The HDF5 version was downsampled so that it could be uploaded.
-        self.assertTrue(np.all(pa_1.get_time_series().raw_data[::2] == pa_2.get_time_series().raw_data[()]))
+        self.assertTrue(np.all(pa_1.get_time_series().raw_data == pa_2.get_time_series().raw_data[:, 0]))
         self.assertTrue(np.all(new_t1.raw_data[()] == new_t2.raw_data[()]))

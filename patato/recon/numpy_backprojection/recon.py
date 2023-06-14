@@ -3,15 +3,14 @@
 
 from typing import Sequence
 
-import matplotlib.pyplot as plt
 import numpy as np
-import patato as pat
-from patato.data import get_msot_time_series_example
+from .. import ReconstructionAlgorithm
 
 # Add a loading bar
-from tqdm.notebook import tqdm
+from tqdm.auto import tqdm
 
-class SlowBackprojection(pat.ReconstructionAlgorithm):
+
+class SlowBackprojection(ReconstructionAlgorithm):
     """
     Slow example backprojection.
     """
@@ -57,10 +56,13 @@ class SlowBackprojection(pat.ReconstructionAlgorithm):
         frames = int(np.product(original_shape))
         signal = time_series.reshape((frames,) + time_series.shape[-2:])
 
-        xs, ys, zs = [np.linspace(-field_of_view[i]/2, field_of_view[i]/2, n_pixels[i]) if n_pixels[i] != 1 else np.array([0.]) for i in range(3)]
+        xs, ys, zs = [
+            np.linspace(-field_of_view[i] / 2, field_of_view[i] / 2, n_pixels[i]) if n_pixels[i] != 1 else np.array(
+                [0.]) for i in range(3)]
         Z, Y, X = np.meshgrid(zs, ys, xs, indexing='ij')
 
-        # Note that the reconstructions are stored in memory in the order z, y, x (i.e. the x axis is the fastest changing in memory)
+        # Note that the reconstructions are stored in memory in the order z, y, x (i.e. the x axis is the fastest
+        # changing in memory)
         output = np.zeros((frames,) + tuple(n_pixels)[::-1])
 
         for n_frame in tqdm(range(frames), desc="Looping through frames", position=0):
@@ -79,4 +81,4 @@ class SlowBackprojection(pat.ReconstructionAlgorithm):
         str
             Algorithm name.
         """
-        return "Bad Backprojection"
+        return "Slow Backprojection"
