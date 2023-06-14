@@ -81,5 +81,4 @@ PATATO will be developed on a continuous basis, and we welcome collaborative con
 
 # Acknowledgements
 
-We would like to thank Mariam-Eleni Oraiopoulou, Ellie Bunce and Thierry Lefebvre for their helpful feedback as early users of the toolkit. This work was funded by: Cancer Research UK (SB, TRE; C9545/A29580); the MedAccel program of the National Physical Laboratory financed by the Department for Business, Energy and Industrial Strategy's Industrial Strategy Challenge Fund (LH); and the Walter Benjamin Stipendium of the Deutsche Forschungsgemeinschaft (JG).
-
+We would like to thank Mariam-Eleni Oraiopoulou, Ellie Bunce and Thierry Lefebvre for their helpful feedback as early users of the toolkit. This work was funded by: Cancer Research UK (SB, TRE; C9545/A29580); the MedAccel program of the National Physical Laboratory financed by the Department for Business, Energy and Industrial Strategy's Industrial Strategy Challenge Fund (LH); and the Walter Benjamin Stipendium of the Deutsche Forschungsgemeinschaft (JG). We would like to thank [Elly Pugh](https://ellypugh.com/) for design of the PATATO logo. 
