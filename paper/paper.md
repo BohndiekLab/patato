@@ -1,5 +1,5 @@
 ---
-title: 'PATATO: a photoacoustic tomography analysis toolkit'
+title: 'PATATO: a Python photoacoustic tomography analysis toolkit'
 tags:
   - Python
   - Photoacoustics
