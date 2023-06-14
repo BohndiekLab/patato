@@ -36,6 +36,8 @@ for the community as we translate photoacoustics to the clinic.
 * Please report any bugs or issues you find to our GitHub repository
 * Please do get involved! Contact Thomas Else (thomas.else@cruk.cam.ac.uk).
 
+The logo was designed by `Elly Pugh <https://ellypugh.com/>`_.
+
 .. only:: latex
 
     User Guide

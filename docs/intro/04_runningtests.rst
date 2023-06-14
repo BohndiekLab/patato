@@ -8,6 +8,6 @@ run the following in the command line:
 
     cd /path/to/patato
     cd tests
-    python run_coverage.py
+    python -m unittest
 
 This will output ok for each successful test. Note some of the tests will not run without a GPU, decreasing the coverage.
