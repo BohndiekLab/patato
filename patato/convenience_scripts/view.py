@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.widgets import Slider, RangeSlider
 from .. import PAData
-from .. import sort_key
+from ..utils import sort_key
 from ..core.image_structures.single_parameter_data import SingleParameterData
 
 

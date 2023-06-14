@@ -3,6 +3,7 @@
 .idea/
 *.npz
 *.hdf5
+!test_data.hdf5
 
 docs/_autosummary
 docs/_build

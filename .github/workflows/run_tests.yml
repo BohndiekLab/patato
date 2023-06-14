@@ -1,17 +1,15 @@
-name: Run Python tests
+name: Run tests and coverage
 
 on:
   push:
     branches:
-      - develop
       - main
   pull_request:
     branches:
-      - develop
       - main
 
 env:
-  PAT_DATA_FOLDER: TEMP
+  PAT_DATA_FOLDER: ${{ github.workspace }}/data
 
 jobs:
   build:
@@ -33,12 +31,15 @@ jobs:
         python -m pip install --upgrade pip
         python -m pip install flake8 pytest
         pip install -e .
-        pip install coverage
+        pip install coverage ruff
     - if: runner.os == 'Windows'
       run: |
         pip install jaxlib -f https://whls.blob.core.windows.net/unstable/index.html --use-deprecated legacy-resolver
         pip install jax[cpu]
+    - name: Linting
+      run: |
+        ruff --format=github --select=E9,F63,F7,F82 --target-version=py37 . # Should do wider tests in the future.
     - name: Run tests
       run: |
         cd tests
-        python run_coverage.py
+        python -m unittest

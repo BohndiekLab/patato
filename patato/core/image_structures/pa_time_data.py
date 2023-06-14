@@ -5,16 +5,12 @@ pa_time_data. Defines the time-domain version of PARawData class.
 #  Copyright (c) Thomas Else 2023.
 #  License: MIT
 
-from typing import TYPE_CHECKING
 
 import numpy as np
-import scipy.fft
 import xarray
 
 from ..image_structures.pa_raw_data import PARawData
 
-if TYPE_CHECKING:
-    from ..image_structures.pa_fourier_data import PAFourierDomain
 
 try:
     from pyopencl.array import Array, to_device
@@ -52,19 +48,3 @@ class PATimeSeries(PARawData):
 
     def two_dims(self):
         return "detectors", "timeseries"
-
-    def to_fourier_domain(self) -> "PAFourierDomain":
-        from ...core.image_structures.pa_fourier_data import PAFourierDomain
-        res = self.copy(PAFourierDomain)
-        try:
-            import cupy as cp
-        except ImportError:
-            cp = None
-        if cp is not None and type(self.raw_data) == cp.ndarray:
-            res.raw_data = cp.fft.fft(self.raw_data, axis=-1)
-        else:
-            res.raw_data = scipy.fft.fft(self.raw_data, axis=-1)
-        return res
-
-    def to_time_domain(self, _=None) -> "PATimeSeries":
-        return self

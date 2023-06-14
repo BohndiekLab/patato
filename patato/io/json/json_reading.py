@@ -71,7 +71,6 @@ def read_reconstruction_preset(json_path: Union[str, dict]):
 
     # Whether to do universal backprojection.
     ubp = settings.get("UBP", False)
-    print("Doing ubp?", ubp)
     step_1 = preprocessing_algorithm(time_factor=time_interpolation_factor,
                                      detector_factor=detector_interpolation_factor,
                                      irf=correct_for_impulse_response,

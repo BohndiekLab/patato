@@ -2,8 +2,8 @@
 #  License: MIT
 
 """
-PATATO Command Line Interface
-=============================
+PATATO command line interfaces
+==============================
 
 A series of convenience scripts for running the patato package in the command line.
 """

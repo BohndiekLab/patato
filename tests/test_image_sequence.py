@@ -64,5 +64,3 @@ class TestHDF5Load(unittest.TestCase):
             print(data[1])
             print(data[-2])
         #
-        self.pa_data.get_time_series().to_fourier_domain().to_time_domain().da.coords
-        self.pa_data.get_time_series().to_fourier_domain().da.coords

@@ -5,12 +5,10 @@ from __future__ import annotations
 
 from typing import Union, TYPE_CHECKING, Tuple, Optional
 
-from .preprocessing_algorithm import DefaultMSOTPreProcessor
-from .processing_algorithm import ProcessingResult
+from .processing_algorithm import ProcessingResult, TimeSeriesProcessingAlgorithm
 
 if TYPE_CHECKING:
     from ..io.msot_data import PAData
-    from ..core.image_structures.pa_raw_data import PARawData
 
 from ..core.image_structures.pa_time_data import PATimeSeries
 
@@ -26,7 +24,7 @@ from patato.unmixing.spectra import SPECTRA_NAMES
 import logging
 
 
-class GPUMSOTPreProcessor(DefaultMSOTPreProcessor):
+class GPUMSOTPreProcessor(TimeSeriesProcessingAlgorithm):
     @staticmethod
     def get_algorithm_name() -> str:
         return "GPU Standard Preprocessor"
@@ -118,11 +116,13 @@ class GPUMSOTPreProcessor(DefaultMSOTPreProcessor):
         # Apply a fourier domain filter.
 
         t = time.time()
-        time_series = time_series.to_fourier_domain()
-        time_series = self.apply_filter(time_series, ft_filter=ft_filter, absolute=self.absolute)
+        time_series_ft = fft(time_series.raw_data, axis=-1)
+        time_series_ft = self.apply_filter(time_series_ft, ft_filter=ft_filter)
+
+        operation = cp.real if self.absolute == "real" or self.absolute is None else cp.imag if self.absolute == "imag" else cp.abs
+        time_series.raw_data = operation(ifft(time_series_ft, axis=-1))
 
         # Go back to the time domain.
-        time_series = time_series.to_time_domain()
         logging.debug(f"Filter took {time.time() - t}s")
 
         # Apply interpolation in time and detector domains.
@@ -160,7 +160,7 @@ class GPUMSOTPreProcessor(DefaultMSOTPreProcessor):
             new_detector_ind = cp.linspace(0, detectors.shape[0] - 1, self.detector_factor * detectors.shape[0])
 
         # Interpolate in the sample domain
-        sample_ind = cp.arange(signal.shape[-1])
+        cp.arange(signal.shape[-1])
         new_samp_ind = cp.arange((signal.shape[-1] - 1) * self.time_factor + 1) / self.time_factor
         if exact_ratios:
             new_samp_ind = cp.linspace(0, signal.shape[-1] - 1, self.time_factor * signal.shape[-1])
@@ -196,13 +196,10 @@ class GPUMSOTPreProcessor(DefaultMSOTPreProcessor):
         return new_data, {"geometry": detectors.get()}
 
     @staticmethod
-    def apply_filter(pa_data: PARawData, ft_filter, absolute=False) -> PATimeSeries:
-        pa_fft = pa_data.to_fourier_domain()
-        extend = (None,) * (pa_fft.raw_data.ndim - 1) + (slice(None, None),)
-        pa_fft.raw_data *= ft_filter[extend]
-        operation = cp.real if absolute == "real" or absolute is None else cp.imag if absolute == "imag" else cp.abs
-        pa_time = pa_fft.to_time_domain(operation)
-        return pa_time
+    def apply_filter(pa_data: cp.ndarray, ft_filter) -> cp.ndarray:
+        extend = (None,) * (pa_data.ndim - 1) + (slice(None, None),)
+        pa_data *= ft_filter[extend]
+        return pa_data
 
     @staticmethod
     def make_filter(n_samples, fs, irf,
