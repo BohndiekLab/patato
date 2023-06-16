@@ -292,7 +292,7 @@ class iTheraMSOT(ReaderInterface):
                 print("Unable to import ultrasound scans - did the scanner fail to acquire the images? SKIPPING US")
                 return None
         else:
-            return None
+            return None, {}
 
     def get_scan_name(self):
         return self.xml_tree.getElementsByTagName("ScanNode")[0].getElementsByTagName("Name")[0].firstChild.nodeValue
