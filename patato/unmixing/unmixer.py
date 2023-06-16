@@ -12,13 +12,15 @@ from ..core.image_structures.unmixed_image import UnmixedData
 from ..io.attribute_tags import UnmixingAttributeTags, GCAttributeTags
 from ..io.msot_data import PAData, HDF5Tags
 from ..processing.processing_algorithm import SpatialProcessingAlgorithm, ProcessingResult
-from patato.unmixing.spectra import Spectrum, SPECTRA_NAMES
+from ..unmixing.spectra import Spectrum, SPECTRA_NAMES
 from ..utils.time_series_analysis import find_gc_boundaries
+from ..utils.rois.roi_type import ROI
 
 
 class SpectralUnmixer(SpatialProcessingAlgorithm):
     """The spectral unmixer. This takes in reconstruction data and spits out linearly spectrall unmixed data.
     """
+
     @staticmethod
     def re_grid(reconstruction: np.ndarray, scaling_factor: int):
         """
@@ -90,6 +92,7 @@ class SpectralUnmixer(SpatialProcessingAlgorithm):
 class SO2Calculator(SpatialProcessingAlgorithm):
     """The SO2 calculator. This takes in unmixed data and produces SO2 data.
     """
+
     def __init__(self, algorithm_id="", nan_invalid=False):
         super().__init__(algorithm_id)
         self.nan_invalid = nan_invalid
@@ -116,7 +119,7 @@ class SO2Calculator(SpatialProcessingAlgorithm):
         hb_axis = np.where(spatial_data.spectra == "Hb")[0][0]
         hbo2_axis = np.where(spatial_data.spectra == "HbO2")[0][0]
         thb = spatial_data.raw_data[:, hb_axis] + spatial_data.raw_data[:, hbo2_axis]
-        thb[thb == 0] = np.nan # Just so it can pass tests.
+        thb[thb == 0] = np.nan  # Just so it can pass tests.
         so2 = spatial_data.raw_data[:, hbo2_axis] / thb
         so2 = so2[:, None]
         if self.nan_invalid:
@@ -135,6 +138,7 @@ class SO2Calculator(SpatialProcessingAlgorithm):
 class THbCalculator(SpatialProcessingAlgorithm):
     """The Total Haemoglobin calculator. This takes in unmixed data and produces THb data.
     """
+
     def run(self, spatial_data: UnmixedData, _, **kwargs):
         hb_axis = np.where(spatial_data.spectra == "Hb")[0][0]
         hbo2_axis = np.where(spatial_data.spectra == "HbO2")[0][0]
@@ -154,6 +158,7 @@ class GasChallengeAnalyser(SpatialProcessingAlgorithm):
     """Analyser for oxygen-enhanced datasets. Takes in a time-series of sO2 data (or any other parameter) and produces
     a delta sO2.
     """
+
     def __init__(self, smoothing_window_size=10,
                  display_output=True, smoothing_sigma=2,
                  start_skip=0, challenge_type=1, buffer_width=5):
@@ -183,9 +188,9 @@ class GasChallengeAnalyser(SpatialProcessingAlgorithm):
         self.sign = challenge_type
         self.buffer = buffer_width
 
-    def run(self, so2: SingleParameterData, pa_data: PAData, **kwargs) -> Optional[Tuple[SingleImage, dict,
-                                                                                         Optional[List[
-                                                                                             ProcessingResult]]]]:
+    def run(self, so2: SingleParameterData, pa_data: PAData,
+            reference_name=("reference_", "0"), **kwargs) -> Optional[Tuple[SingleImage, dict, Optional[List[
+        ProcessingResult]]]]:
         """
         This algorithm takes in a so2 time series and a PA data object (pa_data) and returns a tuple containing the
         delta sO2 (change in sO2 between the baseline and the challenge), an empty dictionary (for compatibility with
@@ -197,6 +202,8 @@ class GasChallengeAnalyser(SpatialProcessingAlgorithm):
             The sO2 time series.
         pa_data : PAData
             The PA data object.
+        reference_name : Tuple[str, str] or ROI
+            The name of the reference region to use.
         kwargs : dict
             Additional keyword arguments, provided for compatibility with other processing methods.
 
@@ -206,13 +213,19 @@ class GasChallengeAnalyser(SpatialProcessingAlgorithm):
             A tuple containing the delta sO2, an empty dictionary (for compatibility with other processing methods), and
             a list containing the mean and standard deviation of the baseline sO2.
         """
-        rois = pa_data.get_rois()
-        if not rois:
-            raise RuntimeError("No reference region available.")
-        elif ("reference_", "0") not in rois:
-            raise RuntimeError("No reference region available.")
 
-        roi_mask, _ = rois[("reference_", "0")].to_mask_slice(so2)
+        if type(reference_name) == ROI:
+            roi_reference = reference_name
+        else:
+            rois = pa_data.get_rois()
+            if not rois:
+                raise RuntimeError("No regions of interest available.")
+            elif reference_name not in rois:
+                raise RuntimeError(f"{reference_name} not available.")
+            else:
+                roi_reference = rois[reference_name]
+
+        roi_mask, _ = roi_reference.to_mask_slice(so2)
         steps = find_gc_boundaries(roi_mask, so2, self.smoothing_window_size,
                                    self.display, self.smoothing_sigma, self.start_skip,
                                    self.sign)
@@ -266,6 +279,7 @@ def find_dce_boundaries(roi_mask, icg, smoothing_window_size, display, smoothing
 class DCEAnalyser(SpatialProcessingAlgorithm):
     """Analyser for DCE datasets. Takes in a time-series of ICG data and produces a delta ICG.
     """
+
     def __init__(self, smoothing_window_size=10,
                  display_output=True, smoothing_sigma=2,
                  buffer_width=5, unmix_index=2):
@@ -276,17 +290,22 @@ class DCEAnalyser(SpatialProcessingAlgorithm):
         self.buffer = buffer_width
         self.unmix_index = unmix_index
 
-    def run(self, unmixed_data: SingleParameterData, pa_data: PAData, **kwargs) -> Optional[Tuple[SingleImage, dict,
-                                                                                                  Optional[List[
-                                                                                                      ProcessingResult]]]]:
-        rois = pa_data.get_rois()
-        if not rois:
-            raise ValueError("No reference region available.")
-        elif ("reference_", "0") not in rois:
-            raise ValueError("No reference region available.")
+    def run(self, unmixed_data: SingleParameterData, pa_data: PAData,
+            reference_name=("reference_", "0"), **kwargs) -> Optional[Tuple[SingleImage, dict,
+        Optional[List[
+        ProcessingResult]]]]:
+        if type(reference_name) == ROI:
+            roi_reference = reference_name
+        else:
+            rois = pa_data.get_rois()
+            if not rois:
+                raise RuntimeError("No regions of interest available.")
+            elif reference_name not in rois:
+                raise RuntimeError(f"{reference_name} not available.")
+            else:
+                roi_reference = rois[reference_name]
         icg = unmixed_data[:, self.unmix_index]
-
-        roi_mask, _ = rois[("reference_", "0")].to_mask_slice(icg)
+        roi_mask, _ = roi_reference.to_mask_slice(icg)
 
         steps = find_dce_boundaries(roi_mask, icg, self.smoothing_window_size,
                                     self.display, self.smoothing_sigma)

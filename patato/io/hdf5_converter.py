@@ -36,9 +36,10 @@ def convert_ithera_msot_binary_to_hdf5(input_path: str, output_path: str, update
             scan = iTheraMSOT(dirname(scan_path))
             if 0 in scan.raw_data.shape:
                 print("Scan skipped because scan was not acquired properly", ithera_defined_scan_name)
-        except FileNotFoundError:
-            print("Scan skipped, because iThera scan corrputed.", ithera_defined_scan_name)
-            errors.append("Scan skipped, because iThera scan corrputed. " + ithera_defined_scan_name)
+        except FileNotFoundError as e:
+            print(str(e))
+            print("Scan skipped, some data missing?", ithera_defined_scan_name)
+            errors.append("Scan skipped, some data missing in " + ithera_defined_scan_name)
             continue
         user_defined_scan_name = scan.get_scan_name()
 
