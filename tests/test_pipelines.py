@@ -12,7 +12,7 @@ from patato.io.msot_data import PAData
 from patato.unmixing.spectra import OxyHaemoglobin, Haemoglobin
 from patato.recon import ReferenceBackprojection
 from patato.unmixing.unmixer import SpectralUnmixer
-from patato.utils.run_pipeline import run_pipeline
+from patato.utils.pipeline import run_pipeline
 
 from make_dummy_dataset import make_dummy_dataset
 

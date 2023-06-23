@@ -8,7 +8,7 @@ from os.path import join
 from ...io.msot_data import PAData
 from ...unmixing.unmixer import DCEAnalyser
 from ...utils import sort_key
-from ...utils.run_pipeline import run_pipeline
+from ...utils.pipeline import run_pipeline
 
 
 def init_argparse():
