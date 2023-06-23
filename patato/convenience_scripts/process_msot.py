@@ -15,7 +15,7 @@ from .. import PAData
 from ..recon import get_default_recon_preset
 from .. import read_reconstruction_preset
 from ..utils import sort_key
-from ..utils.run_pipeline import run_pipeline
+from ..utils.pipeline import run_pipeline
 
 
 def main():
@@ -114,7 +114,7 @@ def main():
         print(data_file, pa_data.dataset.shape)
         if any(x == 0 for x in pa_data.dataset.shape):
             continue
-        print(run_pipeline)
+
         run_pipeline(pipeline, pa_data.dataset, pa_data, n_batch=1 + 20 // pa_data.shape[1], output_file=output_file)
 
         if do_ipasc_export:
