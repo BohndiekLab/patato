@@ -307,7 +307,7 @@ class WriterInterface(metaclass=ABCMeta):
         self.set_scan_times(reader.get_scan_times())
         self.set_sensor_geometry(reader.get_sensor_geometry())
         if reader.get_us_data()[0] is not None:
-            print(reader.get_us_data())
+            # print(reader.get_us_data())
             self.set_us_data(*reader.get_us_data())  # TODO: implement us data as a image data type.
         self.set_impulse_response(reader.get_impulse_response())
         self.set_wavelengths(reader.get_wavelengths())
