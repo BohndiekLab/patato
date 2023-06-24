@@ -6,12 +6,11 @@ import unittest
 import numpy as np
 
 from patato import PAData
-from patato.data import get_msot_time_series_example
 from patato.processing.jax_preprocessing_algorithm import PreProcessor
 from patato.recon import OpenCLBackprojection, ReferenceBackprojection, SlowBackprojection
 
 
-class BackprojectionTest(unittest.TestCase):
+class TestBackprojection(unittest.TestCase):
     def setUp(self) -> None:
         self.pa = PAData.from_hdf5("test_data.hdf5")
 

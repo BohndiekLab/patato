@@ -14,7 +14,8 @@ import os
 from .. import PAData
 from ..recon import get_default_recon_preset
 from .. import read_reconstruction_preset
-from ..utils import run_pipeline, sort_key
+from ..utils import sort_key
+from ..utils.pipeline import run_pipeline
 
 
 def main():
