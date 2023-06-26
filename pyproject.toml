@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "patato"
-version = "0.5.1"
+version = "0.5.2"
 dependencies = [
     "requests",
     "cython",
@@ -30,7 +30,6 @@ dependencies = [
 
 authors = [
   { name="Thomas Else", email="thomas.else@cruk.cam.ac.uk" },
-  { name="Janek Grohl" },
 ]
 description = "A Python Toolkit for the analysis of photoacoustic tomography data."
 readme = "README.md"
