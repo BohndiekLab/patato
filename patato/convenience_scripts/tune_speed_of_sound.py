@@ -145,7 +145,7 @@ def main():
         ax_slide = plt.axes([0.25, 0.1, 0.65, 0.03])
         ax_button = plt.axes([0.25, 0.025, 0.4, 0.05])
 
-        image = np.squeeze(recon)
+        image = np.asarray(np.squeeze(recon))
         if log:
             image = np.log(image)
 
