@@ -467,18 +467,26 @@ def main():
             print(f"Multiple reconstructions available, using {method}.")
 
         recon = data.get_scan_reconstructions()[method]
-        
-        # Load to memory:
-        if args.loadall:
-            print("Loading all")
-            recon.raw_data = recon.raw_data[:]
-        
-        extents = recon.extent
 
         thb = data.get_scan_thb()
 
         if args.drawthb:
             recon = thb[(method, "0")]
+
+        if args.drawultrasound:
+            recon_us = data.get_ultrasound()
+            if not recon_us:
+                print("No ultrasound available.")
+            if type(recon_us) == dict:
+                recon_us = list(recon_us.values())[0]
+            recon = recon_us
+
+        extents = recon.extent
+
+        # Load to memory:
+        if args.loadall:
+            print("Loading all")
+            recon.raw_data = recon.raw_data[:]
 
         ROIDrawer(data, recon, extents, roi_name=args.name, roi_position=args.position,
                                  interpolation=args.interpolation, draw_all_rois=args.drawallrois, start_wl = wl_i)

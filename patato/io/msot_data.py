@@ -243,7 +243,9 @@ class PAData:
 
     def get_ultrasound(self):
         us_images = self.get_scan_images(HDF5Tags.ULTRASOUND, ignore_default=True)
-        if len(us_images) > 1:
+        if len(us_images) == 0:
+            return {}
+        elif len(us_images) > 1:
             return us_images
         else:
             return list(us_images.values())[0]
