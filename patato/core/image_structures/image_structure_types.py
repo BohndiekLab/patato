@@ -8,6 +8,7 @@ from typing import TypeVar, TYPE_CHECKING
 from .reconstruction_image import Reconstruction
 from .single_image import SingleImage
 from .single_parameter_data import SingleParameterData
+from .ultrasound_image import Ultrasound
 from .unmixed_image import UnmixedData
 
 if TYPE_CHECKING:
@@ -19,4 +20,6 @@ IMAGE_DATA_TYPES = {"recons": Reconstruction, "unmixed": UnmixedData,
                     "so2": SingleParameterData, "thb": SingleParameterData,
                     "dso2": SingleImage, "dicg": SingleImage,
                     "baseline_so2_sigma": SingleImage, "baseline_so2": SingleImage,
-                    "baseline_icg_sigma": SingleImage, "baseline_icg": SingleImage}
+                    "baseline_icg_sigma": SingleImage, "baseline_icg": SingleImage,
+                    "ultrasound": Ultrasound
+                    }

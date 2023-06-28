@@ -6,6 +6,8 @@ import xml.dom.minidom
 from os.path import split, join
 
 import numpy as np
+
+from ..attribute_tags import ReconAttributeTags
 from ...core.image_structures.reconstruction_image import Reconstruction
 from ..hdf.fileimporter import ReaderInterface
 from ..ithera import load_ithera_irf
@@ -74,12 +76,12 @@ class iTheraMSOT(ReaderInterface):
             # fill in required PATATO attributes:
             pat_attributes = {}
             pat_attributes["RECONSTRUCTION_ALGORITHM"] = "iThera " + attributes["Name"]
-            pat_attributes["RECONSTRUCTION_NX"] = ns[0]
-            pat_attributes["RECONSTRUCTION_NY"] = ns[1]
-            pat_attributes["RECONSTRUCTION_NZ"] = ns[2]
-            pat_attributes["RECONSTRUCTION_FIELD_OF_VIEW_NX"] = fov[0]
-            pat_attributes["RECONSTRUCTION_FIELD_OF_VIEW_NY"] = fov[1]
-            pat_attributes["RECONSTRUCTION_FIELD_OF_VIEW_NZ"] = fov[2]
+            pat_attributes[ReconAttributeTags.X_NUMBER_OF_PIXELS] = ns[0]
+            pat_attributes[ReconAttributeTags.Y_NUMBER_OF_PIXELS] = ns[1]
+            pat_attributes[ReconAttributeTags.Z_NUMBER_OF_PIXELS] = ns[2]
+            pat_attributes[ReconAttributeTags.X_FIELD_OF_VIEW] = fov[0]
+            pat_attributes[ReconAttributeTags.Y_FIELD_OF_VIEW] = fov[1]
+            pat_attributes[ReconAttributeTags.Z_FIELD_OF_VIEW] = fov[2]
             pat_attributes["RECONSTRUCTION_PARAMS"] = attributes
             pat_attributes["PREPROCESSING_ALGORITHM"] = "iThera " + attributes["SingalFilterType"]
             pat_attributes["speedofsound"] = attributes["TrimSpeedOfSound"]
@@ -232,9 +234,6 @@ class iTheraMSOT(ReaderInterface):
     def _get_temperature(self):
         return self.scan_elements["TEMPERATURE"]
 
-    def get_us_offsets(self):
-        return self.scan_attrs["ultraSound-frame-offset"]
-
     def _get_pa_data(self):
         raw_file = glob.glob(join(self.scan_folder, "*.bin"))[0]
         raw_data = np.memmap(raw_file, mode="r", dtype=np.uint16)[
@@ -270,6 +269,7 @@ class iTheraMSOT(ReaderInterface):
         return np.array(coeffs), pathlength
 
     def get_us_data(self):
+        # self.scan_attrs["ultraSound-frame-offset"]
         us_files = glob.glob(join(self.scan_folder, "*.us"))
         if len(us_files) > 0:
             us_nodes = self.xml_tree.getElementsByTagName("ULTRA-SOUND-FIELD-OF-VIEW")

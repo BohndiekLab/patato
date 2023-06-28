@@ -51,10 +51,14 @@ def load_image_from_hdf5(cls, dataset, file):
     ax_1_meaning = cls.get_ax1_label_meaning()
     dataset_da = da.from_array(dataset, chunks=(1,) + dataset.shape[1:])
 
+    # This is very hacky, could do with improving this.
     if ax_1_meaning == HDF5Tags.WAVELENGTH:
         ax_1_labels = dataset.attrs.get(HDF5Tags.WAVELENGTH, file["wavelengths"])
     elif ax_1_meaning == "SPECTRA":
         ax_1_labels = dataset.attrs["SPECTRA"]
+    elif ax_1_meaning == "":
+        # For ultrasound
+        ax_1_labels = np.arange(dataset_da.shape[1])
     elif ax_1_meaning is None:
         # For dso2 etc.
         ax_1_labels = np.array([dataset.name.split("/")[-3]])
@@ -128,20 +132,13 @@ class HDF5Writer(WriterInterface):
         self.file.create_dataset(HDF5Tags.SCAN_GEOMETRY, data=sensor_geometry, compression="gzip")
 
     def set_us_data(self, us_data, us_fov):
-        # At some point convert this to image sequence data types.
-        self.file.create_dataset(HDF5Tags.ULTRASOUND, data=us_data)
-        self.file[HDF5Tags.ULTRASOUND].attrs[HDF5Tags.ULTRASOUND_FIELD_OF_VIEW] = us_fov
+        raise NotImplementedError("Change how ultrasound data is processed.")
 
     def set_impulse_response(self, impulse_response):
         self.file.create_dataset(HDF5Tags.IMPULSE_RESPONSE, data=impulse_response, compression="gzip")
 
     def set_wavelengths(self, wavelengths):
         self.file.create_dataset(HDF5Tags.WAVELENGTH, data=wavelengths)
-
-    def set_us_offsets(self, us_offsets):
-        if us_offsets is not None:
-            self.file.create_dataset(HDF5Tags.ULTRASOUND_FRAME_OFFSET, data=us_offsets,
-                                     compression="gzip")
 
     def set_water_absorption(self, water_absorption, pathlength):
         # TODO: Maybe refactor this?
@@ -360,14 +357,12 @@ class HDF5Reader(ReaderInterface):
         return self.file[HDF5Tags.SCAN_GEOMETRY][:]
 
     def get_us_data(self):
-        if HDF5Tags.ULTRASOUND in self.file:
-            return self.file.get(HDF5Tags.ULTRASOUND, None), \
-                   self.file[HDF5Tags.ULTRASOUND].attrs[HDF5Tags.ULTRASOUND_FIELD_OF_VIEW]
+        if HDF5Tags.ULTRASOUND in self.file and HDF5Tags.ULTRASOUND_FRAME_OFFSET in self.file:
+            raise ValueError("US data is in old format. Please reprocess the data.")
+        elif HDF5Tags.ULTRASOUND in self.file:
+            pass
         else:
-            return None, {}
-
-    def get_us_offsets(self):
-        return self.file[HDF5Tags.ULTRASOUND_FRAME_OFFSET]
+            return None
 
     def get_impulse_response(self):
         return self.file[HDF5Tags.IMPULSE_RESPONSE]

@@ -240,10 +240,6 @@ class ReaderInterface(metaclass=ABCMeta):
         return t
 
     @abstractmethod
-    def get_us_offsets(self):
-        pass
-
-    @abstractmethod
     def _get_water_absorption(self):
         pass
 
@@ -307,11 +303,9 @@ class WriterInterface(metaclass=ABCMeta):
         self.set_scan_times(reader.get_scan_times())
         self.set_sensor_geometry(reader.get_sensor_geometry())
         if reader.get_us_data()[0] is not None:
-            # print(reader.get_us_data())
             self.set_us_data(*reader.get_us_data())  # TODO: implement us data as a image data type.
         self.set_impulse_response(reader.get_impulse_response())
         self.set_wavelengths(reader.get_wavelengths())
-        self.set_us_offsets(reader.get_us_offsets())
         self.set_water_absorption(*reader.get_water_absorption())
         if reader.get_datasets() is not None:
             for _, image_group in reader.get_datasets().items():
@@ -375,10 +369,6 @@ class WriterInterface(metaclass=ABCMeta):
 
     @abstractmethod
     def set_wavelengths(self, wavelengths):
-        pass
-
-    @abstractmethod
-    def set_us_offsets(self, us_offsets):
         pass
 
     @abstractmethod

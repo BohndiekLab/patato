@@ -10,7 +10,7 @@ if TYPE_CHECKING:
     from ..io.msot_data import PAData
     from .rois.roi_type import ROI
 
-from seaborn.palettes import color_palette
+import matplotlib
 
 
 def split_roi_left_right(data: "PAData", base_roi="", split_template="unnamed"):
@@ -66,7 +66,7 @@ def split_roi_left_right(data: "PAData", base_roi="", split_template="unnamed"):
 ROI_NAMES = ["brain", "body", "reference", "aorta", "tumour", "background", "artery",
              "vein", "muscle", "phantom", "unnamed", "kidney", "spleen", "spine"]
 
-REGION_COLOURS = color_palette("husl", len(ROI_NAMES))
+REGION_COLOURS = matplotlib.cm.hsv(np.linspace(0, 1, len(ROI_NAMES)))
 
 REGION_COLOUR_MAP = defaultdict(lambda: REGION_COLOURS[-1])
 for x, y in zip(ROI_NAMES, REGION_COLOURS):

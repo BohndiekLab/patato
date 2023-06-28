@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "patato"
-version = "0.5.2"
+version = "0.5.3"
 dependencies = [
     "requests",
     "cython",
@@ -12,7 +12,6 @@ dependencies = [
     "pylops", # Check version compatibility with pylops
     "h5py",
     "typing_extensions",
-    "seaborn",
     "pandas",
     "scikit-learn",
     "xarray",
