@@ -66,7 +66,7 @@ classifiers = [
 where = ["."]  # ["."] by default
 include = ["patato", "patato.*"]  # ["*"] by default
 exclude = []  # empty by default
-namespaces = false  # true by default
+namespaces = true  # true by default
 
 [project.scripts]
 patato-import-ithera = "patato.convenience_scripts.convert_binary_to_hdf5:main"
@@ -79,10 +79,7 @@ patato-analyse-gc = "patato.convenience_scripts.data_analysis.analyse_gas_challe
 patato-convert-simpa = "patato.convenience_scripts.convert_simpa:main"
 
 [tool.setuptools.package-data]
-"patato.unmixing.spectra.spectra_files" = ["*.csv", "*.txt"]
-"patato.recon.recon_presets" = ["*.json"]
-"patato.unmixing.unmix_presets" = ["*.json"]
-"*" = ["*.cu", "*.cl"]
+"*" = ["*.cu", "*.cl", "*.json", "*.csv", "*.txt"]
 
 [tool.setuptools.exclude-package-data]
 "*" = [".gitattributes", ".gitignore"]
