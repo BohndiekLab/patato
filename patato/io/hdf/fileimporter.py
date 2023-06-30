@@ -221,11 +221,6 @@ class ReaderInterface(metaclass=ABCMeta):
             return self._get_sensor_geometry()
 
     @abstractmethod
-    def get_us_data(self):
-        # TODO: implement slicing
-        pass
-
-    @abstractmethod
     def get_impulse_response(self):
         pass
 
@@ -302,8 +297,6 @@ class WriterInterface(metaclass=ABCMeta):
         self.set_repetition_numbers(reader.get_repetition_numbers())
         self.set_scan_times(reader.get_scan_times())
         self.set_sensor_geometry(reader.get_sensor_geometry())
-        if reader.get_us_data()[0] is not None:
-            self.set_us_data(*reader.get_us_data())  # TODO: implement us data as a image data type.
         self.set_impulse_response(reader.get_impulse_response())
         self.set_wavelengths(reader.get_wavelengths())
         self.set_water_absorption(*reader.get_water_absorption())
@@ -357,10 +350,6 @@ class WriterInterface(metaclass=ABCMeta):
 
     @abstractmethod
     def set_sensor_geometry(self, sensor_geometry):
-        pass
-
-    @abstractmethod
-    def set_us_data(self, us_data, us_fov):
         pass
 
     @abstractmethod

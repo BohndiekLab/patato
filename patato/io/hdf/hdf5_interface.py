@@ -131,9 +131,6 @@ class HDF5Writer(WriterInterface):
     def set_sensor_geometry(self, sensor_geometry):
         self.file.create_dataset(HDF5Tags.SCAN_GEOMETRY, data=sensor_geometry, compression="gzip")
 
-    def set_us_data(self, us_data, us_fov):
-        raise NotImplementedError("Change how ultrasound data is processed.")
-
     def set_impulse_response(self, impulse_response):
         self.file.create_dataset(HDF5Tags.IMPULSE_RESPONSE, data=impulse_response, compression="gzip")
 
@@ -355,14 +352,6 @@ class HDF5Reader(ReaderInterface):
 
     def _get_sensor_geometry(self):
         return self.file[HDF5Tags.SCAN_GEOMETRY][:]
-
-    def get_us_data(self):
-        if HDF5Tags.ULTRASOUND in self.file and HDF5Tags.ULTRASOUND_FRAME_OFFSET in self.file:
-            raise ValueError("US data is in old format. Please reprocess the data.")
-        elif HDF5Tags.ULTRASOUND in self.file:
-            pass
-        else:
-            return None
 
     def get_impulse_response(self):
         return self.file[HDF5Tags.IMPULSE_RESPONSE]

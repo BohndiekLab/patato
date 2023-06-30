@@ -113,7 +113,7 @@ class iTheraMSOT(ReaderInterface):
 
         # Load ultrasound:
         ultrasound_scans = []
-        im, fov = self.get_us_data()
+        im, fov = self._get_us_data()
         if im is not None:
             offset = self.scan_attrs["ultraSound-frame-offset"]
             image = np.swapaxes(im, 1, 2)[offset, :, None, ::-1]
@@ -303,7 +303,7 @@ class iTheraMSOT(ReaderInterface):
         pathlength = float(self.xml_tree.getElementsByTagName("PATH-LENGTH-IN-WATER")[0].firstChild.nodeValue)
         return np.array(coeffs), pathlength
 
-    def get_us_data(self):
+    def _get_us_data(self):
         # self.scan_attrs["ultraSound-frame-offset"]
         us_files = glob.glob(join(self.scan_folder, "*.us"))
         if len(us_files) > 0:
