@@ -25,8 +25,11 @@ class TestITheraImport(unittest.TestCase):
         pa_2.get_scan_reconstructions().imshow(return_scalebar_dimension=True)
         plt.close()
 
-        us = pa_2.scan_reader.get_us_data()
-        self.assertIsNone(us[0])
+        us = pa_1.get_ultrasound()
+        self.assertEqual(len(us), 0)
+
+        us = pa_2.get_ultrasound()
+        self.assertEqual(len(us), 0)
 
         time_factor = 3
         detector_factor = 2
