@@ -40,6 +40,7 @@ def xml_to_dict(x):
 class iTheraMSOT(ReaderInterface):
     """An interface for iThera MSOT datasets.
     """
+
     def _get_rois(self):
         # In future, can extend this to enable import of iThera ROIS.
         pass
@@ -66,9 +67,10 @@ class iTheraMSOT(ReaderInterface):
             file = join(self.scan_folder, "RECONs", guid + ".bin")
             ns = [r["FIELD-OF-VIEW"]["PixelCount"][a] for a in "XYZ"]
             try:
-                recon = np.memmap(file, dtype=np.single)[:self.nframes * self.nwavelengths * ns[0] * ns[1] * ns[2]].reshape(
-                   (self.nframes,
-                    self.nwavelengths,) + tuple(ns))
+                recon = np.memmap(file, dtype=np.single)[
+                        :self.nframes * self.nwavelengths * ns[0] * ns[1] * ns[2]].reshape(
+                    (self.nframes,
+                     self.nwavelengths,) + tuple(ns))
             except ValueError:
                 warnings.warn("Warning: unable to import iThera reconstruction. Skipping.")
                 continue
@@ -116,16 +118,17 @@ class iTheraMSOT(ReaderInterface):
             offset = self.scan_attrs["ultraSound-frame-offset"]
             image = np.swapaxes(im, 1, 2)[offset, :, None, ::-1]
             attributes = {}
+            field_of_view = [(-fov / 2, fov / 2), (0, 0), (-fov / 2, fov / 2)]
             attributes[ReconAttributeTags.X_NUMBER_OF_PIXELS] = image.shape[-1]
             attributes[ReconAttributeTags.Y_NUMBER_OF_PIXELS] = image.shape[-2]
             attributes[ReconAttributeTags.Z_NUMBER_OF_PIXELS] = image.shape[-3]
-            attributes[ReconAttributeTags.X_FIELD_OF_VIEW] = (-fov/2, fov/2)
-            attributes[ReconAttributeTags.Y_FIELD_OF_VIEW] = (0, 0)
-            attributes[ReconAttributeTags.Z_FIELD_OF_VIEW] = (-fov/2, fov/2)
+            attributes[ReconAttributeTags.X_FIELD_OF_VIEW] = field_of_view[0]
+            attributes[ReconAttributeTags.Y_FIELD_OF_VIEW] = field_of_view[1]
+            attributes[ReconAttributeTags.Z_FIELD_OF_VIEW] = field_of_view[2]
             attributes[ReconAttributeTags.RECONSTRUCTION_ALGORITHM] = "iThera Ultrasound"
 
-            ultrasound_scans.append(Ultrasound(image, self._get_wavelengths(),  attributes=attributes,
-                                                  hdf5_sub_name="ultrasound"))
+            ultrasound_scans.append(Ultrasound(image, self._get_wavelengths(), attributes=attributes,
+                                               hdf5_sub_name="ultrasound", field_of_view=field_of_view))
             us_dict = {}
             n_rec = {}
             for r in ultrasound_scans:
