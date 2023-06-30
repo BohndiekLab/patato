@@ -115,7 +115,8 @@ class iTheraMSOT(ReaderInterface):
         ultrasound_scans = []
         im, fov = self._get_us_data()
         if im is not None:
-            offset = self.scan_attrs["ultraSound-frame-offset"]
+            offset = self.scan_attrs["ultraSound-frame-offset"][:]
+            offset[offset < 0] = 0
             image = np.swapaxes(im, 1, 2)[offset, :, None, ::-1]
             attributes = {}
             field_of_view = [(-fov / 2, fov / 2), (0, 0), (-fov / 2, fov / 2)]
