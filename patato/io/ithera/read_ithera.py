@@ -13,6 +13,9 @@ from ..hdf.fileimporter import ReaderInterface
 from ..ithera import load_ithera_irf
 import warnings
 
+from ...core.image_structures.ultrasound_image import Ultrasound
+
+
 def xml_to_dict(x):
     if x.nodeType == 3:
         return x.nodeValue
@@ -101,10 +104,39 @@ class iTheraMSOT(ReaderInterface):
             i = n_rec[r_name]
             n_rec[r_name] += 1
             rec_dict[(r_name, str(i))] = r
+
+        output = {}
         if rec_dict:
-            return {"recons": rec_dict}
-        else:
-            return {}
+            output["recons"] = rec_dict
+
+        # Load ultrasound:
+        ultrasound_scans = []
+        im, fov = self.get_us_data()
+        if im is not None:
+            offset = self.scan_attrs["ultraSound-frame-offset"]
+            image = np.swapaxes(im, 1, 2)[offset, :, None, ::-1]
+            attributes = {}
+            attributes[ReconAttributeTags.X_NUMBER_OF_PIXELS] = image.shape[-1]
+            attributes[ReconAttributeTags.Y_NUMBER_OF_PIXELS] = image.shape[-2]
+            attributes[ReconAttributeTags.Z_NUMBER_OF_PIXELS] = image.shape[-3]
+            attributes[ReconAttributeTags.X_FIELD_OF_VIEW] = (-fov/2, fov/2)
+            attributes[ReconAttributeTags.Y_FIELD_OF_VIEW] = (0, 0)
+            attributes[ReconAttributeTags.Z_FIELD_OF_VIEW] = (-fov/2, fov/2)
+            attributes[ReconAttributeTags.RECONSTRUCTION_ALGORITHM] = "iThera Ultrasound"
+
+            ultrasound_scans.append(Ultrasound(image, self._get_wavelengths(),  attributes=attributes,
+                                                  hdf5_sub_name="ultrasound"))
+            us_dict = {}
+            n_rec = {}
+            for r in ultrasound_scans:
+                r_name = r.attributes["RECONSTRUCTION_ALGORITHM"]
+                if r_name not in us_dict:
+                    n_rec[r_name] = 0
+                i = n_rec[r_name]
+                n_rec[r_name] += 1
+                us_dict[(r_name, str(i))] = r
+            output["ultrasound"] = us_dict
+        return output
 
     def get_speed_of_sound(self):
         return None
@@ -290,7 +322,7 @@ class iTheraMSOT(ReaderInterface):
                 return us_data, fov
             except ValueError:
                 print("Unable to import ultrasound scans - did the scanner fail to acquire the images? SKIPPING US")
-                return None
+                return None, {}
         else:
             return None, {}
 
