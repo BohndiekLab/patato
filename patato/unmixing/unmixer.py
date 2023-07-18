@@ -18,7 +18,7 @@ from ..utils.rois.roi_type import ROI
 
 
 class SpectralUnmixer(SpatialProcessingAlgorithm):
-    """The spectral unmixer. This takes in reconstruction data and spits out linearly spectrall unmixed data.
+    """The spectral unmixer. This takes in reconstruction data and spits out linearly spectrally unmixed data.
     """
 
     @staticmethod

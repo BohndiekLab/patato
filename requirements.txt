@@ -24,3 +24,4 @@ jax~=0.3.17
 wget~=3.2
 tqdm~=4.64.0
 gdown~=4.6.0
+git+https://github.com/jgroehl/learned_PA_sO2_estimator@main

@@ -23,6 +23,7 @@ from .recon.model_based.model_based import ModelBasedReconstruction
 from .processing.jax_preprocessing_algorithm import PreProcessor
 
 from .unmixing.unmixer import SpectralUnmixer, SO2Calculator, THbCalculator, GasChallengeAnalyser, DCEAnalyser
+from .unmixing.learned_unmixer import LearnedSpectralUnmixer
 from .core.image_structures.reconstruction_image import Reconstruction
 from .core.image_structures.unmixed_image import UnmixedData
 from .core.image_structures.image_sequence import ImageSequence
@@ -44,6 +45,7 @@ PAT_MAXIMUM_BATCH_SIZE = int(environ.get("PAT_MAXIMUM_BATCH_SIZE", 5))
 __all_exports = [PreProcessor,
                  Backprojection, OpenCLBackprojection, ModelBasedReconstruction,
                  SpectralUnmixer, SO2Calculator, THbCalculator,
+                 LearnedSpectralUnmixer,
                  GasChallengeAnalyser, DCEAnalyser,
                  PAData,
                  SimpaImporter, iTheraMSOT,
