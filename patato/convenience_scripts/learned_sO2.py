@@ -56,12 +56,8 @@ def main():
         print("Processing", data_file)
         data = PAData.from_hdf5(data_file, "r+")
 
-        print("W1", wavelengths)
-
         if wavelengths is None or len(wavelengths) == 0:
             wavelengths = data.get_wavelengths()
-
-        print("W2", wavelengths)
 
         if np.any(data.get_wavelengths() == 0.):
             print("Strange, some wavelengths = 0 - investigate.", data_file)

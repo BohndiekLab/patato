@@ -9,11 +9,8 @@ from learned_PA_sO2_estimator.utils.io import convert_numpy_array
 from learned_PA_sO2_estimator.estimate_sO2 import evaluate
 
 from ..core.image_structures.reconstruction_image import Reconstruction
-from ..core.image_structures.unmixed_image import UnmixedData
 from ..core.image_structures.single_parameter_data import SingleParameterData
-from ..io.attribute_tags import UnmixingAttributeTags
 from ..processing.processing_algorithm import SpatialProcessingAlgorithm
-from ..unmixing.spectra import Spectrum, SPECTRA_NAMES
 
 
 class LearnedSpectralUnmixer(SpatialProcessingAlgorithm):
@@ -81,23 +78,21 @@ class LearnedSpectralUnmixer(SpatialProcessingAlgorithm):
 
         # Unmix.
         recon_data_input = convert_numpy_array(recon_data, wavelengths)
-        unmixed = evaluate(recon_data_input, self.train_dataset_id)
+        unmixed = evaluate(recon_data_input, self.train_dataset_id, len(wavelengths))
 
         # from (n_samples, n_wavelengths) to [frames, wavelengths, x, y, z]
         unmixed = np.reshape(unmixed, (n_frames, -1, 1))
         unmixed = np.swapaxes(unmixed, 1, 2)
         new_shape = np.asarray(original_shape)
         new_shape[1] = 1
-        print(unmixed.shape)
         unmixed = np.reshape(unmixed, new_shape)
-        print(unmixed.shape)
 
         output_data = SingleParameterData(unmixed.astype(np.float32), ["learned_sO2"],
                                           algorithm_id=self.algorithm_id,
                                           attributes=reconstruction.attributes,
                                           field_of_view=reconstruction.fov_3d)
-        for a in reconstruction.attributes:
-            output_data.attributes[a] = reconstruction.attributes[a]
+        output_data.attributes["TrainingDataset"] = self.train_dataset_id
+        output_data.attributes["wavelengths"] = self.wavelengths
         output_data.hdf5_sub_name = reconstruction.hdf5_sub_name
         return output_data, {}, None
 
