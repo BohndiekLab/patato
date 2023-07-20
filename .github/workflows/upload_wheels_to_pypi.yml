@@ -16,7 +16,6 @@ jobs:
     if: github.ref != 'refs/heads/newworkflow'
     uses: BohndiekLab/patato/.github/workflows/run_tests.yml@newworkflow
   build_wheels:
-    needs: test
     name: "Build wheels"
     uses: BohndiekLab/patato/.github/workflows/build_wheels.yml@newworkflow
   publish:
