@@ -22,7 +22,7 @@ dependencies = [
     "matplotlib_scalebar",
     "dask",
     "pybind11",
-    "jax[cpu]; platform_system!='Windows'",
+    "jax[cpu]",
     "wget",
     "gdown"
 ]
@@ -33,7 +33,7 @@ authors = [
 ]
 description = "A Python Toolkit for the analysis of photoacoustic tomography data."
 readme = "README.md"
-requires-python = ">=3.8,<=3.11"
+requires-python = ">=3.8,<3.12"
 
 keywords = [
     "photoacoustics",
