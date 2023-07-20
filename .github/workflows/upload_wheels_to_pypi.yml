@@ -7,6 +7,11 @@ on:
 jobs:
   build-and-publish:
     runs-on: ubuntu-latest
+    name: Run tests, build wheels and upload.
     steps:
-      - uses: ./.github/workflows/run_tests.yml
-      - uses: ./.github/workflows/build_wheels.yml
+      - name: Checkout repository.
+        uses: actions/checkout@v3
+      - name: Run Tests
+        uses: ./.github/workflows/run_tests.yml
+      - name: Build wheels
+        uses: ./.github/workflows/build_wheels.yml
