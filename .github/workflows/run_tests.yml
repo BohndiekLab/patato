@@ -1,14 +1,14 @@
 name: Run tests and coverage
 
 on:
-  - push:
+  push:
     branches:
       - main
       - develop
-  - pull_request:
+  pull_request:
     branches:
       - main
-  - workflow_call
+  workflow_call:
 
 
 env:
