@@ -5,15 +5,17 @@ on:
   - push
 
 jobs:
-  build-and-publish:
+  test:
+    uses: ./github/workflows/run_tests.yml
+  build_wheels:
+    uses: ./github/workflows/build_wheels.yml
+  publish:
     runs-on: ubuntu-latest
-    name: Run tests, build wheels and upload.
+    name: Upload to PyPi.
     steps:
-      - name: Checkout repository.
-        uses: actions/checkout@v3
-      - name: Run Tests
-        call-workflow:
-          uses: ./.github/workflows/run_tests.yml
-      - name: Build wheels
-        call-workflow:
-          uses: ./.github/workflows/build_wheels.yml
+      - uses: actions/checkout@v3
+      - uses: actions/download-artifact@v3
+        with:
+          path: dist
+      - name: Display structure of downloaded files
+        run: ls -R
