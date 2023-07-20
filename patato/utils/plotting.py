@@ -37,4 +37,6 @@ type_cmaps = {HDF5Tags.SO2: "RdBu_r",
               "Responding Pixels": ListedColormap([(0, 0, 0, 0), "orange"]),
               HDF5Tags.RAW_DATA: "bone",
               None: "viridis",
-              HDF5Tags.UNMIXED: "viridis"}
+              HDF5Tags.UNMIXED: "viridis",
+              HDF5Tags.ULTRASOUND: "bone"
+              }

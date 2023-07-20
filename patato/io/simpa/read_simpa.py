@@ -136,8 +136,5 @@ class SimpaImporter(ReaderInterface):
     def _get_wavelengths(self):
         return self.wavelengths
 
-    def get_us_offsets(self):
-        return None
-
     def _get_water_absorption(self):
         return np.zeros((len(self.wavelengths),)), 0

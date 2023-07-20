@@ -1,0 +1,36 @@
+name: Release
+
+on:
+  release:
+    types:
+      - created
+  push:
+    branches:
+      - newworkflow
+      - develop
+      - main
+  workflow_call:
+  workflow_dispatch:
+
+jobs:
+  test_run:
+    name: "Check versions"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Display structure of downloaded files
+        run: ls -R
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v3
+        with:
+          python-version: "3.10"
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install setuptools_scm
+      - name: Display version number
+        run: python -m setuptools_scm
+      - name: Show github tags
+        run: git tag | cat

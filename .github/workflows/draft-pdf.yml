@@ -3,12 +3,10 @@ name: Build draft PDF
 on:
   push:
     branches:
-      - develop
       - main
-  pull_request:
-    branches:
       - develop
-      - main
+  workflow_call:
+  workflow_dispatch:
 
 jobs:
   paper:

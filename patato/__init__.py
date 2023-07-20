@@ -28,6 +28,13 @@ from .core.image_structures.unmixed_image import UnmixedData
 from .core.image_structures.image_sequence import ImageSequence
 from .utils.rois.roi_type import ROI
 from .core.image_structures.pa_time_data import PATimeSeries
+from importlib.metadata import version, PackageNotFoundError
+
+try:
+    __version__ = version("patato")
+except PackageNotFoundError:
+    # package is not installed
+    pass
 
 Backprojection = ReferenceBackprojection
 

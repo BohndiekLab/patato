@@ -42,7 +42,7 @@ class ReaderInterface(metaclass=ABCMeta):
         pass
 
     def is_clinical(self):
-        return np.all(np.isnan(self.get_scanner_z_position())) or np.all(0. == self.get_scanner_z_position())
+        return np.all(np.isnan(self.get_scanner_z_position()[:])) or np.all(0. == self.get_scanner_z_position()[:])
 
     def save_to_hdf5(self, filename):
         from ..hdf.hdf5_interface import HDF5Writer
@@ -221,11 +221,6 @@ class ReaderInterface(metaclass=ABCMeta):
             return self._get_sensor_geometry()
 
     @abstractmethod
-    def get_us_data(self):
-        # TODO: implement slicing
-        pass
-
-    @abstractmethod
     def get_impulse_response(self):
         pass
 
@@ -238,10 +233,6 @@ class ReaderInterface(metaclass=ABCMeta):
         t = self._get_wavelengths()
         t = slice_1d(t, test_data, self.slices, -1)
         return t
-
-    @abstractmethod
-    def get_us_offsets(self):
-        pass
 
     @abstractmethod
     def _get_water_absorption(self):
@@ -306,12 +297,8 @@ class WriterInterface(metaclass=ABCMeta):
         self.set_repetition_numbers(reader.get_repetition_numbers())
         self.set_scan_times(reader.get_scan_times())
         self.set_sensor_geometry(reader.get_sensor_geometry())
-        if reader.get_us_data()[0] is not None:
-            # print(reader.get_us_data())
-            self.set_us_data(*reader.get_us_data())  # TODO: implement us data as a image data type.
         self.set_impulse_response(reader.get_impulse_response())
         self.set_wavelengths(reader.get_wavelengths())
-        self.set_us_offsets(reader.get_us_offsets())
         self.set_water_absorption(*reader.get_water_absorption())
         if reader.get_datasets() is not None:
             for _, image_group in reader.get_datasets().items():
@@ -366,19 +353,11 @@ class WriterInterface(metaclass=ABCMeta):
         pass
 
     @abstractmethod
-    def set_us_data(self, us_data, us_fov):
-        pass
-
-    @abstractmethod
     def set_impulse_response(self, impulse_response):
         pass
 
     @abstractmethod
     def set_wavelengths(self, wavelengths):
-        pass
-
-    @abstractmethod
-    def set_us_offsets(self, us_offsets):
         pass
 
     @abstractmethod

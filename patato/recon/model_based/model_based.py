@@ -8,6 +8,7 @@ import pylops
 from pylops.optimization.leastsquares import regularized_inversion
 from pylops.signalprocessing import Convolve1D, Convolve2D
 from scipy.sparse.linalg import LinearOperator as CPULinOp
+from tqdm.auto import tqdm
 
 import warnings
 
@@ -295,7 +296,7 @@ class ModelBasedReconstruction(ReconstructionAlgorithm):
         t = t.reshape((np.product(t.shape[:-2]),) + t.shape[-2:])
         output = np.zeros((t.shape[0],) + output_shape)
 
-        for i, t0 in enumerate(t):
+        for i, t0 in enumerate(tqdm(t)):
             result = model(t0.flatten()).reshape(output_shape)
             if gpu:
                 output[i] = result.get()

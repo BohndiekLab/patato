@@ -51,7 +51,7 @@ We developed PATATO to enhance the transparency, reproducibility and consistency
 
 # Software Pipeline
 
-PATATO is written in Python (currently supporting versions 3.8, 3.9 and 3.10) incorporating the strengths of standard numerical programming libraries, including NumPy, SciPy and matplotlib to access fast, well-tested numerical algorithms. PATATO can run without advanced hardware, as GPU dependencies are optional and memory requirements minimal, promoting accessibility and flexibility for the maximum number of users. 
+PATATO is written in Python (currently supporting versions 3.9, 3.10 and 3.11) incorporating the strengths of standard numerical programming libraries, including NumPy, SciPy and matplotlib to access fast, well-tested numerical algorithms. PATATO can run without advanced hardware, as GPU dependencies are optional and memory requirements minimal, promoting accessibility and flexibility for the maximum number of users. 
 
 Photoacoustic data can be large in size ($\gg$ 1 GB), impeding data import and data sharing. To enable fast handling of large datasets, PATATO implements batch processing and stores output in an HDF5 format, which allows seamless transfer of large data sets between fixed storage and memory. With HDF5, users can transfer data from PATATO to other tools and programming languages. PATATO includes dedicated wrappers for a number of data sources, e.g., for the IPASC data format [@Grohl2022], while also enabling user-defined wrappers.
 

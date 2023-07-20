@@ -69,7 +69,10 @@ def main():
     # TODO: implement ultrasound threshold overlay
     log = args.log
 
-    files = sorted(glob.glob(os.path.join(data_folder, "**", "*.hdf5"), recursive=True), key=sort_key)
+    if os.path.isfile(data_folder):
+        files = [data_folder]
+    else:
+        files = sorted(glob.glob(os.path.join(data_folder, "**", "*.hdf5"), recursive=True), key=sort_key)
 
     for data_file in files:
         if args.startscan is not None:

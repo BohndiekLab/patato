@@ -1,10 +1,10 @@
 [build-system]
-requires = ["setuptools", "wheel", "pybind11"]
+requires = ["setuptools>=45", "setuptools_scm[toml]>=6.2", "wheel", "pybind11"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "patato"
-version = "0.5.2"
+dynamic = ["version"]
 dependencies = [
     "requests",
     "cython",
@@ -12,7 +12,6 @@ dependencies = [
     "pylops", # Check version compatibility with pylops
     "h5py",
     "typing_extensions",
-    "seaborn",
     "pandas",
     "scikit-learn",
     "xarray",
@@ -23,7 +22,7 @@ dependencies = [
     "matplotlib_scalebar",
     "dask",
     "pybind11",
-    "jax[cpu]; platform_system!='Windows'",
+    "jax[cpu]",
     "wget",
     "gdown"
 ]
@@ -33,7 +32,7 @@ authors = [
 ]
 description = "A Python Toolkit for the analysis of photoacoustic tomography data."
 readme = "README.md"
-requires-python = ">=3.8,<3.11"
+requires-python = ">=3.8,<3.12"
 
 keywords = [
     "photoacoustics",
@@ -83,3 +82,6 @@ patato-convert-simpa = "patato.convenience_scripts.convert_simpa:main"
 
 [tool.setuptools.exclude-package-data]
 "*" = [".gitattributes", ".gitignore"]
+
+[tool.setuptools_scm]
+write_to = "patato/_version.py"

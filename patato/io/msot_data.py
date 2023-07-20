@@ -241,6 +241,15 @@ class PAData:
     def get_scan_reconstructions(self):
         return self.get_scan_images(HDF5Tags.RECONSTRUCTION)
 
+    def get_ultrasound(self):
+        us_images = self.get_scan_images(HDF5Tags.ULTRASOUND, ignore_default=True)
+        if len(us_images) == 0:
+            return {}
+        elif len(us_images) > 1:
+            return us_images
+        else:
+            return list(us_images.values())[0]
+
     def get_scan_unmixed(self):
         return self.get_scan_images(HDF5Tags.UNMIXED, suffix=self.default_unmixing_type)
 

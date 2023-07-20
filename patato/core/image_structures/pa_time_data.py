@@ -1,6 +1,7 @@
 """
 pa_time_data. Defines the time-domain version of PARawData class.
 """
+from typing import Optional
 
 #  Copyright (c) Thomas Else 2023.
 #  License: MIT
@@ -48,3 +49,28 @@ class PATimeSeries(PARawData):
 
     def two_dims(self):
         return "detectors", "timeseries"
+
+    @classmethod
+    def from_numpy(cls, dataset: np.ndarray, wavelengths: np.ndarray, fs: float,
+                   speed_of_sound: Optional[float] = None):
+        """
+        Create a PATimeSeries class from a NumPy array.
+
+        Parameters
+        ----------
+        dataset: np.ndarray
+        wavelengths: np.ndarray
+        fs: float
+        speed_of_sound: float
+
+        Returns
+        -------
+        PATimeSeries
+        """
+        dims = ["frames", cls.get_ax1_label_meaning(), "detectors", "timeseries"]
+        dim_coords = [np.arange(dataset.shape[0]), wavelengths,
+                      np.arange(dataset.shape[2]), np.arange(dataset.shape[3])
+                      ]
+        coordinates = {a: b for a, b in zip(dims, dim_coords)}
+        attributes = {'fs': fs, 'speedofsound': speed_of_sound}
+        return cls(dataset, dims, coordinates, attributes)

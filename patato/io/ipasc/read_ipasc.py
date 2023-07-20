@@ -67,9 +67,6 @@ class IPASCInterface(ReaderInterface):
     def _get_temperature(self):
         return self.pa_data.get_temperature()
 
-    def get_us_offsets(self):
-        return None
-
     def _get_pa_data(self):
         raw_data = self.pa_data.binary_time_series_data # [detectors, samples, wavelengths, frames]
         raw_data = np.swapaxes(raw_data, 1, 3)  # [detectors, frames, wavelengths, samples]

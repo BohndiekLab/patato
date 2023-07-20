@@ -4,9 +4,13 @@ on:
   push:
     branches:
       - main
+      - develop
   pull_request:
     branches:
       - main
+  workflow_call:
+  workflow_dispatch:
+
 
 env:
   PAT_DATA_FOLDER: ${{ github.workspace }}/data
@@ -17,8 +21,11 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: ["3.8", "3.9", "3.10"]
+        python-version: ["3.8", "3.9", "3.10", "3.11"]
         os: [ubuntu-latest, windows-latest, macos-latest]
+        exclude:
+          - python-version: "3.8"
+            os: windows-latest
 
     steps:
     - uses: actions/checkout@v3
@@ -32,10 +39,6 @@ jobs:
         python -m pip install flake8 pytest
         pip install -e .
         pip install coverage ruff
-    - if: runner.os == 'Windows'
-      run: |
-        pip install jaxlib -f https://whls.blob.core.windows.net/unstable/index.html --use-deprecated legacy-resolver
-        pip install jax[cpu]
     - name: Linting
       run: |
         ruff --format=github --select=E9,F63,F7,F82 --target-version=py37 . # Should do wider tests in the future.

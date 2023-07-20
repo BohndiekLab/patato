@@ -6,10 +6,15 @@ import xml.dom.minidom
 from os.path import split, join
 
 import numpy as np
+
+from ..attribute_tags import ReconAttributeTags
 from ...core.image_structures.reconstruction_image import Reconstruction
 from ..hdf.fileimporter import ReaderInterface
 from ..ithera import load_ithera_irf
 import warnings
+
+from ...core.image_structures.ultrasound_image import Ultrasound
+
 
 def xml_to_dict(x):
     if x.nodeType == 3:
@@ -35,6 +40,7 @@ def xml_to_dict(x):
 class iTheraMSOT(ReaderInterface):
     """An interface for iThera MSOT datasets.
     """
+
     def _get_rois(self):
         # In future, can extend this to enable import of iThera ROIS.
         pass
@@ -61,9 +67,10 @@ class iTheraMSOT(ReaderInterface):
             file = join(self.scan_folder, "RECONs", guid + ".bin")
             ns = [r["FIELD-OF-VIEW"]["PixelCount"][a] for a in "XYZ"]
             try:
-                recon = np.memmap(file, dtype=np.single)[:self.nframes * self.nwavelengths * ns[0] * ns[1] * ns[2]].reshape(
-                   (self.nframes,
-                    self.nwavelengths,) + tuple(ns))
+                recon = np.memmap(file, dtype=np.single)[
+                        :self.nframes * self.nwavelengths * ns[0] * ns[1] * ns[2]].reshape(
+                    (self.nframes,
+                     self.nwavelengths,) + tuple(ns))
             except ValueError:
                 warnings.warn("Warning: unable to import iThera reconstruction. Skipping.")
                 continue
@@ -74,12 +81,12 @@ class iTheraMSOT(ReaderInterface):
             # fill in required PATATO attributes:
             pat_attributes = {}
             pat_attributes["RECONSTRUCTION_ALGORITHM"] = "iThera " + attributes["Name"]
-            pat_attributes["RECONSTRUCTION_NX"] = ns[0]
-            pat_attributes["RECONSTRUCTION_NY"] = ns[1]
-            pat_attributes["RECONSTRUCTION_NZ"] = ns[2]
-            pat_attributes["RECONSTRUCTION_FIELD_OF_VIEW_NX"] = fov[0]
-            pat_attributes["RECONSTRUCTION_FIELD_OF_VIEW_NY"] = fov[1]
-            pat_attributes["RECONSTRUCTION_FIELD_OF_VIEW_NZ"] = fov[2]
+            pat_attributes[ReconAttributeTags.X_NUMBER_OF_PIXELS] = ns[0]
+            pat_attributes[ReconAttributeTags.Y_NUMBER_OF_PIXELS] = ns[1]
+            pat_attributes[ReconAttributeTags.Z_NUMBER_OF_PIXELS] = ns[2]
+            pat_attributes[ReconAttributeTags.X_FIELD_OF_VIEW] = fov[0]
+            pat_attributes[ReconAttributeTags.Y_FIELD_OF_VIEW] = fov[1]
+            pat_attributes[ReconAttributeTags.Z_FIELD_OF_VIEW] = fov[2]
             pat_attributes["RECONSTRUCTION_PARAMS"] = attributes
             pat_attributes["PREPROCESSING_ALGORITHM"] = "iThera " + attributes["SingalFilterType"]
             pat_attributes["speedofsound"] = attributes["TrimSpeedOfSound"]
@@ -99,10 +106,41 @@ class iTheraMSOT(ReaderInterface):
             i = n_rec[r_name]
             n_rec[r_name] += 1
             rec_dict[(r_name, str(i))] = r
+
+        output = {}
         if rec_dict:
-            return {"recons": rec_dict}
-        else:
-            return {}
+            output["recons"] = rec_dict
+
+        # Load ultrasound:
+        ultrasound_scans = []
+        im, fov = self._get_us_data()
+        if im is not None:
+            offset = self.scan_attrs["ultraSound-frame-offset"][:]
+            offset[offset < 0] = 0
+            image = np.swapaxes(im, 1, 2)[offset, :, None, ::-1]
+            attributes = {}
+            field_of_view = [(-fov / 2, fov / 2), (0, 0), (-fov / 2, fov / 2)]
+            attributes[ReconAttributeTags.X_NUMBER_OF_PIXELS] = image.shape[-1]
+            attributes[ReconAttributeTags.Y_NUMBER_OF_PIXELS] = image.shape[-2]
+            attributes[ReconAttributeTags.Z_NUMBER_OF_PIXELS] = image.shape[-3]
+            attributes[ReconAttributeTags.X_FIELD_OF_VIEW] = field_of_view[0]
+            attributes[ReconAttributeTags.Y_FIELD_OF_VIEW] = field_of_view[1]
+            attributes[ReconAttributeTags.Z_FIELD_OF_VIEW] = field_of_view[2]
+            attributes[ReconAttributeTags.RECONSTRUCTION_ALGORITHM] = "iThera Ultrasound"
+
+            ultrasound_scans.append(Ultrasound(image, self._get_wavelengths(), attributes=attributes,
+                                               hdf5_sub_name="ultrasound", field_of_view=field_of_view))
+            us_dict = {}
+            n_rec = {}
+            for r in ultrasound_scans:
+                r_name = r.attributes["RECONSTRUCTION_ALGORITHM"]
+                if r_name not in us_dict:
+                    n_rec[r_name] = 0
+                i = n_rec[r_name]
+                n_rec[r_name] += 1
+                us_dict[(r_name, str(i))] = r
+            output["ultrasound"] = us_dict
+        return output
 
     def get_speed_of_sound(self):
         return None
@@ -232,9 +270,6 @@ class iTheraMSOT(ReaderInterface):
     def _get_temperature(self):
         return self.scan_elements["TEMPERATURE"]
 
-    def get_us_offsets(self):
-        return self.scan_attrs["ultraSound-frame-offset"]
-
     def _get_pa_data(self):
         raw_file = glob.glob(join(self.scan_folder, "*.bin"))[0]
         raw_data = np.memmap(raw_file, mode="r", dtype=np.uint16)[
@@ -269,7 +304,8 @@ class iTheraMSOT(ReaderInterface):
         pathlength = float(self.xml_tree.getElementsByTagName("PATH-LENGTH-IN-WATER")[0].firstChild.nodeValue)
         return np.array(coeffs), pathlength
 
-    def get_us_data(self):
+    def _get_us_data(self):
+        # self.scan_attrs["ultraSound-frame-offset"]
         us_files = glob.glob(join(self.scan_folder, "*.us"))
         if len(us_files) > 0:
             us_nodes = self.xml_tree.getElementsByTagName("ULTRA-SOUND-FIELD-OF-VIEW")
@@ -290,7 +326,7 @@ class iTheraMSOT(ReaderInterface):
                 return us_data, fov
             except ValueError:
                 print("Unable to import ultrasound scans - did the scanner fail to acquire the images? SKIPPING US")
-                return None
+                return None, {}
         else:
             return None, {}
 
