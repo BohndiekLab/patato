@@ -6,11 +6,8 @@ on:
       - created
   push:
     branches:
-      - newworkflow
       - develop
       - main
-  workflow_call:
-  workflow_dispatch:
 
 jobs:
   test_run:
@@ -34,3 +31,19 @@ jobs:
         run: python -m setuptools_scm
       - name: Show github tags
         run: git tag | cat
+  build_wheels:
+    name: "Build wheels"
+    uses: BohndiekLab/patato/.github/workflows/build_wheels.yml@newworkflow
+  publish:
+    needs: build_wheels
+    runs-on: ubuntu-latest
+    name: Upload to PyPi.
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - uses: actions/download-artifact@v3
+        with:
+          path: dist
+      - name: Display structure of downloaded files
+        run: ls -R
