@@ -7,12 +7,14 @@ on:
   push:
     branches:
       - newworkflow
+      - develop
+      - main
   workflow_call:
   workflow_dispatch:
 
 jobs:
   test_run:
-    name: "HELP"
+    name: "Check versions"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -32,24 +34,3 @@ jobs:
         run: python -m setuptools_scm
       - name: Show github tags
         run: git tag | cat
-  test:
-    name: "Run tests"
-    if: github.ref != 'refs/heads/newworkflow'
-    uses: BohndiekLab/patato/.github/workflows/run_tests.yml@newworkflow
-  build_wheels:
-    name: "Build wheels"
-    if: github.ref != 'refs/heads/newworkflow'
-    uses: BohndiekLab/patato/.github/workflows/build_wheels.yml@newworkflow
-  publish:
-    needs: build_wheels
-    runs-on: ubuntu-latest
-    name: Upload to PyPi.
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-      - uses: actions/download-artifact@v3
-        with:
-          path: dist
-      - name: Display structure of downloaded files
-        run: ls -R
