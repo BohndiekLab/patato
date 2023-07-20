@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "patato"
-version = "0.5.4"
+dynamic = ["version"]
 dependencies = [
     "requests",
     "cython",
@@ -83,3 +83,6 @@ patato-convert-simpa = "patato.convenience_scripts.convert_simpa:main"
 
 [tool.setuptools.exclude-package-data]
 "*" = [".gitattributes", ".gitignore"]
+
+[tool.setuptools.dynamic]
+version = {attr = "patato.__version__"}

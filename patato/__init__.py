@@ -10,6 +10,7 @@ For examples of how to use PATATO, please see the examples page.
 #  Copyright (c) Thomas Else 2023.
 #  License: MIT
 
+from .__version__ import __version__
 from os import environ
 from .io.ithera.read_ithera import iTheraMSOT
 from .io.json.json_reading import read_reconstruction_preset, read_unmixing_preset
