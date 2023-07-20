@@ -1,13 +1,15 @@
 name: Run tests and coverage
 
 on:
-  push:
+  - push:
     branches:
       - main
       - develop
-  pull_request:
+  - pull_request:
     branches:
       - main
+  - workflow_call
+
 
 env:
   PAT_DATA_FOLDER: ${{ github.workspace }}/data

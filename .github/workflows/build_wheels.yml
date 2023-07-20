@@ -1,10 +1,11 @@
 name: Build wheels for PyPi
 
 on:
-  push:
+  - push:
     branches:
       - main
       - develop
+  - workflow_call
 
 jobs:
   build_wheels:

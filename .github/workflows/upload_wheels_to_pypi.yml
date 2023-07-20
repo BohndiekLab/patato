@@ -12,6 +12,8 @@ jobs:
       - name: Checkout repository.
         uses: actions/checkout@v3
       - name: Run Tests
-        uses: ./.github/workflows/run_tests.yml
+        call-workflow:
+          uses: ./.github/workflows/run_tests.yml
       - name: Build wheels
-        uses: ./.github/workflows/build_wheels.yml
+        call-workflow:
+          uses: ./.github/workflows/build_wheels.yml
