@@ -2,7 +2,11 @@ name: Release
 
 on:
   release:
+    types:
+      - created
   push:
+    branches:
+      - newworkflow
 
 jobs:
   test:

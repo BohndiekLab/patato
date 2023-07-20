@@ -6,11 +6,6 @@ on:
       - main
       - develop
   workflow_call:
-    - inputs:
-        name:
-          description: 'Display name and artifact name'
-          required: false
-          type: string
 
 jobs:
   build_wheels:
