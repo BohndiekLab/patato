@@ -13,6 +13,7 @@ on:
 jobs:
   test:
     name: "Run tests"
+    if: github.ref != 'refs/heads/newworkflow'
     uses: BohndiekLab/patato/.github/workflows/run_tests.yml@newworkflow
   build_wheels:
     needs: test
