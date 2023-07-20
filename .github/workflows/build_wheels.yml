@@ -19,13 +19,6 @@ jobs:
 
       - name: Build wheels
         uses: pypa/cibuildwheel@v2.11.4
-        # env:
-        #   CIBW_SOME_OPTION: value
-        #    ...
-        # with:
-        #   package-dir: .
-        #   output-dir: wheelhouse
-        #   config-file: "{package}/pyproject.toml"
 
       - uses: actions/upload-artifact@v3
         with:
