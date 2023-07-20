@@ -6,8 +6,10 @@ on:
 
 jobs:
   test:
+    name: "Run tests"
     uses: ./github/workflows/run_tests.yml
   build_wheels:
+    name: "Build wheels"
     uses: ./github/workflows/build_wheels.yml
   publish:
     runs-on: ubuntu-latest
