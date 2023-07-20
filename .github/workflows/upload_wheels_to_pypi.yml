@@ -16,6 +16,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v3
+        with:
+          python-version: 3.10
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install flake8 pytest
+          pip install setuptools_scm
+          pip install -e .
+          pip install coverage ruff
       - name: Display version number
         run: python -m setuptools_scm
       - name: Show github tags
