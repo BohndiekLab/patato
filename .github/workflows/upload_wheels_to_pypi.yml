@@ -13,10 +13,10 @@ on:
 jobs:
   test:
     name: "Run tests"
-    uses: BohndiekLab/patato/.github/workflows/run_tests.yml@${{ github.ref }}
+    uses: BohndiekLab/patato/.github/workflows/run_tests.yml@main
   build_wheels:
     name: "Build wheels"
-    uses: BohndiekLab/patato/.github/workflows/build_wheels.yml@${{ github.ref }}
+    uses: BohndiekLab/patato/.github/workflows/build_wheels.yml@main
   publish:
     runs-on: ubuntu-latest
     name: Upload to PyPi.
