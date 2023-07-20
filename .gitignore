@@ -1,4 +1,5 @@
 .DS_Store
+patato/_version.py
 
 .idea/
 *.npz
