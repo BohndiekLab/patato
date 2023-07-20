@@ -15,9 +15,11 @@ jobs:
     name: "Run tests"
     uses: BohndiekLab/patato/.github/workflows/run_tests.yml@newworkflow
   build_wheels:
+    needs: test
     name: "Build wheels"
     uses: BohndiekLab/patato/.github/workflows/build_wheels.yml@newworkflow
   publish:
+    needs: build_wheels
     runs-on: ubuntu-latest
     name: Upload to PyPi.
     steps:
