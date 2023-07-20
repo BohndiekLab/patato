@@ -29,7 +29,6 @@ dependencies = [
 
 authors = [
   { name="Thomas Else", email="thomas.else@cruk.cam.ac.uk" },
-  { name="Janek Grohl" },
 ]
 description = "A Python Toolkit for the analysis of photoacoustic tomography data."
 readme = "README.md"

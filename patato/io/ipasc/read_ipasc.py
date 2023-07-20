@@ -28,7 +28,10 @@ class IPASCInterface(ReaderInterface):
         super().__init__()
         self.scan_name = split(file_path)[-1]
         self.pa_data = pf.load_data(file_path)
-        self.nwavelengths = len(self.pa_data.get_acquisition_wavelengths())
+        if len(self.pa_data.get_acquisition_wavelengths().shape) == 0:
+            self.nwavelengths = 1
+        else:
+            self.nwavelengths = len(self.pa_data.get_acquisition_wavelengths())
         self.nframes = np.shape(self.pa_data.binary_time_series_data)[3]
         # Optional add here: extract the reconstructed images that are from ViewMSOT.
         # Extract attributes
@@ -39,6 +42,8 @@ class IPASCInterface(ReaderInterface):
         return self.nsamples
 
     def _get_wavelengths(self):
+        if len(self.pa_data.get_acquisition_wavelengths().shape) == 0:
+            return [self.pa_data.get_acquisition_wavelengths().item()]
         return self.pa_data.get_acquisition_wavelengths()
 
     def _get_correction_factor(self):
