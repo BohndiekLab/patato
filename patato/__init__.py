@@ -10,7 +10,6 @@ For examples of how to use PATATO, please see the examples page.
 #  Copyright (c) Thomas Else 2023.
 #  License: MIT
 
-from .__version__ import __version__
 from os import environ
 from .io.ithera.read_ithera import iTheraMSOT
 from .io.json.json_reading import read_reconstruction_preset, read_unmixing_preset
@@ -29,6 +28,13 @@ from .core.image_structures.unmixed_image import UnmixedData
 from .core.image_structures.image_sequence import ImageSequence
 from .utils.rois.roi_type import ROI
 from .core.image_structures.pa_time_data import PATimeSeries
+from importlib.metadata import version, PackageNotFoundError
+
+try:
+    __version__ = version("patato")
+except PackageNotFoundError:
+    # package is not installed
+    pass
 
 Backprojection = ReferenceBackprojection
 

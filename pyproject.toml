@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools", "wheel", "pybind11"]
+requires = ["setuptools>=45", "setuptools_scm[toml]>=6.2", "wheel", "pybind11"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -84,5 +84,5 @@ patato-convert-simpa = "patato.convenience_scripts.convert_simpa:main"
 [tool.setuptools.exclude-package-data]
 "*" = [".gitattributes", ".gitignore"]
 
-[tool.setuptools.dynamic]
-version = {attr = "patato.__version__"}
+[tool.setuptools_scm]
+write_to = "patato/_version.py"
