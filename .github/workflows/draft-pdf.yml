@@ -1,10 +1,13 @@
 name: Build draft PDF
 
 on:
-  - push:
-      branches:
-        - develop
-        - main
+  push:
+    branches:
+      - main
+      - develop
+  workflow_call:
+  workflow_dispatch:
+
 jobs:
   paper:
     runs-on: ubuntu-latest
