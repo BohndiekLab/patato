@@ -1,7 +1,8 @@
 name: Release
 
 on:
-  release
+  - release
+  - push
 
 jobs:
   build-and-publish:
