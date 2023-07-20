@@ -64,7 +64,7 @@ def split_roi_left_right(data: "PAData", base_roi="", split_template="unnamed"):
 
 
 ROI_NAMES = ["brain", "body", "reference", "aorta", "tumour", "background", "artery",
-             "vein", "muscle", "phantom", "unnamed", "kidney", "spleen", "spine"]
+             "vein", "muscle", "phantom", "unnamed", "kidney", "spleen", "spine", "skin", "fat"]
 
 REGION_COLOURS = matplotlib.cm.hsv(np.linspace(0, 1, len(ROI_NAMES)))
 

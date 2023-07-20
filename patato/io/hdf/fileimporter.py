@@ -42,7 +42,7 @@ class ReaderInterface(metaclass=ABCMeta):
         pass
 
     def is_clinical(self):
-        return np.all(np.isnan(self.get_scanner_z_position())) or np.all(0. == self.get_scanner_z_position())
+        return np.all(np.isnan(self.get_scanner_z_position()[:])) or np.all(0. == self.get_scanner_z_position()[:])
 
     def save_to_hdf5(self, filename):
         from ..hdf.hdf5_interface import HDF5Writer
