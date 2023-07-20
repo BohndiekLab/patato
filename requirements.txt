@@ -1,5 +1,5 @@
 matplotlib>=3.5.1
-numpy~=1.21.0
+numpy~=1.22.0
 patato>=0.0.1
 coverage>=6.5.0
 scipy>=1.7.3
