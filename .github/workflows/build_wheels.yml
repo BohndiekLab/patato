@@ -29,7 +29,7 @@ jobs:
           # emulated ones
           CIBW_ARCHS_LINUX: auto aarch64 ppc64le s390x
           CIBW_ARCHS_MACOS: x86_64 arm64
-          CIBW_ARCHS_WINDOWS: auto arm64
+          CIBW_ARCHS_WINDOWS: auto ARM64
 
       - uses: actions/upload-artifact@v3
         with:
