@@ -1,6 +1,9 @@
 name: Build wheels for PyPi
 
 on:
+  release:
+    types:
+      - created
   push:
     branches:
       - main
