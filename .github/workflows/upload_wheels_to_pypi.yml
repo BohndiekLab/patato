@@ -34,10 +34,10 @@ jobs:
   build_wheels:
     name: "Build wheels"
     uses: BohndiekLab/patato/.github/workflows/build_wheels.yml@newworkflow
-  publish:
+  publish-dummy:
     needs: build_wheels
     runs-on: ubuntu-latest
-    name: Upload to PyPi.
+    name: Dummy upload to PyPI
     steps:
       - uses: actions/download-artifact@v3
         with:
@@ -46,3 +46,20 @@ jobs:
         run: mv dist/artifact/* dist
       - name: Display structure of downloaded files
         run: ls -R
+  publish:
+    needs: build_wheels
+    runs-on: ubuntu-latest
+    name: Upload to PyPI.
+    environment:
+      name: pypi
+      url: https://pypi.org/p/patato
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/download-artifact@v3
+        with:
+          path: dist
+      - name: Move artifacts to dist folder.
+        run: mv dist/artifact/* dist
+      - name: Publish package distributions to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
