@@ -1,10 +1,6 @@
 name: Build wheels for PyPi
 
 on:
-  push:
-    branches:
-      - main
-      - develop
   workflow_call:
   workflow_dispatch:
 
@@ -18,7 +14,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-
+        with:
+          fetch-depth: 0
       - name: Build wheels
         uses: pypa/cibuildwheel@v2.11.4
 
@@ -31,10 +28,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-
+        with:
+          fetch-depth: 0
       - name: Build sdist
         run: pipx run build --sdist
-
       - uses: actions/upload-artifact@v3
         with:
           path: dist/*.tar.gz
