@@ -8,7 +8,6 @@ on:
     branches:
       - develop
       - main
-      - version_tracking
 
 jobs:
   test_run:
@@ -34,7 +33,7 @@ jobs:
         run: git tag | cat
   build_wheels:
     name: "Build wheels"
-    uses: BohndiekLab/patato/.github/workflows/build_wheels.yml@newworkflow
+    uses: BohndiekLab/patato/.github/workflows/build_wheels.yml@main # Can't get this to work with local version.
   publish-dummy:
     needs: build_wheels
     runs-on: ubuntu-latest
