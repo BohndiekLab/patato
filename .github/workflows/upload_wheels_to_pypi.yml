@@ -43,6 +43,7 @@ jobs:
       url: https://test.pypi.org/p/patato
     permissions:
       id-token: write
+    if: github.event_name == 'release'
     steps:
       - uses: actions/download-artifact@v3
         with:

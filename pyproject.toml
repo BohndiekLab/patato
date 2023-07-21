@@ -23,6 +23,7 @@ dependencies = [
     "dask",
     "pybind11",
     "jax[cpu]",
+    # Need to verify that jax works on ARM platforms.
     "wget",
     "gdown"
 ]
