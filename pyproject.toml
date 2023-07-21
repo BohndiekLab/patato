@@ -22,7 +22,8 @@ dependencies = [
     "matplotlib_scalebar",
     "dask",
     "pybind11",
-    "jax[cpu]",
+    "jax[cpu]; platform_machine=='x86_64' or (platform_system=='Darwin' and platform_machine=='arm64')",
+    # Need to verify that jax works on ARM platforms.
     "wget",
     "gdown"
 ]
