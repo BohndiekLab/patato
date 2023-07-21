@@ -41,6 +41,8 @@ jobs:
     environment:
       name: testpypi
       url: https://test.pypi.org/p/patato
+    permissions:
+      id-token: write
     steps:
       - uses: actions/download-artifact@v3
         with:
