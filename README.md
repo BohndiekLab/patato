@@ -1,3 +1,4 @@
+[![Journal of open source software status](https://joss.theoj.org/papers/456eaf591244858915ad8730dcbc19d7/status.svg)](https://joss.theoj.org/papers/456eaf591244858915ad8730dcbc19d7)
 [![Documentation Status](https://readthedocs.org/projects/patato/badge/?version=latest)](https://patato.readthedocs.io/en/latest/?badge=latest)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/bohndieklab/patato/blob/main/LICENSE.MD)
 [![PyPI version](https://badge.fury.io/py/patato.svg)](https://badge.fury.io/py/patato)

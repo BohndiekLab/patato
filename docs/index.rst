@@ -1,6 +1,9 @@
 PATATO: PhotoAcoustic Tomography Analysis TOolkit
 =====================================================================
 
+.. image:: https://joss.theoj.org/papers/456eaf591244858915ad8730dcbc19d7/status.svg
+    :target: https://joss.theoj.org/papers/456eaf591244858915ad8730dcbc19d7
+    :alt: Journal of Open Source Software
 .. image:: https://readthedocs.org/projects/patato/badge/?version=latest
     :target: https://patato.readthedocs.io/en/latest/?badge=latest
     :alt: Documentation Status
