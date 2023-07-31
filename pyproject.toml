@@ -9,7 +9,7 @@ dependencies = [
     "requests",
     "cython",
     "shapely",
-    "pylops", # Check version compatibility with pylops
+    "pylops >= 2", # Check version compatibility with pylops
     "h5py",
     "typing_extensions",
     "pandas",
