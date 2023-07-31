@@ -29,8 +29,8 @@ try:
 except ImportError:
     jnp = None
 
-if jnp.DeviceArray not in xarray.core.variable.NON_NUMPY_SUPPORTED_ARRAY_TYPES:
-    xarray.core.variable.NON_NUMPY_SUPPORTED_ARRAY_TYPES += (jnp.DeviceArray, )
+if jnp.ndarray not in xarray.core.variable.NON_NUMPY_SUPPORTED_ARRAY_TYPES:
+    xarray.core.variable.NON_NUMPY_SUPPORTED_ARRAY_TYPES += (jnp.ndarray, )
 from dask.array.core import Array as DaskArray
 
 from ...io.attribute_tags import ReconAttributeTags
