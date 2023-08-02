@@ -30,6 +30,7 @@ except:
 class ModelBasedReconstruction(ReconstructionAlgorithm):
     """Model based reconstruction algorithm processor.
     """
+
     def generate_model(self, detx, dety, fs, dx, nx, x_0, nt, gpu=True, cache=False, **kwargs):
         """
 
@@ -107,6 +108,7 @@ class ModelBasedReconstruction(ReconstructionAlgorithm):
 
             def rmatvec(x):
                 return model_matrix.H @ x
+
             full_model = LinearOperator(model_matrix.shape, matvec=matvec, rmatvec=rmatvec, dtype=np.float32)
             full_model.data = 1
         inv_args = {}
@@ -165,37 +167,38 @@ class ModelBasedReconstruction(ReconstructionAlgorithm):
                  n_pixels: Sequence[int],
                  field_of_view: Sequence[float],
                  kwargs_model=None,
-                 pa_example: "PAData"=None,
+                 pa_example: "PAData" = None,
                  **kwargs):
         if kwargs.get("regulariser", None) is None:
             kwargs["regulariser"] = "identity"
         super().__init__(n_pixels, field_of_view, **kwargs)
         self._model_matrix = None
         self._raw_model = None
+
         if kwargs_model is None:
             kwargs_model = {}
 
         if pa_example is not None:
-            kwargs["geometry"] = pa_example.get_scan_geometry()
-            kwargs["fs_model"] = pa_example.get_sampling_frequency()
-            kwargs["nt"] = pa_example.get_time_series().shape[-1]
+            kwargs_model["geometry"] = pa_example.get_scan_geometry()
+            kwargs_model["fs"] = pa_example.get_sampling_frequency()
+            kwargs_model["nt"] = pa_example.get_time_series().shape[-1]
             kwargs_model["c"] = pa_example.get_speed_of_sound()
             kwargs_model["irf_model"] = pa_example.get_impulse_response()[:]
 
         # Note that super init puts kwargs in self.custom_params
-        if "geometry" in kwargs:
+        if "geometry" in kwargs_model:
             # identify x and y:
-            detectors = kwargs["geometry"]
+            detectors = kwargs_model["geometry"]
             indices = []
             for i in range(3):
-                if np.all(kwargs["geometry"][:, i] != 0.):
+                if np.any(kwargs_model["geometry"][:, i] != 0.):
                     indices.append(i)
             self._indices = indices
 
             detx = detectors[:, indices[0]]
             dety = detectors[:, indices[1]]
 
-            fs = kwargs["fs_model"]
+            fs = kwargs_model["fs"]
             self._fs = fs
             nx = n_pixels[indices[0]]
             self._nx = nx
@@ -203,12 +206,12 @@ class ModelBasedReconstruction(ReconstructionAlgorithm):
             self._dx = dx
             x_0 = -field_of_view[indices[0]] / 2
             self._x_0 = x_0
-            nt = kwargs["nt"]
 
-            gpu = kwargs.get("gpu", cuda_enabled)
-            cache = kwargs.get("cache", False)
+            gpu = kwargs_model.get("gpu", cuda_enabled)
+            cache = kwargs_model.get("cache", False)
 
-            self._model = self.generate_model(detx, dety, fs, dx, nx, x_0, nt, gpu=gpu, cache=cache, **kwargs_model)
+            self._model = self.generate_model(detx, dety, dx=dx, nx=nx, x_0=x_0,
+                                              gpu=gpu, cache=cache, **kwargs_model)
         else:
             self._fs = None
             self._nx = None
@@ -216,6 +219,7 @@ class ModelBasedReconstruction(ReconstructionAlgorithm):
             self._x_0 = None
             self._model = None
             self._indices = None
+            warnings.warn("Model matrix has not been precomputed, as insufficient information was supplied.")
         warnings.warn("This class is experimental. If you would like to contribute to further development of this "
                       "approach, please get in touch.")
 

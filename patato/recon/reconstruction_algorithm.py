@@ -47,12 +47,15 @@ class ReconstructionAlgorithm(TimeSeriesProcessingAlgorithm, ABC):
             geometry=None,
             **kwargs) -> Tuple[Reconstruction, dict, Optional[List[ProcessingResult]]]:
         from .. import PAT_MAXIMUM_BATCH_SIZE
-        speed_of_sound = pa_data.get_speed_of_sound() if speed_of_sound is None else speed_of_sound
 
-        if geometry is None:
+        if speed_of_sound is None and pa_data is not None:
+            speed_of_sound = pa_data.get_speed_of_sound()
+
+        if pa_data is not None and geometry is None:
             geometry = pa_data.get_scan_geometry()
 
-        logging.debug(f"{time_series.attributes}, {geometry.shape}, {time_series.raw_data.shape}, {speed_of_sound}")
+        logging.debug(f"{time_series.attributes}, {geometry.shape if geometry is not None else None}, "
+                      f"{time_series.raw_data.shape}, {speed_of_sound}")
 
         irf = pa_data.get_impulse_response() if pa_data is not None else None
         wavelengths = time_series.da.coords.get("wavelengths") if pa_data is None else pa_data.get_wavelengths()

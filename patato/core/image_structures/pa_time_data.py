@@ -1,14 +1,15 @@
 """
 pa_time_data. Defines the time-domain version of PARawData class.
 """
-from typing import Optional
-
 #  Copyright (c) Thomas Else 2023.
 #  License: MIT
 
 
 import numpy as np
 import xarray
+from typing import Optional
+import numpy.typing as npt
+
 
 from ..image_structures.pa_raw_data import PARawData
 
@@ -51,7 +52,7 @@ class PATimeSeries(PARawData):
         return "detectors", "timeseries"
 
     @classmethod
-    def from_numpy(cls, dataset: np.ndarray, wavelengths: np.ndarray, fs: float,
+    def from_numpy(cls, dataset: npt.ArrayLike, wavelengths: npt.ArrayLike, fs: float,
                    speed_of_sound: Optional[float] = None):
         """
         Create a PATimeSeries class from a NumPy array.
