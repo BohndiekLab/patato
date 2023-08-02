@@ -2,15 +2,10 @@
 #  License: MIT
 
 import os
-import shutil
 import zipfile
 from tempfile import mkdtemp
-from tqdm.auto import tqdm
 
-import requests
-from patato import iTheraMSOT
-
-from .. import PAData
+from .. import PAData, iTheraMSOT
 
 
 def get_patato_data_folder():

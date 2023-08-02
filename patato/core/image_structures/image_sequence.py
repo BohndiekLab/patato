@@ -14,10 +14,6 @@ import numpy as np
 import xarray
 
 try:
-    from pyopencl.array import Array
-except ImportError:
-    Array = None
-try:
     import cupy as cp
 except ImportError:
     cp = None

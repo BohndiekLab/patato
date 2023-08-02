@@ -10,15 +10,7 @@ import xarray
 from typing import Optional
 import numpy.typing as npt
 
-
 from ..image_structures.pa_raw_data import PARawData
-
-
-try:
-    from pyopencl.array import Array, to_device
-except ImportError:
-    Array = np.ndarray
-    to_device = None
 
 
 class PATimeSeries(PARawData):
@@ -29,7 +21,7 @@ class PATimeSeries(PARawData):
     def __add__(self, other):
         new_data = xarray.concat([self.da, other.da], dim=other.da.dims[0])
         output = PATimeSeries(new_data, new_data.dims, new_data.coords, new_data.attrs,
-                               self.hdf5_sub_name, self.algorithm_id)
+                              self.hdf5_sub_name, self.algorithm_id)
         output.__class__ = self.__class__
         return output
 
@@ -37,6 +29,8 @@ class PATimeSeries(PARawData):
         return "raw_data"
 
     def to_opencl(self, queue) -> "PATimeSeries":
+        # Only import if needed.
+        from pyopencl.array import to_device
         cls = self.copy()
         cls.da = cls.da.copy()
         new_data = to_device(queue, self.raw_data.astype(np.single))
