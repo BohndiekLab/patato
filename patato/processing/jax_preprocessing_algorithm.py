@@ -280,10 +280,12 @@ class PreProcessor(TimeSeriesProcessingAlgorithm):
             shape = ts_raw.shape
             ts_raw = ts_raw.reshape((-1,) + shape[-2:])
             if overall_correction_factor is not None:
-                overall_correction_factor = overall_correction_factor.flatten()
+                overall_correction_factor_sliced = overall_correction_factor.flatten()[i:i + PAT_MAXIMUM_BATCH_SIZE]
+            else:
+                overall_correction_factor_sliced = None
             for i in range(0, ts_raw.shape[0], PAT_MAXIMUM_BATCH_SIZE):
                 new_ts, new_detectors = self._run(ts_raw[i:i + PAT_MAXIMUM_BATCH_SIZE], detectors,
-                                                  overall_correction_factor[i:i + PAT_MAXIMUM_BATCH_SIZE])
+                                                  overall_correction_factor_sliced)
                 new_timeseries.append(np.asarray(new_ts))
             new_ts = np.concatenate(new_timeseries, axis=0).reshape(shape[:2] + new_timeseries[0].shape[-2:])
         else:
