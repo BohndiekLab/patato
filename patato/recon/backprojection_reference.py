@@ -44,7 +44,6 @@ class ReferenceBackprojection(ReconstructionAlgorithm):
         -------
 
         """
-        print(f"c = {speed_of_sound}")
         # Get parameters:
         dl = speed_of_sound / fs
 

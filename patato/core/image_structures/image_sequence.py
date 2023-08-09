@@ -144,7 +144,6 @@ class DataSequence(ProcessingResult, ABC):
                mask_roi=True,
                cmap=None, scale_kwargs=None, return_scalebar_dimension=False, scalebar=True, transpose=False, log=False,
                **kwargs):
-        print('This is being graphed.')
         if scale_kwargs is None:
             scale_kwargs = {}
 
