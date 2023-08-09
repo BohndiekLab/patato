@@ -190,8 +190,9 @@ class ModelBasedReconstruction(ReconstructionAlgorithm):
             # identify x and y:
             detectors = kwargs_model["geometry"]
             indices = []
+            eps = 1e-10
             for i in range(3):
-                if np.any(kwargs_model["geometry"][:, i] != 0.):
+                if np.any(np.absolute(kwargs_model["geometry"][:, i]) > eps):
                     indices.append(i)
             self._indices = indices
 
