@@ -10,11 +10,11 @@ if TYPE_CHECKING:
     from .rois.roi_type import ROI
 
 import numpy as np
-from shapely.geometry import Polygon, Point, MultiPolygon
 
 
 def to_binary_mask(vertices, min_x, max_x, nx, min_y, max_y, ny):
     from matplotlib import path
+    from shapely.geometry import Polygon, Point, MultiPolygon
     if type(vertices) == np.ndarray or type(vertices) == list:
         vert_path = path.Path(vertices, closed=False)
     else:
@@ -32,6 +32,7 @@ def to_binary_mask(vertices, min_x, max_x, nx, min_y, max_y, ny):
 
 
 def get_polygon_mask(p, fov_x, fov_y, nx, ny):
+    from shapely.geometry import Polygon, MultiPolygon
     if type(fov_x) not in [list, tuple, np.ndarray]:
         fov_x = [-fov_x/2, fov_x/2]
         fov_y = [-fov_y/2, fov_y/2]
@@ -55,6 +56,7 @@ def get_polygon_mask(p, fov_x, fov_y, nx, ny):
 
 
 def generate_mask(vertices, fov_x, nx, fov_y=None, ny=None):
+    from shapely.geometry import Polygon, MultiPolygon
     if fov_y is None:
         fov_y = fov_x
     if ny is None:

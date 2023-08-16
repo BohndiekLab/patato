@@ -4,7 +4,6 @@
 from typing import TYPE_CHECKING
 
 import numpy as np
-from shapely.validation import make_valid
 
 from ...io.attribute_tags import ROITags
 from ...utils.mask_operations import generate_mask
@@ -12,7 +11,6 @@ from ...utils.mask_operations import generate_mask
 if TYPE_CHECKING:
     from typing import Dict
     from ...core.image_structures.image_sequence import ImageSequence
-from shapely.geometry import Polygon, MultiPolygon
 
 
 class ROI:
@@ -21,7 +19,9 @@ class ROI:
     def get_area(self):
         return self.get_polygon().area
 
-    def get_polygon(self) -> Polygon:
+    def get_polygon(self):
+        from shapely.geometry import Polygon, MultiPolygon
+        from shapely.validation import make_valid
         if type(self.points) in [Polygon, MultiPolygon]:
             if not self.points.is_valid:
                 return make_valid(self.points)

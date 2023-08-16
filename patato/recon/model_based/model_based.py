@@ -4,9 +4,6 @@
 from typing import Sequence
 
 import numpy as np
-import pylops
-from pylops.optimization.leastsquares import regularized_inversion
-from pylops.signalprocessing import Convolve1D, Convolve2D
 from scipy.sparse.linalg import LinearOperator as CPULinOp
 from tqdm.auto import tqdm
 
@@ -51,6 +48,9 @@ class ModelBasedReconstruction(ReconstructionAlgorithm):
         -------
 
         """
+        import pylops
+        from pylops.optimization.leastsquares import regularized_inversion
+        from pylops.signalprocessing import Convolve1D, Convolve2D
         if gpu:
             get_model_single_c = get_model_gpu_single_c
             get_model_double_c = get_model_gpu_double_c
