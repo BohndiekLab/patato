@@ -43,7 +43,9 @@ class JAXModelBasedReconstruction(ReconstructionAlgorithm):
         self._model_matrix.sort_indices()
         from jax.experimental.sparse import CSR
 
-        self._model_regulariser = (kwargs["model_regulariser"], kwargs["model_regulariser_lambda"])
+        self._model_regulariser = (kwargs.get("model_regulariser", None), kwargs.get("model_regulariser_lambda", None))
+        if self._model_regulariser[0] is None:
+            self._model_regulariser = None
 
         self._model_matrix = CSR((self._model_matrix.data, self._model_matrix.indices, self._model_matrix.indptr),
                                  shape=self._model_matrix.shape)
