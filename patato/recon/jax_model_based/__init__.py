@@ -104,7 +104,7 @@ class JAXModelBasedReconstruction(ReconstructionAlgorithm):
         if method not in ["identity", "laplacian", None]:
             raise ValueError("Regularisation method must either be identity, laplacian or None.")
 
-        @partial(jax.jit, static_argnums=(3, 4))
+        @partial(jax.jit, static_argnums=(3, ))
         def forward(params, y, M, lambda_reg=None, conv_mat=None):
             x = M @ params.flatten()
             residuals = x - y.flatten()
