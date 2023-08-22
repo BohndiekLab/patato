@@ -128,7 +128,7 @@ class JAXModelBasedReconstruction(ReconstructionAlgorithm):
         output_shape = raw_data.shape[:-2]
         raw_data = raw_data.reshape((-1,) + raw_data.shape[-2:])
         output = np.zeros((raw_data.shape[0], M.shape[1]))
-        for i in tqdm(range(raw_data.shape[0])):
+        for i in tqdm(range(raw_data.shape[0]), leave=False):
             ts = jnp.array(raw_data[i] - np.mean(raw_data[i], axis=-1)[:, None])
             params, state = rec(ts)
             output[i] = np.array(params.reshape(output[i].shape))
