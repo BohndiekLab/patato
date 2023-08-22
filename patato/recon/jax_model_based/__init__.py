@@ -50,6 +50,8 @@ class JAXModelBasedReconstruction(ReconstructionAlgorithm):
         self._model_matrix = CSR((self._model_matrix.data, self._model_matrix.indices, self._model_matrix.indptr),
                                  shape=self._model_matrix.shape)
 
+        self._model_max_iter = kwargs.get("model_max_iter", 50)
+
     def _generate_model(self, detx: npt.ArrayLike, dety: npt.ArrayLike,
                         fs: float, dx: float, nx: int, x_0: float, nt: int,
                         c: float):
@@ -120,7 +122,7 @@ class JAXModelBasedReconstruction(ReconstructionAlgorithm):
 
         def rec(time_series):
             opt = jaxopt.ProjectedGradient(forward, projection=projection_non_negative,
-                                           maxiter=50, has_aux=True, acceleration=True)
+                                           maxiter=self._model_max_iter, has_aux=True, acceleration=True)
             result = opt.run(jnp.zeros((self._nx_model, self._nx_model)),
                              y=jnp.array(time_series), M=M, lambda_reg=lambda_reg, conv_mat=conv_mat)
             return result.params
