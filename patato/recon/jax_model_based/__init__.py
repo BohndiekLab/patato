@@ -42,8 +42,11 @@ class JAXModelBasedReconstruction(ReconstructionAlgorithm):
         self._model_matrix.eliminate_zeros()
         self._model_matrix.sort_indices()
         from jax.experimental.sparse import CSR
-        self._model_matrix = CSR((self._model_matrix.data, self._model_matrix.indices, self._model_matrix.indptr), shape=self._model_matrix.shape)
 
+        self._model_regulariser = (kwargs["model_regulariser"], kwargs["model_regulariser_lambda"])
+
+        self._model_matrix = CSR((self._model_matrix.data, self._model_matrix.indices, self._model_matrix.indptr),
+                                 shape=self._model_matrix.shape)
 
     def _generate_model(self, detx: npt.ArrayLike, dety: npt.ArrayLike,
                         fs: float, dx: float, nx: int, x_0: float, nt: int,
@@ -70,17 +73,16 @@ class JAXModelBasedReconstruction(ReconstructionAlgorithm):
         model_matrix = get_model(detx, dety, dl, dx, nx, x_0, nt, cache=False)
         return model_matrix
 
-
     def reconstruct(self, raw_data: np.ndarray,
                     fs: float = None,
                     geometry: np.ndarray = None,
-                    n_pixels = None,
-                    field_of_view = None,
+                    n_pixels=None,
+                    field_of_view=None,
                     speed_of_sound=None,
                     **kwargs) -> np.ndarray:
         import jax
         import jax.numpy as jnp
-        from jax.experimental.sparse import CSR
+        from jax.scipy.signal import convolve2d
         import jaxopt
         from jaxopt.projection import projection_non_negative
         from tqdm.auto import tqdm
@@ -88,19 +90,28 @@ class JAXModelBasedReconstruction(ReconstructionAlgorithm):
         M = self._model_matrix
 
         @jax.jit
-        def forward(params, y, M):
+        def forward(params, y, M, regulariser=None):
             x = M @ params.flatten()
             residuals = x - y.flatten()
             loss1 = jnp.mean(residuals ** 2)
-            # loss2 = l2 * jnp.mean(params**2)
-            # loss2 = l2 * jnp.mean(convolve2d(params, conv_mat) ** 2)
-            return loss1, {"loss1": loss1}  # value, aux
+            if regulariser is not None:
+                method, lambda_reg = regulariser
+                if method == "identity":
+                    loss2 = lambda_reg * jnp.mean(params ** 2)
+                elif method == "laplacian":
+                    conv_mat = jnp.array([[-1, -1, -1], [-1, 8, -1], [-1, -1, -1]]) / 8
+                    loss2 = lambda_reg * jnp.mean(convolve2d(params, conv_mat) ** 2)
+                else:
+                    loss2 = 0
+            else:
+                loss2 = 0
+            return loss1 + loss2, {"loss1": loss1, "loss2": loss2}  # value, aux
 
         def rec(time_series):
             opt = jaxopt.ProjectedGradient(forward, projection=projection_non_negative,
                                            maxiter=50, has_aux=True, acceleration=True)
             result = opt.run(jnp.zeros((self._nx_model, self._nx_model)),
-                             y=jnp.array(time_series), M=M)
+                             y=jnp.array(time_series), M=M, regulariser=self._model_regulariser)
             return result.params
 
         output_shape = raw_data.shape[:-2]
@@ -110,7 +121,6 @@ class JAXModelBasedReconstruction(ReconstructionAlgorithm):
             ts = jnp.array(raw_data[i] - np.mean(raw_data[i], axis=-1)[:, None])
             output[i] = np.array(rec(raw_data[i]).reshape(output[i].shape))
         return output.reshape(output_shape + self.n_pixels)
-
 
     @staticmethod
     def get_algorithm_name() -> str:
