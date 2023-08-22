@@ -133,7 +133,7 @@ class JAXModelBasedReconstruction(ReconstructionAlgorithm):
             params, state = rec(ts)
             output[i] = np.array(params.reshape(output[i].shape))
             self._prev_state = state
-        return output.reshape(output_shape + self.n_pixels)
+        return output.reshape(output_shape + self.n_pixels[::-1])
 
     @staticmethod
     def get_algorithm_name() -> str:
