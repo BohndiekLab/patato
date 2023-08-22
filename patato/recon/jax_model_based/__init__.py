@@ -123,14 +123,16 @@ class JAXModelBasedReconstruction(ReconstructionAlgorithm):
                                            maxiter=self._model_max_iter, has_aux=True, acceleration=True)
             result = opt.run(jnp.zeros((self._nx_model, self._nx_model)),
                              y=jnp.array(time_series), M=M, lambda_reg=lambda_reg, conv_mat=conv_mat)
-            return result.params
+            return result.params, result.state
         
         output_shape = raw_data.shape[:-2]
         raw_data = raw_data.reshape((-1,) + raw_data.shape[-2:])
         output = np.zeros((raw_data.shape[0], M.shape[1]))
         for i in tqdm(range(raw_data.shape[0])):
             ts = jnp.array(raw_data[i] - np.mean(raw_data[i], axis=-1)[:, None])
-            output[i] = np.array(rec(ts).reshape(output[i].shape))
+            params, state = rec(ts)
+            output[i] = np.array(params.reshape(output[i].shape))
+            self._prev_state = state
         return output.reshape(output_shape + self.n_pixels)
 
     @staticmethod
