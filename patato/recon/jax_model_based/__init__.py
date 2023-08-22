@@ -91,7 +91,7 @@ class JAXModelBasedReconstruction(ReconstructionAlgorithm):
         # from jax.scipy.signal import convolve2d
         M = self._model_matrix
 
-        @jax.partial(jax.jit, static_argnums=(1, 2, 3))
+        @jax.partial(jax.jit, static_argnums=(3, ))
         def forward(params, y, M, regulariser=None):
             x = M @ params.flatten()
             residuals = x - y.flatten()
