@@ -90,8 +90,6 @@ class JAXModelBasedReconstruction(ReconstructionAlgorithm):
         import jaxopt
         from jaxopt.projection import projection_non_negative
         from tqdm.auto import tqdm
-        from functools import partial
-        # from jax.scipy.signal import convolve2d
         M = self._model_matrix
         if self._model_regulariser is not None:
             method, lambda_reg = self._model_regulariser
@@ -106,7 +104,7 @@ class JAXModelBasedReconstruction(ReconstructionAlgorithm):
         if method not in ["identity", "laplacian", None]:
             raise ValueError("Regularisation method must either be identity, laplacian or None.")
 
-        @partial(jax.jit, static_argnums=(3, ))
+        @jax.jit
         def forward(params, y, M, lambda_reg=None, conv_mat=None):
             x = M @ params.flatten()
             residuals = x - y.flatten()
