@@ -109,10 +109,10 @@ class DataSequence(ProcessingResult, ABC):
 
     @property
     def shape_2d(self):
-        if np.any(np.array(self.raw_data.shape[-3:]) == 1):
-            return tuple([x for x in self.raw_data.shape[-3:] if x != 1])
+        if np.any(np.array(self.shape[-3:]) == 1):
+            return tuple([x for x in self.shape[-3:] if x != 1])
         else:
-            return self.raw_data.shape[-2:]
+            return self.shape[-2:]
 
     @property
     def extent(self):
