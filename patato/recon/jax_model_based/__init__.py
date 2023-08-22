@@ -91,21 +91,29 @@ class JAXModelBasedReconstruction(ReconstructionAlgorithm):
         from functools import partial
         # from jax.scipy.signal import convolve2d
         M = self._model_matrix
+        if self._model_regulariser is not None:
+            method, lambda_reg = self._model_regulariser
+        else:
+            method, lambda_reg = None, None
 
-        @partial(jax.jit, static_argnums=(3, ))
-        def forward(params, y, M, regulariser=None):
+        if method == "laplacian":
+            conv_mat = jnp.array([[-1, -1, -1], [-1, 8, -1], [-1, -1, -1]]) / 8
+        else:
+            conv_mat = None
+
+        if method not in ["identity", "laplacian", None]:
+            raise ValueError("Regularisation method must either be identity, laplacian or None.")
+
+        @partial(jax.jit, static_argnums=(3, 4))
+        def forward(params, y, M, lambda_reg=None, conv_mat=None):
             x = M @ params.flatten()
             residuals = x - y.flatten()
             loss1 = jnp.mean(residuals ** 2)
-            if regulariser is not None:
-                method, lambda_reg = regulariser
-                if method == "identity":
+            if lambda_reg is not None:
+                if conv_mat is None:
                     loss2 = lambda_reg * jnp.mean(params ** 2)
-                elif method == "laplacian":
-                    conv_mat = jnp.array([[-1, -1, -1], [-1, 8, -1], [-1, -1, -1]]) / 8
-                    loss2 = lambda_reg * jnp.mean(convolve2d(params, conv_mat) ** 2)
                 else:
-                    loss2 = 0
+                    loss2 = lambda_reg * jnp.mean(convolve2d(params, conv_mat) ** 2)
             else:
                 loss2 = 0
             return loss1 + loss2, {"loss1": loss1, "loss2": loss2}  # value, aux
@@ -114,15 +122,15 @@ class JAXModelBasedReconstruction(ReconstructionAlgorithm):
             opt = jaxopt.ProjectedGradient(forward, projection=projection_non_negative,
                                            maxiter=50, has_aux=True, acceleration=True)
             result = opt.run(jnp.zeros((self._nx_model, self._nx_model)),
-                             y=jnp.array(time_series), M=M, regulariser=self._model_regulariser)
+                             y=jnp.array(time_series), M=M, lambda_reg=lambda_reg, conv_mat=conv_mat)
             return result.params
-
+        
         output_shape = raw_data.shape[:-2]
         raw_data = raw_data.reshape((-1,) + raw_data.shape[-2:])
         output = np.zeros((raw_data.shape[0], M.shape[1]))
         for i in tqdm(range(raw_data.shape[0])):
             ts = jnp.array(raw_data[i] - np.mean(raw_data[i], axis=-1)[:, None])
-            output[i] = np.array(rec(raw_data[i]).reshape(output[i].shape))
+            output[i] = np.array(rec(ts).reshape(output[i].shape))
         return output.reshape(output_shape + self.n_pixels)
 
     @staticmethod
