@@ -88,10 +88,11 @@ class JAXModelBasedReconstruction(ReconstructionAlgorithm):
         import jaxopt
         from jaxopt.projection import projection_non_negative
         from tqdm.auto import tqdm
+        from functools import partial
         # from jax.scipy.signal import convolve2d
         M = self._model_matrix
 
-        @jax.partial(jax.jit, static_argnums=(3, ))
+        @partial(jax.jit, static_argnums=(3, ))
         def forward(params, y, M, regulariser=None):
             x = M @ params.flatten()
             residuals = x - y.flatten()
