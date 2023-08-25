@@ -7,6 +7,52 @@ import numpy as np
 from .. import ReconstructionAlgorithm
 import numpy.typing as npt
 from ... import PAData
+from ...processing.preprocessing_algorithm import TimeSeriesProcessingAlgorithm, PreprocessingAttributeTags
+
+
+class ModelBasedPreProcessor(TimeSeriesProcessingAlgorithm):
+    @staticmethod
+    def get_algorithm_name() -> str:
+        """
+        Get the name of the algorithm.
+
+        Returns
+        -------
+        str or None
+        """
+        return "Model Based Preprocessor"
+
+    @staticmethod
+    def get_hdf5_group_name():
+        """
+        Return the name of the group in the HDF5 file
+
+        Returns
+        -------
+        str or None
+
+        """
+        return None
+
+    def __init__(self):
+        super().__init__()
+
+    def run(self, time_series, pa_data, **kwargs):
+
+        overall_correction_factor = pa_data.get_overall_correction_factor()
+        new_ts = time_series.copy()
+        ts_raw = time_series.raw_data - np.mean(time_series.raw_data, axis=-1)[:, :, :, None]
+        ts_raw /= overall_correction_factor[:, :, None, None]
+        new_ts.raw_data = ts_raw
+
+        # Update the results' attributes.
+        for a in time_series.attributes:
+            if a not in new_ts.attributes:
+                new_ts.attributes[a] = time_series.attributes[a]
+        new_ts.attributes[PreprocessingAttributeTags.PROCESSING_ALGORITHM] = self.get_algorithm_name()
+        new_ts.attributes["CorrectionFactorApplied"] = overall_correction_factor is not None
+
+        return new_ts, {}, None
 
 
 class JAXModelBasedReconstruction(ReconstructionAlgorithm):
@@ -133,7 +179,7 @@ class JAXModelBasedReconstruction(ReconstructionAlgorithm):
             result = opt.run(jnp.zeros((self._nx_model, self._nx_model)),
                              y=jnp.array(time_series), M=M, lambda_reg=lambda_reg, conv_mat=conv_mat)
             return result.params, result.state
-        
+
         output_shape = raw_data.shape[:-2]
         raw_data = raw_data.reshape((-1,) + raw_data.shape[-2:])
         output = np.zeros((raw_data.shape[0], M.shape[1]))
