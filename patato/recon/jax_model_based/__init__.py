@@ -51,6 +51,7 @@ class JAXModelBasedReconstruction(ReconstructionAlgorithm):
                                  shape=self._model_matrix.shape)
 
         self._model_max_iter = kwargs.get("model_max_iter", 50)
+        self._model_constraint = kwargs.get("constraint", "positive")
 
     def _generate_model(self, detx: npt.ArrayLike, dety: npt.ArrayLike,
                         fs: float, dx: float, nx: int, x_0: float, nt: int,
@@ -88,8 +89,16 @@ class JAXModelBasedReconstruction(ReconstructionAlgorithm):
         import jax.numpy as jnp
         from jax.scipy.signal import convolve2d
         import jaxopt
-        from jaxopt.projection import projection_non_negative
+        from jaxopt.projection import projection_non_negative, projection_box
         from tqdm.auto import tqdm
+        from functools import partial
+        if self._model_constraint == "positive":
+            projection = projection_non_negative
+        elif self._model_constraint == "none":
+            projection = partial(projection_box, hyperparams=(-np.inf, np.inf))
+        else:
+            raise ValueError("Constraint must either be 'positive' or 'none'.")
+
         M = self._model_matrix
         if self._model_regulariser is not None:
             method, lambda_reg = self._model_regulariser
@@ -119,7 +128,7 @@ class JAXModelBasedReconstruction(ReconstructionAlgorithm):
             return loss1 + loss2, {"loss1": loss1, "loss2": loss2}  # value, aux
 
         def rec(time_series):
-            opt = jaxopt.ProjectedGradient(forward, projection=projection_non_negative,
+            opt = jaxopt.ProjectedGradient(forward, projection=projection,
                                            maxiter=self._model_max_iter, has_aux=True, acceleration=True)
             result = opt.run(jnp.zeros((self._nx_model, self._nx_model)),
                              y=jnp.array(time_series), M=M, lambda_reg=lambda_reg, conv_mat=conv_mat)
