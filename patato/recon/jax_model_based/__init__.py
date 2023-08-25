@@ -140,8 +140,10 @@ class JAXModelBasedReconstruction(ReconstructionAlgorithm):
         from functools import partial
         if self._model_constraint == "positive":
             projection = projection_non_negative
+            hyperparams = None
         elif self._model_constraint == "none":
-            projection = partial(projection_box, hyperparams=(-np.inf, np.inf))
+            projection = projection_box
+            hyperparams = (-np.inf, np.inf)
         else:
             raise ValueError("Constraint must either be 'positive' or 'none'.")
 
@@ -177,7 +179,9 @@ class JAXModelBasedReconstruction(ReconstructionAlgorithm):
             opt = jaxopt.ProjectedGradient(forward, projection=projection,
                                            maxiter=self._model_max_iter, has_aux=True, acceleration=True)
             result = opt.run(jnp.zeros((self._nx_model, self._nx_model)),
-                             y=jnp.array(time_series), M=M, lambda_reg=lambda_reg, conv_mat=conv_mat)
+                             y=jnp.array(time_series), M=M, lambda_reg=lambda_reg, conv_mat=conv_mat,
+                             hyperparams_proj=hyperparams
+                             )
             return result.params, result.state
 
         output_shape = raw_data.shape[:-2]
