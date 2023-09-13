@@ -137,7 +137,6 @@ class JAXModelBasedReconstruction(ReconstructionAlgorithm):
         import jaxopt
         from jaxopt.projection import projection_non_negative, projection_box
         from tqdm.auto import tqdm
-        from functools import partial
         if self._model_constraint == "positive":
             projection = projection_non_negative
             hyperparams = None
