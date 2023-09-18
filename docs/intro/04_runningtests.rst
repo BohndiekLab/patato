@@ -1,7 +1,7 @@
 Running Tests
 =====================================================================
 
-Unittests have been written for the majority of the functionality of PATATO. To rerun the tests,
+Unit tests have been written for the majority of the functionality of PATATO. To rerun the tests,
 run the following in the command line:
 
 .. code-block:: console
