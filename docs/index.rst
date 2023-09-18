@@ -89,3 +89,4 @@ The logo was designed by `Elly Pugh <https://ellypugh.com/>`_.
    :glob:
 
    dev/*
+   CONTRIBUTING.md
