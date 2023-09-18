@@ -67,6 +67,19 @@ The logo was designed by `Elly Pugh <https://ellypugh.com/>`_.
 
 .. only:: latex
 
+    Developers
+    """"""""""""""""""""
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Developers
+   :glob:
+
+   dev/*
+   CONTRIBUTING.md
+
+.. only:: latex
+
     API Reference
     """""""""""""""""""""
 
@@ -77,15 +90,3 @@ The logo was designed by `Elly Pugh <https://ellypugh.com/>`_.
    Analysis Code <api/analysis_code>
    Convenience Scripts <api/convenience_scripts>
    Useful Utilities <api/useful_utilities>
-
-.. only:: latex
-
-    Developers
-    """"""""""""""""""""
-
-.. toctree::
-   :maxdepth: 2
-   :caption: Developers
-   :glob:
-
-   dev/*

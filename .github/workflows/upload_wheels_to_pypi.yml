@@ -3,10 +3,9 @@ name: Release
 on:
   release:
     types:
-      - created
+      - published
   push:
     branches:
-      - develop
       - main
 
 jobs:
