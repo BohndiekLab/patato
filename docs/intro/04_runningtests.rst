@@ -6,7 +6,9 @@ run the following in the command line:
 
 .. code-block:: console
 
-    cd /path/to/patato
+    git clone https://github.com/BohndiekLab/patato
+    cd patato
+    pip install -e .
     cd tests
     python -m unittest
 
