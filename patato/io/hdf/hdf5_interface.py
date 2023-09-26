@@ -197,8 +197,6 @@ class HDF5Writer(WriterInterface):
         generated : bool, default False
         """
         roi_group = self.file.require_group(HDF5Tags.REGIONS_OF_INTEREST)
-        print(roi_data.attributes[ROITags.ROI_NAME] + "_" +
-              roi_data.attributes[ROITags.ROI_POSITION])
         region_group = roi_group.require_group(roi_data.attributes[ROITags.ROI_NAME] + "_" +
                                                roi_data.attributes[ROITags.ROI_POSITION])
         n = str(len(region_group))
