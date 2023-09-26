@@ -142,6 +142,8 @@ class HDF5ViewerApp:
         self.button2 = ctk.CTkButton(self.right_frame, text="Save ROI", command=self.callback_button2, state="disabled")
         self.button3 = ctk.CTkButton(self.right_frame, text="Delete ROI",
                                      command=self.callback_button3, state="disabled")
+        self.button4 = ctk.CTkButton(self.right_frame, text="Rename ROI",
+                                     command=self.callback_button4, state="disabled")
 
         # Create a listbox for "roi" items
         self.roi_listbox = Listbox(self.right_frame, selectmode=tk.SINGLE)
@@ -173,10 +175,11 @@ class HDF5ViewerApp:
         self.button1.grid(row=7, column=0, padx=5, pady=5)
         self.button2.grid(row=8, column=0, padx=5, pady=5)
         self.button3.grid(row=9, column=0, padx=5, pady=5)
+        self.button4.grid(row=10, column=0, padx=5, pady=5)
 
-        self.dropdown_label.grid(row=10, column=0, padx=5, pady=5)
-        self.roi_name_dropdown.grid(row=11, column=0, padx=5, pady=5)
-        self.roi_position_dropdown.grid(row=12, column=0, padx=5, pady=5)
+        self.dropdown_label.grid(row=11, column=0, padx=5, pady=5)
+        self.roi_name_dropdown.grid(row=12, column=0, padx=5, pady=5)
+        self.roi_position_dropdown.grid(row=13, column=0, padx=5, pady=5)
 
         self.hdf5_files = []  # List to store HDF5 file paths
         self.scan_names = []  # List to store scan names
@@ -270,6 +273,7 @@ class HDF5ViewerApp:
     def show_selected_hdf5_file(self, index):
         if 0 <= index < len(self.hdf5_files):
             self.button3.configure(state="disabled")
+            self.button4.configure(state="disabled")
             file_path = self.hdf5_files[index]
             try:
                 self.file_label.configure(text=f"Loaded File: {file_path}")
@@ -397,10 +401,24 @@ class HDF5ViewerApp:
         if answer and sel:
             self.pa_data_selected.delete_rois(*self.region_names[sel[0]])
         self.button3.configure(state="disabled")
+        self.button4.configure(state="disabled")
         self.update_image()
         self.roi_listbox_focusout(None)
 
-import time
+    def callback_button4(self):
+        sel = self.roi_listbox.curselection()
+        answer = False
+        if sel:
+            answer = messagebox.askyesno("Question", "Are you sure you want to rename this ROI?")
+        if answer and sel:
+            roi_name = self.roi_name_dropdown.get()
+            roi_position = self.roi_position_dropdown.get()
+            self.pa_data_selected.rename_roi(self.region_names[sel[0]], roi_name, roi_position)
+        self.button3.configure(state="disabled")
+        self.button4.configure(state="disabled")
+        self.update_image()
+        self.roi_listbox_focusout(None)
+
 
 def main():
     plt.ioff()
