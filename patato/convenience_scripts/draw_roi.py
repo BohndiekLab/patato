@@ -1,3 +1,4 @@
+import glob
 from pathlib import Path
 
 import matplotlib.pyplot as plt
@@ -129,7 +130,7 @@ class HDF5ViewerApp:
         toolbar.update()
         self.canvas._tkcanvas.pack(side=tk.TOP, fill=tk.BOTH, expand=1)
         self.canvas.get_tk_widget().pack(side=tk.TOP, fill=tk.BOTH, expand=1)
-        
+
         # Create sliders
         self.slider1_label = ctk.CTkLabel(self.right_frame, text="Frame Number:")
         self.slider1 = ctk.CTkSlider(self.right_frame, from_=0, to=1, number_of_steps=1, command=self.update_slider)
@@ -190,7 +191,8 @@ class HDF5ViewerApp:
 
     def load_hdf5_folder(self, folder_path=None):
         if folder_path is None:
-            folder_path = filedialog.askdirectory(title="Please select a folder containing PATATO HDF5 files to analyse.")
+            folder_path = filedialog.askdirectory(
+                title="Please select a folder containing PATATO HDF5 files to analyse.")
         if folder_path:
             # Clear the listbox, the list of HDF5 files, and the list of scan names
             self.file_listbox.delete(0, tk.END)
@@ -199,23 +201,25 @@ class HDF5ViewerApp:
 
             # Scan the folder for HDF5 files and read the 'scan_name' attribute
             i = 0
-            for root, _, files in os.walk(folder_path):
-                for file in files:
-                    i += 1
-                    if i > 1000:
-                        self.show_error_message("Too many files in the selected folder. Please choose a different folder.")
-                        return
-                    if file.endswith(".h5") or file.endswith(".hdf5"):
-                        file_path = os.path.join(root, file)
-                        self.hdf5_files.append(file_path)
 
-                        pa_data = PAData.from_hdf5(file_path, 'r')
-                        scan_name = shorten(Path(file_path).stem, width=8,
-                                            placeholder="...") + ": " + pa_data.get_scan_name()
+            files = glob.glob(os.path.join(folder_path, "**/*.hdf5"), recursive=True)
 
-                        self.scan_names.append(scan_name)
-                        self.file_listbox.insert(tk.END, scan_name)
-                        pa_data.scan_reader.file.close()
+            for file_path in sorted(files, key=lambda x: PAData.from_hdf5(x).get_scan_datetime()):
+                i += 1
+                if i > 1000:
+                    self.show_error_message("Too many files in the selected folder. Please choose a different "
+                                            "folder.")
+                    return
+
+                self.hdf5_files.append(file_path)
+
+                pa_data = PAData.from_hdf5(file_path, 'r')
+                scan_name = shorten(Path(file_path).stem, width=8,
+                                    placeholder="...") + ": " + pa_data.get_scan_name()
+
+                self.scan_names.append(scan_name)
+                self.file_listbox.insert(tk.END, scan_name)
+                pa_data.scan_reader.file.close()
 
             if self.hdf5_files:
                 self.sort_file_list()  # Sort the list based on the custom sort key
