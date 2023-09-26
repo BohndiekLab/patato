@@ -406,12 +406,14 @@ def main():
     plt.ioff()
     ctk.set_appearance_mode("system")
     ctk.set_default_color_theme("green")
+    ctk.DrawEngine.preferred_drawing_method = "circle_shapes"
     root = ctk.CTk(className='PATATO', baseName="Test")
     data = files('patato.convenience_scripts').joinpath('PATATOLogo.png').read_bytes()
     icon_image = tk.PhotoImage(data=data)
     # Set the icon for the main window
     root.iconphoto(True, icon_image)
     app = HDF5ViewerApp(root)
+    root.protocol("WM_DELETE_WINDOW", lambda: (root.quit(), root.destroy()))
     root.mainloop()
 
 
