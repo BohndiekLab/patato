@@ -34,6 +34,11 @@ class HDF5ViewerApp:
     def save_speed_of_sound(self):
         self.pa_data_selected.set_speed_of_sound(self.slider3.get())
 
+    def save_all_speed_of_sound(self):
+        for f in self.hdf5_files:
+            p = PAData.from_hdf5(f, "r+")
+            p.set_speed_of_sound(self.slider3.get())
+
     def __init__(self, root, start_file=None):
         self.new_roi_vertices = None
         self.pa_data_selected = None
@@ -124,6 +129,7 @@ class HDF5ViewerApp:
         self.speed_label = ctk.CTkLabel(self.right_frame, text="1500 m/s")
 
         self.cbutton = ctk.CTkButton(self.right_frame, text="Save Speed of Sound", command=self.save_speed_of_sound)
+        self.cbutton_all = ctk.CTkButton(self.right_frame, text="Save Speed of Sound to All", command=self.save_all_speed_of_sound)
 
         self.slider1_label.grid(row=1, column=0, padx=5, pady=5)
         self.slider1.grid(row=2, column=0, padx=5, pady=5)
@@ -134,6 +140,7 @@ class HDF5ViewerApp:
         self.slider3.grid(row=6, column=0, padx=5, pady=5)
         self.cbutton.grid(row=7, column=0, padx=5, pady=5)
         self.speed_label.grid(row=8, column=0, padx=5, pady=5)
+        self.cbutton_all.grid(row=9, column=0, padx=5, pady=5)
 
         self.hdf5_files = []  # List to store HDF5 file paths
         self.scan_names = []  # List to store scan names
