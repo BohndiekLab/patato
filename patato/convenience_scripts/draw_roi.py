@@ -27,7 +27,7 @@ def shorten(text, width, placeholder=""):
 
 
 class HDF5ViewerApp:
-    def __init__(self, root):
+    def __init__(self, root, start_file=None):
         self.new_roi_vertices = None
         self.pa_data_selected = None
         self.polygon_selector = None
@@ -49,6 +49,9 @@ class HDF5ViewerApp:
         self.regions = {}
         self.region_names = []
         self.drawing = False
+
+        if start_file is not None:
+            self.load_hdf5_folder(start_file)
 
     def roi_listbox_focusout(self, x):
         self.roi_listbox.selection_clear(0, tk.END)
@@ -88,7 +91,7 @@ class HDF5ViewerApp:
         self.load_button.grid(row=1, column=0, columnspan=3, pady=5)
 
         # Create a frame for additional widgets on the left
-        self.left_frame = ctk.CTkFrame(self.root, width=100)
+        self.left_frame = ctk.CTkFrame(self.root, width=125)
         self.left_frame.grid(row=2, column=0, padx=5, pady=5, sticky="nsew")
 
         # Create a title label for the Listbox
@@ -101,11 +104,11 @@ class HDF5ViewerApp:
         self.file_listbox.bind('<<ListboxSelect>>', self.load_selected_hdf5_file)
 
         # Create a frame for Matplotlib and navigation toolbar in the center
-        self.middle_frame = ctk.CTkFrame(self.root, width=400)
+        self.middle_frame = ctk.CTkFrame(self.root, width=200)
         self.middle_frame.grid(row=2, column=1, sticky="nsew")
 
         # Create a frame for additional widgets on the right
-        self.right_frame = ctk.CTkFrame(self.root, width=100)
+        self.right_frame = ctk.CTkFrame(self.root, width=125)
         self.right_frame.grid(row=2, column=2, padx=5, pady=5, sticky="nsew")
 
         # Create a Matplotlib figure and canvas for displaying the image dataset
@@ -121,16 +124,12 @@ class HDF5ViewerApp:
         self.ax.set_facecolor((0.,) * 4)
         self.ax.axis("off")
         self.canvas = FigureCanvasTkAgg(self.fig, master=self.middle_frame)
-        self.canvas.get_tk_widget().pack(fill=tk.BOTH, expand=True)
-
-        # Remove padding around the Matplotlib axes
         self.fig.subplots_adjust(left=0, right=1, top=1, bottom=0)
-
-        # Add Matplotlib navigation toolbar for panning and zooming
-        self.toolbar = NavigationToolbar2Tk(self.canvas, self.middle_frame)
-        self.toolbar.update()
-        self.canvas.get_tk_widget().pack(fill=tk.BOTH, expand=True)
-
+        toolbar = NavigationToolbar2Tk(self.canvas, self.middle_frame)
+        toolbar.update()
+        self.canvas._tkcanvas.pack(side=tk.TOP, fill=tk.BOTH, expand=1)
+        self.canvas.get_tk_widget().pack(side=tk.TOP, fill=tk.BOTH, expand=1)
+        
         # Create sliders
         self.slider1_label = ctk.CTkLabel(self.right_frame, text="Frame Number:")
         self.slider1 = ctk.CTkSlider(self.right_frame, from_=0, to=1, number_of_steps=1, command=self.update_slider)
@@ -189,8 +188,9 @@ class HDF5ViewerApp:
     def update_slider(self, e):
         self.update_image()
 
-    def load_hdf5_folder(self):
-        folder_path = filedialog.askdirectory()
+    def load_hdf5_folder(self, folder_path=None):
+        if folder_path is None:
+            folder_path = filedialog.askdirectory(title="Please select a folder containing PATATO HDF5 files to analyse.")
         if folder_path:
             # Clear the listbox, the list of HDF5 files, and the list of scan names
             self.file_listbox.delete(0, tk.END)
@@ -198,8 +198,13 @@ class HDF5ViewerApp:
             self.scan_names.clear()
 
             # Scan the folder for HDF5 files and read the 'scan_name' attribute
+            i = 0
             for root, _, files in os.walk(folder_path):
                 for file in files:
+                    i += 1
+                    if i > 1000:
+                        self.show_error_message("Too many files in the selected folder. Please choose a different folder.")
+                        return
                     if file.endswith(".h5") or file.endswith(".hdf5"):
                         file_path = os.path.join(root, file)
                         self.hdf5_files.append(file_path)
@@ -218,6 +223,8 @@ class HDF5ViewerApp:
                 self.file_label.configure(text=f"Loaded Folder: {folder_path}")
             else:
                 self.show_error_message("No HDF5 files found in the selected folder.")
+        else:
+            self.show_error_message("Please choose a folder to load data from.")
 
     def load_selected_hdf5_file(self, event):
         selected_index = self.file_listbox.curselection()
@@ -425,15 +432,26 @@ class HDF5ViewerApp:
 def main():
     plt.ioff()
     ctk.set_appearance_mode("system")
-    ctk.set_default_color_theme("green")
+    ctk.set_default_color_theme("dark-blue")
     ctk.DrawEngine.preferred_drawing_method = "circle_shapes"
-    root = ctk.CTk(className='PATATO', baseName="Test")
+    root = ctk.CTk(className='PATATO', baseName="PATATO")
     data = files('patato.convenience_scripts').joinpath('PATATOLogo.png').read_bytes()
     icon_image = tk.PhotoImage(data=data)
     # Set the icon for the main window
     root.iconphoto(True, icon_image)
+
+    root.title("PATATO: Draw Region of Interest. Please select a folder.")
     app = HDF5ViewerApp(root)
     root.protocol("WM_DELETE_WINDOW", lambda: (root.quit(), root.destroy()))
+    root.update()
+
+    answer = messagebox.askokcancel("Info", "Please choose a folder containing PATATO HDF5 files to analyse.")
+    if not answer:
+        root.quit()
+        root.destroy()
+        return
+    app.load_hdf5_folder()
+
     root.mainloop()
 
 
