@@ -53,6 +53,7 @@ class HDF5ViewerApp:
     def roi_listbox_focusout(self, x):
         self.roi_listbox.selection_clear(0, tk.END)
         self.button3.configure(state="disabled")
+        self.button4.configure(state="disabled")
         for r in range(len(self.region_names)):
             line = self.regions[self.region_names[r]]
             if line is not None:
@@ -64,6 +65,7 @@ class HDF5ViewerApp:
         sel = self.roi_listbox.curselection()
         if sel:
             self.button3.configure(state="normal")
+            self.button4.configure(state="normal")
             for r in range(len(self.region_names)):
                 line = self.regions[self.region_names[r]]
                 if r == sel[0]:
