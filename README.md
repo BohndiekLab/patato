@@ -4,7 +4,7 @@
 [![PyPI version](https://badge.fury.io/py/patato.svg)](https://badge.fury.io/py/patato)
 [![Build](https://github.com/bohndieklab/patato/actions/workflows/build_wheels.yml/badge.svg)](https://github.com/bohndieklab/patato/actions/workflows/build_wheels.yml)
 
-![Logo](docs/logos/PATATO%20Logo_1_Combination.png "Logo")
+![Logo](https://github.com/BohndiekLab/patato/raw/main/docs/logos/PATATO%20Logo_1_Combination.png "Logo")
 
 # PATATO: PhotoAcoustic Tomography Analysis TOolkit
 
