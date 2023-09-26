@@ -3,11 +3,6 @@
 
 import numpy as np
 
-try:
-    import simpa as sp
-except ImportError:
-    sp = None
-
 from ...core.image_structures.reconstruction_image import Reconstruction
 from ..attribute_tags import ReconAttributeTags
 from ..hdf.fileimporter import ReaderInterface
@@ -21,6 +16,7 @@ class SimpaImporter(ReaderInterface):
         return None
 
     def get_speed_of_sound(self):
+        import simpa as sp
         f = sp.get_data_field_from_simpa_output(self.file, sp.Tags.DATA_FIELD_SPEED_OF_SOUND)
         return np.mean(f)
 
@@ -28,6 +24,7 @@ class SimpaImporter(ReaderInterface):
         return self._get_segmentation().shape
 
     def _get_segmentation(self):
+        import simpa as sp
         seg = sp.get_data_field_from_simpa_output(self.file, sp.Tags.DATA_FIELD_SEGMENTATION)
         if seg.ndim == 2:
             seg = seg[:, :, None]
@@ -42,6 +39,7 @@ class SimpaImporter(ReaderInterface):
         return 1 / self.file["settings"]["dt_acoustic_sim"]
 
     def _simpa_get_initial_pressure(self, wavelength):
+        import simpa as sp
         recon = sp.get_data_field_from_simpa_output(self.file, sp.Tags.DATA_FIELD_INITIAL_PRESSURE,
                                                     wavelength)
         if recon.ndim == 2:
@@ -73,6 +71,7 @@ class SimpaImporter(ReaderInterface):
 
     def __init__(self, filename):
         super().__init__()
+        import simpa as sp
         self.file = sp.load_hdf5(filename)
         self.filename = filename
         
@@ -89,6 +88,7 @@ class SimpaImporter(ReaderInterface):
         return 0
 
     def _get_pa_data(self):
+        import simpa as sp
         try:
             attrs = {"fs": self.get_sampling_frequency()}
             pa = np.array([sp.get_data_field_from_simpa_output(self.file, sp.Tags.DATA_FIELD_TIME_SERIES_DATA, w) for w in

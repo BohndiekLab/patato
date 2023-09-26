@@ -1,496 +1,420 @@
-#  Copyright (c) Thomas Else 2023.
-#  License: MIT
+from pathlib import Path
 
-"""
-``patato-draw-roi``: A script to draw regions of interest interactively on datasets..
-"""
-
-import argparse
-import glob
-from collections import namedtuple
-from os.path import join, split
-
-import matplotlib
 import matplotlib.pyplot as plt
+
+import tkinter as tk
+from tkinter import filedialog, Listbox, messagebox
+import customtkinter as ctk
 import numpy as np
-from matplotlib.widgets import Slider, Button, RangeSlider, PolygonSelector
-from .. import ImageSequence, ROI, PAData
-from ..utils import sort_key
-from scipy.optimize import least_squares
-
-if matplotlib.get_backend() == "MacOSX":
-    matplotlib.use("TkAgg")
-
+from matplotlib.widgets import PolygonSelector
+import time
+from .. import PAData, ROI
 from ..utils.roi_operations import ROI_NAMES, REGION_COLOURS, close_loop
 
-# TODO: Temporary fix for ?
 import os
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2Tk
 
-os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
+from importlib.resources import files
 
-
-def circ_loss(x, points):
-    R = x[0]
-    x_0 = x[1]
-    y_0 = x[2]
-    return np.sum(((points[:, 0] - x_0) ** 2 / R ** 2 + (points[:, 1] - y_0) ** 2 / R ** 2 - 1) ** 2)
+POSITIONS = ["", "left", "right", "full", "radial", "ulnar", "superficial"]
 
 
-def get_circle_points(r, x_0, y_0, n_points=50):
-    thetas = np.linspace(0, 2 * np.pi, n_points, False)
-    return np.array([np.sin(thetas) * r + x_0, np.cos(thetas) * r + y_0]).T
+def shorten(text, width, placeholder=""):
+    if len(text) > width:
+        return text[:width] + placeholder
+    else:
+        return text
 
 
-def fitcirc(points):
-    points = np.array(points)
-    x_0 = np.mean(points[:, 0])
-    y_0 = np.mean(points[:, 1])
-    r_0 = np.sqrt(np.mean((points[:, 0] - x_0) ** 2 + (points[:, 1] - y_0) ** 2))
-    fit = least_squares(circ_loss, x0=np.array([r_0, x_0, y_0]), args=(points,))
-    return get_circle_points(*fit.x)
+class HDF5ViewerApp:
+    def __init__(self, root):
+        self.new_roi_vertices = None
+        self.pa_data_selected = None
+        self.polygon_selector = None
+        self.recon_map = {}
 
+        self.root = root
+        self.root.title("PATATO: Draw Region of Interest")
 
-positions = ["left", "right", "full", "", "radial", "ulnar", "superficial"]
+        # Set grid weights for columns and rows to allow resizing
+        self.root.columnconfigure(0, weight=1)
+        self.root.columnconfigure(1, weight=2)
+        self.root.columnconfigure(2, weight=1)
+        self.root.rowconfigure(0, weight=0)
+        self.root.rowconfigure(1, weight=0)
+        self.root.rowconfigure(2, weight=1)
 
+        self.create_widgets()  # Create the initial widgets
 
-def init_argparse():
-    parser = argparse.ArgumentParser(description="Process MSOT Data.")
-    parser.add_argument('input', type=str, help="Data Folder")
-    parser.add_argument('-n', '--name', type=str, help="ROI Name",
-                        choices=ROI_NAMES, default="unnamed")
-    parser.add_argument('-p', '--position', type=str, help="ROI Location",
-                        choices=positions, default="")
-    parser.add_argument('-f', '--filter', type=str, help="Choose scan", default=None)
-    parser.add_argument('-r', '--recon', type=int, help="Reconstruction number", default=0)
-    parser.add_argument('-c', '--clear', type=bool, help="Clear Rois", default=False)
-    parser.add_argument('-fn', '--filtername', type=str, help="Choose scan name filter", default=None)
-    parser.add_argument('-thb', '--drawthb', type=bool, help="Draw on THb", default=False)
-    parser.add_argument('-s', '--drawsigso2', type=bool, help="Draw on SigSo2", default=False)
-    parser.add_argument('-u', '--drawultrasound', type=bool, help="Draw on Ultrasound", default=False)
-    parser.add_argument('-o', '--overlaythb', type=bool, help="Draw on THb", default=False)
-    parser.add_argument('-t', '--overlaythresh', type=float, help="THb threshold", default=80.)
-    parser.add_argument('-fc', '--fitcircles', type=bool, help="Fit Circles To Rois", default=False)
-    parser.add_argument('-l', '--logoverlay', type=bool, help="Log of overlay", default=False)
-    parser.add_argument('-g', '--start_scan_number', type=int, help="Start drawing at scan n", default=None)
-    parser.add_argument('-i', '--interpolation', type=bool, help="Interpolate between ROI slices", default=False)
-    parser.add_argument('-w', '--wavelength', type=float, help="Default wavelength", default=0)
-    parser.add_argument("--loadall", type=bool, default=False, help="Preload data to memory.")
-    parser.add_argument("--drawallrois", type=bool, default=False, help="Display all rois on all slices.")
-    return parser
-
-
-class ROIDrawer:
-    def update(self, _=None):
-        if self.previous_frame_number != self.i_index:
-            self.selection_n = -1
-        if self.selection_n == -1:
-            self.edit_btn.label.set_text("No ROI Selected")
-            self.edit_btn.set_active(False)
-            self.delete_btn.label.set_text("No ROI Selected")
-            self.delete_btn.set_active(False)
-        else:
-            self.edit_btn.label.set_text("Change ROI Name")
-            self.edit_btn.set_active(True)
-            self.delete_btn.label.set_text("Delete ROI")
-            self.delete_btn.set_active(True)
-        self.previous_frame_number = self.i_index
-
-        # Update the images that are shown
-        self._draw_image()
-        # self.main_image.set_data(np.squeeze(self.image_data[self.i_index, self.j_index].raw_data))
-        # if self.overlay_data is not None:
-        #     self.overlay_image.set_data(np.squeeze(self.overlay_data[self.i_index, self.j_index].raw_data))
-
-        # remove the roi lines
-        for r in self.roi_lines:
-            line = r.pop(0)
-            line.remove()
-
-        self.roi_lines = []
-        self.roi_names = []
-
-        # Plot the regions.
-        roi_number = 0
-        for (r, n), roi_data in self.pa_data.get_rois(interpolate=self.interpolation).items():
-            colour = "C0"
-            for k, c in zip(ROI_NAMES, REGION_COLOURS):
-                if k in r:
-                    colour = c
-
-            roi_points = roi_data.points
-
-            if np.isclose(self.match_frames[self.i_index, self.j_index],
-                          roi_data.attributes.get(self.frame_type, 1.0)) or self.draw_all_rois:
-                roi_close = close_loop(roi_points)
-                roi_plot = self.image_axis.plot(roi_close[:, 0], roi_close[:, 1], picker=True,
-                                                label=r + "/" + n, c=colour, scalex=False,
-                                                scaley=False)
-                # Show the ROI on the appropriate frame.
-                if roi_number == self.selection_n:
-                    roi_plot[0].set_linestyle("dashed")
-                    roi_plot[0].set_zorder(100)
-                self.roi_lines.append(roi_plot)
-                self.roi_names.append(r + "/" + n)
-                roi_number += 1
-
-        frame_number = 0
-        # Draw the ROI names
-        for lin, nam in zip(self.roi_lines, self.roi_names):
-            if frame_number >= len(self.legend):
-                self.legend.append(
-                    self.fig.text(self.legend_x_0, self.legend_y_0 + self.legend_y,
-                                  nam, color=lin[0].get_color(), picker=True))
-                self.legend_y += self.legend_dy
-            else:
-                self.legend[frame_number].set_text(nam)
-                self.legend[frame_number].set_color(lin[0].get_color())
-            if frame_number == self.selection_n:
-                self.legend[frame_number].set_fontweight("extra bold")
-            else:
-                self.legend[frame_number].set_fontweight("normal")
-            frame_number += 1
-
-        while frame_number < len(self.legend):
-            self.legend[frame_number].set_text("")
-            frame_number += 1
-
-        # Add some labels.
-        z = self.pa_data.get_z_positions()[self.i_index, self.j_index]
-        self.z_text.set_text(f"z = {z:.2f} mm")
-        wavelength = self.pa_data.get_wavelengths()[self.j_index]
-        self.wl_text.set_text(f"wavelength = {wavelength:.0f} nm")
-
-        # Reset the colour limits
-        a, b = self.ax_clims.get_xlim()
-        self.ax_clims.set_xlim((min([np.nanmin(self.main_image.get_array()), a]),
-                                max([np.nanmax(self.main_image.get_array()), b])))
-
-        # Redraw
-        if plt.get_backend() == "MacOSX":
-            self.fig.canvas.draw_idle()
-        else:
-            self.fig.canvas.draw()
-
-    def on_pick(self, event):
-        if not self.drawing:
-            line = event.artist
-            try:
-                name = line.get_text()
-            except AttributeError:
-                name = line.get_label()
-            if self.selection_n != self.roi_names.index(name):
-                self.selection_n = self.roi_names.index(name)
-            else:
-                self.selection_n = -1
-            self.update()
-
-    def _draw_histogram(self):
-        self.histogram = self.hist_axis.hist(self.image_data[self.i_index, self.j_index].values.flatten(),
-                                             bins=20, density=True)
-
-    def _draw_hist_lines(self):
-        self.vlinea = self.hist_axis.axvline(np.nanmin(self.image_data[self.i_index, self.j_index].raw_data))
-        self.vlineb = self.hist_axis.axvline(np.nanmax(self.image_data[self.i_index, self.j_index].raw_data))
-
-    def _draw_image(self):
-        self.main_image = self.image_axis.imshow(np.squeeze(self.image_data[self.i_index, self.j_index].raw_data),
-                                                 extent=self.extent, cmap=self.cmap, origin="lower")
-        if self.overlay_data is not None:
-            overlay_image = np.full_like(self.overlay_data[self.i_index, self.j_index].raw_data, np.nan)
-            overlay_image[:] = self.overlay_data[self.i_index, self.j_index].raw_data
-            overlay_image[overlay_image < self.overlay_threshold] = np.nan
-            self.overlay_image = self.image_axis.imshow(np.squeeze(overlay_image),
-                                                        extent=self.overlay_extent, cmap=self.overlay_cmap,
-                                                        origin="lower")
-
-    @property
-    def i_index(self):
-        try:
-            return self.frame.val
-        except AttributeError:
-            return 0
-
-    @property
-    def j_index(self):
-        try:
-            return self.wavelength.val
-        except AttributeError:
-            return 0
-
-    def save_roi(self, val):
-        if self.drawing:
-            z = self.pa_data.get_z_positions()[self.i_index, self.j_index]
-            run = self.pa_data.get_run_number()[self.i_index, self.j_index]
-            repetition = self.pa_data.get_repetition_numbers()[self.i_index, self.j_index]
-            roi_name = self.roi_name
-            roi_position = self.roi_position
-            roi_output = self.verts
-            self.pa_data.add_roi(ROI(roi_output, z, run, repetition, roi_name, roi_position))
-            print("Saved ROI", self.roi_name, self.scan_name)
-            self.p_selector.set_visible(False)
-            self.drawing = False
-            self.start_btn.label.set_text("Start ROI")
-            self.update()
-            self.p_selector = None
-
-    def update_clim(self, val):
-        cmin = val[0]
-        cmax = val[1]
-        self.vlinea.set_data(([cmin, cmin], [0, 1]))
-        self.vlineb.set_data(([cmax, cmax], [0, 1]))
-        self.main_image.set_clim([cmin, cmax])
-
-    def poly_onselect(self, v):
-        self.verts = v
-
-    def start_drawing(self, v):
-        if not self.drawing:
-            self.selection_n = -1
-            self.drawing = True
-            self.p_selector = PolygonSelector(self.image_axis, self.poly_onselect)
-            self.start_btn.label.set_text("Cancel ROI")
-            self.update()
-        else:
-            self.selection_n = -1
-            self.drawing = False
-            self.p_selector.set_visible(False)
-            self.p_selector = None
-            self.start_btn.label.set_text("Start ROI")
-            self.update()
-
-    def edit_roi_name(self, _=None):
-        if self.selection_n == -1:
-            return
-        name = self.roi_names[self.selection_n]
-        self.pa_data.rename_roi(name, self.roi_name, self.roi_position)
-        self.selection_n = -1
-        self.update()
-
-    def delete_roi(self, _=None):
-        name = self.roi_names[self.selection_n]
-        print("Deleting", name)
-        self.pa_data.delete_rois(*name.split("/"))
-        self.selection_n = -1
-        self.update()
-
-    def on_close(self, _=None):
-        self.pa_data.close()
-
-    def on_key_press(self, event):
-        if event.key == "up":
-            self.selection_n += 1
-            self.selection_n %= len(self.roi_lines)
-        elif event.key == "down":
-            self.selection_n -= 1
-            if self.selection_n < -1:
-                self.selection_n = -1
-        if event.key == "left":
-            self.frame.set_val(max(self.frame.val - 1, self.frame.valmin))
-        elif event.key == "right":
-            self.frame.set_val(min(self.frame.val + 1, self.frame.valmax))
-        if event.key == "r":
-            self.edit_roi_name()
-        self.update()
-
-    def __init__(self, pa_data, image_data: ImageSequence, image_extent, overlay=None,
-                 overlay_threshold=None, overlay_extent=None,
-                 roi_name="unnamed", roi_position="", interpolation=False,
-                 draw_all_rois=False, start_wl=0):
-        self.draw_all_rois = draw_all_rois
-        clinical = pa_data.is_clinical()
-        self.frame_type = "z" if not clinical else "repetition"
-        self.match_frames = pa_data.get_z_positions() if not clinical else pa_data.get_repetition_numbers()
-        self.pa_data = pa_data
-        self.interpolation = interpolation
-
-        self.image_data = image_data
-        self.overlay_data = overlay
-        self.overlay_threshold = overlay_threshold
-        self.overlay_extent = overlay_extent or image_extent
-        self.overlay_cmap = None
-        if overlay is not None:
-            self.overlay_cmap = overlay.cmap
-        self.fig = plt.figure()
-        self.image_axis = plt.subplot2grid((2, 2), (0, 0), 2, fig=self.fig)
-        self.hist_axis = plt.subplot2grid((2, 2), (0, 1), fig=self.fig)
-        self.hist_axis.set_ylabel("Fraction")
-        self.hist_axis.set_xlabel("PA Intensity")
-        plt.tight_layout(pad=3)
-        plt.subplots_adjust(bottom=0.3)
-        self.extent = image_extent
-        self.cmap = image_data.cmap
-        self.main_image = None
-        self.overlay_image = None
-        self.histogram = None
-
-        # Draw the main images
-        self._draw_image()
-
-        self._draw_histogram()
-        self.vlinea = None
-        self.vlineb = None
-        self._draw_hist_lines()
-        # Define the slider and button axes
-        self.ax_clims = plt.axes([0.25, 0.15, 0.5, 0.03])
-        self.ax_slide = plt.axes([0.25, 0.11, 0.5, 0.03])
-        self.ax_frame = plt.axes([0.25, 0.07, 0.5, 0.03])
-        self.ax_button = plt.axes([0.25, 0.01, 0.2, 0.05])
-        self.ax_start = plt.axes([0.55, 0.01, 0.2, 0.05])
-
-        if self.image_data.shape[1] != 1:
-            self.wavelength = Slider(self.ax_slide, "Wavelength", 0,
-                                     self.image_data.shape[1] - 1, valinit=start_wl, valstep=1)
-        else:
-            Constant = namedtuple("ConstantWidget", ["val", "on_changed"])
-            self.wavelength = Constant(val=0, on_changed=lambda x: None)
-            self.ax_slide.set_visible(False)
-
-        self.frame = Slider(self.ax_frame, "Frame", 0, self.image_data.shape[0] - 1, valinit=0, valstep=1)
-        self.previous_frame_number = 0
-
-        self.roi_lines = []
-        self.roi_names = []
-        self.image_axis.set_prop_cycle(None)
-        self.legend = []
-        self.legend_y_0 = 0.55
-        self.legend_dy = -0.04
-        self.legend_x_0 = 0.55
-        self.legend_y = 0
-        self.selection_n = -1
+        self.regions = {}
+        self.region_names = []
         self.drawing = False
 
-        self.ax_edit = plt.axes([self.legend_x_0 + 0.2, self.legend_y_0 - 0.1, 0.2, 0.05])
-        self.edit_btn = Button(self.ax_edit, "No ROI Selected")
-        self.edit_btn.set_active(False)
+    def roi_listbox_focusout(self, x):
+        self.roi_listbox.selection_clear(0, tk.END)
+        self.button3.configure(state="disabled")
+        for r in range(len(self.region_names)):
+            line = self.regions[self.region_names[r]]
+            if line is not None:
+                line[0].set_linestyle("solid")
+                line[0].set_zorder(1)
+        self.canvas.draw()
 
-        self.ax_delete = plt.axes([self.legend_x_0 + 0.2, self.legend_y_0 - 0.3, 0.2, 0.05])
-        self.delete_btn = Button(self.ax_delete, "No ROI Selected")
-        self.delete_btn.set_active(False)
+    def roi_listbox_focusin(self, x):
+        sel = self.roi_listbox.curselection()
+        if sel:
+            self.button3.configure(state="normal")
+            for r in range(len(self.region_names)):
+                line = self.regions[self.region_names[r]]
+                if r == sel[0]:
+                    if line is not None:
+                        line[0].set_linestyle("dashed")
+                        line[0].set_zorder(100)
+                else:
+                    if line is not None:
+                        line[0].set_linestyle("solid")
+                        line[0].set_zorder(1)
+            self.canvas.draw()
 
-        self.save_btn = Button(self.ax_button, "Save ROI")
-        self.start_btn = Button(self.ax_start, "Start ROI")
+    def create_widgets(self):
+        # Create a label to display the loaded HDF5 file path
+        self.file_label = ctk.CTkLabel(self.root, text="No file loaded.")
+        self.file_label.grid(row=0, column=0, columnspan=3, pady=5)
 
-        self.clims = RangeSlider(self.ax_clims, "Clim Range",
-                                 np.nanmin(self.image_data[self.i_index, self.j_index].raw_data),
-                                 np.nanmax(self.image_data[self.i_index, self.j_index].raw_data))
+        # Create a button to load a folder containing HDF5 files
+        self.load_button = ctk.CTkButton(self.root, text="Load HDF5 Folder", command=self.load_hdf5_folder)
+        self.load_button.grid(row=1, column=0, columnspan=3, pady=5)
 
-        self.clims.set_min(np.nanmin(self.main_image.get_array()))
-        self.clims.set_max(np.nanmax(self.main_image.get_array()))
-        self.clims.set_val((np.nanmin(self.main_image.get_array()), np.nanmax(self.main_image.get_array())))
+        # Create a frame for additional widgets on the left
+        self.left_frame = ctk.CTkFrame(self.root, width=100)
+        self.left_frame.grid(row=2, column=0, padx=5, pady=5, sticky="nsew")
 
-        self.ax_text = plt.axes([0.3, 0.95, 0.4, 0.04])
-        self.ax_text.axis("off")
-        self.scan_name = pa_data.get_scan_name()
-        self.roi_name = roi_name
-        self.roi_position = roi_position
-        self.ax_text.annotate(self.scan_name + ": " + self.roi_name + " " + self.roi_position, (0.5, 0),
-                              xycoords="axes fraction", annotation_clip=False,
-                              horizontalalignment="center", verticalalignment="bottom")
+        # Create a title label for the Listbox
+        self.listbox_title_label = ctk.CTkLabel(self.left_frame, text="HDF5 Files")
+        self.listbox_title_label.pack()
 
-        Constant = namedtuple("ConstantWidget", ["set_text"])
-        self.z_text = Constant(lambda x: None)
-        z = pa_data.get_z_positions()[self.i_index, self.j_index]
-        if not np.isnan(z):
-            self.z_text = self.fig.text(0.6, 0.19, f"z = {z:.2f} mm")
+        # Create a listbox to display the list of HDF5 files
+        self.file_listbox = Listbox(self.left_frame)
+        self.file_listbox.pack(fill=tk.BOTH, expand=True)
+        self.file_listbox.bind('<<ListboxSelect>>', self.load_selected_hdf5_file)
 
-        wl = pa_data.get_wavelengths()[self.j_index]
-        self.wl_text = self.fig.text(0.3, 0.19, f"wavelength = {wl:.0f} nm")
+        # Create a frame for Matplotlib and navigation toolbar in the center
+        self.middle_frame = ctk.CTkFrame(self.root, width=400)
+        self.middle_frame.grid(row=2, column=1, sticky="nsew")
 
-        self.p_selector = None
-        self.verts = None
-        self.fig.canvas.mpl_connect('pick_event', self.on_pick)
-        self.update()
-        self.update_clim(self.main_image.get_clim())
+        # Create a frame for additional widgets on the right
+        self.right_frame = ctk.CTkFrame(self.root, width=100)
+        self.right_frame.grid(row=2, column=2, padx=5, pady=5, sticky="nsew")
 
-        self.frame.on_changed(self.update)
-        self.wavelength.on_changed(self.update)
-        self.save_btn.on_clicked(self.save_roi)
-        self.start_btn.on_clicked(self.start_drawing)
-        self.clims.on_changed(self.update_clim)
-        self.edit_btn.on_clicked(self.edit_roi_name)
-        self.delete_btn.on_clicked(self.delete_roi)
-        self.fig.canvas.mpl_connect('close_event', self.on_close)
-        self.fig.canvas.mpl_connect('key_press_event', self.on_key_press)
-        # fm = self.fig.canvas.manager.full_screen_toggle()
-        plt.show()
+        # Create a Matplotlib figure and canvas for displaying the image dataset
+        dpi = 75
+        self.fig, self.ax = plt.subplots(figsize=(400 / dpi, 400 / dpi), dpi=dpi)
 
+        # Hack to fix the icon.
+        data = files('patato.convenience_scripts').joinpath('PATATOLogo.png').read_bytes()
+        icon_image = tk.PhotoImage(data=data)
+        self.root.iconphoto(True, icon_image)
+
+        self.fig.set_facecolor((0.,) * 4)
+        self.ax.set_facecolor((0.,) * 4)
+        self.ax.axis("off")
+        self.canvas = FigureCanvasTkAgg(self.fig, master=self.middle_frame)
+        self.canvas.get_tk_widget().pack(fill=tk.BOTH, expand=True)
+
+        # Remove padding around the Matplotlib axes
+        self.fig.subplots_adjust(left=0, right=1, top=1, bottom=0)
+
+        # Add Matplotlib navigation toolbar for panning and zooming
+        self.toolbar = NavigationToolbar2Tk(self.canvas, self.middle_frame)
+        self.toolbar.update()
+        self.canvas.get_tk_widget().pack(fill=tk.BOTH, expand=True)
+
+        # Create sliders
+        self.slider1_label = ctk.CTkLabel(self.right_frame, text="Frame Number:")
+        self.slider1 = ctk.CTkSlider(self.right_frame, from_=0, to=1, number_of_steps=1, command=self.update_slider)
+        self.slider1.set(0)
+        self.slider2_label = ctk.CTkLabel(self.right_frame, text="Wavelength Number:")
+        self.slider2 = ctk.CTkSlider(self.right_frame, from_=0, to=1, number_of_steps=1, command=self.update_slider)
+        self.slider2.set(0)
+
+        # Create buttons
+        self.button1 = ctk.CTkButton(self.right_frame, text="Draw ROI", command=self.callback_button1)
+        self.button2 = ctk.CTkButton(self.right_frame, text="Save ROI", command=self.callback_button2, state="disabled")
+        self.button3 = ctk.CTkButton(self.right_frame, text="Delete ROI",
+                                     command=self.callback_button3, state="disabled")
+
+        # Create a listbox for "roi" items
+        self.roi_listbox = Listbox(self.right_frame, selectmode=tk.SINGLE)
+
+        self.roi_listbox.bind('<FocusOut>', self.roi_listbox_focusout)
+        self.roi_listbox.bind('<<ListboxSelect>>', self.roi_listbox_focusin)
+
+        # Create a reconstruction methods dropdown
+        self.recon_dropdown = ctk.CTkOptionMenu(self.right_frame, values=["Reconstruction Methods"],
+                                                command=self.change_reconstruction)
+
+        # Create a dropdown box with a button
+        self.dropdown_label = ctk.CTkLabel(self.right_frame, text="Select ROI Name and Position:")
+        self.roi_listbox_label = ctk.CTkLabel(self.right_frame, text="Existing ROIs:")
+        self.roi_name_dropdown = ctk.CTkOptionMenu(self.right_frame, values=ROI_NAMES)
+        self.roi_position_dropdown = ctk.CTkOptionMenu(self.right_frame, values=POSITIONS)
+
+        # Place widgets using grid layout
+        self.roi_listbox_label.grid(row=0, column=0, padx=5, pady=5)
+        self.roi_listbox.grid(row=1, column=0, padx=5, pady=5)
+
+        self.slider1_label.grid(row=2, column=0, padx=5, pady=5)
+        self.slider1.grid(row=3, column=0, padx=5, pady=5)
+        self.slider2_label.grid(row=4, column=0, padx=5, pady=5)
+        self.slider2.grid(row=5, column=0, padx=5, pady=5)
+
+        self.recon_dropdown.grid(row=6, column=0, padx=5, pady=5)
+
+        self.button1.grid(row=7, column=0, padx=5, pady=5)
+        self.button2.grid(row=8, column=0, padx=5, pady=5)
+        self.button3.grid(row=9, column=0, padx=5, pady=5)
+
+        self.dropdown_label.grid(row=10, column=0, padx=5, pady=5)
+        self.roi_name_dropdown.grid(row=11, column=0, padx=5, pady=5)
+        self.roi_position_dropdown.grid(row=12, column=0, padx=5, pady=5)
+
+        self.hdf5_files = []  # List to store HDF5 file paths
+        self.scan_names = []  # List to store scan names
+
+    def update_slider(self, e):
+        self.update_image()
+
+    def load_hdf5_folder(self):
+        folder_path = filedialog.askdirectory()
+        if folder_path:
+            # Clear the listbox, the list of HDF5 files, and the list of scan names
+            self.file_listbox.delete(0, tk.END)
+            self.hdf5_files.clear()
+            self.scan_names.clear()
+
+            # Scan the folder for HDF5 files and read the 'scan_name' attribute
+            for root, _, files in os.walk(folder_path):
+                for file in files:
+                    if file.endswith(".h5") or file.endswith(".hdf5"):
+                        file_path = os.path.join(root, file)
+                        self.hdf5_files.append(file_path)
+
+                        pa_data = PAData.from_hdf5(file_path, 'r')
+                        scan_name = shorten(Path(file_path).stem, width=8,
+                                            placeholder="...") + ": " + pa_data.get_scan_name()
+
+                        self.scan_names.append(scan_name)
+                        self.file_listbox.insert(tk.END, scan_name)
+                        pa_data.scan_reader.file.close()
+
+            if self.hdf5_files:
+                self.sort_file_list()  # Sort the list based on the custom sort key
+                self.show_selected_hdf5_file(0)
+                self.file_label.configure(text=f"Loaded Folder: {folder_path}")
+            else:
+                self.show_error_message("No HDF5 files found in the selected folder.")
+
+    def load_selected_hdf5_file(self, event):
+        selected_index = self.file_listbox.curselection()
+        if selected_index:
+            index = int(selected_index[0])
+            self.show_selected_hdf5_file(index)
+
+    def update_image(self):
+        i = int(self.slider1.get())
+        j = int(self.slider2.get())
+        # Display the image dataset using Matplotlib
+        self.ax.clear()
+
+        recon_method = self.recon_dropdown.get()
+        if recon_method == "Ultrasound":
+            recon = self.pa_data_selected.get_ultrasound()
+        else:
+            recon = self.pa_data_selected.get_scan_reconstructions()[self.recon_map[recon_method]]
+        recon = recon[i, j]
+        recon.imshow(ax=self.ax)
+
+        self.regions = {}
+        rois = list(self.pa_data_selected.get_rois().keys())
+        self.region_names = rois
+
+        rois = self.pa_data_selected.get_rois()
+        # Plot the ROIS
+        for (r, n) in rois:
+            draw_all_rois = False  # Update this to a check-box
+            clinical = self.pa_data_selected.is_clinical()
+            frame_type = "z" if not clinical else "repetition"
+            match_frames = self.pa_data_selected.get_z_positions() if not clinical else self.pa_data_selected.get_repetition_numbers()
+            if np.isclose(match_frames[i, j],
+                          rois[r, n].attributes.get(frame_type, 1.0)) or draw_all_rois:
+                colour = "C0"
+                for k, c in zip(ROI_NAMES, REGION_COLOURS):
+                    if k in r:
+                        colour = c
+
+                roi_points = rois[r, n].points
+                roi_close = close_loop(roi_points)
+                # TODO: Control the slice through the image to draw.
+                roi_plot = self.ax.plot(roi_close[:, 0], roi_close[:, 1], picker=True,
+                                        label=r + "/" + n, c=colour, scalex=False,
+                                        scaley=False)
+            else:
+                roi_plot = None
+            self.regions[r, n] = roi_plot
+        self.populate_roi_listbox(self.region_names)
+        self.canvas.draw()
+
+    def change_reconstruction(self, x):
+        self.update_image()
+
+    def show_selected_hdf5_file(self, index):
+        if 0 <= index < len(self.hdf5_files):
+            self.button3.configure(state="disabled")
+            file_path = self.hdf5_files[index]
+            try:
+                self.file_label.configure(text=f"Loaded File: {file_path}")
+
+                # Open the selected HDF5 file
+                pa_data = PAData.from_hdf5(file_path, "r+")
+                self.pa_data_selected = pa_data
+
+                self.recon_map = {r_name[0] + f"({r_name[1]})": r_name for r_name in pa_data.get_scan_reconstructions()}
+                recon_methods = list(self.recon_map.keys())
+                if pa_data.get_ultrasound():
+                    recon_methods.append("Ultrasound")
+                self.recon_dropdown.configure(values=recon_methods)
+                if self.recon_dropdown.get() not in recon_methods:
+                    self.recon_dropdown.set(recon_methods[0])
+
+                if pa_data.get_scan_reconstructions():
+                    recon = pa_data.get_scan_reconstructions()
+
+                    # Change this so that you can view different reconstructions
+                    recon = recon[list(recon.keys())[0]]
+
+                    # Update the frame and wavelength sliders.
+                    self.slider1.configure(from_=0, to=recon.shape[0] - 1, number_of_steps=recon.shape[0] - 1)
+                    if recon.shape[0] == 1:
+                        self.slider1.configure(state="disabled")
+                    else:
+                        self.slider1.set(0)
+                        self.slider1.configure(state="normal")
+                    self.slider2.configure(from_=0, to=recon.shape[1] - 1, number_of_steps=recon.shape[1] - 1)
+                    if recon.shape[1] == 1:
+                        self.slider2.configure(state="disabled")
+                    else:
+                        self.slider2.set(0)
+                        self.slider2.configure(state="normal")
+                    self.slider2.set(0)
+
+                    # Populate the ROI listbox with items from the 'roi' group
+                    self.update_image()
+                else:
+                    self.show_error_message(f"No reconstructions available.")
+            except Exception as e:
+                import traceback
+                self.show_error_message(f"Error loading HDF5 file: {str(e)}")
+                traceback.print_exception(type(e), e, e.__traceback__)
+
+    def show_error_message(self, message):
+        error_window = ctk.CTkToplevel(self.root)
+        error_window.title("Error")
+
+        error_label = ctk.CTkLabel(error_window, text=message)
+        error_label.pack(padx=20, pady=20)
+
+    def sort_file_list(self):
+        # Clear the listbox and insert the sorted scan names
+        self.file_listbox.delete(0, tk.END)
+        for scan_name in self.scan_names:
+            self.file_listbox.insert(tk.END, scan_name)
+
+    def populate_roi_listbox(self, labels):
+        # Clear the ROI listbox
+        self.roi_listbox.configure(state="normal")
+        self.roi_listbox.delete(0, tk.END)
+        for roi_name in labels:
+            self.roi_listbox.insert(tk.END, roi_name)
+        self.roi_listbox_focusout(None)
+
+    def toggle_drawing(self):
+        widgets = [self.load_button,
+                   self.roi_listbox, self.file_listbox
+                   ]
+        widgets_opposite = [self.button2]
+        if self.drawing:
+            for w in widgets:
+                w.configure(state="normal")
+            for w in widgets_opposite:
+                w.configure(state="disabled")
+            self.button1.configure(text="Draw ROI")
+            # Stop drawing, enable tools
+        else:
+            for w in widgets:
+                w.configure(state="disabled")
+            for w in widgets_opposite:
+                w.configure(state="normal")
+            self.button1.configure(text="Cancel ROI")
+            # Start drawing, disable tools
+        self.drawing = not self.drawing
+
+    def poly_onselect(self, v):
+        self.new_roi_vertices = v
+
+    # Callback functions for buttons and dropdown
+    def callback_button1(self):
+        # Start drawing regions of interest
+        self.roi_listbox_focusout(None)
+        self.toggle_drawing()
+        if self.drawing:
+            self.polygon_selector = PolygonSelector(self.ax,
+                                                    self.poly_onselect,
+                                                    props=dict(color="r")
+                                                    )
+        else:
+            self.polygon_selector.set_visible(False)
+            self.polygon_selector = None
+            self.canvas.draw()
+
+    def callback_button2(self):
+        i = int(self.slider1.get())
+        j = int(self.slider2.get())
+        z = self.pa_data_selected.get_z_positions()[i, j]
+        run = self.pa_data_selected.get_run_number()[i, j]
+        repetition = self.pa_data_selected.get_repetition_numbers()[i, j]
+        roi_name = self.roi_name_dropdown.get()
+        roi_position = self.roi_position_dropdown.get()
+        self.pa_data_selected.add_roi(ROI(self.new_roi_vertices, z, run, repetition, roi_name, roi_position))
+        self.update_image()
+        # Disable drawing at the end
+        self.callback_button1()
+
+    def callback_button3(self):
+        sel = self.roi_listbox.curselection()
+        answer = False
+        if sel:
+            answer = messagebox.askyesno("Question", "Are you sure you want to delete this ROI?")
+        if answer and sel:
+            self.pa_data_selected.delete_rois(*self.region_names[sel[0]])
+        self.button3.configure(state="disabled")
+        self.update_image()
+        self.roi_listbox_focusout(None)
+
+import time
 
 def main():
-    p = init_argparse()
-    args = p.parse_args()
-
-    DATA_FOLDER = args.input
-
-    if os.path.isfile(DATA_FOLDER):
-        data_files = [DATA_FOLDER]
-    else:
-        data_files = sorted(glob.glob(join(DATA_FOLDER, "**", "*.hdf5"), recursive=True), key=sort_key)
-
-    print(args.input)
-    for file in data_files:
-        if args.filter is not None:
-            if split(file)[-1] != "Scan_" + args.filter + ".hdf5":
-                continue
-        if args.start_scan_number is not None:
-            file_name = split(file)[-1]
-            if "_" in file_name:
-                number = int(file_name.split("_")[1].split(".")[0])
-                if number < args.start_scan_number:
-                    continue
-
-        data = PAData.from_hdf5(file, "r+")
-        wl_i = np.argmin(np.abs(data.get_wavelengths() - args.wavelength))
-
-        if args.filtername is not None:
-            if str.lower(args.filtername) not in str.lower(data.get_scan_name()):
-                continue
-            print(file)
-
-        if args.clear:
-            if args.name == "unnamed" and args.position == "":
-                data.delete_rois()
-            else:
-                data.delete_rois(args.name + "_" + args.position)
-            continue
-
-        if not data.get_recon_types():
-            print(f"Skipping {file} because no reconstructions are present.")
-            continue
-
-        print(split(file)[-1])
-
-        methods = data.get_recon_types()
-        print(methods)
-        method = sorted(methods)[args.recon]
-
-        if len(methods) > 1:
-            print(f"Multiple reconstructions available, using {method}.")
-
-        recon = data.get_scan_reconstructions()[method]
-
-        thb = data.get_scan_thb()
-
-        if args.drawthb:
-            recon = thb[(method, "0")]
-
-        if args.drawultrasound:
-            recon_us = data.get_ultrasound()
-            if not recon_us:
-                print("No ultrasound available.")
-            if type(recon_us) == dict:
-                recon_us = list(recon_us.values())[0]
-            recon = recon_us
-
-        extents = recon.extent
-
-        # Load to memory:
-        if args.loadall:
-            print("Loading all")
-            recon.raw_data = recon.raw_data[:]
-
-        ROIDrawer(data, recon, extents, roi_name=args.name, roi_position=args.position,
-                                 interpolation=args.interpolation, draw_all_rois=args.drawallrois, start_wl = wl_i)
+    plt.ioff()
+    ctk.set_appearance_mode("system")
+    ctk.set_default_color_theme("green")
+    root = ctk.CTk(className='PATATO', baseName="Test")
+    data = files('patato.convenience_scripts').joinpath('PATATOLogo.png').read_bytes()
+    icon_image = tk.PhotoImage(data=data)
+    # Set the icon for the main window
+    root.iconphoto(True, icon_image)
+    app = HDF5ViewerApp(root)
+    root.mainloop()
 
 
 if __name__ == "__main__":
+    print("Running main")
     main()
