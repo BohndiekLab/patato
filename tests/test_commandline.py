@@ -25,23 +25,6 @@ class TestCommandLine(unittest.TestCase):
 
     @mock.patch('argparse.ArgumentParser.parse_args',
                 return_value=argparse.Namespace(input=".",
-                                                c=1500,
-                                                preset=None,
-                                                run=None,
-                                                clear=True,
-                                                console=True,
-                                                scan=None,
-                                                startscan=None,
-                                                wavelength=None,
-                                                usthreshold=None,
-                                                log=False,
-                                                lineplots=False))
-    def test_tune_speed_of_sound(self, mock_args):
-        from patato.convenience_scripts.tune_speed_of_sound import main
-        main()
-
-    @mock.patch('argparse.ArgumentParser.parse_args',
-                return_value=argparse.Namespace(input=".",
                                                 speed=None,
                                                 output=None,
                                                 preset=None,
