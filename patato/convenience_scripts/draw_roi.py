@@ -8,7 +8,6 @@ from tkinter import filedialog, Listbox, messagebox
 import customtkinter as ctk
 import numpy as np
 from matplotlib.widgets import PolygonSelector
-import time
 from .. import PAData, ROI
 from ..utils.roi_operations import ROI_NAMES, REGION_COLOURS, close_loop
 
