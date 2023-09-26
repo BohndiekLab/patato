@@ -6,7 +6,6 @@ on:
       - published
   push:
     branches:
-      - develop
       - main
 
 jobs:
