@@ -98,6 +98,12 @@ class JAXModelBasedReconstruction(ReconstructionAlgorithm):
 
         self._model_max_iter = kwargs.get("model_max_iter", 50)
         self._model_constraint = kwargs.get("constraint", "positive")
+        
+        self.attributes["model_max_iter"] = self._model_max_iter
+        self.attributes["model_constraint"] = self._model_constraint
+        self.attributes["model_regulariser"] = self._model_regulariser[0]
+        self.attributes["model_regulariser_weighting"] = self._model_regulariser[1]
+        self.attributes["model_c"] = c
 
     def _generate_model(self, detx: npt.ArrayLike, dety: npt.ArrayLike,
                         fs: float, dx: float, nx: int, x_0: float, nt: int,

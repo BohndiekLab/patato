@@ -27,6 +27,7 @@ class ReconstructionAlgorithm(TimeSeriesProcessingAlgorithm, ABC):
         self.field_of_view = field_of_view
         self.custom_params = kwargs
         self._batch = True
+        self.attributes = {}
 
     @abstractmethod
     def reconstruct(self, raw_data: np.ndarray,
@@ -104,6 +105,8 @@ class ReconstructionAlgorithm(TimeSeriesProcessingAlgorithm, ABC):
         output_data.attributes[ReconAttributeTags.Y_FIELD_OF_VIEW] = self.field_of_view[1]
         output_data.attributes[ReconAttributeTags.Z_FIELD_OF_VIEW] = self.field_of_view[2]
         output_data.attributes[ReconAttributeTags.ADDITIONAL_PARAMETERS] = kwargs
+        for a in self.attributes:
+            output_data.attributes[a] = self.attributes[a]
         output_data.attributes[HDF5Tags.WAVELENGTH] = wavelengths
 
         for a in time_series.attributes:
