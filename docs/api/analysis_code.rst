@@ -1,4 +1,4 @@
-MSOT Analysis Code
+PATATO API Reference
 ===================
 
 .. autosummary::
