@@ -8,7 +8,10 @@ run the following in the command line:
 
     git clone https://github.com/BohndiekLab/patato
     cd patato
-    pip install -e .
+
+Install PATATO: `pip install -e .` (requires build tools) OR `pip install patato` (doesn't require compiler tools).
+
+.. code-block:: console
     cd tests
     python -m unittest
 
