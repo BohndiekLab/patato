@@ -65,16 +65,37 @@ class iTheraMSOT(ReaderInterface):
                 continue
             guid = r["GUID"]
             file = join(self.scan_folder, "RECONs", guid + ".bin")
-            ns = [r["FIELD-OF-VIEW"]["PixelCount"][a] for a in "XYZ"]
+            dtype = np.single
+            slicer = np.s_
+            transpose = False
+            if "FIELD-OF-VIEW" not in r and "Resolution" in r:
+                axis = [np.all(self.scan_geometry[:, x] == self.scan_geometry[:, 0]) for x in range(3)]
+                dtype = np.double
+                slicer = slicer[:, :, :, :, ::-1]
+                transpose = True
+                if not any(axis): 
+                    ns = [r["Resolution"], r["Resolution"], r["Resolution"]]
+                else:
+                    ns = [1, 1, 1]
+                    for i, a in enumerate(axis):
+                        if not a:
+                            ns[i] = r["Resolution"]
+            else:
+                ns = [r["FIELD-OF-VIEW"]["PixelCount"][a] for a in "XYZ"]
             try:
-                recon = np.memmap(file, dtype=np.single)[
+                recon = np.memmap(file, dtype=dtype)[
                         :self.nframes * self.nwavelengths * ns[0] * ns[1] * ns[2]].reshape(
                     (self.nframes,
-                     self.nwavelengths,) + tuple(ns))
+                     self.nwavelengths,) + tuple(ns))[slicer]
+                if transpose:
+                    recon = np.swapaxes(recon, -1, -2)
             except ValueError:
                 warnings.warn("Warning: unable to import iThera reconstruction. Skipping.")
                 continue
-            fov = [r["FIELD-OF-VIEW"]["Extents"][a] for a in "XYZ"]
+            if "FIELD-OF-VIEW" in r:
+                fov = [r["FIELD-OF-VIEW"]["Extents"][a] for a in "XYZ"]
+            else:
+                fov = [r["Roi"] if x != 1 else 0 for x in ns]
 
             attributes = {x: r[x] for x in r.keys() if x != "ReconFrames"}
 
