@@ -24,11 +24,11 @@ authors:
     corresponding: true # (This is how to denote the corresponding author)
     affiliation: "1, 2"
 affiliations:
-  - name:  CRUK Cambridge Institute, University of Cambridge, UK
+  - name:  CRUK Cambridge Institute, University of Cambridge, United Kingdom
     index: 1
-  - name: Department of Physics, University of Cambridge, UK
+  - name: Department of Physics, University of Cambridge, United Kingdom
     index: 2
-  - name: Department of Oncology, University of Oxford, UK
+  - name: Department of Oncology, University of Oxford, United Kingdom
     index: 3
 date: 8 June 2023
 bibliography: bibliography.bib
