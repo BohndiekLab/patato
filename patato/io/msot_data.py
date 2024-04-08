@@ -374,7 +374,7 @@ class PAData:
             responding = delta_images.raw_data > nsigma * sigma_so2.raw_data
         else:
             return None
-        return SingleImage(responding, None, algorithm_id=delta_images.algorithm_id,
+        return SingleImage(responding, ["Responding Pixels"], algorithm_id=delta_images.algorithm_id,
                            attributes=delta_images.attributes,
                            hdf5_sub_name=delta_images.hdf5_sub_name, field_of_view=delta_images.fov_3d)
 
