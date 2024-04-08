@@ -783,9 +783,9 @@ class PAData:
 
         output_table = pd.DataFrame(outputs)
 
-        summary_methods = {"mean": np.mean,
-                           "median": np.median,
-                           "std": np.std}
+        summary_methods = {"mean": np.nanmean,
+                           "median": np.nanmedian,
+                           "std": np.nanstd}
         for name, method in summary_methods.items():
             for metric in metrics:
                 if metric in output_table.columns:
