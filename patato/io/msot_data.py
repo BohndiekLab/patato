@@ -697,7 +697,8 @@ class PAData:
         return self.get_time_series()
 
     def summary_measurements(self, metrics=None,
-                             include_rois=None, roi_kwargs=None, just_summary=True, return_masks=False):
+                             include_rois=None, roi_kwargs=None, just_summary=True, 
+                             return_masks=False, metric_limits=None):
         """
 
         Parameters
@@ -760,6 +761,10 @@ class PAData:
                 if m:
                     mask, data_slice = roi.to_mask_slice(m)
                     output_roi[metrics[i]] = data_slice.raw_data.T[mask.T].T
+                    if metric_limits is not None and metrics[i] in metric_limits:
+                        lower, upper = metric_limits[metrics[i]]
+                        output_roi[metrics[i]][output_roi[metrics[i]] < lower] = np.nan
+                        output_roi[metrics[i]][output_roi[metrics[i]] > upper] = np.nan
                 else:
                     print(f"Skipping metric {metrics[i]}")
 
