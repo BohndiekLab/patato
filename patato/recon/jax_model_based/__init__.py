@@ -90,8 +90,8 @@ class JAXModelBasedReconstruction(ReconstructionAlgorithm):
         from jax.experimental.sparse import CSR
 
         self._model_regulariser = (kwargs.get("model_regulariser", None), kwargs.get("model_regulariser_lambda", None))
-        if self._model_regulariser[0] is None:
-            self._model_regulariser = None
+        #if self._model_regulariser[0] is None:
+        #    self._model_regulariser = None
 
         self._model_matrix = CSR((self._model_matrix.data, self._model_matrix.indices, self._model_matrix.indptr),
                                  shape=self._model_matrix.shape)
@@ -153,7 +153,7 @@ class JAXModelBasedReconstruction(ReconstructionAlgorithm):
             raise ValueError("Constraint must either be 'positive' or 'none'.")
 
         M = self._model_matrix
-        if self._model_regulariser is not None:
+        if self._model_regulariser is not None or all([x is None for x in self._model_regulariser]):
             method, lambda_reg = self._model_regulariser
         else:
             method, lambda_reg = None, None

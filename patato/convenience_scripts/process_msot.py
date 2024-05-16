@@ -94,10 +94,10 @@ def main():
         description = pipeline.children[0].get_algorithm_name()
 
         # Setup the name
-        if args.highpass is not None:
-            description += "_CUSTOM_HP_FILTER"
-        if args.lowpass is not None:
-            description += "_CUSTOM_LP_FILTER"
+        #if args.highpass is not None:
+        #    description += "_CUSTOM_HP_FILTER"
+        #if args.lowpass is not None:
+        #    description += "_CUSTOM_LP_FILTER"
         if args.run is not None:
             description += "_run_" + str(args.run)
         if args.wavelength is not None:
