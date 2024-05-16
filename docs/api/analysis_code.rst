@@ -1,5 +1,5 @@
-MSOT Analysis Code
-===================
+PATATO API Reference
+=====================
 
 .. autosummary::
    :toctree: ../_autosummary

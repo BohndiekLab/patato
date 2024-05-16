@@ -14,18 +14,21 @@ authors:
     orcid: 0000-0002-2652-4190
     affiliation: "1, 2" # (Multiple affiliations must be quoted)
   - name: Janek Gröhl
+    orcid: 0000-0002-5332-4856
     affiliation: "1, 2"
   - name: Lina Hacker
+    orcid: 0000-0001-5160-0952
     affiliation: "1, 2, 3"
   - name: Sarah E. Bohndiek
+    orcid: 0000-0003-0371-8635
     corresponding: true # (This is how to denote the corresponding author)
     affiliation: "1, 2"
 affiliations:
-  - name:  CRUK Cambridge Institute, University of Cambridge, UK
+  - name:  CRUK Cambridge Institute, University of Cambridge, United Kingdom
     index: 1
-  - name: Department of Physics, University of Cambridge, UK
+  - name: Department of Physics, University of Cambridge, United Kingdom
     index: 2
-  - name: Department of Oncology, University of Oxford, UK
+  - name: Department of Oncology, University of Oxford, United Kingdom
     index: 3
 date: 8 June 2023
 bibliography: bibliography.bib

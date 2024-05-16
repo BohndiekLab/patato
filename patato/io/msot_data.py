@@ -374,7 +374,7 @@ class PAData:
             responding = delta_images.raw_data > nsigma * sigma_so2.raw_data
         else:
             return None
-        return SingleImage(responding, None, algorithm_id=delta_images.algorithm_id,
+        return SingleImage(responding, ["Responding Pixels"], algorithm_id=delta_images.algorithm_id,
                            attributes=delta_images.attributes,
                            hdf5_sub_name=delta_images.hdf5_sub_name, field_of_view=delta_images.fov_3d)
 
@@ -697,7 +697,8 @@ class PAData:
         return self.get_time_series()
 
     def summary_measurements(self, metrics=None,
-                             include_rois=None, roi_kwargs=None, just_summary=True, return_masks=False):
+                             include_rois=None, roi_kwargs=None, just_summary=True, 
+                             return_masks=False, metric_limits=None):
         """
 
         Parameters
@@ -760,6 +761,10 @@ class PAData:
                 if m:
                     mask, data_slice = roi.to_mask_slice(m)
                     output_roi[metrics[i]] = data_slice.raw_data.T[mask.T].T
+                    if metric_limits is not None and metrics[i] in metric_limits:
+                        lower, upper = metric_limits[metrics[i]]
+                        output_roi[metrics[i]][output_roi[metrics[i]] < lower] = np.nan
+                        output_roi[metrics[i]][output_roi[metrics[i]] > upper] = np.nan
                 else:
                     print(f"Skipping metric {metrics[i]}")
 
@@ -778,9 +783,9 @@ class PAData:
 
         output_table = pd.DataFrame(outputs)
 
-        summary_methods = {"mean": np.mean,
-                           "median": np.median,
-                           "std": np.std}
+        summary_methods = {"mean": np.nanmean,
+                           "median": np.nanmedian,
+                           "std": np.nanstd}
         for name, method in summary_methods.items():
             for metric in metrics:
                 if metric in output_table.columns:

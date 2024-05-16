@@ -27,6 +27,10 @@ pip install patato
 
 To setup support for image reconstruction on Windows, or for GPU support, please follow the installation guide in the documentation.
 
+## Citing PATATO
+
+To cite PATATO, please reference our article in the Journal of Open Source software, [here](https://joss.theoj.org/papers/456eaf591244858915ad8730dcbc19d7). 
+
 ## Documentation, examples and contributing
 Documentation for PATATO can be found at https://patato.readthedocs.io/en/latest/?badge=latest.
 
