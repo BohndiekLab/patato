@@ -62,6 +62,8 @@ def load_image_from_hdf5(cls, dataset, file):
     elif ax_1_meaning is None:
         # For dso2 etc.
         ax_1_labels = np.array([dataset.name.split("/")[-3]])
+    elif ax_1_meaning == "learned_sO2":
+        ax_1_labels = np.array(["learned_sO2"])
     elif dataset_da.shape[1] == 1:
         ax_1_labels = np.array([dataset.name.split("/")[-3]])
     else:
