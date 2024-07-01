@@ -100,7 +100,7 @@ class OpenCLBackprojection(ReconstructionAlgorithm):
         logging.info(f"{signal.shape}, {speed_of_sound}, {fs}, {detectors.shape}")
 
         original_shape = signal.shape[:-2]
-        frames = int(np.product(original_shape))
+        frames = int(np.prod(original_shape))
         signal = signal.reshape((frames,) + signal.shape[-2:])
         dl = speed_of_sound / fs
 
