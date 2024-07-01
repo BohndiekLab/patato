@@ -50,7 +50,7 @@ class ReferenceBackprojection(ReconstructionAlgorithm):
 
         # Reshape frames so that we can loop through to reconstruct
         original_shape = time_series.shape[:-2]
-        frames = int(np.product(original_shape))
+        frames = int(np.prod(original_shape))
         signal = time_series.reshape((frames,) + time_series.shape[-2:])
         dx = field_of_view[0] / (n_pixels[0] - 1) if n_pixels[0] != 1 else 0
         dy = field_of_view[1] / (n_pixels[1] - 1) if n_pixels[1] != 1 else 0
