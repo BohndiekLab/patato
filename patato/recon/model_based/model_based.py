@@ -4,7 +4,7 @@
 from typing import Sequence
 
 import numpy as np
-from scipy.sparse.linalg import LinearOperator as CPULinOp
+from pylops import MatrixMult
 from tqdm.auto import tqdm
 
 import warnings
@@ -18,7 +18,6 @@ from ... import PAData
 
 try:
     cuda_enabled = True
-    from cupyx.scipy.sparse.linalg import LinearOperator as GPULinOp
     import cupy as cp
 except:
     cuda_enabled = False
@@ -54,11 +53,9 @@ class ModelBasedReconstruction(ReconstructionAlgorithm):
         if gpu:
             get_model_single_c = get_model_gpu_single_c
             get_model_double_c = get_model_gpu_double_c
-            LinearOperator = GPULinOp
         else:
             get_model_double_c = get_model_cpu_single_c
             get_model_single_c = get_model_cpu_single_c
-            LinearOperator = CPULinOp
         model_type = self.custom_params.get("model_type", "single_sos")
         regulariser = self.custom_params.get("regulariser", self.custom_params.get("regularizer", None))
         if regulariser not in ["identity", "laplacian", "TV"]:
@@ -81,8 +78,6 @@ class ModelBasedReconstruction(ReconstructionAlgorithm):
         else:
             raise NotImplementedError(f"Model {model_type} is unavailable.")
         self._raw_model = model_matrix
-        # Force dodgy duck typing to enable product with irf convolution.
-        model_matrix.matvec = lambda x: None
 
         irf = kwargs.get("irf_model", None)
         if irf is None:
@@ -93,24 +88,10 @@ class ModelBasedReconstruction(ReconstructionAlgorithm):
             convolve_irf = Convolve1D((ndet, nt), irf, axis=1, offset=nt // 2,
                                       dtype=np.float32)
 
-            def matvec(x):
-                return convolve_irf @ (model_matrix @ x)
-
-            def rmatvec(x):
-                z = convolve_irf.H @ x
-                return model_matrix.H @ z
-
-            full_model = LinearOperator(model_matrix.shape, matvec=matvec, rmatvec=rmatvec, dtype=np.float32)
-            full_model.data = 1
+            full_model = convolve_irf @ MatrixMult(model_matrix)
         else:
-            def matvec(x):
-                return model_matrix @ x
-
-            def rmatvec(x):
-                return model_matrix.H @ x
-
-            full_model = LinearOperator(model_matrix.shape, matvec=matvec, rmatvec=rmatvec, dtype=np.float32)
-            full_model.data = 1
+            full_model = MatrixMult(model_matrix)
+        
         inv_args = {}
 
         if regulariser == "identity":
@@ -144,6 +125,7 @@ class ModelBasedReconstruction(ReconstructionAlgorithm):
                 inv_args["tol"] = 1e-6
             else:
                 inv_args["iter_lim"] = iter_lim
+            
             return lambda y: regularized_inversion(full_model, y,
                                                    [reg], epsRs=[reg_lambda], show=False, **inv_args)[0]
         else:
