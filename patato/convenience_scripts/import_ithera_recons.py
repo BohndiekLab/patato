@@ -27,7 +27,7 @@ def main():
 
     data = np.fromfile(args.binary, np.double)
     shape = file["raw_data"].shape[:-2]
-    nx = int(np.sqrt(data.shape[0] // np.product(shape)))
+    nx = int(np.sqrt(data.shape[0] // np.prod(shape)))
     data = data.reshape(file["raw_data"].shape[:-2] + (nx, nx))
 
     if args.transpose:
