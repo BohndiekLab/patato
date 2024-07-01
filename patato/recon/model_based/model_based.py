@@ -297,7 +297,7 @@ class ModelBasedReconstruction(ReconstructionAlgorithm):
         # Reverse output shape to be (z, y, x) order
         output_shape = tuple(output_shape[::-1])
 
-        t = t.reshape((np.product(t.shape[:-2]),) + t.shape[-2:])
+        t = t.reshape((np.prod(t.shape[:-2]),) + t.shape[-2:])
         output = np.zeros((t.shape[0],) + output_shape)
 
         for i, t0 in enumerate(tqdm(t)):
