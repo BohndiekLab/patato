@@ -63,6 +63,7 @@ class HDF5Tags:
     RAW_DATA = "raw_data"
     RECONSTRUCTION = "recons"
     UNMIXED = "unmixed"
+    LEARNED_SO2 = "learned_sO2"
     SO2 = "so2"
     THB = "thb"
     SPEED_OF_SOUND = "speedofsound"
