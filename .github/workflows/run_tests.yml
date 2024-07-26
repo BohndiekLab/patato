@@ -43,7 +43,7 @@ jobs:
         pip install coverage ruff
     - name: Linting
       run: |
-        ruff --output-format=github --select=E9,F63,F7,F82 --target-version=py37 . # Should do wider tests in the future.
+        ruff check --output-format=github --select=E9,F63,F7,F82 --target-version=py37 . # Should do wider tests in the future.
     - name: Run tests
       run: |
         cd tests

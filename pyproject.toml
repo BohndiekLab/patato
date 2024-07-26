@@ -9,13 +9,13 @@ dependencies = [
     "requests",
     "cython",
     "shapely",
-    "pylops == 2.1", # Check version compatibility with pylops
+    "pylops", # Check version compatibility with pylops
     "h5py",
     "typing_extensions",
     "pandas",
     "scikit-learn",
     "xarray",
-    "numpy>=1.22",
+    "numpy>=1.22,<2",
     "scipy",
     "tabulate",
     "matplotlib",
@@ -77,8 +77,6 @@ patato-reconstruct = "patato.convenience_scripts.process_msot:main"
 patato-analyse-dce = "patato.convenience_scripts.data_analysis.analyse_dce:main"
 patato-analyse-gc = "patato.convenience_scripts.data_analysis.analyse_gas_challenge:main"
 patato-convert-simpa = "patato.convenience_scripts.convert_simpa:main"
-
-[project.gui-scripts]
 patato-draw-roi = "patato.convenience_scripts.draw_roi:main"
 
 [tool.setuptools.package-data]

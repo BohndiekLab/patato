@@ -53,7 +53,7 @@ class SlowBackprojection(ReconstructionAlgorithm):
 
         # Reshape frames so that we can loop through to reconstruct
         original_shape = time_series.shape[:-2]
-        frames = int(np.product(original_shape))
+        frames = int(np.prod(original_shape))
         signal = time_series.reshape((frames,) + time_series.shape[-2:])
 
         xs, ys, zs = [

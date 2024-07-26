@@ -216,7 +216,7 @@ def extract_data_tables(datafolder: str, name_template: str,
                 measurements = apply_function(measurements)
             tables.append(measurements)
 
-    df = tables[0].append(tables[1:]).reset_index()
+    df = pd.concat(tables).reset_index()
 
     df["Radius"] = np.sqrt(df["Area"] / np.pi) * 75 * 3e-3
 
