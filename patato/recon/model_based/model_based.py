@@ -263,9 +263,9 @@ class ModelBasedReconstruction(ReconstructionAlgorithm):
             dx = field_of_view[indices[0]] / (nx - 1)
             x_0 = -field_of_view[indices[0]] / 2
             nt = signal.shape[-1]
-
+            
             model = self.generate_model(detx, dety, fs, dx, nx, x_0, nt, irf_model=irf,
-                                        gpu=gpu)
+                                        gpu=gpu, c=speed_of_sound)
         if gpu:
             t = cp.array(signal)
         else:
