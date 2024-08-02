@@ -38,11 +38,14 @@ class ModelBasedPreProcessor(TimeSeriesProcessingAlgorithm):
         super().__init__()
 
     def run(self, time_series, pa_data, **kwargs):
-
-        overall_correction_factor = pa_data.get_overall_correction_factor()
         new_ts = time_series.copy()
         ts_raw = time_series.raw_data - np.mean(time_series.raw_data, axis=-1)[:, :, :, None]
-        ts_raw /= overall_correction_factor[:, :, None, None]
+
+        if pa_data is not None:
+            overall_correction_factor = pa_data.get_overall_correction_factor()
+            ts_raw /= overall_correction_factor[:, :, None, None]
+        else:
+            overall_correction_factor = None
         new_ts.raw_data = ts_raw
 
         # Update the results' attributes.
