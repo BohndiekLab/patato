@@ -6,9 +6,11 @@
 """
 
 import argparse
-from distutils.util import strtobool
 
 from ..io.hdf5_converter import convert_simpa
+
+def strtobool(x):
+    return True if x == "True" else False
 
 
 def main():

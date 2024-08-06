@@ -6,7 +6,9 @@
 """
 
 import argparse
-from distutils.util import strtobool
+
+def strtobool(x):
+    return x=="True"
 
 from ..io.hdf5_converter import convert_ithera_msot_binary_to_hdf5
 
