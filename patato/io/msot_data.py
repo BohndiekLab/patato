@@ -250,6 +250,9 @@ class PAData:
         else:
             return list(us_images.values())[0]
 
+    def get_scan_learned_sO2(self):
+        return self.get_scan_images(HDF5Tags.LEARNED_SO2)
+
     def get_scan_unmixed(self):
         return self.get_scan_images(HDF5Tags.UNMIXED, suffix=self.default_unmixing_type)
 
