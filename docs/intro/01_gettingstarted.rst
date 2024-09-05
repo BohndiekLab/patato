@@ -38,7 +38,7 @@ Option 2: Install from source
 
 To install the most recent version of PATATO from GitHub:
 
-    pip install git+https://github.com/tomelse/patato
+    pip install git+https://github.com/BohndiekLab/patato
 
 Option 3: Install from source (editable)
 ----------------------------------------------------------
@@ -49,6 +49,6 @@ To install the development version of PATATO from GitHub and allow editing for d
    :caption: Install PATATO from source.
 
         cd /path/to/installation/directory
-        git clone https://github.com/tomelse/patato
+        git clone https://github.com/BohndiekLab/patato
         cd patato
         pip install -e .
