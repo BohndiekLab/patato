@@ -87,3 +87,7 @@ patato-draw-roi = "patato.convenience_scripts.draw_roi:main"
 
 [tool.setuptools_scm]
 write_to = "patato/_version.py"
+
+[tool.cibuildwheel]
+# Disable building PyPy wheels on all platforms
+skip = "pp*"
