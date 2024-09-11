@@ -235,7 +235,8 @@ class FFTReconstruction(ReconstructionAlgorithm):
             plt.title("What does t6hat do?")
             plt.plot(raw_timeseries_data[128], label="Timeseries")
             plt.plot(
-                raw_timeseries_data[128] * hatfunction, label="Smooth timeseries cut"
+                raw_timeseries_data[128] * hatfunction,
+                label="Smooth timeseries cut",
             )
             plt.plot(
                 hatfunction * np.max(raw_timeseries_data[128]),
@@ -258,7 +259,11 @@ class FFTReconstruction(ReconstructionAlgorithm):
         timeseries[:, : timeseries_data.shape[1]] = np.stack(
             [
                 np.interp(
-                    new_angles_detectors, detector_angles, timeseries_data[:, i], 0, 0
+                    new_angles_detectors,
+                    detector_angles,
+                    timeseries_data[:, i],
+                    0,
+                    0,
                 )
                 for i in range(nt)
             ]
@@ -405,4 +410,4 @@ class FFTReconstruction(ReconstructionAlgorithm):
         str
             The algorithm name.
         """
-        return "FFT Recon"
+        return "FFT Reconstruction"

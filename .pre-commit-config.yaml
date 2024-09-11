@@ -3,10 +3,3 @@ repos:
     rev: 22.3.0
     hooks:
       - id: black
-        args: [--line-length=88]
-  - repo: https://github.com/pycqa/flake8
-    rev: '7.1.1'  # pick a git hash / tag to point to
-    hooks:
-      - id: flake8
-        additional_dependencies: [flake8-docstrings]
-        args: [--docstring-convention=numpy]
