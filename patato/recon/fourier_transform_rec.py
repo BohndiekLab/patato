@@ -11,6 +11,7 @@ from .reconstruction_algorithm import ReconstructionAlgorithm
 
 
 def sin6hat(x):
+    """ """
     res = (
         np.sin(6.0 * x) / 3.0
         - 3.0 * np.sin(4.0 * x)
@@ -22,6 +23,7 @@ def sin6hat(x):
 
 
 def t6hat(rmax, rmin, x):
+    """ """
     xx = np.abs(x)
     ones = np.ones_like(xx)
     xmax = rmax * ones
@@ -88,7 +90,6 @@ class FFTReconstruction(ReconstructionAlgorithm):
         **kwargs
     ) -> np.ndarray:
         """
-
         Parameters
         ----------
         time_series
@@ -101,6 +102,7 @@ class FFTReconstruction(ReconstructionAlgorithm):
 
         Returns
         -------
+
 
         """
         n_grid_detectors = kwargs.get("n_grid_detectors", 1024)
@@ -334,9 +336,9 @@ class FFTReconstruction(ReconstructionAlgorithm):
     @staticmethod
     def get_algorithm_name() -> str:
         """
-
         Returns
         -------
+
 
         """
         return "Reference Backprojection"
