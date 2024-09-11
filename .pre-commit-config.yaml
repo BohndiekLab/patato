@@ -6,7 +6,7 @@ repos:
         args: [--line-length=88]
   - repo: https://github.com/pycqa/flake8
     rev: '7.1.1'  # pick a git hash / tag to point to
-    additional_dependencies: [flake8-docstrings]
     hooks:
       - id: flake8
+        additional_dependencies: [flake8-docstrings]
         args: [--docstring-convention=numpy]
