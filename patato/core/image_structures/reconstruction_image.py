@@ -1,6 +1,4 @@
-"""
-This defines the data structure for reconstructed images.
-"""
+"""This defines the data structure for reconstructed images."""
 
 #  Copyright (c) Thomas Else 2023.
 #  License: MIT
@@ -14,9 +12,8 @@ from ...io.attribute_tags import HDF5Tags
 
 
 class Reconstruction(ImageSequence):
-    """
-    Data structure for reconstructed images.
-    """
+    """Data structure for reconstructed images."""
+
     save_output = True
 
     @staticmethod

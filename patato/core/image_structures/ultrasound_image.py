@@ -6,8 +6,8 @@ from ...io.attribute_tags import HDF5Tags
 
 
 class Ultrasound(ImageSequence):
-    """Data structure for reconstructed ultrasound images.
-    """
+    """Data structure for reconstructed ultrasound images."""
+
     save_output = True
 
     @staticmethod

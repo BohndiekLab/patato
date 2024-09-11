@@ -9,7 +9,6 @@ on:
   workflow_call:
   workflow_dispatch:
 
-
 env:
   PAT_DATA_FOLDER: ${{ github.workspace }}/data
 

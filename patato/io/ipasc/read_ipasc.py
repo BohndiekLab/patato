@@ -9,9 +9,8 @@ from ..hdf.fileimporter import ReaderInterface
 
 
 class IPASCInterface(ReaderInterface):
-    """
-    An interface for iThera MSOT datasets.
-    """
+    """An interface for iThera MSOT datasets."""
+
     def _get_rois(self):
         pass
 
@@ -56,7 +55,7 @@ class IPASCInterface(ReaderInterface):
         return self.nsamples
 
     def _get_run_numbers(self):
-        return np.arange(1, self.nframes+1)
+        return np.arange(1, self.nframes + 1)
 
     def get_scan_datetime(self):
         return None
@@ -68,10 +67,18 @@ class IPASCInterface(ReaderInterface):
         return self.pa_data.get_temperature()
 
     def _get_pa_data(self):
-        raw_data = self.pa_data.binary_time_series_data # [detectors, samples, wavelengths, frames]
-        raw_data = np.swapaxes(raw_data, 1, 3)  # [detectors, frames, wavelengths, samples]
-        raw_data = np.swapaxes(raw_data, 0, 2)  # [wavelengths, frames, detectors, samples]
-        raw_data = np.swapaxes(raw_data, 0, 1)  # [frames, wavelengths, detectors, samples]
+        raw_data = (
+            self.pa_data.binary_time_series_data
+        )  # [detectors, samples, wavelengths, frames]
+        raw_data = np.swapaxes(
+            raw_data, 1, 3
+        )  # [detectors, frames, wavelengths, samples]
+        raw_data = np.swapaxes(
+            raw_data, 0, 2
+        )  # [wavelengths, frames, detectors, samples]
+        raw_data = np.swapaxes(
+            raw_data, 0, 1
+        )  # [frames, wavelengths, detectors, samples]
         return raw_data, {"fs": self.pa_data.get_sampling_rate()}
 
     def _get_sampling_frequency(self):

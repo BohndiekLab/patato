@@ -17,6 +17,7 @@ from ...utils.mask_operations import interpolate_rois
 def slice_1d(data, test_data, slices, dim=-1):
     if data is None:
         return None
+
     def slice_wl(slice_data, item, wl_axis):
         if wl_axis == 0 and type(item) is not tuple:
             r = slice_data[item]
@@ -42,10 +43,13 @@ class ReaderInterface(metaclass=ABCMeta):
         pass
 
     def is_clinical(self):
-        return np.all(np.isnan(self.get_scanner_z_position()[:])) or np.all(0. == self.get_scanner_z_position()[:])
+        return np.all(np.isnan(self.get_scanner_z_position()[:])) or np.all(
+            0.0 == self.get_scanner_z_position()[:]
+        )
 
     def save_to_hdf5(self, filename):
         from ..hdf.hdf5_interface import HDF5Writer
+
         file = h5py.File(filename, "a")
         writer = HDF5Writer(file)
         return writer.save_file(self)
@@ -79,7 +83,9 @@ class ReaderInterface(metaclass=ABCMeta):
                 groups[name].append(output[(name, number)])
             for roi_name in groups:
                 if len(groups[roi_name]) > 0:
-                    interpolated_rois = interpolate_rois(groups[roi_name], self.get_scanner_z_position())
+                    interpolated_rois = interpolate_rois(
+                        groups[roi_name], self.get_scanner_z_position()
+                    )
                     for i, roi in enumerate(interpolated_rois):
                         output[(roi.roi_class + "_" + roi.position, str(i))] = roi
         return output
@@ -130,11 +136,19 @@ class ReaderInterface(metaclass=ABCMeta):
         cls = PATimeSeries
         dims = ["frames", cls.get_ax1_label_meaning(), "detectors", "timeseries"]
 
-        dim_coords = [np.arange(dataset.shape[0]), wavelengths,
-                      np.arange(dataset.shape[2]), np.arange(dataset.shape[3])
-                      ]
+        dim_coords = [
+            np.arange(dataset.shape[0]),
+            wavelengths,
+            np.arange(dataset.shape[2]),
+            np.arange(dataset.shape[3]),
+        ]
         coordinates = {a: b for a, b in zip(dims, dim_coords)}
-        new_cls = cls(da.from_array(dataset, chunks=(1,) + dataset.shape[1:]), dims, coordinates, attributes)
+        new_cls = cls(
+            da.from_array(dataset, chunks=(1,) + dataset.shape[1:]),
+            dims,
+            coordinates,
+            attributes,
+        )
 
         if not cls.is_single_instance():
             new_cls.hdf5_sub_name = dataset.name.split("/")[-2]
@@ -256,8 +270,9 @@ class ReaderInterface(metaclass=ABCMeta):
                 for dataset_type in all_datasets:
                     for reconstruction_type in all_datasets[dataset_type]:
                         if all_datasets[dataset_type][reconstruction_type]:
-                            all_datasets[dataset_type][reconstruction_type] = \
-                                all_datasets[dataset_type][reconstruction_type][s]
+                            all_datasets[dataset_type][
+                                reconstruction_type
+                            ] = all_datasets[dataset_type][reconstruction_type][s]
         return all_datasets
 
     @abstractmethod
@@ -389,7 +404,9 @@ class WriterInterface(metaclass=ABCMeta):
         pass
 
     @abstractmethod
-    def rename_roi(self, old_name: Union[str, Tuple], new_name: str, new_position: str) -> None:
+    def rename_roi(
+        self, old_name: Union[str, Tuple], new_name: str, new_position: str
+    ) -> None:
         """
         Rename a region of interest.
 
@@ -401,7 +418,6 @@ class WriterInterface(metaclass=ABCMeta):
             New roi name e.g. "brain"
         new_position : str
             New roi position e.g. "left"
-
         """
         pass
 

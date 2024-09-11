@@ -9,7 +9,12 @@ import h5py
 import numpy as np
 from ...core.image_structures.image_structure_types import IMAGE_DATA_TYPES
 from ...core.image_structures.pa_time_data import PATimeSeries
-from ...io.attribute_tags import HDF5Tags, ROITags, UnmixingAttributeTags, ReconAttributeTags
+from ...io.attribute_tags import (
+    HDF5Tags,
+    ROITags,
+    UnmixingAttributeTags,
+    ReconAttributeTags,
+)
 from ...io.hdf.fileimporter import WriterInterface, ReaderInterface
 from ...utils.rois.roi_type import ROI
 import json
@@ -37,16 +42,14 @@ def renumber_group(dataset: h5py.Group) -> None:
 # Might be useful to set enviro variable: HDF5_USE_FILE_LOCKING=FALSE
 def load_image_from_hdf5(cls, dataset, file):
     """
-
     Parameters
     ----------
     cls
     dataset
-    file
+    file.
 
     Returns
     -------
-
     """
     ax_1_meaning = cls.get_ax1_label_meaning()
     dataset_da = da.from_array(dataset, chunks=(1,) + dataset.shape[1:])
@@ -67,18 +70,26 @@ def load_image_from_hdf5(cls, dataset, file):
     else:
         ax_1_labels = np.arange(dataset_da.shape[1])
 
-    fov = [dataset.attrs.get(fx, None) for fx in [ReconAttributeTags.X_FIELD_OF_VIEW,
-                                                  ReconAttributeTags.Y_FIELD_OF_VIEW,
-                                                  ReconAttributeTags.Z_FIELD_OF_VIEW]]
+    fov = [
+        dataset.attrs.get(fx, None)
+        for fx in [
+            ReconAttributeTags.X_FIELD_OF_VIEW,
+            ReconAttributeTags.Y_FIELD_OF_VIEW,
+            ReconAttributeTags.Z_FIELD_OF_VIEW,
+        ]
+    ]
 
     if all([x is None for x in fov]):
-        fov_x = dataset.attrs.get(ReconAttributeTags.OLD_FIELD_OF_VIEW, 1.)
+        fov_x = dataset.attrs.get(ReconAttributeTags.OLD_FIELD_OF_VIEW, 1.0)
         fov = [fov_x, fov_x, fov_x]
 
-    new_cls = cls(dataset_da, ax_1_labels,
-                  algorithm_id=dataset.attrs.get(UnmixingAttributeTags.SUFFIX, ""),
-                  attributes=dict(dataset.attrs),
-                  field_of_view=fov)
+    new_cls = cls(
+        dataset_da,
+        ax_1_labels,
+        algorithm_id=dataset.attrs.get(UnmixingAttributeTags.SUFFIX, ""),
+        attributes=dict(dataset.attrs),
+        field_of_view=fov,
+    )
     if not cls.is_single_instance():
         new_cls.hdf5_sub_name = dataset.name.split("/")[-2]
     return new_cls
@@ -111,42 +122,61 @@ class HDF5Writer(WriterInterface):
         self.file[HDF5Tags.RAW_DATA].attrs[HDF5Tags.SCAN_NAME] = scan_name
 
     def set_temperature(self, temperature: "np.ndarray"):
-        self.file.create_dataset(HDF5Tags.TEMPERATURE, data=temperature, compression="gzip")
+        self.file.create_dataset(
+            HDF5Tags.TEMPERATURE, data=temperature, compression="gzip"
+        )
 
     def set_correction_factor(self, correction_factor):
-        self.file.create_dataset(HDF5Tags.OVERALL_CORR, data=correction_factor, compression="gzip")
+        self.file.create_dataset(
+            HDF5Tags.OVERALL_CORR, data=correction_factor, compression="gzip"
+        )
 
     def set_scanner_z_position(self, z_position):
-        self.file.create_dataset(HDF5Tags.Z_POSITION, data=z_position, compression="gzip")
+        self.file.create_dataset(
+            HDF5Tags.Z_POSITION, data=z_position, compression="gzip"
+        )
 
     def set_run_numbers(self, run_numbers):
         self.file.create_dataset(HDF5Tags.RUN, data=run_numbers, compression="gzip")
 
     def set_repetition_numbers(self, repetition_numbers):
-        self.file.create_dataset(HDF5Tags.REPETITION, data=repetition_numbers, compression="gzip")
+        self.file.create_dataset(
+            HDF5Tags.REPETITION, data=repetition_numbers, compression="gzip"
+        )
 
     def set_scan_times(self, scan_times):
-        self.file.create_dataset(HDF5Tags.TIMESTAMP, data=scan_times, compression="gzip")
+        self.file.create_dataset(
+            HDF5Tags.TIMESTAMP, data=scan_times, compression="gzip"
+        )
 
     def set_sensor_geometry(self, sensor_geometry):
-        self.file.create_dataset(HDF5Tags.SCAN_GEOMETRY, data=sensor_geometry, compression="gzip")
+        self.file.create_dataset(
+            HDF5Tags.SCAN_GEOMETRY, data=sensor_geometry, compression="gzip"
+        )
 
     def set_impulse_response(self, impulse_response):
-        self.file.create_dataset(HDF5Tags.IMPULSE_RESPONSE, data=impulse_response, compression="gzip")
+        self.file.create_dataset(
+            HDF5Tags.IMPULSE_RESPONSE, data=impulse_response, compression="gzip"
+        )
 
     def set_wavelengths(self, wavelengths):
         self.file.create_dataset(HDF5Tags.WAVELENGTH, data=wavelengths)
 
     def set_water_absorption(self, water_absorption, pathlength):
         # TODO: Maybe refactor this?
-        water = self.file.create_dataset(HDF5Tags.WATER_ABSORPTION_COEFF, data=water_absorption,
-                                         compression="gzip")
+        water = self.file.create_dataset(
+            HDF5Tags.WATER_ABSORPTION_COEFF, data=water_absorption, compression="gzip"
+        )
         water.attrs[HDF5Tags.WATER_PATHLENGTH] = pathlength
 
     def add_image(self, image_data):
         # Image data can be reconstructions, unmixed data etc.
-        grp = self.file.require_group(image_data.get_hdf5_group_name())  # E.g. unmixed or recons
-        subgroup = grp.require_group(image_data.get_hdf5_sub_name())  # E.g. reconstruction method or something
+        grp = self.file.require_group(
+            image_data.get_hdf5_group_name()
+        )  # E.g. unmixed or recons
+        subgroup = grp.require_group(
+            image_data.get_hdf5_sub_name()
+        )  # E.g. reconstruction method or something
         name = str(len(subgroup.keys())) + image_data.algorithm_id  # E.g. "0" + "E"
         dataset = subgroup.create_dataset(name, data=image_data.raw_data)
 
@@ -166,6 +196,7 @@ class HDF5Writer(WriterInterface):
                 if type(attr) == str:
                     attr = bytes(attr, "utf-8")
                 from numpy import nan, ndarray
+
                 if attr is None:
                     attr = nan
                 if type(attr) is ndarray:
@@ -197,8 +228,11 @@ class HDF5Writer(WriterInterface):
         generated : bool, default False
         """
         roi_group = self.file.require_group(HDF5Tags.REGIONS_OF_INTEREST)
-        region_group = roi_group.require_group(roi_data.attributes[ROITags.ROI_NAME] + "_" +
-                                               roi_data.attributes[ROITags.ROI_POSITION])
+        region_group = roi_group.require_group(
+            roi_data.attributes[ROITags.ROI_NAME]
+            + "_"
+            + roi_data.attributes[ROITags.ROI_POSITION]
+        )
         n = str(len(region_group))
         if type(roi_data.points) in [np.ndarray, list]:
             dataset = region_group.create_dataset(n, data=roi_data.points)
@@ -233,13 +267,18 @@ class HDF5Writer(WriterInterface):
         if HDF5Tags.REGIONS_OF_INTEREST in self.file:
             if name_position is None and number is None:
                 del self.file[HDF5Tags.REGIONS_OF_INTEREST]
-            elif number is None and name_position in self.file[HDF5Tags.REGIONS_OF_INTEREST]:
+            elif (
+                number is None
+                and name_position in self.file[HDF5Tags.REGIONS_OF_INTEREST]
+            ):
                 del self.file[HDF5Tags.REGIONS_OF_INTEREST][name_position]
             elif name_position in self.file[HDF5Tags.REGIONS_OF_INTEREST]:
                 if number in self.file[HDF5Tags.REGIONS_OF_INTEREST][name_position]:
                     del self.file[HDF5Tags.REGIONS_OF_INTEREST][name_position][number]
                     # Renumber rois.
-                    renumber_group(self.file[HDF5Tags.REGIONS_OF_INTEREST][name_position])
+                    renumber_group(
+                        self.file[HDF5Tags.REGIONS_OF_INTEREST][name_position]
+                    )
 
     def delete_recons(self, name=None, recon_groups: Optional[Sequence[str]] = None):
         """
@@ -251,16 +290,18 @@ class HDF5Writer(WriterInterface):
         recon_groups : (iterable of str) or None
         """
         if recon_groups is None:
-            recon_groups = [HDF5Tags.RECONSTRUCTION,
-                            HDF5Tags.UNMIXED,
-                            HDF5Tags.SO2,
-                            HDF5Tags.THB,
-                            HDF5Tags.DELTA_SO2,
-                            HDF5Tags.DELTA_ICG,
-                            HDF5Tags.BASELINE_ICG,
-                            HDF5Tags.BASELINE_SO2,
-                            HDF5Tags.BASELINE_SO2_STANDARD_DEVIATION,
-                            HDF5Tags.BASELINE_ICG_SIGMA]
+            recon_groups = [
+                HDF5Tags.RECONSTRUCTION,
+                HDF5Tags.UNMIXED,
+                HDF5Tags.SO2,
+                HDF5Tags.THB,
+                HDF5Tags.DELTA_SO2,
+                HDF5Tags.DELTA_ICG,
+                HDF5Tags.BASELINE_ICG,
+                HDF5Tags.BASELINE_SO2,
+                HDF5Tags.BASELINE_SO2_STANDARD_DEVIATION,
+                HDF5Tags.BASELINE_ICG_SIGMA,
+            ]
         if name is None:
             for group in recon_groups:
                 if group in self.file:
@@ -277,8 +318,14 @@ class HDF5Writer(WriterInterface):
         Delete the old dso2 datasets.
         Might want to remove this or refactor it in some way?
         """
-        for group in [HDF5Tags.DELTA_SO2, HDF5Tags.BASELINE_SO2_STANDARD_DEVIATION, HDF5Tags.BASELINE_SO2,
-                      HDF5Tags.DELTA_ICG, HDF5Tags.BASELINE_ICG, HDF5Tags.BASELINE_ICG_SIGMA]:
+        for group in [
+            HDF5Tags.DELTA_SO2,
+            HDF5Tags.BASELINE_SO2_STANDARD_DEVIATION,
+            HDF5Tags.BASELINE_SO2,
+            HDF5Tags.DELTA_ICG,
+            HDF5Tags.BASELINE_ICG,
+            HDF5Tags.BASELINE_ICG_SIGMA,
+        ]:
             if group in self.file:
                 del self.file[group]
 
@@ -292,16 +339,29 @@ class HDF5Reader(ReaderInterface):
                 for roi_number in roi_group:
                     dataset = roi_group[roi_number]
                     clinical = self.is_clinical()
-                    frame_type = ROITags.Z_POSITION if not clinical else ROITags.REPETITION
-                    match_frames = self.get_scanner_z_position() if not clinical else self.get_repetition_numbers()
-                    ax0_indices = np.where(np.isclose(match_frames[:, 0], dataset.attrs.get(frame_type, 1.0)))[0]
-                    output[(roi_name, roi_number)] = ROI(dataset[:], dataset.attrs[ROITags.Z_POSITION],
-                                                         dataset.attrs[ROITags.RUN],
-                                                         dataset.attrs.get(ROITags.REPETITION, np.nan),
-                                                         dataset.attrs[ROITags.ROI_NAME],
-                                                         dataset.attrs[ROITags.ROI_POSITION],
-                                                         dataset.attrs.get(ROITags.GENERATED_ROI, False),
-                                                         ax0_indices)
+                    frame_type = (
+                        ROITags.Z_POSITION if not clinical else ROITags.REPETITION
+                    )
+                    match_frames = (
+                        self.get_scanner_z_position()
+                        if not clinical
+                        else self.get_repetition_numbers()
+                    )
+                    ax0_indices = np.where(
+                        np.isclose(
+                            match_frames[:, 0], dataset.attrs.get(frame_type, 1.0)
+                        )
+                    )[0]
+                    output[(roi_name, roi_number)] = ROI(
+                        dataset[:],
+                        dataset.attrs[ROITags.Z_POSITION],
+                        dataset.attrs[ROITags.RUN],
+                        dataset.attrs.get(ROITags.REPETITION, np.nan),
+                        dataset.attrs[ROITags.ROI_NAME],
+                        dataset.attrs[ROITags.ROI_POSITION],
+                        dataset.attrs.get(ROITags.GENERATED_ROI, False),
+                        ax0_indices,
+                    )
         return output
 
     def __init__(self, file):
@@ -313,9 +373,12 @@ class HDF5Reader(ReaderInterface):
 
     def get_scan_datetime(self):
         import dateutil.parser
+
         try:
             if type(self.file.attrs[HDF5Tags.DATE]) == str:
-                return dateutil.parser.isoparse(self.file.attrs[HDF5Tags.DATE]).replace(tzinfo=None)
+                return dateutil.parser.isoparse(self.file.attrs[HDF5Tags.DATE]).replace(
+                    tzinfo=None
+                )
             else:
                 return self.file.attrs[HDF5Tags.DATE]
         except KeyError:
@@ -358,8 +421,10 @@ class HDF5Reader(ReaderInterface):
         return self.file[HDF5Tags.WAVELENGTH][:]
 
     def _get_water_absorption(self):
-        return (self.file[HDF5Tags.WATER_ABSORPTION_COEFF],
-                self.file[HDF5Tags.WATER_ABSORPTION_COEFF].attrs[HDF5Tags.WATER_PATHLENGTH])
+        return (
+            self.file[HDF5Tags.WATER_ABSORPTION_COEFF],
+            self.file[HDF5Tags.WATER_ABSORPTION_COEFF].attrs[HDF5Tags.WATER_PATHLENGTH],
+        )
 
     def _get_datasets(self):
         output = {}
@@ -371,7 +436,9 @@ class HDF5Reader(ReaderInterface):
                 # Loop through all types of this image and add them to the list
                 for recon in self.file[image_type]:
                     for recon_num in self.file[image_type][recon]:
-                        image = load_image_from_hdf5(dtype, self.file[image_type][recon][recon_num], self.file)
+                        image = load_image_from_hdf5(
+                            dtype, self.file[image_type][recon][recon_num], self.file
+                        )
                         images.append(((recon, recon_num), image))
             for (recon, num), data in images:
                 output[image_type][(recon, num)] = data
