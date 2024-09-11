@@ -1,6 +1,4 @@
-"""
-This defines the data structure for unmixed datasets.
-"""
+"""This defines the data structure for unmixed datasets."""
 
 #  Copyright (c) Thomas Else 2023.
 #  License: MIT
@@ -16,11 +14,10 @@ from ...io.attribute_tags import HDF5Tags
 
 
 class UnmixedData(ImageSequence):
-    """
-    UnmixedData stores unmixed datasets.
-    """
+    """UnmixedData stores unmixed datasets."""
 
     save_output = True
+
     @staticmethod
     def is_single_instance():
         return False
@@ -33,7 +30,9 @@ class UnmixedData(ImageSequence):
         return HDF5Tags.UNMIXED
 
     @staticmethod
-    def get_ax1_labels_from_hdf5(dataset: "h5py.Dataset", file: "h5py.File") -> Optional["np.ndarray"]:
+    def get_ax1_labels_from_hdf5(
+        dataset: "h5py.Dataset", file: "h5py.File"
+    ) -> Optional["np.ndarray"]:
         return dataset.attrs["SPECTRA"]
 
     @property

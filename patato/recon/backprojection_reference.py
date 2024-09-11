@@ -11,25 +11,28 @@ from .reconstruction_algorithm import ReconstructionAlgorithm
 try:
     import jax
 except ImportError:
-    print("""WARNING: JAX must be installed to support the standard backprojection algorithm and filtering.
+    print(
+        """WARNING: JAX must be installed to support the standard backprojection algorithm and filtering.
     Alternatively, try the Numpy implementations.
-    """)
+    """
+    )
     jax = None
 
 
 class ReferenceBackprojection(ReconstructionAlgorithm):
-    """
-    Reference backprojection: Uses JAX in the background.
-    """
+    """Reference backprojection: Uses JAX in the background."""
 
-    def reconstruct(self, time_series: np.ndarray,
-                    fs: float,
-                    geometry: np.ndarray, n_pixels: Sequence[int],
-                    field_of_view: Sequence[float],
-                    speed_of_sound,
-                    **kwargs) -> np.ndarray:
+    def reconstruct(
+        self,
+        time_series: np.ndarray,
+        fs: float,
+        geometry: np.ndarray,
+        n_pixels: Sequence[int],
+        field_of_view: Sequence[float],
+        speed_of_sound,
+        **kwargs
+    ) -> np.ndarray:
         """
-
         Parameters
         ----------
         time_series
@@ -38,11 +41,10 @@ class ReferenceBackprojection(ReconstructionAlgorithm):
         n_pixels
         field_of_view
         speed_of_sound
-        kwargs
+        kwargs.
 
         Returns
         -------
-
         """
 
         # Get parameters:
@@ -58,17 +60,16 @@ class ReferenceBackprojection(ReconstructionAlgorithm):
 
         recon_all = jax.vmap(full_recon, in_axes=(0,) + (None,) * 8, out_axes=0)
 
-        output = recon_all(signal, geometry, dl, n_pixels[0], n_pixels[1], n_pixels[2],
-                           dx, dy, dz)
+        output = recon_all(
+            signal, geometry, dl, n_pixels[0], n_pixels[1], n_pixels[2], dx, dy, dz
+        )
 
         return output.reshape(original_shape + tuple(n_pixels)[::-1])
 
     @staticmethod
     def get_algorithm_name() -> str:
         """
-
         Returns
         -------
-
         """
         return "Reference Backprojection"

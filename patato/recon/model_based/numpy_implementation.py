@@ -21,7 +21,6 @@ def get_hash(*x):
 
 def generate_model(det_x, det_y, dl_0, dx, nx, x_0, nt):
     """
-
     Parameters
     ----------
     det_x
@@ -32,11 +31,10 @@ def generate_model(det_x, det_y, dl_0, dx, nx, x_0, nt):
     dx
     nx
     x_0
-    nt
+    nt.
 
     Returns
     -------
-
     """
     # TODO: validate types.
     # TODO: allow non-square reconstruction areas.
@@ -61,14 +59,15 @@ def generate_model(det_x, det_y, dl_0, dx, nx, x_0, nt):
 
         calculate_element(output, indices, nx, ntpixel, detx, dety, dl_0, x_0, dx)
 
-        matrix = csr_matrix((output.flatten(), (indices.flatten(), positions)), shape=(nt, nx * nx))
+        matrix = csr_matrix(
+            (output.flatten(), (indices.flatten(), positions)), shape=(nt, nx * nx)
+        )
         matrices.append(matrix)
     m = vstack(matrices)
     return m
 
 
-def get_model(det_x, det_y, dl, dx, nx, x_0, nt,
-              cache=True, hash_fn=None):
+def get_model(det_x, det_y, dl, dx, nx, x_0, nt, cache=True, hash_fn=None):
     det_x = det_x.astype(np.float64)
     det_y = det_y.astype(np.float64)
     dl = np.float64(dl)
@@ -84,11 +83,14 @@ def get_model(det_x, det_y, dl, dx, nx, x_0, nt,
         model_folder = join(dirname(__file__), "models")
         filename = join(model_folder, h + ".npz")
         import scipy.sparse
+
         if exists(filename):
             mat = csr_matrix(scipy.sparse.load_npz(filename))
         else:
             mat = generate_model(det_x, det_y, dl, dx, nx, x_0, nt)
-            scipy.sparse.save_npz(filename, mat.astype(np.float32).get(), compressed=False)
+            scipy.sparse.save_npz(
+                filename, mat.astype(np.float32).get(), compressed=False
+            )
         return mat
     else:
         return generate_model(det_x, det_y, dl, dx, nx, x_0, nt)

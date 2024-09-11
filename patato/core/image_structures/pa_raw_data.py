@@ -1,6 +1,4 @@
-"""
-PA raw data implements the data structure for photoacoustic time series data.
-"""
+"""PA raw data implements the data structure for photoacoustic time series data."""
 
 #  Copyright (c) Thomas Else 2023.
 #  License: MIT
@@ -24,12 +22,19 @@ class PARawData(DataSequence, ABC):
 
     def __add__(self, other):
         raise NotImplementedError()
+
     n_im_dim = 2
 
-    def __init__(self, data, dimensions, coordinates=None, attributes=None, hdf5_sub_name=None,
-                 algorithm_id=None):
+    def __init__(
+        self,
+        data,
+        dimensions,
+        coordinates=None,
+        attributes=None,
+        hdf5_sub_name=None,
+        algorithm_id=None,
+    ):
         """
-
         Parameters
         ----------
         data
@@ -37,28 +42,30 @@ class PARawData(DataSequence, ABC):
         coordinates
         attributes
         hdf5_sub_name
-        algorithm_id
+        algorithm_id.
         """
-        super().__init__(data, dimensions, coordinates, attributes,
-                         hdf5_sub_name=hdf5_sub_name, algorithm_id=algorithm_id)
+        super().__init__(
+            data,
+            dimensions,
+            coordinates,
+            attributes,
+            hdf5_sub_name=hdf5_sub_name,
+            algorithm_id=algorithm_id,
+        )
         self.save_output = False
 
     @staticmethod
     def is_single_instance():
         """
-
         Returns
         -------
-
         """
         return True
 
     @staticmethod
     def get_ax1_label_meaning():
         """
-
         Returns
         -------
-
         """
         return HDF5Tags.WAVELENGTH

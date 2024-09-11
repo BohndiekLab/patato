@@ -19,43 +19,66 @@ from ..utils.process_study import get_hdf5_files
 import matplotlib.transforms as transforms
 import matplotlib
 
+
 def add_axis_label(ax, label, manual_x=0, manual_y=0, font_size="large"):
     fig = ax.get_figure()
     fig.canvas.draw()
     bbox = ax.get_tightbbox(fig.canvas.get_renderer())
-    
+
     x, y = fig.transSubfigure.inverted().transform([bbox.x0, bbox.y1])
     transform = fig.transSubfigure
     if ax.get_subplotspec().is_first_col():
-        transform = transforms.blended_transform_factory(ax.get_figure().transSubfigure, transform)
+        transform = transforms.blended_transform_factory(
+            ax.get_figure().transSubfigure, transform
+        )
         x = 0
-        transform += transforms.ScaledTranslation(matplotlib.rcParams['figure.constrained_layout.w_pad'], 0, 
-            ax.get_figure().dpi_scale_trans)
+        transform += transforms.ScaledTranslation(
+            matplotlib.rcParams["figure.constrained_layout.w_pad"],
+            0,
+            ax.get_figure().dpi_scale_trans,
+        )
     manual_x *= matplotlib.font_manager.font_scalings.get(font_size, 1)
     manual_y *= matplotlib.font_manager.font_scalings.get(font_size, 1)
-    if manual_x != 0 or manual_y !=0:
-        transform += transforms.ScaledTranslation(manual_x, manual_y, 
-            ax.get_figure().dpi_scale_trans)
-    return fig.text(x, y, label, fontsize=font_size, fontweight="bold", 
-                    va="top", ha="left", transform=transform)
-                    
+    if manual_x != 0 or manual_y != 0:
+        transform += transforms.ScaledTranslation(
+            manual_x, manual_y, ax.get_figure().dpi_scale_trans
+        )
+    return fig.text(
+        x,
+        y,
+        label,
+        fontsize=font_size,
+        fontweight="bold",
+        va="top",
+        ha="left",
+        transform=transform,
+    )
+
+
 def add_subfigure_label(subfig, ax, label, manual_x=0, manual_y=0, font_size="large"):
     manual_x *= matplotlib.font_manager.font_scalings.get(font_size, 1)
     manual_y *= matplotlib.font_manager.font_scalings.get(font_size, 1)
-    t = subfig.suptitle(label, ha="left", va="top", fontweight="bold", fontsize=font_size)
+    t = subfig.suptitle(
+        label, ha="left", va="top", fontweight="bold", fontsize=font_size
+    )
     subfig.canvas.draw()
     t.set_x(0)
-    transform = subfig.transSubfigure + transforms.ScaledTranslation(matplotlib.rcParams['figure.constrained_layout.w_pad'], 
-    0, 
-    subfig.get_figure().dpi_scale_trans)
-    if manual_x != 0 or manual_y !=0:
-        transform += transforms.ScaledTranslation(manual_x, manual_y, 
-            ax.get_figure().dpi_scale_trans)
+    transform = subfig.transSubfigure + transforms.ScaledTranslation(
+        matplotlib.rcParams["figure.constrained_layout.w_pad"],
+        0,
+        subfig.get_figure().dpi_scale_trans,
+    )
+    if manual_x != 0 or manual_y != 0:
+        transform += transforms.ScaledTranslation(
+            manual_x, manual_y, ax.get_figure().dpi_scale_trans
+        )
     t.set_transform(transform)
     return t
 
+
 def linear_regression(x, y, constant=True, x_predict=None):
-    import statsmodels.api as sm 
+    import statsmodels.api as sm
+
     if constant:
         x = sm.add_constant(x)
     model = sm.OLS(y, x)
@@ -67,8 +90,7 @@ def linear_regression(x, y, constant=True, x_predict=None):
         x_predict = sm.add_constant(x_predict)
     prediction = result.get_prediction(x_predict)
     return prediction, result
-       
-    
+
 
 def process_scan_name(template: str, scan_name: str) -> dict:
     """
@@ -88,15 +110,17 @@ def process_scan_name(template: str, scan_name: str) -> dict:
 
     Returns
     -------
-
     """
     import re
-    regex_codes = {"Date": r"([0-9]*)",
-                   "Initials": r"([A-z]{2,3})",
-                   "EarMark": r"(NM|1L|1R|2L|2R|1L1R|1R1L|1RL|1B|IB|IL|IR)",
-                   "MouseID": r"([0-9]{1,6})",
-                   "ScanType": r"([A-z|0-9|_|\+]+)?",
-                   "Timepoint": r"([0-9]+)"}
+
+    regex_codes = {
+        "Date": r"([0-9]*)",
+        "Initials": r"([A-z]{2,3})",
+        "EarMark": r"(NM|1L|1R|2L|2R|1L1R|1R1L|1RL|1B|IB|IL|IR)",
+        "MouseID": r"([0-9]{1,6})",
+        "ScanType": r"([A-z|0-9|_|\+]+)?",
+        "Timepoint": r"([0-9]+)",
+    }
 
     # template = template.replace("(", "(?:")
     for k, code in regex_codes.items():
@@ -119,20 +143,23 @@ def invert_dictionary_tolist(mapping):
     return {mouse: date for date, mice in mapping.items() for mouse in mice}
 
 
-def extract_data_tables(datafolder: str, name_template: str,
-                        analyse_rois: list, metrics=None,
-                        start_days=None,
-                        group_info: Optional[dict] = None,
-                        reconstruction_name=None,
-                        analyse_scan_types=None,
-                        just_summary=True,
-                        roi_kwargs=None,
-                        apply_function=None,
-                        filter_name="",
-                        more_details=None,
-                        roi_source_type=None,
-                        return_masks=False
-                        ):
+def extract_data_tables(
+    datafolder: str,
+    name_template: str,
+    analyse_rois: list,
+    metrics=None,
+    start_days=None,
+    group_info: Optional[dict] = None,
+    reconstruction_name=None,
+    analyse_scan_types=None,
+    just_summary=True,
+    roi_kwargs=None,
+    apply_function=None,
+    filter_name="",
+    more_details=None,
+    roi_source_type=None,
+    return_masks=False,
+):
     if start_days is None:
         start_days = {}
     if group_info is None:
@@ -140,15 +167,24 @@ def extract_data_tables(datafolder: str, name_template: str,
     if metrics is None:
         metrics = ["thb", "so2"]
 
-    start_date_map = {timepoint: invert_dictionary_tolist(mapping) for timepoint, mapping in start_days.items()}
-    group_info = {timepoint: invert_dictionary_tolist(mapping) for timepoint, mapping in group_info.items()}
+    start_date_map = {
+        timepoint: invert_dictionary_tolist(mapping)
+        for timepoint, mapping in start_days.items()
+    }
+    group_info = {
+        timepoint: invert_dictionary_tolist(mapping)
+        for timepoint, mapping in group_info.items()
+    }
 
     images = []
     tables = []
 
     # Share regions of interest between adjacent scans.
     datasets = list(get_hdf5_files(datafolder, filter_name=filter_name))
-    dataset_details = [(process_scan_name(name_template, data.get_scan_name()), data) for _, data in datasets]
+    dataset_details = [
+        (process_scan_name(name_template, data.get_scan_name()), data)
+        for _, data in datasets
+    ]
 
     # Generate a dictionary to lookup all the scans for each scan session. Using the MouseID and Timepoint as an ID.
     scan_map = {}
@@ -163,7 +199,9 @@ def extract_data_tables(datafolder: str, name_template: str,
             if roi_source_type not in scan_map[scan_id]:
                 continue
             for scan_type in scan_map[scan_id]:
-                scan_map[scan_id][scan_type].external_roi_interface = scan_map[scan_id][roi_source_type]
+                scan_map[scan_id][scan_type].external_roi_interface = scan_map[scan_id][
+                    roi_source_type
+                ]
 
     # Loop through all datasets and extract data.
     for f, data in datasets:
@@ -204,11 +242,13 @@ def extract_data_tables(datafolder: str, name_template: str,
         if not data.get_rois():
             continue
         else:
-            measurements = data.summary_measurements(metrics=metrics,
-                                                     include_rois=analyse_rois,
-                                                     roi_kwargs=roi_kwargs,
-                                                     just_summary=just_summary,
-                                                     return_masks=return_masks)
+            measurements = data.summary_measurements(
+                metrics=metrics,
+                include_rois=analyse_rois,
+                roi_kwargs=roi_kwargs,
+                just_summary=just_summary,
+                return_masks=return_masks,
+            )
             for d in details:
                 measurements[d] = details[d]
             measurements["Date"] = data.get_scan_datetime()
@@ -222,30 +262,35 @@ def extract_data_tables(datafolder: str, name_template: str,
 
     df["Volume"] = df["Radius"] ** 3 * 4 * np.pi / 3
 
-    df["Date"] = pd.to_datetime(df["Date"], utc=True, dayfirst=True).dt.tz_localize(None)
+    df["Date"] = pd.to_datetime(df["Date"], utc=True, dayfirst=True).dt.tz_localize(
+        None
+    )
 
     return df, images
 
 
 def set_matplotlib_defaults(fig_width=91.5, fig_height=89):
     import matplotlib
+
     matplotlib.rcParams["pdf.fonttype"] = 42
     matplotlib.rcParams["ps.fonttype"] = 42
     matplotlib.rcParams["font.sans-serif"] = "Arial"
     matplotlib.rcParams["figure.dpi"] = 227
     matplotlib.rcParams["figure.figsize"] = (
-        fig_width / 25.4, fig_height / 25.4)  # OR 183 mm for double width
+        fig_width / 25.4,
+        fig_height / 25.4,
+    )  # OR 183 mm for double width
     matplotlib.rcParams["font.size"] = 7
     matplotlib.rcParams["axes.spines.top"] = False
     matplotlib.rcParams["axes.spines.right"] = False
     matplotlib.rcParams["savefig.pad_inches"] = 0
-    matplotlib.rcParams['figure.subplot.bottom'] = 0.075
-    matplotlib.rcParams['figure.subplot.hspace'] = 0.4
-    matplotlib.rcParams['figure.subplot.left'] = 0.075
-    matplotlib.rcParams['figure.subplot.right'] = 0.97
-    matplotlib.rcParams['figure.subplot.top'] = 0.925
-    matplotlib.rcParams['figure.subplot.wspace'] = 0.5
+    matplotlib.rcParams["figure.subplot.bottom"] = 0.075
+    matplotlib.rcParams["figure.subplot.hspace"] = 0.4
+    matplotlib.rcParams["figure.subplot.left"] = 0.075
+    matplotlib.rcParams["figure.subplot.right"] = 0.97
+    matplotlib.rcParams["figure.subplot.top"] = 0.925
+    matplotlib.rcParams["figure.subplot.wspace"] = 0.5
     matplotlib.rcParams["figure.titlesize"] = "medium"
-    matplotlib.rcParams['axes.titlesize'] = "small"
+    matplotlib.rcParams["axes.titlesize"] = "small"
     matplotlib.rcParams["lines.markersize"] = 3
     matplotlib.rcParams["legend.frameon"] = False

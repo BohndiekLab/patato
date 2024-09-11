@@ -25,9 +25,18 @@ def xml_to_dict(x):
         dicts = [xml_to_dict(y) for y in x.childNodes]
         v = [y for y in dicts if type(y) not in [str, list] or y[0] != "\n"]
         # convert to floats/ints:
-        v = [y if type(y) is not str else int(y) if y.isnumeric() else float(y) if y.replace(".",
-                                                                                             "").isnumeric() else y == "true" if y in [
-            "true", "false"] else y for y in v]
+        v = [
+            y
+            if type(y) is not str
+            else int(y)
+            if y.isnumeric()
+            else float(y)
+            if y.replace(".", "").isnumeric()
+            else y == "true"
+            if y in ["true", "false"]
+            else y
+            for y in v
+        ]
         if type(v[0]) == tuple and all([y == v[0][0] for y, _ in v]):
             v = [y for _, y in v]
         elif type(v[0]) == tuple:
@@ -38,8 +47,7 @@ def xml_to_dict(x):
 
 
 class iTheraMSOT(ReaderInterface):
-    """An interface for iThera MSOT datasets.
-    """
+    """An interface for iThera MSOT datasets."""
 
     def _get_rois(self):
         # In future, can extend this to enable import of iThera ROIS.
@@ -69,11 +77,14 @@ class iTheraMSOT(ReaderInterface):
             slicer = np.s_
             transpose = False
             if "FIELD-OF-VIEW" not in r and "Resolution" in r:
-                axis = [np.all(self.scan_geometry[:, x] == self.scan_geometry[:, 0]) for x in range(3)]
+                axis = [
+                    np.all(self.scan_geometry[:, x] == self.scan_geometry[:, 0])
+                    for x in range(3)
+                ]
                 dtype = np.double
                 slicer = slicer[:, :, :, :, ::-1]
                 transpose = True
-                if not any(axis): 
+                if not any(axis):
                     ns = [r["Resolution"], r["Resolution"], r["Resolution"]]
                 else:
                     ns = [1, 1, 1]
@@ -84,13 +95,22 @@ class iTheraMSOT(ReaderInterface):
                 ns = [r["FIELD-OF-VIEW"]["PixelCount"][a] for a in "XYZ"]
             try:
                 recon = np.memmap(file, dtype=dtype)[
-                        :self.nframes * self.nwavelengths * ns[0] * ns[1] * ns[2]].reshape(
-                    (self.nframes,
-                     self.nwavelengths,) + tuple(ns))[slicer]
+                    : self.nframes * self.nwavelengths * ns[0] * ns[1] * ns[2]
+                ].reshape(
+                    (
+                        self.nframes,
+                        self.nwavelengths,
+                    )
+                    + tuple(ns)
+                )[
+                    slicer
+                ]
                 if transpose:
                     recon = np.swapaxes(recon, -1, -2)
             except ValueError:
-                warnings.warn("Warning: unable to import iThera reconstruction. Skipping.")
+                warnings.warn(
+                    "Warning: unable to import iThera reconstruction. Skipping."
+                )
                 continue
             if "FIELD-OF-VIEW" in r:
                 fov = [r["FIELD-OF-VIEW"]["Extents"][a] for a in "XYZ"]
@@ -109,14 +129,22 @@ class iTheraMSOT(ReaderInterface):
             pat_attributes[ReconAttributeTags.Y_FIELD_OF_VIEW] = fov[1]
             pat_attributes[ReconAttributeTags.Z_FIELD_OF_VIEW] = fov[2]
             pat_attributes["RECONSTRUCTION_PARAMS"] = attributes
-            pat_attributes["PREPROCESSING_ALGORITHM"] = "iThera " + attributes["SingalFilterType"]
+            pat_attributes["PREPROCESSING_ALGORITHM"] = (
+                "iThera " + attributes["SingalFilterType"]
+            )
             pat_attributes["speedofsound"] = attributes["TrimSpeedOfSound"]
-            pat_attributes["Notes"] = "iThera Reconstruction, imported by PATATO. Speed of sound is offset from water " \
-                                      "sos at the given temperature. "
+            pat_attributes["Notes"] = (
+                "iThera Reconstruction, imported by PATATO. Speed of sound is offset from water "
+                "sos at the given temperature. "
+            )
 
-            rec = Reconstruction(recon, self._get_wavelengths(),
-                                 attributes=pat_attributes,
-                                 field_of_view=fov, hdf5_sub_name="iThera " + attributes["Name"])
+            rec = Reconstruction(
+                recon,
+                self._get_wavelengths(),
+                attributes=pat_attributes,
+                field_of_view=fov,
+                hdf5_sub_name="iThera " + attributes["Name"],
+            )
             reconstructions.append(rec)
         rec_dict = {}
         n_rec = {}
@@ -147,10 +175,19 @@ class iTheraMSOT(ReaderInterface):
             attributes[ReconAttributeTags.X_FIELD_OF_VIEW] = field_of_view[0]
             attributes[ReconAttributeTags.Y_FIELD_OF_VIEW] = field_of_view[1]
             attributes[ReconAttributeTags.Z_FIELD_OF_VIEW] = field_of_view[2]
-            attributes[ReconAttributeTags.RECONSTRUCTION_ALGORITHM] = "iThera Ultrasound"
+            attributes[
+                ReconAttributeTags.RECONSTRUCTION_ALGORITHM
+            ] = "iThera Ultrasound"
 
-            ultrasound_scans.append(Ultrasound(image, self._get_wavelengths(), attributes=attributes,
-                                               hdf5_sub_name="ultrasound", field_of_view=field_of_view))
+            ultrasound_scans.append(
+                Ultrasound(
+                    image,
+                    self._get_wavelengths(),
+                    attributes=attributes,
+                    hdf5_sub_name="ultrasound",
+                    field_of_view=field_of_view,
+                )
+            )
             us_dict = {}
             n_rec = {}
             for r in ultrasound_scans:
@@ -181,11 +218,17 @@ class iTheraMSOT(ReaderInterface):
         v24_irf = self.xml_tree.getElementsByTagName("ImpulseResponse")
         if len(v24_irf) != 0 and len(v24_irf[0].firstChild.nodeValue) == 21656:
             import base64
-            self.v24_irf = np.frombuffer(base64.b64decode(v24_irf[0].firstChild.nodeValue), dtype=np.double)
+
+            self.v24_irf = np.frombuffer(
+                base64.b64decode(v24_irf[0].firstChild.nodeValue), dtype=np.double
+            )
         else:
             self.v24_irf = None
 
-        self.nframes = len(self.xml_tree.getElementsByTagName("DataModelScanFrame")) // self.nwavelengths
+        self.nframes = (
+            len(self.xml_tree.getElementsByTagName("DataModelScanFrame"))
+            // self.nwavelengths
+        )
         # Optional add here: extract the reconstructed images that are from ViewMSOT.
         # Extract attributes
         self.scan_attrs = self._get_scan_attributes()
@@ -196,34 +239,58 @@ class iTheraMSOT(ReaderInterface):
         self.water_absorption = self.get_water_absorption()
 
     def get_n_samples(self):
-        N_samples = int(self.xml_tree.getElementsByTagName("RECORDED-LENGTH")[0].firstChild.nodeValue)
+        N_samples = int(
+            self.xml_tree.getElementsByTagName("RECORDED-LENGTH")[
+                0
+            ].firstChild.nodeValue
+        )
         return N_samples
 
     def _get_scan_attributes(self, attrs=None):
         if attrs is None:
             attrs = [("timestamp", np.uint64), ("ultraSound-frame-offset", int)]
         output = {}
-        frames = self.xml_tree.getElementsByTagName("ScanFrames")[0].getElementsByTagName("Frame")
+        frames = self.xml_tree.getElementsByTagName("ScanFrames")[
+            0
+        ].getElementsByTagName("Frame")
         for attribute_tag, attribute_type in attrs:
-            output[attribute_tag] = np.zeros(self.nwavelengths * self.nframes, dtype=attribute_type)
-            for frame_idx, frame in enumerate(frames[:self.nwavelengths * self.nframes]):
-                output[attribute_tag][frame_idx] = attribute_type(frame.getAttribute(attribute_tag))
+            output[attribute_tag] = np.zeros(
+                self.nwavelengths * self.nframes, dtype=attribute_type
+            )
+            for frame_idx, frame in enumerate(
+                frames[: self.nwavelengths * self.nframes]
+            ):
+                output[attribute_tag][frame_idx] = attribute_type(
+                    frame.getAttribute(attribute_tag)
+                )
 
         for attribute_tag in output:
-            output[attribute_tag] = output[attribute_tag].reshape((self.nframes, self.nwavelengths))
+            output[attribute_tag] = output[attribute_tag].reshape(
+                (self.nframes, self.nwavelengths)
+            )
 
         return output
 
     def _get_scan_elements(self, elements=None):
         if elements is None:
-            elements = [("TEMPERATURE", float), ("POWER", float), ("DIODE-READOUT", float),
-                        ("LASER-ENERGY", float), ("Z-POS", float), ("RUN", int),
-                        ("REPETITION", int), ("OverallCorrectionFactor", float),
-                        ]
-        frames = self.xml_tree.getElementsByTagName("ScanFrames")[0].getElementsByTagName("Frame")
+            elements = [
+                ("TEMPERATURE", float),
+                ("POWER", float),
+                ("DIODE-READOUT", float),
+                ("LASER-ENERGY", float),
+                ("Z-POS", float),
+                ("RUN", int),
+                ("REPETITION", int),
+                ("OverallCorrectionFactor", float),
+            ]
+        frames = self.xml_tree.getElementsByTagName("ScanFrames")[
+            0
+        ].getElementsByTagName("Frame")
         output = {}
         for element_tag, element_type in elements:
-            output[element_tag] = np.zeros(self.nwavelengths * self.nframes, dtype=element_type)
+            output[element_tag] = np.zeros(
+                self.nwavelengths * self.nframes, dtype=element_type
+            )
             for frame_idx, frame in enumerate(frames):
                 if frame_idx >= self.nwavelengths * self.nframes:
                     # This means that the final frame only has some of the wavelength measurements.
@@ -231,7 +298,9 @@ class iTheraMSOT(ReaderInterface):
                     break
                 elements_tag = frame.getElementsByTagName(element_tag)
                 if len(elements_tag) > 0:
-                    value = frame.getElementsByTagName(element_tag)[0].firstChild.nodeValue
+                    value = frame.getElementsByTagName(element_tag)[
+                        0
+                    ].firstChild.nodeValue
                     value = element_type(value)
                     output[element_tag][frame_idx] = value
                 else:
@@ -241,7 +310,9 @@ class iTheraMSOT(ReaderInterface):
                         output[element_tag][frame_idx] = np.nan
 
         for element_tag in output:
-            output[element_tag] = output[element_tag].reshape((self.nframes, self.nwavelengths))
+            output[element_tag] = output[element_tag].reshape(
+                (self.nframes, self.nwavelengths)
+            )
         return output
 
     def _ithera_get_wavelengths(self):
@@ -276,14 +347,14 @@ class iTheraMSOT(ReaderInterface):
 
     def get_scan_datetime(self):
         """
-
         Returns
         -------
-
         """
         import dateutil.parser
+
         return dateutil.parser.isoparse(
-            self.xml_tree.getElementsByTagName("CreationTime")[0].firstChild.nodeValue).replace(tzinfo=None)
+            self.xml_tree.getElementsByTagName("CreationTime")[0].firstChild.nodeValue
+        ).replace(tzinfo=None)
 
     def _get_scan_times(self):
         return self.scan_attrs["timestamp"]
@@ -294,13 +365,16 @@ class iTheraMSOT(ReaderInterface):
     def _get_pa_data(self):
         raw_file = glob.glob(join(self.scan_folder, "*.bin"))[0]
         raw_data = np.memmap(raw_file, mode="r", dtype=np.uint16)[
-                   :self.nframes * self.nwavelengths * self.nprojections *
-                    self.nsamples].reshape(self.nframes, self.nwavelengths,
-                                           self.nprojections, self.nsamples)
+            : self.nframes * self.nwavelengths * self.nprojections * self.nsamples
+        ].reshape(self.nframes, self.nwavelengths, self.nprojections, self.nsamples)
         return raw_data, {"fs": self.get_sampling_frequency()}
 
     def _get_sampling_frequency(self):
-        return 1e6 * float(self.xml_tree.getElementsByTagName("SAMPLING-FREQUENCY")[0].firstChild.nodeValue)
+        return 1e6 * float(
+            self.xml_tree.getElementsByTagName("SAMPLING-FREQUENCY")[
+                0
+            ].firstChild.nodeValue
+        )
 
     def _get_sensor_geometry(self):
         geometry = []
@@ -322,7 +396,11 @@ class iTheraMSOT(ReaderInterface):
                 coeffs.append(float(f.firstChild.nodeValue))
             else:
                 coeffs.append(float(f.getAttribute("coefficient")))
-        pathlength = float(self.xml_tree.getElementsByTagName("PATH-LENGTH-IN-WATER")[0].firstChild.nodeValue)
+        pathlength = float(
+            self.xml_tree.getElementsByTagName("PATH-LENGTH-IN-WATER")[
+                0
+            ].firstChild.nodeValue
+        )
         return np.array(coeffs), pathlength
 
     def _get_us_data(self):
@@ -332,27 +410,49 @@ class iTheraMSOT(ReaderInterface):
             us_nodes = self.xml_tree.getElementsByTagName("ULTRA-SOUND-FIELD-OF-VIEW")
             if len(us_nodes) > 0:
                 us_node = us_nodes[0]
-                N = us_node.getElementsByTagName("PixelCount")[0].getElementsByTagName("X")[0].firstChild.nodeValue
+                N = (
+                    us_node.getElementsByTagName("PixelCount")[0]
+                    .getElementsByTagName("X")[0]
+                    .firstChild.nodeValue
+                )
                 us_pixels = int(N)
                 us_extents = us_node.getElementsByTagName("Extents")
-                fov = float(us_extents[0].getElementsByTagName("X")[0].firstChild.nodeValue)
-            else:
-                N = self.xml_tree.getElementsByTagName("ULTRA-SOUND-RESOLUTION")[0].firstChild.nodeValue
-                us_pixels = int(N)
                 fov = float(
-                    self.xml_tree.getElementsByTagName("UltraSoundPixelSize")[0].firstChild.nodeValue) * us_pixels
+                    us_extents[0].getElementsByTagName("X")[0].firstChild.nodeValue
+                )
+            else:
+                N = self.xml_tree.getElementsByTagName("ULTRA-SOUND-RESOLUTION")[
+                    0
+                ].firstChild.nodeValue
+                us_pixels = int(N)
+                fov = (
+                    float(
+                        self.xml_tree.getElementsByTagName("UltraSoundPixelSize")[
+                            0
+                        ].firstChild.nodeValue
+                    )
+                    * us_pixels
+                )
             try:
-                us_data = np.memmap(us_files[0], mode="r", dtype=np.float32).reshape((-1, us_pixels, us_pixels))
+                us_data = np.memmap(us_files[0], mode="r", dtype=np.float32).reshape(
+                    (-1, us_pixels, us_pixels)
+                )
                 us_data = np.swapaxes(us_data, -1, -2)[:, ::-1, :]
                 return us_data, fov
             except ValueError:
-                print("Unable to import ultrasound scans - did the scanner fail to acquire the images? SKIPPING US")
+                print(
+                    "Unable to import ultrasound scans - did the scanner fail to acquire the images? SKIPPING US"
+                )
                 return None, {}
         else:
             return None, {}
 
     def get_scan_name(self):
-        return self.xml_tree.getElementsByTagName("ScanNode")[0].getElementsByTagName("Name")[0].firstChild.nodeValue
+        return (
+            self.xml_tree.getElementsByTagName("ScanNode")[0]
+            .getElementsByTagName("Name")[0]
+            .firstChild.nodeValue
+        )
 
     def _get_scanner_z_position(self):
         return self.scan_elements["Z-POS"]

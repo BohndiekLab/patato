@@ -7,8 +7,8 @@ import numpy as np
 
 def get_basic_p0(nx=333, dx=75e-6, r=0.005):
     """
-
     Get a basic p0 for the simulation.
+
     Parameters
     ----------
     nx : int
@@ -17,7 +17,6 @@ def get_basic_p0(nx=333, dx=75e-6, r=0.005):
     Returns
     -------
     p0 : ndarray
-
     """
 
     x, y = np.ogrid[:nx, :nx]
@@ -25,8 +24,8 @@ def get_basic_p0(nx=333, dx=75e-6, r=0.005):
     y = y.astype(np.float64) - (nx - 1) / 2
     x = x * dx
     y = y * dx
-    r2 = r ** 2
-    p0 = r2 - (x ** 2 + y ** 2)
+    r2 = r**2
+    p0 = r2 - (x**2 + y**2)
     p0[p0 < 0] = 0
     return p0
 
@@ -46,15 +45,26 @@ def generate_basic_model(ndet=256):
     try:
         import cupy as cp
         from ..recon.model_based.cuda_implementation import get_model
+
         CUDA_ENABLED = True
     except ImportError:
         from ..recon.model_based.numpy_implementation import get_model
+
         CUDA_ENABLED = False
 
     theta = np.linspace(0, 2 * np.pi, ndet, endpoint=False)
     detectors = np.array([np.cos(theta), np.sin(theta), np.zeros_like(theta)]).T * 0.04
 
-    model = get_model(detectors[:, 0], detectors[:, 1], 1500 / 4e7, 75e-6, 333, -0.0125, 2030, cache=False)
+    model = get_model(
+        detectors[:, 0],
+        detectors[:, 1],
+        1500 / 4e7,
+        75e-6,
+        333,
+        -0.0125,
+        2030,
+        cache=False,
+    )
     if CUDA_ENABLED:
         model = model.get()
     model.eliminate_zeros()
@@ -70,12 +80,11 @@ def generate_basic_simulation(ndet=256):
 
     Parameters
     ----------
-    ndet: int - Number of detectors
+    ndet : int - Number of detectors
 
     Returns
     -------
     tuple of NDArray, NDArray, NDArray
-
     """
     model, detectors = generate_basic_model(ndet)
     p0 = get_basic_p0()

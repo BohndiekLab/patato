@@ -11,6 +11,18 @@ from .reconstruction_algorithm import ReconstructionAlgorithm
 
 
 def sin6hat(x):
+    """Make a smooth step between 1 and 0 for cropping time series.
+
+    Parameters
+    ----------
+    x : np.ndarray
+        Numpy array containing xx3 from t6hat function.
+
+    Returns
+    -------
+    np.ndarray
+        Step smoothed function.
+    """
     res = (
         np.sin(6.0 * x) / 3.0
         - 3.0 * np.sin(4.0 * x)
@@ -22,6 +34,22 @@ def sin6hat(x):
 
 
 def t6hat(rmax, rmin, x):
+    """Generate a smooth cut function (i.e. rather than masking 1s or 0s) it makes the edges smooth.
+
+    Parameters
+    ----------
+    rmax : float
+        Upper limit of the cut-off.
+    rmin : float
+        Lower limit of the cut-off.
+    x : np.ndarray
+        x-axis values.
+
+    Returns
+    -------
+    np.ndarray
+        Numpy array containing the smoothed curve.
+    """
     xx = np.abs(x)
     ones = np.ones_like(xx)
     xmax = rmax * ones
@@ -53,9 +81,31 @@ class FFTReconstruction(ReconstructionAlgorithm):
         geometry: np.ndarray,
         n_pixels: Sequence[int],
         field_of_view: Sequence[float],
-        speed_of_sound,
+        speed_of_sound: float,
         **kwargs
     ) -> np.ndarray:
+        """Reconstruct a photoacoustic image from a time series measurement taken from a circular (or circular arc) geometry.
+
+        Parameters
+        ----------
+        time_series : np.ndarray
+            Time series data, shape (nruns, nwavelengths, ndetector, ntime).
+        fs : float
+            Time sampling frequency.
+        geometry : np.ndarray
+            The photacoustic detector positions (ndetector, 3), i.e. xyz position. Note this is 2d, so one of these should be 0.
+        n_pixels : Sequence[int]
+            Number of pixels in each direction. Note: this algorithm only works for a square array in 2D, so one of these values must be 1.
+        field_of_view : Sequence[float]
+            Field of view of the reconstruction grid. Again this must be equal in the two reconstruction axes.
+        speed_of_sound : float
+            The speed of sound for the reconstruction.
+
+        Returns
+        -------
+        np.ndarray
+            The reconstructed iamge, (nruns, nwavelengths, nz, ny, nx).
+        """
         shape = time_series.shape[:-2]
         time_series = time_series.reshape(
             (int(np.prod(shape)),) + time_series.shape[-2:]
@@ -84,24 +134,39 @@ class FFTReconstruction(ReconstructionAlgorithm):
         geometry: np.ndarray,
         n_pixels: Sequence[int],
         field_of_view: Sequence[float],
-        speed_of_sound,
+        speed_of_sound: float,
         **kwargs
     ) -> np.ndarray:
-        """
+        """Reconstruct a single photoacoustic image from the time series.
 
         Parameters
         ----------
-        time_series
-        fs
-        geometry
-        n_pixels
-        field_of_view
-        speed_of_sound
-        kwargs
+        raw_timeseries_data : np.ndarray
+            The time series data for a single scan (ndetectors, ntime).
+        fs : float
+            Sampling frequency.
+        geometry : np.ndarray
+            The detector positions (ndetectors, 3).
+        n_pixels : Sequence[int]
+            The number of pixels in the reconstruction grid. Must be square and 2D, so one of these values should be 1.
+        field_of_view : Sequence[float]
+            The field of view of the reconstruction grid, must be square and 2D.
+        speed_of_sound : float
+            The speed of sound.
 
         Returns
         -------
+        np.ndarray
+            The reconstructed image.
 
+        Raises
+        ------
+        ValueError
+            If the detector is not a circle centred on (0, 0).
+        ValueError
+            If the detector is not 2 dimensional with np.all(geometry[:, i] == 0) for a given i.
+        ValueError
+            If the reconstruction grid is not square.
         """
         n_grid_detectors = kwargs.get("n_grid_detectors", 1024)
         n_samples_padded_grid = kwargs.get(
@@ -139,7 +204,7 @@ class FFTReconstruction(ReconstructionAlgorithm):
             or field_of_view[1] != field_of_view[0]
             or n_pixels[0] != n_pixels[1]
         ):
-            raise ValueError()
+            raise ValueError("The reconstruction grid must be square.")
 
         image_pixels = int(n_pixels[0])
         image_width = field_of_view[0]
@@ -170,7 +235,8 @@ class FFTReconstruction(ReconstructionAlgorithm):
             plt.title("What does t6hat do?")
             plt.plot(raw_timeseries_data[128], label="Timeseries")
             plt.plot(
-                raw_timeseries_data[128] * hatfunction, label="Smooth timeseries cut"
+                raw_timeseries_data[128] * hatfunction,
+                label="Smooth timeseries cut",
             )
             plt.plot(
                 hatfunction * np.max(raw_timeseries_data[128]),
@@ -193,7 +259,11 @@ class FFTReconstruction(ReconstructionAlgorithm):
         timeseries[:, : timeseries_data.shape[1]] = np.stack(
             [
                 np.interp(
-                    new_angles_detectors, detector_angles, timeseries_data[:, i], 0, 0
+                    new_angles_detectors,
+                    detector_angles,
+                    timeseries_data[:, i],
+                    0,
+                    0,
                 )
                 for i in range(nt)
             ]
@@ -333,10 +403,11 @@ class FFTReconstruction(ReconstructionAlgorithm):
 
     @staticmethod
     def get_algorithm_name() -> str:
-        """
+        """Get the name of the algorithm.
 
         Returns
         -------
-
+        str
+            The algorithm name.
         """
-        return "Reference Backprojection"
+        return "FFT Reconstruction"

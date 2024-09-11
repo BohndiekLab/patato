@@ -1,6 +1,4 @@
-"""
-Image sequence - abstract classes for processing datasets from PA data.
-"""
+"""Image sequence - abstract classes for processing datasets from PA data."""
 
 #  Copyright (c) Thomas Else 2023.
 #  License: MIT
@@ -22,8 +20,9 @@ from xarray import DataArray
 
 try:
     import jax.numpy as jnp
+
     if jnp.ndarray not in xarray.core.variable.NON_NUMPY_SUPPORTED_ARRAY_TYPES:
-        xarray.core.variable.NON_NUMPY_SUPPORTED_ARRAY_TYPES += (jnp.ndarray, )
+        xarray.core.variable.NON_NUMPY_SUPPORTED_ARRAY_TYPES += (jnp.ndarray,)
 except ImportError:
     jnp = None
 
@@ -71,19 +70,30 @@ class DataSequence(ProcessingResult, ABC):
     Abstract base class for defining a sequence of data, e.g. raw data, reconstructed images, unmixed images. Enables
     consistent saving and processing for all of these data types.
     """
+
     n_im_dim = 3
 
     @property
     def attributes(self):
         return self.da.attrs
 
-    def __init__(self, data, dimensions, coordinates=None, attributes=None, hdf5_sub_name=None,
-                 algorithm_id=None):
+    def __init__(
+        self,
+        data,
+        dimensions,
+        coordinates=None,
+        attributes=None,
+        hdf5_sub_name=None,
+        algorithm_id=None,
+    ):
         if coordinates is None:
-            coordinates = {x: np.arange(data.shape[i]) for i, x in enumerate(dimensions)}
+            coordinates = {
+                x: np.arange(data.shape[i]) for i, x in enumerate(dimensions)
+            }
         ProcessingResult.__init__(self)
-        self.da = DataArray(data=data, dims=dimensions, coords=coordinates,
-                            attrs=attributes)
+        self.da = DataArray(
+            data=data, dims=dimensions, coords=coordinates, attrs=attributes
+        )
         self._cmap = None
         self.hdf5_sub_name = hdf5_sub_name
         self.algorithm_id = algorithm_id
@@ -102,6 +112,7 @@ class DataSequence(ProcessingResult, ABC):
     # TODO: Implement a concatenate function
     def copy(self, cls=None):
         from copy import copy
+
         c = copy(self)
         if cls is not None:
             c.__class__ = cls
@@ -128,22 +139,32 @@ class DataSequence(ProcessingResult, ABC):
             return "x", "y"
 
     def to_2d(self):
-        s = (0, ) * (len(self.shape) - self.n_im_dim)
+        s = (0,) * (len(self.shape) - self.n_im_dim)
         if self.n_im_dim > 2:
             slicer = [0] * self.n_im_dim
-            for i in np.argsort(self.shape[-self.n_im_dim:])[-2:]:
+            for i in np.argsort(self.shape[-self.n_im_dim :])[-2:]:
                 slicer[i] = slice(None)
             s += tuple(slicer)
         return self[s]
 
-    def imshow(self, ax=None, roi_mask: Tuple["ROI", Iterable["ROI"]] = None,
-               mask_roi=True,
-               cmap=None, scale_kwargs=None, return_scalebar_dimension=False, scalebar=True, transpose=False, log=False,
-               **kwargs):
+    def imshow(
+        self,
+        ax=None,
+        roi_mask: Tuple["ROI", Iterable["ROI"]] = None,
+        mask_roi=True,
+        cmap=None,
+        scale_kwargs=None,
+        return_scalebar_dimension=False,
+        scalebar=True,
+        transpose=False,
+        log=False,
+        **kwargs,
+    ):
         if scale_kwargs is None:
             scale_kwargs = {}
 
         import matplotlib.pyplot as plt
+
         if ax is None:
             ax = plt.gca()
 
@@ -152,7 +173,9 @@ class DataSequence(ProcessingResult, ABC):
                 try:
                     mask, image_slice = roi_mask[0].to_mask_slice(self)
                     image_slice = image_slice.to_2d()
-                    display_image = np.squeeze(image_slice.numpy_array).astype(np.float64)
+                    display_image = np.squeeze(image_slice.numpy_array).astype(
+                        np.float64
+                    )
                     overall_mask = np.zeros(display_image.shape, dtype=bool)
                     for roi in roi_mask:
                         mask, _ = roi.to_mask_slice(self)
@@ -187,16 +210,27 @@ class DataSequence(ProcessingResult, ABC):
             display_image = display_image.T
         else:
             extent = self.extent
-        
+
         if log:
             display_image = np.log(display_image)
-        im = ax.imshow(display_image, extent=extent,
-                       cmap=cmap, **kwargs, interpolation=interpolation)
+        im = ax.imshow(
+            display_image,
+            extent=extent,
+            cmap=cmap,
+            **kwargs,
+            interpolation=interpolation,
+        )
         ax.axis("off")
         if scalebar:
             from matplotlib_scalebar.scalebar import ScaleBar
-            scale_kwargs_defaults = dict(length_fraction=0.1, location="lower right",
-                                         font_properties=dict(size="xx-small"), box_alpha=0., color="w")
+
+            scale_kwargs_defaults = dict(
+                length_fraction=0.1,
+                location="lower right",
+                font_properties=dict(size="xx-small"),
+                box_alpha=0.0,
+                color="w",
+            )
             scale_kwargs_defaults.update(scale_kwargs)
             scalebar = ScaleBar(1, "m", **scale_kwargs_defaults)
             ax.add_artist(scalebar)
@@ -284,23 +318,36 @@ class ImageSequence(DataSequence):
     def __add__(self, other):
         # A really lazy implementation of concatenating these datasets. There is 100% a better way to do this..
         new_data = xarray.concat([self.da, other.da], dim=other.da.dims[0])
-        output = ImageSequence(new_data.values, self.ax_1_labels, self.algorithm_id, self.fov_3d, self.attributes,
-                               self.hdf5_sub_name, ax1_meaning=self.get_ax1_label_meaning())
+        output = ImageSequence(
+            new_data.values,
+            self.ax_1_labels,
+            self.algorithm_id,
+            self.fov_3d,
+            self.attributes,
+            self.hdf5_sub_name,
+            ax1_meaning=self.get_ax1_label_meaning(),
+        )
         output.__class__ = self.__class__
         return output
 
     @property
     def fov(self):
-        n_pixel_tags = [ReconAttributeTags.X_NUMBER_OF_PIXELS,
-                        ReconAttributeTags.Y_NUMBER_OF_PIXELS,
-                        ReconAttributeTags.Z_NUMBER_OF_PIXELS]
-        fov_tags = [ReconAttributeTags.X_FIELD_OF_VIEW,
-                    ReconAttributeTags.Y_FIELD_OF_VIEW,
-                    ReconAttributeTags.Z_FIELD_OF_VIEW]
+        n_pixel_tags = [
+            ReconAttributeTags.X_NUMBER_OF_PIXELS,
+            ReconAttributeTags.Y_NUMBER_OF_PIXELS,
+            ReconAttributeTags.Z_NUMBER_OF_PIXELS,
+        ]
+        fov_tags = [
+            ReconAttributeTags.X_FIELD_OF_VIEW,
+            ReconAttributeTags.Y_FIELD_OF_VIEW,
+            ReconAttributeTags.Z_FIELD_OF_VIEW,
+        ]
         n_pixels = np.array([self.attributes.get(tag, 1) for tag in n_pixel_tags])
         if np.all(n_pixels == 1):
             # Old-style data
-            n_pixels = np.array([self.attributes.get(ReconAttributeTags.OLD_RECON_NX)] * 2)
+            n_pixels = np.array(
+                [self.attributes.get(ReconAttributeTags.OLD_RECON_NX)] * 2
+            )
             fov_tags = [ReconAttributeTags.OLD_FIELD_OF_VIEW] * 2
         axes = np.where(~(n_pixels == 1))[0]
         fov_x = self.attributes.get(fov_tags[axes[0]], None)
@@ -309,20 +356,35 @@ class ImageSequence(DataSequence):
 
     @property
     def fov_3d(self):
-        fov_tags = [ReconAttributeTags.X_FIELD_OF_VIEW,
-                    ReconAttributeTags.Y_FIELD_OF_VIEW,
-                    ReconAttributeTags.Z_FIELD_OF_VIEW]
+        fov_tags = [
+            ReconAttributeTags.X_FIELD_OF_VIEW,
+            ReconAttributeTags.Y_FIELD_OF_VIEW,
+            ReconAttributeTags.Z_FIELD_OF_VIEW,
+        ]
         fov = np.array([self.attributes.get(tag, None) for tag in fov_tags])
         if all([x is None for x in fov_tags]):
             # Old-style data
             n_pixels = self.raw_data.shape[-3:]
             fov = np.array(
-                [self.attributes.get(ReconAttributeTags.OLD_FIELD_OF_VIEW) if x != 1 else 1 for x in n_pixels])
+                [
+                    self.attributes.get(ReconAttributeTags.OLD_FIELD_OF_VIEW)
+                    if x != 1
+                    else 1
+                    for x in n_pixels
+                ]
+            )
         return fov
 
-    def __init__(self, raw_data, ax_1_labels=None,
-                 algorithm_id="", field_of_view=None,
-                 attributes=None, hdf5_sub_name=None, ax1_meaning=None):
+    def __init__(
+        self,
+        raw_data,
+        ax_1_labels=None,
+        algorithm_id="",
+        field_of_view=None,
+        attributes=None,
+        hdf5_sub_name=None,
+        ax1_meaning=None,
+    ):
         # Ax1 labels = e.g. Wavelength
         if ax1_meaning is None:
             ax1_meaning = self.get_ax1_label_meaning()
@@ -336,16 +398,22 @@ class ImageSequence(DataSequence):
             field_of_view = [1, 1, 1]
 
         if type(field_of_view[0]) not in [tuple, list, np.ndarray]:
-            field_of_view = [(-x / 2, x / 2) if x is not None else (0, 0) for x in field_of_view]
+            field_of_view = [
+                (-x / 2, x / 2) if x is not None else (0, 0) for x in field_of_view
+            ]
 
-        xs = [np.linspace(x, y, N) for (x, y), N in zip(field_of_view, raw_data.shape[-3:][::-1])]
+        xs = [
+            np.linspace(x, y, N)
+            for (x, y), N in zip(field_of_view, raw_data.shape[-3:][::-1])
+        ]
 
         dims = ["frames", "z", "y", "x"]
-        coords = {"frames": np.arange(raw_data.shape[0]),
-                  "x": xs[0],
-                  "y": xs[1],
-                  "z": xs[2]
-                  }
+        coords = {
+            "frames": np.arange(raw_data.shape[0]),
+            "x": xs[0],
+            "y": xs[1],
+            "z": xs[2],
+        }
 
         if not self.ax_0_exists():
             del coords["frames"]
@@ -358,5 +426,6 @@ class ImageSequence(DataSequence):
             # If there isn't really an axis 1 (e.g. for delta so2).
             coords[ax1_meaning] = ax_1_labels[0]
 
-        DataSequence.__init__(self, raw_data, dims, coords, attributes,
-                              hdf5_sub_name, algorithm_id)
+        DataSequence.__init__(
+            self, raw_data, dims, coords, attributes, hdf5_sub_name, algorithm_id
+        )

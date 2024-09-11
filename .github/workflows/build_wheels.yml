@@ -6,7 +6,6 @@ on:
   push:
     branches:
       - main
-      - ReleaseActionFix
   release:
     types:
       - published
