@@ -178,7 +178,7 @@ class PreProcessor(TimeSeriesProcessingAlgorithm):
         fs : float
         irf : Array
         """
-        self.filter = jnp.array(make_filter(n_samples, fs, irf, self.hilbert, self.lp_filter, self.hp_filter))
+        self.filter = jnp.array(make_filter(n_samples, fs, irf if self.irf_correct else None, self.hilbert, self.lp_filter, self.hp_filter))
 
     def _run(self, time_series: Array, detectors: Array, overall_correction_factor, **kwargs):
         """

@@ -26,6 +26,8 @@ class ReconstructionAlgorithm(TimeSeriesProcessingAlgorithm, ABC):
         self.n_pixels = n_pixels
         self.field_of_view = field_of_view
         self.custom_params = kwargs
+        self._batch = True
+        self.attributes = {}
 
     @abstractmethod
     def reconstruct(self, raw_data: np.ndarray,
@@ -70,7 +72,7 @@ class ReconstructionAlgorithm(TimeSeriesProcessingAlgorithm, ABC):
             fov = self.field_of_view
         
         # Process in batches to avoid GPU running out of memory.
-        if time_series.shape[0] * time_series.shape[1] > PAT_MAXIMUM_BATCH_SIZE != -1:
+        if time_series.shape[0] * time_series.shape[1] > PAT_MAXIMUM_BATCH_SIZE != -1 and self._batch:
             new_recons = []
             ts_raw = time_series.raw_data
             shape = ts_raw.shape
@@ -103,6 +105,8 @@ class ReconstructionAlgorithm(TimeSeriesProcessingAlgorithm, ABC):
         output_data.attributes[ReconAttributeTags.Y_FIELD_OF_VIEW] = self.field_of_view[1]
         output_data.attributes[ReconAttributeTags.Z_FIELD_OF_VIEW] = self.field_of_view[2]
         output_data.attributes[ReconAttributeTags.ADDITIONAL_PARAMETERS] = kwargs
+        for a in self.attributes:
+            output_data.attributes[a] = self.attributes[a]
         output_data.attributes[HDF5Tags.WAVELENGTH] = wavelengths
 
         for a in time_series.attributes:
