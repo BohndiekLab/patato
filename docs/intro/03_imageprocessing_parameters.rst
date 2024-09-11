@@ -16,7 +16,7 @@ producing Scan_1.hdf5, Scan_2.hdf5 etc in the data folder.
 
 .. code-block:: bash
 
-    patato-set-speed-of-sound /path/to/data/folder 1500
+    patato-set-speed-of-sound
 
 3. The image reconstruction algorithm is applied to each scan.
 
@@ -34,7 +34,7 @@ producing Scan_1.hdf5, Scan_2.hdf5 etc in the data folder.
 
 .. code-block:: bash
 
-    patato-draw-roi /path/to/data/folder
+    patato-draw-roi
 
 6. Time series analysis can be applied.
 
