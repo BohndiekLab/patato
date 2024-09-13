@@ -8,7 +8,7 @@ PATATO: PhotoAcoustic Tomography Analysis TOolkit
     :target: https://patato.readthedocs.io/en/latest/?badge=latest
     :alt: Documentation Status
 .. image:: https://img.shields.io/badge/License-MIT-yellow.svg
-    :target: https://github.com/tomelse/patato/blob/main/LICENSE.MD
+    :target: https://github.com/BohndiekLab/patato/blob/main/LICENSE.MD
     :alt: MIT License
 .. image:: https://badge.fury.io/py/patato.svg
     :target: https://badge.fury.io/py/patato
