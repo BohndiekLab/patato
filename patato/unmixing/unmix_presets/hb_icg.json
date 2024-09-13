@@ -1,7 +1,7 @@
 {
-"RESOLUTION_REDUCE": 3,
-"WAVELENGTH_RANGE": [700, 880],
-"SPECTRA": ["Hb", "HbO2", "ICG"],
-"SO2": true,
-"SUFFIX": "ICG"
+  "RESOLUTION_REDUCE": 3,
+  "WAVELENGTH_RANGE": [700, 880],
+  "SPECTRA": ["Hb", "HbO2", "ICG"],
+  "SO2": true,
+  "SUFFIX": "ICG"
 }

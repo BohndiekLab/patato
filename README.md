@@ -14,10 +14,11 @@ PATATO is an Open-Source project to enable the analysis of photoacoustic (PA) im
 
 The tool supports many file formats, such as the International Photoacoustic Standardisation Consortium (IPASC) data format, and it can be extended to support custom data formats. We hope that this toolkit can enable faster and wider dissemination of analysis techniques for PA imaging and provide a useful tool to the community.
 
-* Please report any bugs or issues you find to our GitHub repository
-* Please do get involved! Contact Thomas Else (thomas.else@cruk.cam.ac.uk).
+- Please report any bugs or issues you find to our GitHub repository
+- Please do get involved! Contact Thomas Else (thomas.else@cruk.cam.ac.uk).
 
 ## Getting Started
+
 In order to use PATATO, you must have a Python environment set up on your computer. We recommend using Anaconda (http://anaconda.com) to run Python, particularly if you are using Windows. You may wish to setup a separate Anaconda environment to install PATATO to minimise conflicts between dependency versions.
 
 ```shell
@@ -32,6 +33,7 @@ To setup support for image reconstruction on Windows, or for GPU support, please
 To cite PATATO, please reference our article in the Journal of Open Source software, [here](https://joss.theoj.org/papers/456eaf591244858915ad8730dcbc19d7).
 
 ## Documentation, examples and contributing
+
 Documentation for PATATO can be found at https://patato.readthedocs.io/en/latest/?badge=latest.
 
 Copyright (c) Thomas Else 2022-23.

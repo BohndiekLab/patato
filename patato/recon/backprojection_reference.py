@@ -30,7 +30,7 @@ class ReferenceBackprojection(ReconstructionAlgorithm):
         n_pixels: Sequence[int],
         field_of_view: Sequence[float],
         speed_of_sound,
-        **kwargs
+        **kwargs,
     ) -> np.ndarray:
         """
         Parameters

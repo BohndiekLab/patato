@@ -54,9 +54,9 @@ class ModelBasedPreProcessor(TimeSeriesProcessingAlgorithm):
         for a in time_series.attributes:
             if a not in new_ts.attributes:
                 new_ts.attributes[a] = time_series.attributes[a]
-        new_ts.attributes[
-            PreprocessingAttributeTags.PROCESSING_ALGORITHM
-        ] = self.get_algorithm_name()
+        new_ts.attributes[PreprocessingAttributeTags.PROCESSING_ALGORITHM] = (
+            self.get_algorithm_name()
+        )
         new_ts.attributes["CorrectionFactorApplied"] = (
             overall_correction_factor is not None
         )
@@ -173,7 +173,7 @@ class JAXModelBasedReconstruction(ReconstructionAlgorithm):
         n_pixels=None,
         field_of_view=None,
         speed_of_sound=None,
-        **kwargs
+        **kwargs,
     ) -> np.ndarray:
         import jax
         import jax.numpy as jnp

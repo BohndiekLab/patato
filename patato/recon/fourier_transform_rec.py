@@ -82,7 +82,7 @@ class FFTReconstruction(ReconstructionAlgorithm):
         n_pixels: Sequence[int],
         field_of_view: Sequence[float],
         speed_of_sound: float,
-        **kwargs
+        **kwargs,
     ) -> np.ndarray:
         """Reconstruct a photoacoustic image from a time series measurement taken from a circular (or circular arc) geometry.
 
@@ -121,7 +121,7 @@ class FFTReconstruction(ReconstructionAlgorithm):
                     n_pixels,
                     field_of_view,
                     speed_of_sound,
-                    **kwargs
+                    **kwargs,
                 )
             )
         o = np.stack(output)
@@ -135,7 +135,7 @@ class FFTReconstruction(ReconstructionAlgorithm):
         n_pixels: Sequence[int],
         field_of_view: Sequence[float],
         speed_of_sound: float,
-        **kwargs
+        **kwargs,
     ) -> np.ndarray:
         """Reconstruct a single photoacoustic image from the time series.
 

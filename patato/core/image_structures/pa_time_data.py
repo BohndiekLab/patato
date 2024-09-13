@@ -1,4 +1,5 @@
 """Pa_time_data. Defines the time-domain version of PARawData class."""
+
 #  Copyright (c) Thomas Else 2023.
 #  License: MIT
 

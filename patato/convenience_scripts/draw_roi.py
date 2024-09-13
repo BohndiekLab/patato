@@ -303,7 +303,7 @@ class HDF5ViewerApp:
 
         rois = self.pa_data_selected.get_rois()
         # Plot the ROIS
-        for (r, n) in rois:
+        for r, n in rois:
             draw_all_rois = False  # Update this to a check-box
             clinical = self.pa_data_selected.is_clinical()
             frame_type = "z" if not clinical else "repetition"

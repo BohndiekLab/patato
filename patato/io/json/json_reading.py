@@ -104,7 +104,7 @@ def read_reconstruction_preset(json_path: Union[str, dict]):
     step_2 = reconstruction_algorithm(
         (number_of_pixels_x, number_of_pixels_y, number_of_pixels_z),
         (field_of_view_x, field_of_view_y, field_of_view_z),
-        **recon_params
+        **recon_params,
     )
     step_1.add_child(step_2)
     return step_1

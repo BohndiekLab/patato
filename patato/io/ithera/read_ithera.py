@@ -26,15 +26,19 @@ def xml_to_dict(x):
         v = [y for y in dicts if not isinstance(y, (str, list)) or y[0] != "\n"]
         # convert to floats/ints:
         v = [
-            y
-            if not isinstance(y, str)
-            else int(y)
-            if y.isnumeric()
-            else float(y)
-            if y.replace(".", "").isnumeric()
-            else y == "true"
-            if y in ["true", "false"]
-            else y
+            (
+                y
+                if not isinstance(y, str)
+                else (
+                    int(y)
+                    if y.isnumeric()
+                    else (
+                        float(y)
+                        if y.replace(".", "").isnumeric()
+                        else y == "true" if y in ["true", "false"] else y
+                    )
+                )
+            )
             for y in v
         ]
         if isinstance(v[0], tuple) and all([y == v[0][0] for y, _ in v]):
@@ -175,9 +179,9 @@ class iTheraMSOT(ReaderInterface):
             attributes[ReconAttributeTags.X_FIELD_OF_VIEW] = field_of_view[0]
             attributes[ReconAttributeTags.Y_FIELD_OF_VIEW] = field_of_view[1]
             attributes[ReconAttributeTags.Z_FIELD_OF_VIEW] = field_of_view[2]
-            attributes[
-                ReconAttributeTags.RECONSTRUCTION_ALGORITHM
-            ] = "iThera Ultrasound"
+            attributes[ReconAttributeTags.RECONSTRUCTION_ALGORITHM] = (
+                "iThera Ultrasound"
+            )
 
             ultrasound_scans.append(
                 Ultrasound(

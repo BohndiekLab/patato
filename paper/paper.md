@@ -1,5 +1,5 @@
 ---
-title: 'PATATO: a Python photoacoustic tomography analysis toolkit'
+title: "PATATO: a Python photoacoustic tomography analysis toolkit"
 tags:
   - Python
   - Photoacoustics
@@ -24,7 +24,7 @@ authors:
     corresponding: true # (This is how to denote the corresponding author)
     affiliation: "1, 2"
 affiliations:
-  - name:  CRUK Cambridge Institute, University of Cambridge, United Kingdom
+  - name: CRUK Cambridge Institute, University of Cambridge, United Kingdom
     index: 1
   - name: Department of Physics, University of Cambridge, United Kingdom
     index: 2
@@ -36,7 +36,7 @@ bibliography: bibliography.bib
 
 # Summary
 
-Photoacoustic imaging (PAI) is an emerging scalable imaging technology that combines the high contrast of optical imaging with the spatiotemporal resolution of ultrasound [@Beard2011]. Using light absorption by endogenous molecules, such as haemoglobin in red blood cells, PAI can reveal the emergence of diseases ranging from inflammation to cancer in both preclinical animal models and in patients [@Brown2019; @Regensburger2021; @Wang2012; @Steinberg2019]. Extracting accurate photoacoustic imaging biomarkers, such as blood oxygen saturation, from raw data requires a robust image reconstruction and analysis process, which is challenging due to the high dimensionality of the data across spatial, spectral and temporal domains. Here we introduce PATATO,  a Python toolkit that offers fast implementations of commonly-used data analysis methods, including pre-processing, reconstruction and temporal data analysis, via a user-friendly command-line interface and Python API. The toolkit uses [JAX](https://jax.readthedocs.io/), a modern machine learning tool, for GPU-accelerated pre-processing and image reconstruction, and [NumPy](https://numpy.org/doc/stable/index.html) for easy integration with other commonly used Python libraries.  PATATO is open-source, hosted on [GitHub](https://github.com/BohndiekLab/patato) and [PyPi](https://pypi.org/project/patato/), and distributed under an MIT licence. We have designed PATATO to be modular and extendable to accommodate different data types, reconstruction methods, and custom analyses for specific scientific questions. We welcome contributions, bug reports, and feedback. Detailed examples, documentation, and an API reference are available at [https://patato.readthedocs.io/en/latest/](https://patato.readthedocs.io/en/latest/).
+Photoacoustic imaging (PAI) is an emerging scalable imaging technology that combines the high contrast of optical imaging with the spatiotemporal resolution of ultrasound [@Beard2011]. Using light absorption by endogenous molecules, such as haemoglobin in red blood cells, PAI can reveal the emergence of diseases ranging from inflammation to cancer in both preclinical animal models and in patients [@Brown2019; @Regensburger2021; @Wang2012; @Steinberg2019]. Extracting accurate photoacoustic imaging biomarkers, such as blood oxygen saturation, from raw data requires a robust image reconstruction and analysis process, which is challenging due to the high dimensionality of the data across spatial, spectral and temporal domains. Here we introduce PATATO, a Python toolkit that offers fast implementations of commonly-used data analysis methods, including pre-processing, reconstruction and temporal data analysis, via a user-friendly command-line interface and Python API. The toolkit uses [JAX](https://jax.readthedocs.io/), a modern machine learning tool, for GPU-accelerated pre-processing and image reconstruction, and [NumPy](https://numpy.org/doc/stable/index.html) for easy integration with other commonly used Python libraries. PATATO is open-source, hosted on [GitHub](https://github.com/BohndiekLab/patato) and [PyPi](https://pypi.org/project/patato/), and distributed under an MIT licence. We have designed PATATO to be modular and extendable to accommodate different data types, reconstruction methods, and custom analyses for specific scientific questions. We welcome contributions, bug reports, and feedback. Detailed examples, documentation, and an API reference are available at [https://patato.readthedocs.io/en/latest/](https://patato.readthedocs.io/en/latest/).
 
 # Statement of Need
 
@@ -58,7 +58,7 @@ PATATO is written in Python (currently supporting versions 3.9, 3.10 and 3.11) i
 
 Photoacoustic data can be large in size ($\gg$ 1 GB), impeding data import and data sharing. To enable fast handling of large datasets, PATATO implements batch processing and stores output in an HDF5 format, which allows seamless transfer of large data sets between fixed storage and memory. With HDF5, users can transfer data from PATATO to other tools and programming languages. PATATO includes dedicated wrappers for a number of data sources, e.g., for the IPASC data format [@Grohl2022], while also enabling user-defined wrappers.
 
-PATATO features a modular design (\autoref{fig:softwareoverview}) reflecting the four main steps of PAI data processing (\autoref{fig:overview}).  Raw time-series pre-processing and backprojection [@Xu2005] are implemented using JAX, a high-performance numerical computing library that enables GPU acceleration. JAX uses the same code for CPUs and GPUs, removing potential inconsistencies between different platforms. PATATO enables linear spectral unmixing based on the NumPy matrix pseudo-inverse [@Hochuli2019], including reference optical absorption spectra for common chromophores such as deoxyhaemoglobin, oxyhaemoglobin and melanin, and the contrast agent indocyanine green (ICG) [@Prahl2018]. Users can adapt existing algorithms for any part of the processing pipeline or implement their own algorithms by extending the appropriate class.
+PATATO features a modular design (\autoref{fig:softwareoverview}) reflecting the four main steps of PAI data processing (\autoref{fig:overview}). Raw time-series pre-processing and backprojection [@Xu2005] are implemented using JAX, a high-performance numerical computing library that enables GPU acceleration. JAX uses the same code for CPUs and GPUs, removing potential inconsistencies between different platforms. PATATO enables linear spectral unmixing based on the NumPy matrix pseudo-inverse [@Hochuli2019], including reference optical absorption spectra for common chromophores such as deoxyhaemoglobin, oxyhaemoglobin and melanin, and the contrast agent indocyanine green (ICG) [@Prahl2018]. Users can adapt existing algorithms for any part of the processing pipeline or implement their own algorithms by extending the appropriate class.
 
 # Strengths
 

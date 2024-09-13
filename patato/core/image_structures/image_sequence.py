@@ -367,9 +367,11 @@ class ImageSequence(DataSequence):
             n_pixels = self.raw_data.shape[-3:]
             fov = np.array(
                 [
-                    self.attributes.get(ReconAttributeTags.OLD_FIELD_OF_VIEW)
-                    if x != 1
-                    else 1
+                    (
+                        self.attributes.get(ReconAttributeTags.OLD_FIELD_OF_VIEW)
+                        if x != 1
+                        else 1
+                    )
                     for x in n_pixels
                 ]
             )

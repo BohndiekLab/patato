@@ -130,9 +130,9 @@ class ReconstructionAlgorithm(TimeSeriesProcessingAlgorithm, ABC):
             field_of_view=self.field_of_view,
         )
         output_data.attributes[HDF5Tags.SPEED_OF_SOUND] = speed_of_sound
-        output_data.attributes[
-            ReconAttributeTags.RECONSTRUCTION_ALGORITHM
-        ] = self.get_algorithm_name()
+        output_data.attributes[ReconAttributeTags.RECONSTRUCTION_ALGORITHM] = (
+            self.get_algorithm_name()
+        )
         output_data.attributes[ReconAttributeTags.X_NUMBER_OF_PIXELS] = self.n_pixels[0]
         output_data.attributes[ReconAttributeTags.Y_NUMBER_OF_PIXELS] = self.n_pixels[1]
         output_data.attributes[ReconAttributeTags.Z_NUMBER_OF_PIXELS] = self.n_pixels[2]

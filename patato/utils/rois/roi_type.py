@@ -97,7 +97,7 @@ class ROI:
                 close_loop(self.points)[:, 1],
                 label=self.roi_class + "_" + self.position,
                 c=REGION_COLOUR_MAP[self.roi_class],
-                **kwargs
+                **kwargs,
             )
         else:
             x, y = self.points.exterior.coords.xy
@@ -106,7 +106,7 @@ class ROI:
                 y,
                 label=self.roi_class + "_" + self.position,
                 c=REGION_COLOUR_MAP[self.roi_class],
-                **kwargs
+                **kwargs,
             )
             for interior in self.points.interiors:
                 x, y = interior.coords.xy
@@ -116,7 +116,7 @@ class ROI:
                         y,
                         label=self.roi_class + "_" + self.position,
                         c=REGION_COLOUR_MAP[self.roi_class],
-                        **kwargs
+                        **kwargs,
                     )
                 )
         return plot
