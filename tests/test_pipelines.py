@@ -14,7 +14,7 @@ from patato.recon import ReferenceBackprojection
 from patato.unmixing.unmixer import SpectralUnmixer
 from patato.utils.pipeline import run_pipeline
 
-from make_dummy_dataset import make_dummy_dataset
+from test_make_dummy_dataset import make_dummy_dataset
 
 
 class TestPipelines(unittest.TestCase):

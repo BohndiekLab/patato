@@ -17,16 +17,16 @@ cov = Coverage(
 cov.start()
 
 # flake8: noqa
-from .test_preprocessing_algorithm import TestPreprocessing
-from .test_backprojection import BackprojectionTest
-from .test_unmixing import TestUnmixing
-from .test_pipelines import TestPipelines
-from .test_image_sequence import TestHDF5Load
-from .test_ithera import TestITheraImport
-from .test_reconstruction_reading import TestJSONLoading
-from .test_msot_data import TestMSOTData
-from .test_model_based import TestModelBased
-from .test_make_dummy_dataset import make_dummy_dataset
+from test_preprocessing_algorithm import TestPreprocessing
+from test_backprojection import BackprojectionTest
+from test_unmixing import TestUnmixing
+from test_pipelines import TestPipelines
+from test_image_sequence import TestHDF5Load
+from test_ithera import TestITheraImport
+from test_reconstruction_reading import TestJSONLoading
+from test_msot_data import TestMSOTData
+from test_model_based import TestModelBased
+from test_make_dummy_dataset import make_dummy_dataset
 
 os.environ["XLA_PYTHON_CLIENT_PREALLOCATE"] = "false"
 
