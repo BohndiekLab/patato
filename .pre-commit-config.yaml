@@ -49,3 +49,9 @@ repos:
       - id: check-dependabot
       - id: check-github-workflows
       - id: check-readthedocs
+  - repo: https://github.com/adamchainz/blacken-docs
+    rev: "v1.12.1"
+    hooks:
+      - id: blacken-docs
+        additional_dependencies:
+          - black==22.12.0
