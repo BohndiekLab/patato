@@ -15,12 +15,16 @@ from ..core.image_structures.single_parameter_data import SingleParameterData
 
 def init_argparse():
     parser = argparse.ArgumentParser(description="View MSOT Recons.")
-    parser.add_argument('input', type=str, help="Data Folder")
-    parser.add_argument('-f', '--filter', type=str, help="Choose scan", default=None)
-    parser.add_argument('-r', '--recon', type=int, help="Reconstruction number", default=0)
-    parser.add_argument('-fn', '--filtername', type=str, help="Choose scan name filter", default=None)
-    parser.add_argument('-t', '--thb', type=bool, help="Draw on THb", default=False)
-    parser.add_argument('-s', '--so2', type=bool, help="Draw on SigSo2", default=False)
+    parser.add_argument("input", type=str, help="Data Folder")
+    parser.add_argument("-f", "--filter", type=str, help="Choose scan", default=None)
+    parser.add_argument(
+        "-r", "--recon", type=int, help="Reconstruction number", default=0
+    )
+    parser.add_argument(
+        "-fn", "--filtername", type=str, help="Choose scan name filter", default=None
+    )
+    parser.add_argument("-t", "--thb", type=bool, help="Draw on THb", default=False)
+    parser.add_argument("-s", "--so2", type=bool, help="Draw on SigSo2", default=False)
     return parser
 
 
@@ -67,14 +71,18 @@ def main():
         frame_n = 0
         wl = 0
 
-        iqr = np.nanpercentile(recon[frame_n, wl], 95) - np.nanpercentile(recon[frame_n, wl], 5)
+        iqr = np.nanpercentile(recon[frame_n, wl], 95) - np.nanpercentile(
+            recon[frame_n, wl], 5
+        )
         median = np.median(recon[frame_n, wl])
         range_interest = (median - 3 * iqr, median + 3 * iqr)
 
         fig = plt.figure()
         plt.subplots_adjust(bottom=0.3)
         ax, ax2 = fig.subplots(1, 2)
-        p = ax.imshow(np.squeeze(recon[frame_n, wl]), extent=extents, clim=range_interest)
+        p = ax.imshow(
+            np.squeeze(recon[frame_n, wl]), extent=extents, clim=range_interest
+        )
 
         ax2.hist(recon[frame_n, wl].flatten())
         vlinea = ax2.axvline(np.nanmin(recon[frame_n, wl]))
@@ -82,14 +90,27 @@ def main():
         ax_clims = plt.axes([0.25, 0.15, 0.5, 0.03])
         ax_slide = plt.axes([0.25, 0.11, 0.5, 0.03])
         ax_frame = plt.axes([0.25, 0.07, 0.5, 0.03])
-        wavelength = Slider(ax_slide, "Wavelength", 0, recon.shape[1] - 1, valinit=0, valstep=1)
+        wavelength = Slider(
+            ax_slide, "Wavelength", 0, recon.shape[1] - 1, valinit=0, valstep=1
+        )
         frame = Slider(ax_frame, "Frame", 0, recon.shape[0] - 1, valinit=0, valstep=1)
-        clims = RangeSlider(ax_clims, "Clim Range", range_interest[0],
-                            range_interest[1], valinit=range_interest)
+        clims = RangeSlider(
+            ax_clims,
+            "Clim Range",
+            range_interest[0],
+            range_interest[1],
+            valinit=range_interest,
+        )
         ax_text = plt.axes([0.3, 0.95, 0.4, 0.04])
         ax_text.axis("off")
-        ax_text.annotate(scan_name, (0.5, 0), xycoords="axes fraction",
-                         annotation_clip=False, horizontalalignment="center", verticalalignment="bottom")
+        ax_text.annotate(
+            scan_name,
+            (0.5, 0),
+            xycoords="axes fraction",
+            annotation_clip=False,
+            horizontalalignment="center",
+            verticalalignment="bottom",
+        )
 
         def update(_):
             nonlocal frame_n, wl

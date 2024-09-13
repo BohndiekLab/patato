@@ -14,14 +14,12 @@ from typing import Tuple
 
 def sort_key(file: str) -> Tuple[int, str]:
     """
-
     Parameters
     ----------
-    file
+    file.
 
     Returns
     -------
-
     """
     try:
         return int(split(file)[-1].split(".")[0].split("_")[-1]), file

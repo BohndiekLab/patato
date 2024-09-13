@@ -43,7 +43,11 @@ def make_dummy_dataset():
     n_wavelengths = wavelengths.size
     n_runs = 20
     f.attrs["date"] = "2022-11-23T15:50:22+0000"
-    ts = f.create_dataset("raw_data", data=np.random.random((n_runs, n_wavelengths, 256, 2030)) + 10, dtype=np.uint16)
+    ts = f.create_dataset(
+        "raw_data",
+        data=np.random.random((n_runs, n_wavelengths, 256, 2030)) + 10,
+        dtype=np.uint16,
+    )
     ts.attrs["fs"] = 4e7
     ts.attrs["name"] = "Demo Data"
     ts.attrs["speedofsound"] = 1500
@@ -51,12 +55,18 @@ def make_dummy_dataset():
     f.create_dataset("irf", data=irf)
     f.create_dataset("wavelengths", data=wavelengths)
     f.create_dataset("RUN", data=np.zeros((n_runs, n_wavelengths), dtype=np.int32))
-    f.create_dataset("REPETITION", data=np.arange(n_runs)[:, None].repeat(n_wavelengths, axis=1))
+    f.create_dataset(
+        "REPETITION", data=np.arange(n_runs)[:, None].repeat(n_wavelengths, axis=1)
+    )
     f.create_dataset("TEMPERATURE", data=30 * np.ones((n_runs, n_wavelengths)))
     f.create_dataset("OverallCorrectionFactor", data=np.ones((n_runs, n_wavelengths)))
     f.create_dataset("Z-POS", data=np.ones((n_runs, n_wavelengths)))
-    f.create_dataset("timestamp",
-                     data=np.arange(n_runs * n_wavelengths).reshape((n_runs, n_wavelengths)).astype(np.uint64))
+    f.create_dataset(
+        "timestamp",
+        data=np.arange(n_runs * n_wavelengths)
+        .reshape((n_runs, n_wavelengths))
+        .astype(np.uint64),
+    )
 
     rs = f.create_group("recons")
     add_example_reconstruction(rs, (n_runs, n_wavelengths, 333, 1, 333))

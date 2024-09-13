@@ -54,8 +54,9 @@ class ProcessingAlgorithm(ABC):
         self.children: List["ProcessingAlgorithm"] = []
 
     @abstractmethod
-    def run(self, input_data: Any,
-            pa_data: PAData, **kwargs) -> Optional[Tuple[ProcessingResult, dict, Optional[List[ProcessingResult]]]]:
+    def run(
+        self, input_data: Any, pa_data: PAData, **kwargs
+    ) -> Optional[Tuple[ProcessingResult, dict, Optional[List[ProcessingResult]]]]:
         pass
 
     def add_child(self, child: "ProcessingAlgorithm"):
@@ -67,8 +68,7 @@ class TimeSeriesProcessingAlgorithm(ProcessingAlgorithm, ABC):
         ProcessingAlgorithm.__init__(self)
 
     @abstractmethod
-    def run(self, time_series: PATimeSeries,
-            pa_data: PAData, **kwargs):
+    def run(self, time_series: PATimeSeries, pa_data: PAData, **kwargs):
         pass
 
     @staticmethod
@@ -83,8 +83,7 @@ class SpatialProcessingAlgorithm(ProcessingAlgorithm, ABC):
         self.algorithm_id = algorithm_id
 
     @abstractmethod
-    def run(self, spatial_data: ImageSequence,
-            pa_data: PAData, **kwargs):
+    def run(self, spatial_data: ImageSequence, pa_data: PAData, **kwargs):
         pass
 
     def get_algorithm_id(self) -> Union[str, None]:

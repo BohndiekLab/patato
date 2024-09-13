@@ -10,12 +10,16 @@ import numpy as np
 
 def init_argparse():
     parser = argparse.ArgumentParser(description="Import iThera recons.")
-    parser.add_argument('input', type=str, help="Data File")
-    parser.add_argument('binary', type=str, help="iThera Binary")
+    parser.add_argument("input", type=str, help="Data File")
+    parser.add_argument("binary", type=str, help="iThera Binary")
     parser.add_argument("description", type=str, help="Recon Description")
     parser.add_argument("fov", type=float, help="Field of View (metres) -e.g.0.025")
-    parser.add_argument("-t", "--transpose", type=bool, help="Transpose Images", default=False)
-    parser.add_argument("-r", "--reverse", type=int, nargs="*", help="Reverse Axes", default=[])
+    parser.add_argument(
+        "-t", "--transpose", type=bool, help="Transpose Images", default=False
+    )
+    parser.add_argument(
+        "-r", "--reverse", type=int, nargs="*", help="Reverse Axes", default=[]
+    )
     return parser
 
 

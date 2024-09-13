@@ -12,22 +12,52 @@ from ..utils import sort_key
 
 
 def init_argparse():
-    map = {"TRUE": True, "FALSE": False, "T": True, "F": False, "YES": True, "NO": False, "Y": True, "N": False}
+    map = {
+        "TRUE": True,
+        "FALSE": False,
+        "T": True,
+        "F": False,
+        "YES": True,
+        "NO": False,
+        "Y": True,
+        "N": False,
+    }
+
     def map_fn(x):
         return map[x.upper()]
-    parser = argparse.ArgumentParser(description="Copy ROIs between scans made of same thing at same time.")
-    parser.add_argument('input', type=str, help="Data Folder")
-    parser.add_argument('-r', '--regex', default=None, type=str, help="Regex for parsing name")
-    parser.add_argument('-c', '--copyclose', default=False, type=map_fn, help="Automatically copy over roi to closest "
-                                                                              "slice if not exact matches (tolerance "
-                                                                              "1mm)")
-    parser.add_argument('-d', '--deleteold', default=True, type=map_fn, help="Delete old copies.")
-    parser.add_argument('-j', '--justdeletecopies', default=False, type=map_fn,
-                        help="Just delete copies of rois.")
-    parser.add_argument('-f', '--copyfrom', default=None,
-                        help="Copy only from scan type (e.g. OE).")
-    parser.add_argument('-t', '--copyto', default=None,
-                        help="Copy only to scan type (e.g. DCE).")
+
+    parser = argparse.ArgumentParser(
+        description="Copy ROIs between scans made of same thing at same time."
+    )
+    parser.add_argument("input", type=str, help="Data Folder")
+    parser.add_argument(
+        "-r", "--regex", default=None, type=str, help="Regex for parsing name"
+    )
+    parser.add_argument(
+        "-c",
+        "--copyclose",
+        default=False,
+        type=map_fn,
+        help="Automatically copy over roi to closest "
+        "slice if not exact matches (tolerance "
+        "1mm)",
+    )
+    parser.add_argument(
+        "-d", "--deleteold", default=True, type=map_fn, help="Delete old copies."
+    )
+    parser.add_argument(
+        "-j",
+        "--justdeletecopies",
+        default=False,
+        type=map_fn,
+        help="Just delete copies of rois.",
+    )
+    parser.add_argument(
+        "-f", "--copyfrom", default=None, help="Copy only from scan type (e.g. OE)."
+    )
+    parser.add_argument(
+        "-t", "--copyto", default=None, help="Copy only to scan type (e.g. DCE)."
+    )
     return parser
 
 
@@ -50,7 +80,9 @@ def main():
 
     scan_groups = {}
 
-    for file in sorted(glob.glob(join(DATA_FOLDER, "**", "*.hdf5"), recursive=True), key=sort_key):
+    for file in sorted(
+        glob.glob(join(DATA_FOLDER, "**", "*.hdf5"), recursive=True), key=sort_key
+    ):
         data = h5py.File(file, "r")
         name_regex = regex.fullmatch(data["raw_data"].attrs["name"])
         print(file, data["raw_data"].attrs["name"], name_regex)
@@ -107,7 +139,9 @@ def main():
             if args.copyto is not None:
                 if args.copyto not in data["raw_data"].attrs["name"]:
                     continue
-            for roi, att, nam, num, ori in zip(rois, roi_attrs, roi_names, roi_numbers, roi_scan_origin):
+            for roi, att, nam, num, ori in zip(
+                rois, roi_attrs, roi_names, roi_numbers, roi_scan_origin
+            ):
                 if ori != data["raw_data"].attrs["name"]:
                     zs = np.unique(data["Z-POS"][:])
                     make_copy = False
@@ -115,13 +149,26 @@ def main():
                         # print("Able to copy from", ori, data["raw_data"].attrs["name"])
                         make_copy = True
                     elif np.any(np.isclose(zs, att["z"], atol=1, rtol=0)):
-                        print("Not exact, but close for: ", ori, "to", data["raw_data"].attrs["name"])
-                        copy = input("Not exact match, copy anyway? Y/[N]") if not args.copyclose else True
+                        print(
+                            "Not exact, but close for: ",
+                            ori,
+                            "to",
+                            data["raw_data"].attrs["name"],
+                        )
+                        copy = (
+                            input("Not exact match, copy anyway? Y/[N]")
+                            if not args.copyclose
+                            else True
+                        )
                         if copy in ["Y", "y", True]:
                             make_copy = True
                             old_z = att["z"]
                             att["z"] = zs[np.argmin(np.abs(zs - att["z"]))]
-                            print("Copying, changing z from {:.2f} to {:.2f}".format(old_z, att["z"]))
+                            print(
+                                "Copying, changing z from {:.2f} to {:.2f}".format(
+                                    old_z, att["z"]
+                                )
+                            )
                     else:
                         # print("No close positions for: ", ori, "to", data["raw_data"].attrs["name"], "so skipping.")
                         # print(zs[np.argmin(np.abs(zs - att["z"]))], att["z"])

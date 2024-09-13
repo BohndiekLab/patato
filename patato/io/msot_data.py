@@ -34,6 +34,7 @@ class PAData:
     """A class that contains the interface to access data from a single scan. Any source of scans (e.g.
     iThera/HDF5/IPASC) can be linked to this.
     """
+
     @property
     def shape(self) -> Tuple[int]:
         """
@@ -64,13 +65,14 @@ class PAData:
         new_data.scan_writer = new_data.scan_writer
         return new_data
 
-    def __init__(self, scan_reader: ReaderInterface, scan_writer: WriterInterface = None) -> None:
+    def __init__(
+        self, scan_reader: ReaderInterface, scan_writer: WriterInterface = None
+    ) -> None:
         """
-
         Parameters
         ----------
         scan_reader
-        scan_writer
+        scan_writer.
         """
         super().__init__()
         self.scan_reader = scan_reader
@@ -114,6 +116,7 @@ class PAData:
             cls = self.__class__
 
         from copy import copy
+
         c = copy(self)
         c.__class__ = cls
         return c
@@ -126,7 +129,6 @@ class PAData:
         -------
         str
             Scan name.
-
         """
         return self.scan_reader.get_scan_name()
 
@@ -144,7 +146,9 @@ class PAData:
         """
         return self.scan_reader.get_sampling_frequency()
 
-    def get_overall_correction_factor(self) -> Union[np.ndarray, Array, xarray.DataArray]:
+    def get_overall_correction_factor(
+        self,
+    ) -> Union[np.ndarray, Array, xarray.DataArray]:
         """
         Return the energy correction factors for the dataset.
 
@@ -209,8 +213,9 @@ class PAData:
         """
         return self.scan_reader.get_wavelengths()
 
-    def get_scan_images(self, group: str, ignore_default=False, suffix="") -> Union[
-        Dict[Tuple[str, str], ImageSequence], ImageSequence]:
+    def get_scan_images(
+        self, group: str, ignore_default=False, suffix=""
+    ) -> Union[Dict[Tuple[str, str], ImageSequence], ImageSequence]:
         """
         Get the scan images, e.g. reconstructions or so2 etc.
 
@@ -225,7 +230,7 @@ class PAData:
 
         Returns
         -------
-        (dict of {tuple of (str, str): ImageSequence}) or ImageSequence
+        (dict of {tuple of (str, str) : ImageSequence}) or ImageSequence
             Images of certain type if default recon has been set, or dict or images for all reconstructions.
         """
 
@@ -263,104 +268,88 @@ class PAData:
 
     def get_scan_mean(self, dataset: ImageSequence, operation=np.mean):
         """
-
         Parameters
         ----------
         dataset
-        operation
+        operation.
 
         Returns
         -------
-
         """
         if type(dataset) == dict:
             raise NotImplementedError
-        new_dataset = SingleImage(operation(dataset.raw_data, axis=0)[0], dataset.ax_1_labels,
-                                  field_of_view=dataset.fov_3d, attributes=dataset.attributes)
+        new_dataset = SingleImage(
+            operation(dataset.raw_data, axis=0)[0],
+            dataset.ax_1_labels,
+            field_of_view=dataset.fov_3d,
+            attributes=dataset.attributes,
+        )
         return new_dataset
 
     def get_scan_so2_time_mean(self):
         """
-
         Returns
         -------
-
         """
         return self.get_scan_mean(self.get_scan_so2())
 
     def get_scan_thb_time_mean(self):
         """
-
         Returns
         -------
-
         """
         return self.get_scan_mean(self.get_scan_thb())
 
     def get_scan_so2_time_standard_deviation(self):
         """
-
         Returns
         -------
-
         """
         return self.get_scan_mean(self.get_scan_so2(), np.std)
 
     def get_scan_thb(self):
         """
-
         Returns
         -------
-
         """
         return self.get_scan_images(HDF5Tags.THB)
 
     def get_scan_dso2(self):
         """
-
         Returns
         -------
-
         """
         return self.get_scan_images(HDF5Tags.DELTA_SO2)
 
     def get_scan_dicg(self):
         """
-
         Returns
         -------
-
         """
         return self.get_scan_images(HDF5Tags.DELTA_ICG)
 
     def get_scan_baseline_icg(self):
         """
-
         Returns
         -------
-
         """
         return self.get_scan_images(HDF5Tags.BASELINE_ICG)
 
     def get_scan_baseline_standard_deviation_icg(self):
         """
-
         Returns
         -------
-
         """
         return self.get_scan_images(HDF5Tags.BASELINE_ICG_SIGMA)
 
     def get_responding_pixels(self, nsigma=2):
         """
-
         Parameters
         ----------
-        nsigma
+        nsigma.
 
         Returns
         -------
-
         """
         responding = None
         delta_images = None
@@ -374,55 +363,61 @@ class PAData:
             responding = delta_images.raw_data > nsigma * sigma_so2.raw_data
         else:
             return None
-        return SingleImage(responding, ["Responding Pixels"], algorithm_id=delta_images.algorithm_id,
-                           attributes=delta_images.attributes,
-                           hdf5_sub_name=delta_images.hdf5_sub_name, field_of_view=delta_images.fov_3d)
+        return SingleImage(
+            responding,
+            ["Responding Pixels"],
+            algorithm_id=delta_images.algorithm_id,
+            attributes=delta_images.attributes,
+            hdf5_sub_name=delta_images.hdf5_sub_name,
+            field_of_view=delta_images.fov_3d,
+        )
 
     def get_scan_baseline_so2(self):
         """
-
         Returns
         -------
-
         """
         return self.get_scan_images(HDF5Tags.BASELINE_SO2)
 
     def get_scan_baseline_standard_deviation_so2(self):
         """
-
         Returns
         -------
-
         """
         return self.get_scan_images(HDF5Tags.BASELINE_SO2_STANDARD_DEVIATION)
 
     # Some cycling hypoxia analysis here.
     @lru_cache
-    def get_scan_so2_frequency_components(self, do_detrend=True, fmin=1e-5, fmax=1000, fnum=1000):
+    def get_scan_so2_frequency_components(
+        self, do_detrend=True, fmin=1e-5, fmax=1000, fnum=1000
+    ):
         """
-
         Parameters
         ----------
         do_detrend
         fmin
         fmax
-        fnum
+        fnum.
 
         Returns
         -------
-
         """
         from scipy.signal import detrend, lombscargle
+
         so2 = self.get_scan_images(HDF5Tags.SO2)
         if type(so2) == dict:
             if len(so2) == 1:
                 so2 = so2[list(so2.keys())[0]]
             else:
-                raise NotImplementedError("""Frequency components are only enabled when there is one
+                raise NotImplementedError(
+                    """Frequency components are only enabled when there is one
                 reconstruction set. Run PAData.set_default_recon() before running this if in doubt.
-                                          """)
+                                          """
+                )
 
-        detrended = detrend(so2.raw_data, axis=0, type="linear" if do_detrend else "constant")
+        detrended = detrend(
+            so2.raw_data, axis=0, type="linear" if do_detrend else "constant"
+        )
 
         times = self.get_timestamps()[:, 0].copy()
         times -= times[0]
@@ -432,68 +427,72 @@ class PAData:
         def lomb(a, b, c):
             return lombscargle(a, b.copy(), c)
 
-        so2_frequency = SingleParameterData(np.apply_along_axis(lambda x: lomb(times, x, frequencies * 2 * np.pi),
-                                                                0, detrended),
-                                            so2.ax_1_labels,
-                                            field_of_view=so2.fov_3d, attributes=so2.attributes)
+        so2_frequency = SingleParameterData(
+            np.apply_along_axis(
+                lambda x: lomb(times, x, frequencies * 2 * np.pi), 0, detrended
+            ),
+            so2.ax_1_labels,
+            field_of_view=so2.fov_3d,
+            attributes=so2.attributes,
+        )
         so2_frequency.da.coords["frames"] = frequencies * 2 * np.pi
         return so2_frequency
 
     def get_scan_so2_frequency_peak(self, fnum=1000):
         """
-
         Parameters
         ----------
-        fnum
+        fnum.
 
         Returns
         -------
-
         """
         so2 = self.get_scan_so2_frequency_components(fnum=fnum)
         raw_data = np.max(so2.raw_data, axis=0)[0]
-        so2_frequency = SingleImage(raw_data,
-                                            so2.ax_1_labels,
-                                            field_of_view=so2.fov_3d, attributes=so2.attributes)
+        so2_frequency = SingleImage(
+            raw_data,
+            so2.ax_1_labels,
+            field_of_view=so2.fov_3d,
+            attributes=so2.attributes,
+        )
         return so2_frequency
 
     def get_scan_so2_frequency_sum(self, fnum=1000):
         """
-
         Parameters
         ----------
-        fnum
+        fnum.
 
         Returns
         -------
-
         """
         so2 = self.get_scan_so2_frequency_components(fnum=fnum)
         raw_data = np.sum(so2.raw_data, axis=0)[0]
-        so2_frequency = SingleImage(raw_data,
-                                            so2.ax_1_labels,
-                                            field_of_view=so2.fov_3d, attributes=so2.attributes)
+        so2_frequency = SingleImage(
+            raw_data,
+            so2.ax_1_labels,
+            field_of_view=so2.fov_3d,
+            attributes=so2.attributes,
+        )
         return so2_frequency
 
     def get_segmentation(self):
         """
-
         Returns
         -------
-
         """
         return self.scan_reader.get_segmentation()
 
     def get_time_series(self) -> PATimeSeries:
         """
-
         Returns
         -------
-
         """
         dataset = self.scan_reader.get_pa_data()
         if type(dataset) is not PATimeSeries:
-            raise ValueError("raw_data attribute must be either TimeSeries or FourierDomain type.")
+            raise ValueError(
+                "raw_data attribute must be either TimeSeries or FourierDomain type."
+            )
         else:
             return dataset
 
@@ -528,7 +527,6 @@ class PAData:
         -------
         np.ndarray
             Get the run numbers of each of the frames.
-
         """
         return self.scan_reader.get_run_numbers()
 
@@ -555,10 +553,13 @@ class PAData:
         # in seconds
         return self.scan_reader.get_scan_times()
 
-    def get_rois(self, filter_rois=None,
-                 interpolate: bool = False,
-                 get_rim_cores=None,
-                 rim_core_distance=None) -> Dict[Tuple[str, str], "ROI"]:
+    def get_rois(
+        self,
+        filter_rois=None,
+        interpolate: bool = False,
+        get_rim_cores=None,
+        rim_core_distance=None,
+    ) -> Dict[Tuple[str, str], "ROI"]:
         """
         Get the regions of interest from the dataset.
 
@@ -566,14 +567,13 @@ class PAData:
         ----------
         rim_core_distance
         get_rim_cores
-        filter_rois: dict or None
-        interpolate: bool
+        filter_rois : dict or None
+        interpolate : bool
 
         Returns
         -------
-        dict of {(tuple of (str, str): ROI}
+        dict of {(tuple of (str, str) : ROI}
             Return all the rois.
-
         """
         if self.external_roi_interface is not None:
             reader = self.external_roi_interface.scan_reader
@@ -609,7 +609,9 @@ class PAData:
         recon_groups : (iterable of str) or None
         """
         if self.scan_writer is None:
-            raise NotImplementedError("Deletion only possible with a writing interface.")
+            raise NotImplementedError(
+                "Deletion only possible with a writing interface."
+            )
         self.scan_writer.delete_recons(name, recon_groups)
 
     def set_speed_of_sound(self, c: float) -> None:
@@ -620,13 +622,14 @@ class PAData:
         ----------
         c : float
             Speed of sound.
-
         """
         if self.scan_writer is None:
             raise NotImplementedError("No writing capability enabled.")
         self.scan_writer.set_speed_of_sound(c)
 
-    def delete_rois(self, name_position: Optional[str] = None, number: Optional[str] = None) -> None:
+    def delete_rois(
+        self, name_position: Optional[str] = None, number: Optional[str] = None
+    ) -> None:
         """
         Delete a roi with name and number. If number is None, will delete all.
         If name and number is None, delete all.
@@ -651,7 +654,9 @@ class PAData:
         """
         self.scan_writer.add_roi(roi_data, generated)
 
-    def rename_roi(self, old_name: Union[str, Tuple], new_name: str, new_position: str) -> None:
+    def rename_roi(
+        self, old_name: Union[str, Tuple], new_name: str, new_position: str
+    ) -> None:
         """
         Rename a region of interest.
 
@@ -663,7 +668,6 @@ class PAData:
             New roi name e.g. "brain"
         new_position : str
             New roi position e.g. "left"
-
         """
         self.scan_writer.rename_roi(old_name, new_name, new_position)
 
@@ -689,30 +693,33 @@ class PAData:
     @property
     def dataset(self):
         """
-
         Returns
         -------
-
         """
         return self.get_time_series()
 
-    def summary_measurements(self, metrics=None,
-                             include_rois=None, roi_kwargs=None, just_summary=True, 
-                             return_masks=False, metric_limits=None):
+    def summary_measurements(
+        self,
+        metrics=None,
+        include_rois=None,
+        roi_kwargs=None,
+        just_summary=True,
+        return_masks=False,
+        metric_limits=None,
+    ):
         """
-
         Parameters
         ----------
         metrics
         include_rois
         roi_kwargs
-        just_summary
+        just_summary.
 
         Returns
         -------
-
         """
         import pandas as pd
+
         if metrics is None:
             metrics = ["thb", "so2"]
         if roi_kwargs is None:
@@ -739,8 +746,8 @@ class PAData:
                 if len(n) == 0:
                     print("No icg channel found")
                     continue
-                n= n[0]
-                measurements.append(unmixed[:, n: n + 1])
+                n = n[0]
+                measurements.append(unmixed[:, n : n + 1])
             elif m == "dso2":
                 measurements.append(self.get_scan_dso2())
             elif m == "baseline_so2":
@@ -768,7 +775,9 @@ class PAData:
                 else:
                     print(f"Skipping metric {metrics[i]}")
 
-            mask, _, selection = roi.to_mask_slice(self.get_scan_reconstructions(), return_selection=True)
+            mask, _, selection = roi.to_mask_slice(
+                self.get_scan_reconstructions(), return_selection=True
+            )
             if return_masks:
                 return_mask, _ = roi.to_mask_slice(self.get_scan_so2())
                 output_roi["Mask"] = return_mask
@@ -783,14 +792,13 @@ class PAData:
 
         output_table = pd.DataFrame(outputs)
 
-        summary_methods = {"mean": np.nanmean,
-                           "median": np.nanmedian,
-                           "std": np.nanstd}
+        summary_methods = {"mean": np.nanmean, "median": np.nanmedian, "std": np.nanstd}
         for name, method in summary_methods.items():
             for metric in metrics:
                 if metric in output_table.columns:
                     output_table[metric + "_" + name] = output_table[metric].apply(
-                        lambda t: np.squeeze(method(t, axis=-1))[()])
+                        lambda t: np.squeeze(method(t, axis=-1))[()]
+                    )
 
         if just_summary:
             for metric in metrics:

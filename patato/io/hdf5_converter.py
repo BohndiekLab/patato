@@ -11,8 +11,12 @@ from ..io.simpa.read_simpa import SimpaImporter
 from ..utils import sort_key
 
 
-def convert_ithera_msot_binary_to_hdf5(input_path: str, output_path: str, update: bool = False,
-                                       use_user_defined_scan_name: bool = False):
+def convert_ithera_msot_binary_to_hdf5(
+    input_path: str,
+    output_path: str,
+    update: bool = False,
+    use_user_defined_scan_name: bool = False,
+):
     """
     This method converts all iThera MSOT files in a folder and exports them to an HDF5 format.
 
@@ -24,8 +28,11 @@ def convert_ithera_msot_binary_to_hdf5(input_path: str, output_path: str, update
     :param update: if True, the file will be processed again, even if an hdf5 file containing raw data with the desired
                    output name already exists at the output_path location.
     """
-    scan_paths = list(sorted(glob.glob(join(input_path, "**", "Scan_*/"),
-                                       recursive=True), key=sort_key))
+    scan_paths = list(
+        sorted(
+            glob.glob(join(input_path, "**", "Scan_*/"), recursive=True), key=sort_key
+        )
+    )
     if len(scan_paths) < 1:
         print("Found no scans in the input path.")
     errors = []
@@ -35,11 +42,16 @@ def convert_ithera_msot_binary_to_hdf5(input_path: str, output_path: str, update
         try:
             scan = iTheraMSOT(dirname(scan_path))
             if 0 in scan.raw_data.shape:
-                print("Scan skipped because scan was not acquired properly", ithera_defined_scan_name)
+                print(
+                    "Scan skipped because scan was not acquired properly",
+                    ithera_defined_scan_name,
+                )
         except FileNotFoundError as e:
             print(str(e))
             print("Scan skipped, some data missing?", ithera_defined_scan_name)
-            errors.append("Scan skipped, some data missing in " + ithera_defined_scan_name)
+            errors.append(
+                "Scan skipped, some data missing in " + ithera_defined_scan_name
+            )
             continue
         user_defined_scan_name = scan.get_scan_name()
 
@@ -48,7 +60,7 @@ def convert_ithera_msot_binary_to_hdf5(input_path: str, output_path: str, update
         else:
             scan_name = ithera_defined_scan_name
 
-        scan_name = join(dirname(dirname(scan_path))[len(input_path) + 1:], scan_name)
+        scan_name = join(dirname(dirname(scan_path))[len(input_path) + 1 :], scan_name)
         if os.path.exists(join(output_path, scan_name + ".hdf5")) and not update:
             continue
         print("SAVING AS", join(output_path, scan_name + ".hdf5"))
@@ -58,8 +70,9 @@ def convert_ithera_msot_binary_to_hdf5(input_path: str, output_path: str, update
     print("\n".join(errors))
 
 
-def convert_simpa(input_path: str, output_path: str,
-                  use_user_defined_scan_name: bool = False):
+def convert_simpa(
+    input_path: str, output_path: str, use_user_defined_scan_name: bool = False
+):
     """
     This method converts simpa files to HDF5 format.
 
@@ -71,8 +84,11 @@ def convert_simpa(input_path: str, output_path: str,
     use_user_defined_scan_name
     slice_n
     """
-    scan_paths = list(sorted(glob.glob(join(input_path, "**", "*.hdf5"),
-                                       recursive=True), key=sort_key))
+    scan_paths = list(
+        sorted(
+            glob.glob(join(input_path, "**", "*.hdf5"), recursive=True), key=sort_key
+        )
+    )
     if len(scan_paths) < 1:
         print("Found no scans in the input path.")
 
@@ -89,7 +105,7 @@ def convert_simpa(input_path: str, output_path: str,
             scan_name = f"Scan_{str(i)}"
             i += 1
 
-        scan_name = join(dirname(dirname(scan_path))[len(input_path) + 1:], scan_name)
+        scan_name = join(dirname(dirname(scan_path))[len(input_path) + 1 :], scan_name)
         print(scan_name)
         print("SAVING AS", join(output_path, scan_name + ".hdf5"))
 

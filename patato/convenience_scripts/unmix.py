@@ -1,9 +1,7 @@
 #  Copyright (c) Thomas Else 2023.
 #  License: MIT
 
-"""
-``patato-unmix`` is a command line tool for unmixing MSOT data.
-"""
+"""``patato-unmix`` is a command line tool for unmixing MSOT data."""
 
 import argparse
 import glob
@@ -21,15 +19,14 @@ from ..utils.pipeline import run_pipeline
 
 def init_argparse():
     parser = argparse.ArgumentParser(description="Process MSOT Data.")
-    parser.add_argument('input', type=str, help="Data File")
-    parser.add_argument('-w', '--wavelengths', nargs="*", type=float, default=[])
-    parser.add_argument('-i', '--wavelengthindices', nargs="*", type=int, default=[])
-    parser.add_argument('-p', '--preset', type=str, help="Preset File",
-                        default=None)
-    parser.add_argument('-c', '--clear', type=bool, help="Clear Old",
-                        default=False)
-    parser.add_argument('-f', '--filter', type=str, help="Scan Name Filter",
-                        default=None)
+    parser.add_argument("input", type=str, help="Data File")
+    parser.add_argument("-w", "--wavelengths", nargs="*", type=float, default=[])
+    parser.add_argument("-i", "--wavelengthindices", nargs="*", type=int, default=[])
+    parser.add_argument("-p", "--preset", type=str, help="Preset File", default=None)
+    parser.add_argument("-c", "--clear", type=bool, help="Clear Old", default=False)
+    parser.add_argument(
+        "-f", "--filter", type=str, help="Scan Name Filter", default=None
+    )
     return parser
 
 
@@ -50,13 +47,15 @@ def main():
     if os.path.isfile(DATA_FOLDER):
         data_files = [DATA_FOLDER]
     else:
-        data_files = sorted(glob.glob(join(DATA_FOLDER, "**", "*.hdf5"), recursive=True), key=sort_key)
+        data_files = sorted(
+            glob.glob(join(DATA_FOLDER, "**", "*.hdf5"), recursive=True), key=sort_key
+        )
 
     for data_file in data_files:
         print("Processing", data_file)
         data = PAData.from_hdf5(data_file, "r+")
 
-        if np.any(data.get_wavelengths() == 0.):
+        if np.any(data.get_wavelengths() == 0.0):
             print("Strange, some wavelengths = 0 - investigate.", data_file)
             continue
 

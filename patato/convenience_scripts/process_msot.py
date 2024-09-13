@@ -1,9 +1,7 @@
 #  Copyright (c) Thomas Else 2023.
 #  License: MIT
 
-"""
-``patato-reconstruct``: A script to reconstruct all MSOT data files in a folder.
-"""
+"""``patato-reconstruct``: A script to reconstruct all MSOT data files in a folder."""
 
 import argparse
 import glob
@@ -20,25 +18,44 @@ from ..utils.pipeline import run_pipeline
 
 def main():
     parser = argparse.ArgumentParser(description="Process MSOT Data.")
-    parser.add_argument('input', type=str, help="Data File")
-    parser.add_argument('-c', '--speed', type=float, help="Speed of Sound", default=None)
-    parser.add_argument('-o', '--output', type=str, help="Output File", default=None)
-    parser.add_argument('-p', '--preset', type=str, help="Preset File",
-                        default=None)
-    parser.add_argument('-r', '--run', type=int, help="Run Number",
-                        default=None)
-    parser.add_argument('-w', '--wavelength', type=int, help="Wavelength Number",
-                        default=None)
-    parser.add_argument('-R', '--repeat', type=lambda x: x in ["True", "true", "T", "Y", "y", "yes", "YES", "1"],
-                        default=True, help="Repeat recon if already exists.")
-    parser.add_argument('-H', '--highpass', type=float, help="High pass filter override", default=None)
-    parser.add_argument('-L', '--lowpass', type=float, help="Low pass filter override", default=None)
-    parser.add_argument('-C', '--clear', type=bool, default=False, help="Clear all existing recons.")
-    parser.add_argument('-I', '--ipasc', type=bool, default=False, help="Export to IPASC format as well.")
-    parser.add_argument('-d', '--debug', type=bool, default=False, help="Enable debugging logging.")
+    parser.add_argument("input", type=str, help="Data File")
     parser.add_argument(
-        "-v", "--version", action="version",
-        version=f"{parser.prog} version 0.1"
+        "-c", "--speed", type=float, help="Speed of Sound", default=None
+    )
+    parser.add_argument("-o", "--output", type=str, help="Output File", default=None)
+    parser.add_argument("-p", "--preset", type=str, help="Preset File", default=None)
+    parser.add_argument("-r", "--run", type=int, help="Run Number", default=None)
+    parser.add_argument(
+        "-w", "--wavelength", type=int, help="Wavelength Number", default=None
+    )
+    parser.add_argument(
+        "-R",
+        "--repeat",
+        type=lambda x: x in ["True", "true", "T", "Y", "y", "yes", "YES", "1"],
+        default=True,
+        help="Repeat recon if already exists.",
+    )
+    parser.add_argument(
+        "-H", "--highpass", type=float, help="High pass filter override", default=None
+    )
+    parser.add_argument(
+        "-L", "--lowpass", type=float, help="Low pass filter override", default=None
+    )
+    parser.add_argument(
+        "-C", "--clear", type=bool, default=False, help="Clear all existing recons."
+    )
+    parser.add_argument(
+        "-I",
+        "--ipasc",
+        type=bool,
+        default=False,
+        help="Export to IPASC format as well.",
+    )
+    parser.add_argument(
+        "-d", "--debug", type=bool, default=False, help="Enable debugging logging."
+    )
+    parser.add_argument(
+        "-v", "--version", action="version", version=f"{parser.prog} version 0.1"
     )
     args = parser.parse_args()
 
@@ -51,7 +68,10 @@ def main():
     if os.path.isfile(data_file):
         files.append(data_file)
     elif os.path.isdir(data_file):
-        files = sorted(glob.glob(os.path.join(data_file, "**", "*.hdf5"), recursive=True), key=sort_key)
+        files = sorted(
+            glob.glob(os.path.join(data_file, "**", "*.hdf5"), recursive=True),
+            key=sort_key,
+        )
 
     output_file = args.output
 
@@ -94,9 +114,9 @@ def main():
         description = pipeline.children[0].get_algorithm_name()
 
         # Setup the name
-        #if args.highpass is not None:
+        # if args.highpass is not None:
         #    description += "_CUSTOM_HP_FILTER"
-        #if args.lowpass is not None:
+        # if args.lowpass is not None:
         #    description += "_CUSTOM_LP_FILTER"
         if args.run is not None:
             description += "_run_" + str(args.run)
@@ -115,10 +135,17 @@ def main():
         if any(x == 0 for x in pa_data.dataset.shape):
             continue
 
-        run_pipeline(pipeline, pa_data.dataset, pa_data, n_batch=1 + 20 // pa_data.shape[1], output_file=output_file)
+        run_pipeline(
+            pipeline,
+            pa_data.dataset,
+            pa_data,
+            n_batch=1 + 20 // pa_data.shape[1],
+            output_file=output_file,
+        )
 
         if do_ipasc_export:
             from .. import export_to_ipasc
+
             export_to_ipasc(data_file)
 
 

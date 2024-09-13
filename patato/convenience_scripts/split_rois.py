@@ -12,11 +12,15 @@ from ..utils.roi_operations import split_roi_left_right
 
 def init_argparse():
     parser = argparse.ArgumentParser(description="Split regions of interest.")
-    parser.add_argument('input', type=str, help="Data Folder")
-    parser.add_argument('-n', '--name', type=str, help="ROI Name", default="")
-    parser.add_argument('-f', '--filter', type=str, help="Choose scan", default=None)
-    parser.add_argument('-fn', '--filtername', type=str, help="Choose scan name filter", default=None)
-    parser.add_argument('-c', '--clear', type=str, help="Clear all generated ROIs", default=False)
+    parser.add_argument("input", type=str, help="Data Folder")
+    parser.add_argument("-n", "--name", type=str, help="ROI Name", default="")
+    parser.add_argument("-f", "--filter", type=str, help="Choose scan", default=None)
+    parser.add_argument(
+        "-fn", "--filtername", type=str, help="Choose scan name filter", default=None
+    )
+    parser.add_argument(
+        "-c", "--clear", type=str, help="Clear all generated ROIs", default=False
+    )
     return parser
 
 

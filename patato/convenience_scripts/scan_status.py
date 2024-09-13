@@ -11,10 +11,9 @@ from ..utils import sort_key
 
 def init_argparse():
     parser = argparse.ArgumentParser(description="Look at the status of a data folder.")
-    parser.add_argument('input', type=str, help="Data Folder")
+    parser.add_argument("input", type=str, help="Data Folder")
     parser.add_argument(
-        "-v", "--version", action="version",
-        version=f"{parser.prog} version 0.1"
+        "-v", "--version", action="version", version=f"{parser.prog} version 0.1"
     )
     return parser
 
@@ -33,7 +32,11 @@ def main():
             print("Scan name", data_file["raw_data"].attrs["name"])
         print("Raw data present" if "raw_data" in data_file else "Raw data not present")
         if "raw_data" in data_file:
-            print("Speed of sound set" if "speedofsound" in data_file["raw_data"].attrs else "Speed of sound not set")
+            print(
+                "Speed of sound set"
+                if "speedofsound" in data_file["raw_data"].attrs
+                else "Speed of sound not set"
+            )
 
         # 2. Check reconstructions
 
@@ -47,7 +50,12 @@ def main():
 
         if "unmixed" in data_file:
             for method in data_file["unmixed"]:
-                print("Unmixed results:" + method + ": " + str(len(data_file["unmixed"][method])))
+                print(
+                    "Unmixed results:"
+                    + method
+                    + ": "
+                    + str(len(data_file["unmixed"][method]))
+                )
         else:
             print("No unmixed results present")
 

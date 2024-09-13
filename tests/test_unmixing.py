@@ -6,18 +6,20 @@ import unittest
 import numpy as np
 
 from patato import Reconstruction, SO2Calculator, SpectralUnmixer, THbCalculator, PAData
-from patato.data.get_example_datasets import get_msot_time_series_example
 
 
 class TestUnmixing(unittest.TestCase):
     def test_numpy_unmix(self):
         image = np.zeros((1, 2, 333, 333, 1))
-        image[:, 0] += 1112  # Manually chosen values to match the absorption of 650 nm and 800 nm for 78% oxygenated Hb
+        image[
+            :, 0
+        ] += 1112  # Manually chosen values to match the absorption of 650 nm and 800 nm for 78% oxygenated Hb
         image[:, 1] += 804
         wavelengths = np.array([650, 800])
 
-        r = Reconstruction(image, wavelengths,
-                           field_of_view=(1, 1, 1))  # field of view is the width of the image along x, y, z
+        r = Reconstruction(
+            image, wavelengths, field_of_view=(1, 1, 1)
+        )  # field of view is the width of the image along x, y, z
 
         r.attributes["RECONSTRUCTION_FIELD_OF_VIEW_X"] = 1
         r.attributes["RECONSTRUCTION_FIELD_OF_VIEW_Y"] = 1
@@ -46,10 +48,18 @@ class TestUnmixing(unittest.TestCase):
 
         thb_calc = THbCalculator()
         t, _, _ = thb_calc.run(u, pa)
-        self.assertTrue(np.all(pa.get_scan_so2_time_mean().raw_data == np.mean(pa.get_scan_so2().raw_data,
-                                                                               axis=(0, 1))))
-        self.assertTrue(np.all(pa.get_scan_so2_time_standard_deviation().raw_data == np.std(pa.get_scan_so2().raw_data,
-                                                                                            axis=(0, 1))))
+        self.assertTrue(
+            np.all(
+                pa.get_scan_so2_time_mean().raw_data
+                == np.mean(pa.get_scan_so2().raw_data, axis=(0, 1))
+            )
+        )
+        self.assertTrue(
+            np.all(
+                pa.get_scan_so2_time_standard_deviation().raw_data
+                == np.std(pa.get_scan_so2().raw_data, axis=(0, 1))
+            )
+        )
 
         # Get these to do sanity checks - better to implement proper tests in future.
         self.assertIsNone(pa.get_segmentation())

@@ -13,21 +13,29 @@ from ...utils.pipeline import run_pipeline
 
 def init_argparse():
     parser = argparse.ArgumentParser(description="Analyse Gas Challenge Data.")
-    parser.add_argument('input', type=str, help="Data Folder")
-    parser.add_argument('-p', '--prefix', type=str, help="Gas Challenge name prefix")
-    parser.add_argument('-w', '--window', type=int, help="Smoothing window size",
-                        default=10)
-    parser.add_argument('-b', '--buffer', type=int, help="Buffer around changes",
-                        default=5)
-    parser.add_argument('-d', '--display', type=bool, help="Display steps",
-                        default=True)
-    parser.add_argument('-s', '--sigma', type=float, help="Smoothing window sigma",
-                        default=4)
-    parser.add_argument('-g', '--gas', type=lambda x: -1 if "air" == x else 1,
-                        help="The starting gas for the challenge. If air then standard GC, "
-                             "if o2 then it switches from o2->air", default="o2")
-    parser.add_argument('--skipstart', type=int, help="Skip Runs at Start",
-                        default=0)
+    parser.add_argument("input", type=str, help="Data Folder")
+    parser.add_argument("-p", "--prefix", type=str, help="Gas Challenge name prefix")
+    parser.add_argument(
+        "-w", "--window", type=int, help="Smoothing window size", default=10
+    )
+    parser.add_argument(
+        "-b", "--buffer", type=int, help="Buffer around changes", default=5
+    )
+    parser.add_argument(
+        "-d", "--display", type=bool, help="Display steps", default=True
+    )
+    parser.add_argument(
+        "-s", "--sigma", type=float, help="Smoothing window sigma", default=4
+    )
+    parser.add_argument(
+        "-g",
+        "--gas",
+        type=lambda x: -1 if "air" == x else 1,
+        help="The starting gas for the challenge. If air then standard GC, "
+        "if o2 then it switches from o2->air",
+        default="o2",
+    )
+    parser.add_argument("--skipstart", type=int, help="Skip Runs at Start", default=0)
     return parser
 
 
@@ -40,8 +48,10 @@ def main():
 
     if prefix is None:
         prefix = ""
-        print("Hint: You should usually set a prefix for this analysis. Use command line option -p GC for example"
-              "if your scans are labelled with GC in the name.")
+        print(
+            "Hint: You should usually set a prefix for this analysis. Use command line option -p GC for example"
+            "if your scans are labelled with GC in the name."
+        )
 
     for file in sorted(glob.glob(join(data_folder, "*.hdf5")), key=sort_key):
         data = PAData.from_hdf5(file, "r+")
@@ -57,8 +67,9 @@ def main():
             print("Skipped", file, "- no so2.")
             continue
 
-        analyser = GasChallengeAnalyser(args.window, args.display, args.sigma,
-                                        args.skipstart, args.gas, args.buffer)
+        analyser = GasChallengeAnalyser(
+            args.window, args.display, args.sigma, args.skipstart, args.gas, args.buffer
+        )
         try:
             for recon in list(scan_so2s.keys()):
                 so2_data = scan_so2s[recon]
