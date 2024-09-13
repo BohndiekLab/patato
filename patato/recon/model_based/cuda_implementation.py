@@ -1,6 +1,7 @@
 try:
     import cupy as cp
     from cupyx.scipy.sparse import csr_matrix, vstack
+
     cupy_enabled = True
 except ImportError:
     cupy_enabled = False
@@ -20,7 +21,7 @@ def generate_model(det_x, det_y, dl, dx, nx, x_0, nt):
 
     with open(join(directory, "generate_model.cu"), "r") as w:
         cuda_code = w.read()
-    calculate_element = cp.RawKernel(cuda_code, 'calculate_element', jitify=True)
+    calculate_element = cp.RawKernel(cuda_code, "calculate_element", jitify=True)
 
     # TODO: allow non-square reconstruction areas.
     ntpixel = cp.int32(4 * np.sqrt(2) * dx / dl)
@@ -43,14 +44,16 @@ def generate_model(det_x, det_y, dl, dx, nx, x_0, nt):
 
     positions = cp.repeat(cp.arange(nx * nx)[:, None], ntpixel, axis=-1).flatten()
 
-    dl = cp.float64(1.)
+    dl = cp.float64(1.0)
     for detx, dety in zip(det_x, det_y):
         i += 1
         # TODO: optimise the block/grid size below.
-        calculate_element((128,), (128,), (output, indices, nx,
-                                           ntpixel,
-                                           detx, dety, dl, x_0, dx))
-        matrix = csr_matrix((output.flatten(), (indices.flatten(), positions)), shape=(nt, nx * nx))
+        calculate_element(
+            (128,), (128,), (output, indices, nx, ntpixel, detx, dety, dl, x_0, dx)
+        )
+        matrix = csr_matrix(
+            (output.flatten(), (indices.flatten(), positions)), shape=(nt, nx * nx)
+        )
         matrices.append(matrix)
     m = vstack(matrices)
     return m
@@ -59,15 +62,14 @@ def generate_model(det_x, det_y, dl, dx, nx, x_0, nt):
 def get_hash(*x):
     to_hash = []
     for y in x:
-        if type(y) == np.ndarray:
+        if isinstance(y, np.ndarray):
             y = tuple(y.flatten())
         to_hash.append(y)
     h = hash(tuple(to_hash))
     return hex(np.uint64(h))
 
 
-def get_model(det_x, det_y, dl, dx, nx, x_0, nt,
-              cache=True, hash_fn=None):
+def get_model(det_x, det_y, dl, dx, nx, x_0, nt, cache=True, hash_fn=None):
     det_x = det_x.astype(np.float64)
     det_y = det_y.astype(np.float64)
     dl = cp.float64(dl)
@@ -83,11 +85,14 @@ def get_model(det_x, det_y, dl, dx, nx, x_0, nt,
         model_folder = join(dirname(__file__), "models")
         filename = join(model_folder, h + ".npz")
         import scipy.sparse
+
         if exists(filename):
             mat = csr_matrix(scipy.sparse.load_npz(filename))
         else:
             mat = generate_model(det_x, det_y, dl, dx, nx, x_0, nt)
-            scipy.sparse.save_npz(filename, mat.astype(cp.float32).get(), compressed=False)
+            scipy.sparse.save_npz(
+                filename, mat.astype(cp.float32).get(), compressed=False
+            )
         return mat
     else:
         return generate_model(det_x, det_y, dl, dx, nx, x_0, nt)
@@ -95,6 +100,7 @@ def get_model(det_x, det_y, dl, dx, nx, x_0, nt,
 
 def test_forward_model(hash_fn=None):
     import matplotlib.pyplot as plt
+
     dl = cp.float64(1540 / 4e7)
 
     det_thetas = np.linspace(cp.pi / 4, 7 * cp.pi / 4, 256)
@@ -107,13 +113,15 @@ def test_forward_model(hash_fn=None):
     nt = 2030
 
     print("Generating model.")
-    model = get_model(detectors[:, 0], detectors[:, 1], dl, dx, nx, x_0, nt, hash_fn=hash_fn)
+    model = get_model(
+        detectors[:, 0], detectors[:, 1], dl, dx, nx, x_0, nt, hash_fn=hash_fn
+    )
     print("Model generation complete.")
 
     x = cp.linspace(-1, 1, nx, dtype=cp.float32)
     xs, ys = cp.meshgrid(x, x)
 
-    p = 0.5 - (xs ** 2 + ys ** 2)
+    p = 0.5 - (xs**2 + ys**2)
     p[p < 0] = 0
 
     plt.imshow(p.get())

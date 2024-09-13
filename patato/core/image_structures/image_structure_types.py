@@ -16,10 +16,16 @@ if TYPE_CHECKING:
 
 T = TypeVar("T", bound="ImageSequence")
 S = TypeVar("S", bound="ImageSequence")
-IMAGE_DATA_TYPES = {"recons": Reconstruction, "unmixed": UnmixedData,
-                    "so2": SingleParameterData, "thb": SingleParameterData,
-                    "dso2": SingleImage, "dicg": SingleImage,
-                    "baseline_so2_sigma": SingleImage, "baseline_so2": SingleImage,
-                    "baseline_icg_sigma": SingleImage, "baseline_icg": SingleImage,
-                    "ultrasound": Ultrasound
-                    }
+IMAGE_DATA_TYPES = {
+    "recons": Reconstruction,
+    "unmixed": UnmixedData,
+    "so2": SingleParameterData,
+    "thb": SingleParameterData,
+    "dso2": SingleImage,
+    "dicg": SingleImage,
+    "baseline_so2_sigma": SingleImage,
+    "baseline_so2": SingleImage,
+    "baseline_icg_sigma": SingleImage,
+    "baseline_icg": SingleImage,
+    "ultrasound": Ultrasound,
+}

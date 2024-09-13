@@ -1,30 +1,32 @@
 #  Copyright (c) Thomas Else 2023.
 #  License: MIT
 
-from os.path import isfile
 
 import unittest
 import os
 import sys
 
-sys.path.insert(0, os.path.abspath('../'))
+sys.path.insert(0, os.path.abspath("../"))
 
 from coverage import Coverage
 
-cov = Coverage(source=['../patato'], omit=["*test*", "*/convenience_scripts/*", "*/useful_utilities/*"])
+cov = Coverage(
+    source=["../patato"],
+    omit=["*test*", "*/convenience_scripts/*", "*/useful_utilities/*"],
+)
 cov.start()
 
-# noinspection PyPep8
-from test_preprocessing_algorithm import TestPreprocessing
-from test_backprojection import BackprojectionTest
-from test_unmixing import TestUnmixing
-from test_pipelines import TestPipelines
-from test_image_sequence import TestHDF5Load
-from test_ithera import TestITheraImport
-from test_reconstruction_reading import TestJSONLoading
-from test_msot_data import TestMSOTData
-from test_model_based import TestModelBased
-from make_dummy_dataset import make_dummy_dataset
+# flake8: noqa
+from .test_preprocessing_algorithm import TestPreprocessing
+from .test_backprojection import BackprojectionTest
+from .test_unmixing import TestUnmixing
+from .test_pipelines import TestPipelines
+from .test_image_sequence import TestHDF5Load
+from .test_ithera import TestITheraImport
+from .test_reconstruction_reading import TestJSONLoading
+from .test_msot_data import TestMSOTData
+from .test_model_based import TestModelBased
+from .test_make_dummy_dataset import make_dummy_dataset
 
 os.environ["XLA_PYTHON_CLIENT_PREALLOCATE"] = "false"
 

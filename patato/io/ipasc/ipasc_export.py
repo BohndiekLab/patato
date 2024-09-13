@@ -15,9 +15,15 @@ class PatHDF5AdapterToIPASCFormat(pf.BaseAdapter):
         # iThera definition: [frames, wavelengths, detectors, time_series]
         # IPASC definition: [detectors, time_series, wavelength, frames]
         time_series = self.hdf5_file["raw_data"]
-        time_series = np.swapaxes(time_series, 2, 0)  # [detectors, wavelengths, frames, time_series]
-        time_series = np.swapaxes(time_series, 3, 1)  # [detectors, time_series, frames, wavelength]
-        time_series = np.swapaxes(time_series, 3, 2)  # [detectors, time_series, wavelength, frames]
+        time_series = np.swapaxes(
+            time_series, 2, 0
+        )  # [detectors, wavelengths, frames, time_series]
+        time_series = np.swapaxes(
+            time_series, 3, 1
+        )  # [detectors, time_series, frames, wavelength]
+        time_series = np.swapaxes(
+            time_series, 3, 2
+        )  # [detectors, time_series, wavelength, frames]
         return time_series
 
     def generate_meta_data_device(self) -> dict:
@@ -30,14 +36,14 @@ class PatHDF5AdapterToIPASCFormat(pf.BaseAdapter):
 
     def set_metadata_value(self, metadata_tag: MetaDatum) -> object:
         if metadata_tag == pf.MetadataAcquisitionTags.PULSE_ENERGY:
-            return np.asarray(self.hdf5_file['OverallCorrectionFactor'])
+            return np.asarray(self.hdf5_file["OverallCorrectionFactor"])
         if metadata_tag == pf.MetadataAcquisitionTags.TEMPERATURE_CONTROL:
             return np.asarray(self.hdf5_file["TEMPERATURE"])
         if metadata_tag == pf.MetadataAcquisitionTags.MEASUREMENT_SPATIAL_POSES:
             # TODO convert each element into [0, POS, 0, 0, 0, 0]
             orig_shape = self.hdf5_file["Z-POS"]
             poses = []
-            for y_pos in np.asarray(self.hdf5_file["Z-POS"]).reshape((-1, )):
+            for y_pos in np.asarray(self.hdf5_file["Z-POS"]).reshape((-1,)):
                 poses.append([0, y_pos, 0, 0, 0])
 
             return np.asarray(poses).reshape((orig_shape[0], orig_shape[1], -1))

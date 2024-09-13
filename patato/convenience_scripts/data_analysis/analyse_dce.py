@@ -13,21 +13,29 @@ from ...utils.pipeline import run_pipeline
 
 def init_argparse():
     parser = argparse.ArgumentParser(description="Analyse Gas Challenge Data.")
-    parser.add_argument('input', type=str, help="Data Folder")
-    parser.add_argument('-p', '--prefix', type=str, help="Gas Challenge name prefix")
-    parser.add_argument('-w', '--window', type=int, help="Smoothing window size",
-                        default=10)
-    parser.add_argument('-b', '--buffer', type=int, help="Buffer around changes",
-                        default=5)
-    parser.add_argument('-d', '--display', type=bool, help="Display steps",
-                        default=True)
-    parser.add_argument('-s', '--sigma', type=float, help="Smoothing window sigma",
-                        default=4)
-    parser.add_argument('-g', '--gas', type=lambda x: -1 if "air" == x else 1,
-                        help="The starting gas for the challenge. If air then standard GC, "
-                             "if o2 then it switches from o2->air", default="o2")
-    parser.add_argument('--skipstart', type=int, help="Skip Runs at Start",
-                        default=0)
+    parser.add_argument("input", type=str, help="Data Folder")
+    parser.add_argument("-p", "--prefix", type=str, help="Gas Challenge name prefix")
+    parser.add_argument(
+        "-w", "--window", type=int, help="Smoothing window size", default=10
+    )
+    parser.add_argument(
+        "-b", "--buffer", type=int, help="Buffer around changes", default=5
+    )
+    parser.add_argument(
+        "-d", "--display", type=bool, help="Display steps", default=True
+    )
+    parser.add_argument(
+        "-s", "--sigma", type=float, help="Smoothing window sigma", default=4
+    )
+    parser.add_argument(
+        "-g",
+        "--gas",
+        type=lambda x: -1 if "air" == x else 1,
+        help="The starting gas for the challenge. If air then standard GC, "
+        "if o2 then it switches from o2->air",
+        default="o2",
+    )
+    parser.add_argument("--skipstart", type=int, help="Skip Runs at Start", default=0)
     return parser
 
 
@@ -40,7 +48,9 @@ def main():
 
     if prefix is None:
         prefix = ""
-        raise RuntimeWarning("Warning: You should usually set a prefix for this analysis.")
+        raise RuntimeWarning(
+            "Warning: You should usually set a prefix for this analysis."
+        )
 
     for file in sorted(glob.glob(join(data_folder, "*.hdf5")), key=sort_key):
         data = PAData.from_hdf5(file, "r+")

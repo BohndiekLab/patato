@@ -12,10 +12,9 @@ from tabulate import tabulate
 
 def init_argparse():
     parser = argparse.ArgumentParser(description="Look at the status of a data folder.")
-    parser.add_argument('input', type=str, help="Data Folder")
+    parser.add_argument("input", type=str, help="Data Folder")
     parser.add_argument(
-        "-v", "--version", action="version",
-        version=f"{parser.prog} version 0.1"
+        "-v", "--version", action="version", version=f"{parser.prog} version 0.1"
     )
     return parser
 
@@ -39,7 +38,11 @@ def main():
             name = data_file["raw_data"].attrs["name"]
             sos = str(data_file["raw_data"].attrs.get("speedofsound", "NOT SET"))
             if len(names) >= 1:
-                if names[-1].split("-")[0].split("_")[0] != name.split("-")[0].split("_")[0] and names[-1][0] != "=":
+                if (
+                    names[-1].split("-")[0].split("_")[0]
+                    != name.split("-")[0].split("_")[0]
+                    and names[-1][0] != "="
+                ):
                     names.append("==========")
                     cs.append("==========")
                     fnames.append("=========")
@@ -47,4 +50,8 @@ def main():
             fnames.append(fname)
             cs.append(sos)
 
-    print(tabulate(zip(fnames, names, cs), headers=["File Name", "Scan Name", "Speed of Sound"]))
+    print(
+        tabulate(
+            zip(fnames, names, cs), headers=["File Name", "Scan Name", "Speed of Sound"]
+        )
+    )

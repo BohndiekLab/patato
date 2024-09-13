@@ -15,8 +15,9 @@ def run_batch(start_algorithm, input_data, pa_data, start_dict=None):
     # Set up a queue for running datasets, starting with the input data and the first processing algorithm:
     if start_dict is None:
         start_dict = {}
-    run_queue: Deque[Tuple[ProcessingAlgorithm, ProcessingResult, dict]] = deque([(start_algorithm, input_data,
-                                                                                     start_dict)])
+    run_queue: Deque[Tuple[ProcessingAlgorithm, ProcessingResult, dict]] = deque(
+        [(start_algorithm, input_data, start_dict)]
+    )
 
     # List of extracted results.
     results = []
@@ -53,8 +54,15 @@ def run_batch(start_algorithm, input_data, pa_data, start_dict=None):
     return results, additional_results
 
 
-def run_pipeline(start: ProcessingAlgorithm, input_data, pa_data: PAData, n_batch=-1, save_results=True,
-                 output_file=None, **kwargs):
+def run_pipeline(
+    start: ProcessingAlgorithm,
+    input_data,
+    pa_data: PAData,
+    n_batch=-1,
+    save_results=True,
+    output_file=None,
+    **kwargs,
+):
     # Run through the tree that is defined by the start element.
     logging.debug(pa_data.shape)
 
@@ -75,15 +83,19 @@ def run_pipeline(start: ProcessingAlgorithm, input_data, pa_data: PAData, n_batc
 
     for i in range(0, input_data.shape[0], n_batch):
         # Loop through batches and run algorithms.
-        logging.info(f"Running batch {i//n_batch + 1} of {(input_data.shape[0]-1)//n_batch + 1}")
+        logging.info(
+            f"Running batch {i//n_batch + 1} of {(input_data.shape[0]-1)//n_batch + 1}"
+        )
 
         # Get the input datasets:
         end_step = min(input_data.shape[0], i + n_batch)
-        input_data_batch = input_data[i: end_step]
+        input_data_batch = input_data[i:end_step]
         pa_data_batch = pa_data[i:end_step]
 
         # Run the algorithms on the batches.
-        batch_results, batch_additional_results = run_batch(start, input_data_batch, pa_data_batch, start_dict=kwargs)
+        batch_results, batch_additional_results = run_batch(
+            start, input_data_batch, pa_data_batch, start_dict=kwargs
+        )
 
         # Concatenate all the resulting datasets:
         if not results:
@@ -96,7 +108,9 @@ def run_pipeline(start: ProcessingAlgorithm, input_data, pa_data: PAData, n_batc
             if not additional_results:
                 additional_results = batch_additional_results
             else:
-                additional_results = [r + b for r, b in zip(additional_results, batch_additional_results)]
+                additional_results = [
+                    r + b for r, b in zip(additional_results, batch_additional_results)
+                ]
 
     # Get the output data writer
     if output_file is not None:

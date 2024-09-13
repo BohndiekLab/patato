@@ -67,7 +67,9 @@ class HDF5ViewerApp:
         self.file_label.grid(row=0, column=0, columnspan=3, pady=5)
 
         # Create a button to load a folder containing HDF5 files
-        self.load_button = ctk.CTkButton(self.root, text="Load HDF5 Folder", command=self.load_hdf5_folder)
+        self.load_button = ctk.CTkButton(
+            self.root, text="Load HDF5 Folder", command=self.load_hdf5_folder
+        )
         self.load_button.grid(row=1, column=0, columnspan=3, pady=5)
 
         # Create a frame for additional widgets on the left
@@ -81,7 +83,7 @@ class HDF5ViewerApp:
         # Create a listbox to display the list of HDF5 files
         self.file_listbox = Listbox(self.left_frame)
         self.file_listbox.pack(fill=tk.BOTH, expand=True)
-        self.file_listbox.bind('<<ListboxSelect>>', self.load_selected_hdf5_file)
+        self.file_listbox.bind("<<ListboxSelect>>", self.load_selected_hdf5_file)
 
         # Create a frame for Matplotlib and navigation toolbar in the center
         self.middle_frame = ctk.CTkFrame(self.root, width=200)
@@ -96,12 +98,14 @@ class HDF5ViewerApp:
         self.fig, self.ax = plt.subplots(figsize=(400 / dpi, 400 / dpi), dpi=dpi)
 
         # Hack to fix the icon.
-        data = files('patato.convenience_scripts').joinpath('PATATOLogo.png').read_bytes()
+        data = (
+            files("patato.convenience_scripts").joinpath("PATATOLogo.png").read_bytes()
+        )
         icon_image = tk.PhotoImage(data=data)
         self.root.iconphoto(True, icon_image)
 
-        self.fig.set_facecolor((0.,) * 4)
-        self.ax.set_facecolor((0.,) * 4)
+        self.fig.set_facecolor((0.0,) * 4)
+        self.ax.set_facecolor((0.0,) * 4)
         self.ax.axis("off")
         self.canvas = FigureCanvasTkAgg(self.fig, master=self.middle_frame)
         self.fig.subplots_adjust(left=0, right=1, top=1, bottom=0)
@@ -112,24 +116,48 @@ class HDF5ViewerApp:
 
         # Create sliders
         self.slider1_label = ctk.CTkLabel(self.right_frame, text="Frame Number:")
-        self.slider1 = ctk.CTkSlider(self.right_frame, from_=0, to=1, number_of_steps=1,
-                                     command=self.update_slider)
+        self.slider1 = ctk.CTkSlider(
+            self.right_frame,
+            from_=0,
+            to=1,
+            number_of_steps=1,
+            command=self.update_slider,
+        )
         self.slider1.set(0)
         self.slider2_label = ctk.CTkLabel(self.right_frame, text="Wavelength Number:")
-        self.slider2 = ctk.CTkSlider(self.right_frame, from_=0, to=1, number_of_steps=1,
-                                     command=self.update_slider)
+        self.slider2 = ctk.CTkSlider(
+            self.right_frame,
+            from_=0,
+            to=1,
+            number_of_steps=1,
+            command=self.update_slider,
+        )
         self.slider2.set(0)
 
         speed = tk.IntVar(value=1500)
         self.slider3_label = ctk.CTkLabel(self.right_frame, text="Speed of sound (m/s)")
-        self.slider3 = ctk.CTkSlider(self.right_frame, from_=1400, to=1600, number_of_steps=200,
-                                     command=self.update_speed_of_sound, variable=speed)
+        self.slider3 = ctk.CTkSlider(
+            self.right_frame,
+            from_=1400,
+            to=1600,
+            number_of_steps=200,
+            command=self.update_speed_of_sound,
+            variable=speed,
+        )
         self.slider3.set(1500)
 
         self.speed_label = ctk.CTkLabel(self.right_frame, text="1500 m/s")
 
-        self.cbutton = ctk.CTkButton(self.right_frame, text="Save Speed of Sound", command=self.save_speed_of_sound)
-        self.cbutton_all = ctk.CTkButton(self.right_frame, text="Save Speed of Sound to All", command=self.save_all_speed_of_sound)
+        self.cbutton = ctk.CTkButton(
+            self.right_frame,
+            text="Save Speed of Sound",
+            command=self.save_speed_of_sound,
+        )
+        self.cbutton_all = ctk.CTkButton(
+            self.right_frame,
+            text="Save Speed of Sound to All",
+            command=self.save_all_speed_of_sound,
+        )
 
         self.slider1_label.grid(row=1, column=0, padx=5, pady=5)
         self.slider1.grid(row=2, column=0, padx=5, pady=5)
@@ -151,7 +179,8 @@ class HDF5ViewerApp:
     def load_hdf5_folder(self, folder_path=None):
         if folder_path is None:
             folder_path = filedialog.askdirectory(
-                title="Please select a folder containing PATATO HDF5 files to analyse.")
+                title="Please select a folder containing PATATO HDF5 files to analyse."
+            )
         if folder_path:
             # Clear the listbox, the list of HDF5 files, and the list of scan names
             self.file_listbox.delete(0, tk.END)
@@ -163,18 +192,25 @@ class HDF5ViewerApp:
 
             files = glob.glob(os.path.join(folder_path, "**/*.hdf5"), recursive=True)
 
-            for file_path in sorted(files, key=lambda x: PAData.from_hdf5(x).get_scan_datetime()):
+            for file_path in sorted(
+                files, key=lambda x: PAData.from_hdf5(x).get_scan_datetime()
+            ):
                 i += 1
                 if i > 1000:
-                    self.show_error_message("Too many files in the selected folder. Please choose a different "
-                                            "folder.")
+                    self.show_error_message(
+                        "Too many files in the selected folder. Please choose a different "
+                        "folder."
+                    )
                     return
 
                 self.hdf5_files.append(file_path)
 
-                pa_data = PAData.from_hdf5(file_path, 'r')
-                scan_name = shorten(Path(file_path).stem, width=8,
-                                    placeholder="...") + ": " + pa_data.get_scan_name()
+                pa_data = PAData.from_hdf5(file_path, "r")
+                scan_name = (
+                    shorten(Path(file_path).stem, width=8, placeholder="...")
+                    + ": "
+                    + pa_data.get_scan_name()
+                )
 
                 preset = get_default_recon_preset(pa_data)
 
@@ -213,12 +249,17 @@ class HDF5ViewerApp:
         preprocessor = self.pipeline
         reconstructor = self.pipeline.children[0]
 
-        pre_processed, recon_args, _ = preprocessor.run(self.pa_data_selected[i:i+1, j:j+1].get_time_series(),
-                                                        self.pa_data_selected[i:i+1, j:j+1])
+        pre_processed, recon_args, _ = preprocessor.run(
+            self.pa_data_selected[i : i + 1, j : j + 1].get_time_series(),
+            self.pa_data_selected[i : i + 1, j : j + 1],
+        )
 
-        recon_info, _, _ = reconstructor.run(pre_processed,
-                                             self.pa_data_selected[i:i+1, j:j+1],
-                                             speed_of_sound=self.slider3.get(), **recon_args)
+        recon_info, _, _ = reconstructor.run(
+            pre_processed,
+            self.pa_data_selected[i : i + 1, j : j + 1],
+            speed_of_sound=self.slider3.get(),
+            **recon_args,
+        )
         try:
             recon_info.imshow(ax=self.ax)
         except Exception as e:
@@ -241,7 +282,9 @@ class HDF5ViewerApp:
 
                 if pa_data.get_speed_of_sound():
                     self.slider3.set(pa_data.get_speed_of_sound())
-                    self.speed_label.configure(text=f"{pa_data.get_speed_of_sound()} m/s")
+                    self.speed_label.configure(
+                        text=f"{pa_data.get_speed_of_sound()} m/s"
+                    )
 
                 # Update the frame and wavelength sliders.
                 s = pa_data.shape
@@ -262,6 +305,7 @@ class HDF5ViewerApp:
                 self.update_image()
             except Exception as e:
                 import traceback
+
                 self.show_error_message(f"Error loading HDF5 file: {str(e)}")
                 traceback.print_exception(type(e), e, e.__traceback__)
 
@@ -284,8 +328,8 @@ def main():
     ctk.set_appearance_mode("system")
     ctk.set_default_color_theme("dark-blue")
     ctk.DrawEngine.preferred_drawing_method = "circle_shapes"
-    root = ctk.CTk(className='PATATO', baseName="PATATO")
-    data = files('patato.convenience_scripts').joinpath('PATATOLogo.png').read_bytes()
+    root = ctk.CTk(className="PATATO", baseName="PATATO")
+    data = files("patato.convenience_scripts").joinpath("PATATOLogo.png").read_bytes()
     icon_image = tk.PhotoImage(data=data)
     # Set the icon for the main window
     root.iconphoto(True, icon_image)
@@ -295,7 +339,9 @@ def main():
     root.protocol("WM_DELETE_WINDOW", lambda: (root.quit(), root.destroy()))
     root.update()
 
-    answer = messagebox.askokcancel("Info", "Please choose a folder containing PATATO HDF5 files to analyse.")
+    answer = messagebox.askokcancel(
+        "Info", "Please choose a folder containing PATATO HDF5 files to analyse."
+    )
     if not answer:
         root.quit()
         root.destroy()

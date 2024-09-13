@@ -15,6 +15,7 @@ import matplotlib
 
 def split_roi_left_right(data: "PAData", base_roi="", split_template="unnamed"):
     from .rois.roi_type import ROI
+
     # Initial implementation - only supports one "dividing" roi.
     data_rois = data.get_rois()
 
@@ -54,17 +55,31 @@ def split_roi_left_right(data: "PAData", base_roi="", split_template="unnamed"):
             repetition = roi.repetition
             roi_class = roi.roi_class
 
-            roi_a = ROI(region_a, z_position, run, repetition, roi_class,
-                        names[0])
-            roi_b = ROI(region_b, z_position, run, repetition, roi_class,
-                        names[1])
+            roi_a = ROI(region_a, z_position, run, repetition, roi_class, names[0])
+            roi_b = ROI(region_b, z_position, run, repetition, roi_class, names[1])
             output.append(roi_a)
             output.append(roi_b)
     return output
 
 
-ROI_NAMES = ["brain", "body", "reference", "aorta", "tumour", "background", "artery",
-             "vein", "muscle", "phantom", "unnamed", "kidney", "spleen", "spine", "skin", "fat"]
+ROI_NAMES = [
+    "brain",
+    "body",
+    "reference",
+    "aorta",
+    "tumour",
+    "background",
+    "artery",
+    "vein",
+    "muscle",
+    "phantom",
+    "unnamed",
+    "kidney",
+    "spleen",
+    "spine",
+    "skin",
+    "fat",
+]
 
 REGION_COLOURS = matplotlib.cm.hsv(np.linspace(0, 1, len(ROI_NAMES)))
 
@@ -79,6 +94,7 @@ def close_loop(x):
 
 def get_rim_core_rois(roi_data: "ROI", distance: float, radius=False):
     from ..io.msot_data import ROI
+
     roi = roi_data.get_polygon()
     if radius:
         effective_radius = np.sqrt(roi.area / np.pi)
@@ -87,13 +103,31 @@ def get_rim_core_rois(roi_data: "ROI", distance: float, radius=False):
 
     roi_buffer = roi.buffer(-distance)
 
-    core_roi = ROI(roi_buffer, roi_data.z, roi_data.run, roi_data.repetition, roi_data.roi_class + ".core",
-                   roi_data.position, generated=True, ax0_index=roi_data.ax0_index)
-    rim_roi = ROI(roi - roi_buffer, roi_data.z, roi_data.run, roi_data.repetition, roi_data.roi_class + ".rim",
-                  roi_data.position, generated=True, ax0_index=roi_data.ax0_index)
+    core_roi = ROI(
+        roi_buffer,
+        roi_data.z,
+        roi_data.run,
+        roi_data.repetition,
+        roi_data.roi_class + ".core",
+        roi_data.position,
+        generated=True,
+        ax0_index=roi_data.ax0_index,
+    )
+    rim_roi = ROI(
+        roi - roi_buffer,
+        roi_data.z,
+        roi_data.run,
+        roi_data.repetition,
+        roi_data.roi_class + ".rim",
+        roi_data.position,
+        generated=True,
+        ax0_index=roi_data.ax0_index,
+    )
     return core_roi, rim_roi
 
 
-def add_rim_core_data(data: "PAData", base_roi: Tuple[str, str], distance: float, radius=False):
+def add_rim_core_data(
+    data: "PAData", base_roi: Tuple[str, str], distance: float, radius=False
+):
     roi_data: "ROI" = data.get_rois()[base_roi]
     return get_rim_core_rois(roi_data, distance, radius)

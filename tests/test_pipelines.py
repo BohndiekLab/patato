@@ -29,12 +29,16 @@ class TestPipelines(unittest.TestCase):
 
         preproc = PreProcessor(time_factor=3, detector_factor=2)
         reconstructor = ReferenceBackprojection([333, 1, 333], [0.025, 1, 0.025])
-        unmixer = SpectralUnmixer([OxyHaemoglobin(), Haemoglobin()], pa.get_wavelengths())
+        unmixer = SpectralUnmixer(
+            [OxyHaemoglobin(), Haemoglobin()], pa.get_wavelengths()
+        )
 
         preproc.add_child(reconstructor)
         reconstructor.add_child(unmixer)
 
-        results, additional_results = run_pipeline(preproc, pa.get_time_series(), pa, n_batch=-1, save_results=False)
+        results, additional_results = run_pipeline(
+            preproc, pa.get_time_series(), pa, n_batch=-1, save_results=False
+        )
 
         self.assertEqual(len(additional_results), 0)
         self.assertEqual(type(results[0]), Reconstruction)

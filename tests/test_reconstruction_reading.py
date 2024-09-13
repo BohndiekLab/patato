@@ -13,18 +13,24 @@ from patato.processing.gpu_preprocessing_algorithm import GPUMSOTPreProcessor
 class TestJSONLoading(unittest.TestCase):
     def test_load_recon_preset(self):
         folder, _ = split(__file__)
-        pipeline = read_reconstruction_preset(join(folder,
-                                                   "../patato/recon/recon_presets/backproject_standard_xz.json"))
+        pipeline = read_reconstruction_preset(
+            join(folder, "../patato/recon/recon_presets/backproject_standard_xz.json")
+        )
 
-        self.assertIn(type(pipeline), [PreProcessor, NumpyPreProcessor, GPUMSOTPreProcessor])
+        self.assertIn(
+            type(pipeline), [PreProcessor, NumpyPreProcessor, GPUMSOTPreProcessor]
+        )
 
     def test_load_unmixed_preset(self):
         folder, _ = split(__file__)
-        pipeline = read_unmixing_preset(join(folder, "../patato/unmixing/unmix_presets/haemoglobin.json"), None,
-                                        WAVELENGTHS=[700, 900])
+        pipeline = read_unmixing_preset(
+            join(folder, "../patato/unmixing/unmix_presets/haemoglobin.json"),
+            None,
+            WAVELENGTHS=[700, 900],
+        )
 
         self.assertEqual(type(pipeline), SpectralUnmixer)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

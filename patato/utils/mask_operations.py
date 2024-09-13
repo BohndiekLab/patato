@@ -15,7 +15,8 @@ import numpy as np
 def to_binary_mask(vertices, min_x, max_x, nx, min_y, max_y, ny):
     from matplotlib import path
     from shapely.geometry import Polygon, Point, MultiPolygon
-    if type(vertices) == np.ndarray or type(vertices) == list:
+
+    if isinstance(vertices, (np.ndarray, list)):
         vert_path = path.Path(vertices, closed=False)
     else:
         vert_path = vertices
@@ -23,9 +24,9 @@ def to_binary_mask(vertices, min_x, max_x, nx, min_y, max_y, ny):
     ys = np.linspace(min_y, max_y, ny)
     X, Y = np.meshgrid(xs, ys)
     points = np.array([X.flatten(), Y.flatten()]).T
-    if type(vert_path) in [Polygon, MultiPolygon]:
+    if isinstance(vert_path, (Polygon, MultiPolygon)):
         points = [Point(r) for r in points]
-        mask = np.array([vert_path.contains(r) for r in points])#.reshape(X.shape)
+        mask = np.array([vert_path.contains(r) for r in points])  # .reshape(X.shape)
     else:
         mask = vert_path.contains_points(points)
     return mask.reshape(X.shape)
@@ -33,18 +34,31 @@ def to_binary_mask(vertices, min_x, max_x, nx, min_y, max_y, ny):
 
 def get_polygon_mask(p, fov_x, fov_y, nx, ny):
     from shapely.geometry import Polygon, MultiPolygon
-    if type(fov_x) not in [list, tuple, np.ndarray]:
-        fov_x = [-fov_x/2, fov_x/2]
-        fov_y = [-fov_y/2, fov_y/2]
-    if type(p) == Polygon:
-        mask = to_binary_mask(np.array(p.exterior.coords.xy).T, fov_x[0], fov_x[1], nx,
-                              fov_y[0], fov_y[1],
-                              ny)
+
+    if not isinstance(fov_x, (list, tuple, np.ndarray)):
+        fov_x = [-fov_x / 2, fov_x / 2]
+        fov_y = [-fov_y / 2, fov_y / 2]
+    if isinstance(p, Polygon):
+        mask = to_binary_mask(
+            np.array(p.exterior.coords.xy).T,
+            fov_x[0],
+            fov_x[1],
+            nx,
+            fov_y[0],
+            fov_y[1],
+            ny,
+        )
         for interior in p.interiors:
-            mask &= ~to_binary_mask(np.array(interior.coords.xy).T, fov_x[0], fov_x[1], nx,
-                                    fov_y[0], fov_y[1],
-                                    ny)
-    elif type(p) == MultiPolygon:
+            mask &= ~to_binary_mask(
+                np.array(interior.coords.xy).T,
+                fov_x[0],
+                fov_x[1],
+                nx,
+                fov_y[0],
+                fov_y[1],
+                ny,
+            )
+    elif isinstance(p, MultiPolygon):
         geoms = list(p.geoms)
         mask = get_polygon_mask(geoms[0], fov_x, fov_y, nx, ny)
         for g in geoms[1:]:
@@ -57,14 +71,15 @@ def get_polygon_mask(p, fov_x, fov_y, nx, ny):
 
 def generate_mask(vertices, fov_x, nx, fov_y=None, ny=None):
     from shapely.geometry import Polygon, MultiPolygon
+
     if fov_y is None:
         fov_y = fov_x
     if ny is None:
         ny = nx
-    if type(fov_x) not in [list, tuple, np.ndarray]:
-        fov_x = [-fov_x/2, fov_x/2]
-        fov_y = [-fov_y/2, fov_y/2]
-    if type(vertices) in [Polygon, MultiPolygon]:
+    if not isinstance(fov_x, (list, tuple, np.ndarray)):
+        fov_x = [-fov_x / 2, fov_x / 2]
+        fov_y = [-fov_y / 2, fov_y / 2]
+    if isinstance(vertices, (Polygon, MultiPolygon)):
         mask = get_polygon_mask(vertices, fov_x, fov_y, nx, ny)
     else:
         mask = to_binary_mask(vertices, fov_x[0], fov_x[1], nx, fov_y[0], fov_y[1], ny)
@@ -75,8 +90,13 @@ def generate_mask(vertices, fov_x, nx, fov_y=None, ny=None):
 def interpolate_rois(rois: List["ROI"], z_positions):
     if len(rois) <= 1 or all([rois[0].z == r.z for r in rois]):
         return []
-    from itk import MorphologicalContourInterpolator, image_view_from_array, array_view_from_image
+    from itk import (
+        MorphologicalContourInterpolator,
+        image_view_from_array,
+        array_view_from_image,
+    )
     from .rois.roi_type import ROI
+
     buffer = 10
 
     indices = [r.ax0_index[0] for r in rois]
@@ -84,7 +104,7 @@ def interpolate_rois(rois: List["ROI"], z_positions):
     min_index = min(indices)
     max_index = max(indices)
 
-    zs = z_positions[min_index:max_index + 1, 0]
+    zs = z_positions[min_index : max_index + 1, 0]
     points = [r.points for r in rois]
     x_0 = np.min([np.min(p, axis=0) for p in points], axis=0)
     x_1 = np.max([np.max(p, axis=0) for p in points], axis=0)
@@ -98,14 +118,19 @@ def interpolate_rois(rois: List["ROI"], z_positions):
     mask = np.zeros((zs.shape[0], nx[1], nx[0]), np.uint16)
 
     for r, p in zip(rois, points):
-        mask[r.ax0_index - min_index] = to_binary_mask(p, minx[0], maxx[0], nx[0],
-                                                       minx[1], maxx[1], nx[1])
+        mask[r.ax0_index - min_index] = to_binary_mask(
+            p, minx[0], maxx[0], nx[0], minx[1], maxx[1], nx[1]
+        )
     mask = mask
     im = image_view_from_array(mask)
     interp = MorphologicalContourInterpolator(im)
     np_view = array_view_from_image(interp)
     import cv2 as cv
-    shape = [np.squeeze(cv.findContours(i, 1, 2)[0][0].astype(float)) for i in np_view.astype(np.uint8)]
+
+    shape = [
+        np.squeeze(cv.findContours(i, 1, 2)[0][0].astype(float))
+        for i in np_view.astype(np.uint8)
+    ]
 
     paths = []
     for j, s in enumerate(shape):
@@ -117,8 +142,17 @@ def interpolate_rois(rois: List["ROI"], z_positions):
             y *= -dx
             x += x_0[0] - 10.5 * dx
             y = -x_0[1] - y - nx[1] * dx + 10.5 * dx
-            paths.append(ROI(np.array([x, -y]).T, zs[j], rois[0].run,
-                             rois[0].repetition, rois[0].roi_class + "~interpolated",
-                             rois[0].position, rois[0].generated, [i]))
+            paths.append(
+                ROI(
+                    np.array([x, -y]).T,
+                    zs[j],
+                    rois[0].run,
+                    rois[0].repetition,
+                    rois[0].roi_class + "~interpolated",
+                    rois[0].position,
+                    rois[0].generated,
+                    [i],
+                )
+            )
 
     return paths

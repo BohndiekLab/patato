@@ -87,7 +87,9 @@ class HDF5ViewerApp:
         self.file_label.grid(row=0, column=0, columnspan=3, pady=5)
 
         # Create a button to load a folder containing HDF5 files
-        self.load_button = ctk.CTkButton(self.root, text="Load HDF5 Folder", command=self.load_hdf5_folder)
+        self.load_button = ctk.CTkButton(
+            self.root, text="Load HDF5 Folder", command=self.load_hdf5_folder
+        )
         self.load_button.grid(row=1, column=0, columnspan=3, pady=5)
 
         # Create a frame for additional widgets on the left
@@ -101,7 +103,7 @@ class HDF5ViewerApp:
         # Create a listbox to display the list of HDF5 files
         self.file_listbox = Listbox(self.left_frame)
         self.file_listbox.pack(fill=tk.BOTH, expand=True)
-        self.file_listbox.bind('<<ListboxSelect>>', self.load_selected_hdf5_file)
+        self.file_listbox.bind("<<ListboxSelect>>", self.load_selected_hdf5_file)
 
         # Create a frame for Matplotlib and navigation toolbar in the center
         self.middle_frame = ctk.CTkFrame(self.root, width=200)
@@ -116,12 +118,14 @@ class HDF5ViewerApp:
         self.fig, self.ax = plt.subplots(figsize=(400 / dpi, 400 / dpi), dpi=dpi)
 
         # Hack to fix the icon.
-        data = files('patato.convenience_scripts').joinpath('PATATOLogo.png').read_bytes()
+        data = (
+            files("patato.convenience_scripts").joinpath("PATATOLogo.png").read_bytes()
+        )
         icon_image = tk.PhotoImage(data=data)
         self.root.iconphoto(True, icon_image)
 
-        self.fig.set_facecolor((0.,) * 4)
-        self.ax.set_facecolor((0.,) * 4)
+        self.fig.set_facecolor((0.0,) * 4)
+        self.ax.set_facecolor((0.0,) * 4)
         self.ax.axis("off")
         self.canvas = FigureCanvasTkAgg(self.fig, master=self.middle_frame)
         self.fig.subplots_adjust(left=0, right=1, top=1, bottom=0)
@@ -132,35 +136,69 @@ class HDF5ViewerApp:
 
         # Create sliders
         self.slider1_label = ctk.CTkLabel(self.right_frame, text="Frame Number:")
-        self.slider1 = ctk.CTkSlider(self.right_frame, from_=0, to=1, number_of_steps=1, command=self.update_slider)
+        self.slider1 = ctk.CTkSlider(
+            self.right_frame,
+            from_=0,
+            to=1,
+            number_of_steps=1,
+            command=self.update_slider,
+        )
         self.slider1.set(0)
         self.slider2_label = ctk.CTkLabel(self.right_frame, text="Wavelength Number:")
-        self.slider2 = ctk.CTkSlider(self.right_frame, from_=0, to=1, number_of_steps=1, command=self.update_slider)
+        self.slider2 = ctk.CTkSlider(
+            self.right_frame,
+            from_=0,
+            to=1,
+            number_of_steps=1,
+            command=self.update_slider,
+        )
         self.slider2.set(0)
 
         # Create buttons
-        self.button1 = ctk.CTkButton(self.right_frame, text="Draw ROI", command=self.callback_button1)
-        self.button2 = ctk.CTkButton(self.right_frame, text="Save ROI", command=self.callback_button2, state="disabled")
-        self.button3 = ctk.CTkButton(self.right_frame, text="Delete ROI",
-                                     command=self.callback_button3, state="disabled")
-        self.button4 = ctk.CTkButton(self.right_frame, text="Rename ROI",
-                                     command=self.callback_button4, state="disabled")
+        self.button1 = ctk.CTkButton(
+            self.right_frame, text="Draw ROI", command=self.callback_button1
+        )
+        self.button2 = ctk.CTkButton(
+            self.right_frame,
+            text="Save ROI",
+            command=self.callback_button2,
+            state="disabled",
+        )
+        self.button3 = ctk.CTkButton(
+            self.right_frame,
+            text="Delete ROI",
+            command=self.callback_button3,
+            state="disabled",
+        )
+        self.button4 = ctk.CTkButton(
+            self.right_frame,
+            text="Rename ROI",
+            command=self.callback_button4,
+            state="disabled",
+        )
 
         # Create a listbox for "roi" items
         self.roi_listbox = Listbox(self.right_frame, selectmode=tk.SINGLE)
 
-        self.roi_listbox.bind('<FocusOut>', self.roi_listbox_focusout)
-        self.roi_listbox.bind('<<ListboxSelect>>', self.roi_listbox_focusin)
+        self.roi_listbox.bind("<FocusOut>", self.roi_listbox_focusout)
+        self.roi_listbox.bind("<<ListboxSelect>>", self.roi_listbox_focusin)
 
         # Create a reconstruction methods dropdown
-        self.recon_dropdown = ctk.CTkOptionMenu(self.right_frame, values=["Reconstruction Methods"],
-                                                command=self.change_reconstruction)
+        self.recon_dropdown = ctk.CTkOptionMenu(
+            self.right_frame,
+            values=["Reconstruction Methods"],
+            command=self.change_reconstruction,
+        )
 
         # Create a dropdown box with a button
-        self.dropdown_label = ctk.CTkLabel(self.right_frame, text="Select ROI Name and Position:")
+        self.dropdown_label = ctk.CTkLabel(
+            self.right_frame, text="Select ROI Name and Position:"
+        )
         self.roi_listbox_label = ctk.CTkLabel(self.right_frame, text="Existing ROIs:")
         self.roi_name_dropdown = ctk.CTkOptionMenu(self.right_frame, values=ROI_NAMES)
-        self.roi_position_dropdown = ctk.CTkOptionMenu(self.right_frame, values=POSITIONS)
+        self.roi_position_dropdown = ctk.CTkOptionMenu(
+            self.right_frame, values=POSITIONS
+        )
 
         # Place widgets using grid layout
         self.roi_listbox_label.grid(row=0, column=0, padx=5, pady=5)
@@ -191,7 +229,8 @@ class HDF5ViewerApp:
     def load_hdf5_folder(self, folder_path=None):
         if folder_path is None:
             folder_path = filedialog.askdirectory(
-                title="Please select a folder containing PATATO HDF5 files to analyse.")
+                title="Please select a folder containing PATATO HDF5 files to analyse."
+            )
         if folder_path:
             # Clear the listbox, the list of HDF5 files, and the list of scan names
             self.file_listbox.delete(0, tk.END)
@@ -203,18 +242,25 @@ class HDF5ViewerApp:
 
             files = glob.glob(os.path.join(folder_path, "**/*.hdf5"), recursive=True)
 
-            for file_path in sorted(files, key=lambda x: PAData.from_hdf5(x).get_scan_datetime()):
+            for file_path in sorted(
+                files, key=lambda x: PAData.from_hdf5(x).get_scan_datetime()
+            ):
                 i += 1
                 if i > 1000:
-                    self.show_error_message("Too many files in the selected folder. Please choose a different "
-                                            "folder.")
+                    self.show_error_message(
+                        "Too many files in the selected folder. Please choose a different "
+                        "folder."
+                    )
                     return
 
                 self.hdf5_files.append(file_path)
 
-                pa_data = PAData.from_hdf5(file_path, 'r')
-                scan_name = shorten(Path(file_path).stem, width=8,
-                                    placeholder="...") + ": " + pa_data.get_scan_name()
+                pa_data = PAData.from_hdf5(file_path, "r")
+                scan_name = (
+                    shorten(Path(file_path).stem, width=8, placeholder="...")
+                    + ": "
+                    + pa_data.get_scan_name()
+                )
 
                 self.scan_names.append(scan_name)
                 self.file_listbox.insert(tk.END, scan_name)
@@ -245,7 +291,9 @@ class HDF5ViewerApp:
         if recon_method == "Ultrasound":
             recon = self.pa_data_selected.get_ultrasound()
         else:
-            recon = self.pa_data_selected.get_scan_reconstructions()[self.recon_map[recon_method]]
+            recon = self.pa_data_selected.get_scan_reconstructions()[
+                self.recon_map[recon_method]
+            ]
         recon = recon[i, j]
         recon.imshow(ax=self.ax)
 
@@ -259,9 +307,17 @@ class HDF5ViewerApp:
             draw_all_rois = False  # Update this to a check-box
             clinical = self.pa_data_selected.is_clinical()
             frame_type = "z" if not clinical else "repetition"
-            match_frames = self.pa_data_selected.get_z_positions() if not clinical else self.pa_data_selected.get_repetition_numbers()
-            if np.isclose(match_frames[i, j],
-                          rois[r, n].attributes.get(frame_type, 1.0)) or draw_all_rois:
+            match_frames = (
+                self.pa_data_selected.get_z_positions()
+                if not clinical
+                else self.pa_data_selected.get_repetition_numbers()
+            )
+            if (
+                np.isclose(
+                    match_frames[i, j], rois[r, n].attributes.get(frame_type, 1.0)
+                )
+                or draw_all_rois
+            ):
                 colour = "C0"
                 for k, c in zip(ROI_NAMES, REGION_COLOURS):
                     if k in r:
@@ -270,9 +326,15 @@ class HDF5ViewerApp:
                 roi_points = rois[r, n].points
                 roi_close = close_loop(roi_points)
                 # TODO: Control the slice through the image to draw.
-                roi_plot = self.ax.plot(roi_close[:, 0], roi_close[:, 1], picker=True,
-                                        label=r + "/" + n, c=colour, scalex=False,
-                                        scaley=False)
+                roi_plot = self.ax.plot(
+                    roi_close[:, 0],
+                    roi_close[:, 1],
+                    picker=True,
+                    label=r + "/" + n,
+                    c=colour,
+                    scalex=False,
+                    scaley=False,
+                )
             else:
                 roi_plot = None
             self.regions[r, n] = roi_plot
@@ -294,7 +356,10 @@ class HDF5ViewerApp:
                 pa_data = PAData.from_hdf5(file_path, "r+")
                 self.pa_data_selected = pa_data
 
-                self.recon_map = {r_name[0] + f"({r_name[1]})": r_name for r_name in pa_data.get_scan_reconstructions()}
+                self.recon_map = {
+                    r_name[0] + f"({r_name[1]})": r_name
+                    for r_name in pa_data.get_scan_reconstructions()
+                }
                 recon_methods = list(self.recon_map.keys())
                 if pa_data.get_ultrasound():
                     recon_methods.append("Ultrasound")
@@ -309,13 +374,21 @@ class HDF5ViewerApp:
                     recon = recon[list(recon.keys())[0]]
 
                     # Update the frame and wavelength sliders.
-                    self.slider1.configure(from_=0, to=recon.shape[0] - 1, number_of_steps=recon.shape[0] - 1)
+                    self.slider1.configure(
+                        from_=0,
+                        to=recon.shape[0] - 1,
+                        number_of_steps=recon.shape[0] - 1,
+                    )
                     if recon.shape[0] == 1:
                         self.slider1.configure(state="disabled")
                     else:
                         self.slider1.set(0)
                         self.slider1.configure(state="normal")
-                    self.slider2.configure(from_=0, to=recon.shape[1] - 1, number_of_steps=recon.shape[1] - 1)
+                    self.slider2.configure(
+                        from_=0,
+                        to=recon.shape[1] - 1,
+                        number_of_steps=recon.shape[1] - 1,
+                    )
                     if recon.shape[1] == 1:
                         self.slider2.configure(state="disabled")
                     else:
@@ -326,9 +399,10 @@ class HDF5ViewerApp:
                     # Populate the ROI listbox with items from the 'roi' group
                     self.update_image()
                 else:
-                    self.show_error_message(f"No reconstructions available.")
+                    self.show_error_message("No reconstructions available.")
             except Exception as e:
                 import traceback
+
                 self.show_error_message(f"Error loading HDF5 file: {str(e)}")
                 traceback.print_exception(type(e), e, e.__traceback__)
 
@@ -354,9 +428,7 @@ class HDF5ViewerApp:
         self.roi_listbox_focusout(None)
 
     def toggle_drawing(self):
-        widgets = [self.load_button,
-                   self.roi_listbox, self.file_listbox
-                   ]
+        widgets = [self.load_button, self.roi_listbox, self.file_listbox]
         widgets_opposite = [self.button2]
         if self.drawing:
             for w in widgets:
@@ -383,10 +455,9 @@ class HDF5ViewerApp:
         self.roi_listbox_focusout(None)
         self.toggle_drawing()
         if self.drawing:
-            self.polygon_selector = PolygonSelector(self.ax,
-                                                    self.poly_onselect,
-                                                    props=dict(color="r")
-                                                    )
+            self.polygon_selector = PolygonSelector(
+                self.ax, self.poly_onselect, props=dict(color="r")
+            )
         else:
             self.polygon_selector.set_visible(False)
             self.polygon_selector = None
@@ -400,7 +471,9 @@ class HDF5ViewerApp:
         repetition = self.pa_data_selected.get_repetition_numbers()[i, j]
         roi_name = self.roi_name_dropdown.get()
         roi_position = self.roi_position_dropdown.get()
-        self.pa_data_selected.add_roi(ROI(self.new_roi_vertices, z, run, repetition, roi_name, roi_position))
+        self.pa_data_selected.add_roi(
+            ROI(self.new_roi_vertices, z, run, repetition, roi_name, roi_position)
+        )
         self.update_image()
         # Disable drawing at the end
         self.callback_button1()
@@ -409,7 +482,9 @@ class HDF5ViewerApp:
         sel = self.roi_listbox.curselection()
         answer = False
         if sel:
-            answer = messagebox.askyesno("Question", "Are you sure you want to delete this ROI?")
+            answer = messagebox.askyesno(
+                "Question", "Are you sure you want to delete this ROI?"
+            )
         if answer and sel:
             self.pa_data_selected.delete_rois(*self.region_names[sel[0]])
         self.button3.configure(state="disabled")
@@ -421,11 +496,15 @@ class HDF5ViewerApp:
         sel = self.roi_listbox.curselection()
         answer = False
         if sel:
-            answer = messagebox.askyesno("Question", "Are you sure you want to rename this ROI?")
+            answer = messagebox.askyesno(
+                "Question", "Are you sure you want to rename this ROI?"
+            )
         if answer and sel:
             roi_name = self.roi_name_dropdown.get()
             roi_position = self.roi_position_dropdown.get()
-            self.pa_data_selected.rename_roi(self.region_names[sel[0]], roi_name, roi_position)
+            self.pa_data_selected.rename_roi(
+                self.region_names[sel[0]], roi_name, roi_position
+            )
         self.button3.configure(state="disabled")
         self.button4.configure(state="disabled")
         self.update_image()
@@ -437,8 +516,8 @@ def main():
     ctk.set_appearance_mode("system")
     ctk.set_default_color_theme("dark-blue")
     ctk.DrawEngine.preferred_drawing_method = "circle_shapes"
-    root = ctk.CTk(className='PATATO', baseName="PATATO")
-    data = files('patato.convenience_scripts').joinpath('PATATOLogo.png').read_bytes()
+    root = ctk.CTk(className="PATATO", baseName="PATATO")
+    data = files("patato.convenience_scripts").joinpath("PATATOLogo.png").read_bytes()
     icon_image = tk.PhotoImage(data=data)
     # Set the icon for the main window
     root.iconphoto(True, icon_image)
@@ -448,7 +527,9 @@ def main():
     root.protocol("WM_DELETE_WINDOW", lambda: (root.quit(), root.destroy()))
     root.update()
 
-    answer = messagebox.askokcancel("Info", "Please choose a folder containing PATATO HDF5 files to analyse.")
+    answer = messagebox.askokcancel(
+        "Info", "Please choose a folder containing PATATO HDF5 files to analyse."
+    )
     if not answer:
         root.quit()
         root.destroy()
