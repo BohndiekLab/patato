@@ -18,7 +18,7 @@ cov.start()
 
 # flake8: noqa
 from test_preprocessing_algorithm import TestPreprocessing
-from test_backprojection import BackprojectionTest
+from test_backprojection import TestBackprojection
 from test_unmixing import TestUnmixing
 from test_pipelines import TestPipelines
 from test_image_sequence import TestHDF5Load
@@ -36,7 +36,7 @@ alltests = unittest.TestSuite()
 alltests.addTest(unittest.makeSuite(TestMSOTData))
 alltests.addTest(unittest.makeSuite(TestPreprocessing))
 alltests.addTest(unittest.makeSuite(TestITheraImport))
-alltests.addTest(unittest.makeSuite(BackprojectionTest))
+alltests.addTest(unittest.makeSuite(TestBackprojection))
 alltests.addTest(unittest.makeSuite(TestUnmixing))
 alltests.addTest(unittest.makeSuite(TestPipelines))
 alltests.addTest(unittest.makeSuite(TestHDF5Load))
