@@ -30,7 +30,7 @@ def read_reconstruction_preset(json_path: Union[str, dict]):
         The parsed reconstruction preset as a pipeline element.
     """
     # Load json
-    if type(json_path) == str:
+    if isinstance(json_path, str):
         with open(json_path) as json_file:
             settings = json.load(json_file)
     else:
@@ -130,7 +130,7 @@ def read_unmixing_preset(
         The parsed unmixing preset as a pipeline element.
     """
     # Load json
-    if type(json_path) == str:
+    if isinstance(json_path, str):
         with open(json_path) as json_file:
             settings = json.load(json_file)
     else:

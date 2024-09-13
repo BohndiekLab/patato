@@ -1,7 +1,5 @@
 #  Copyright (c) Thomas Else 2023.
 #  License: MIT
-from typing import Sequence
-
 import numpy as np
 
 from .. import ReconstructionAlgorithm

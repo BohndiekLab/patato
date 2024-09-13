@@ -16,10 +16,13 @@ from .. import ReconstructionAlgorithm
 from ...core.image_structures.pa_time_data import PATimeSeries
 from ... import PAData
 
-try:
-    cuda_enabled = True
+from importlib.util import find_spec
+
+if find_spec("cupy") is not None:
     import cupy as cp
-except:
+
+    cuda_enabled = True
+else:
     cuda_enabled = False
 
 

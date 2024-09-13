@@ -169,7 +169,7 @@ class DataSequence(ProcessingResult, ABC):
             ax = plt.gca()
 
         if roi_mask is not None:
-            if type(roi_mask) is not ROI:
+            if not isinstance(roi_mask, ROI):
                 try:
                     mask, image_slice = roi_mask[0].to_mask_slice(self)
                     image_slice = image_slice.to_2d()
@@ -269,7 +269,7 @@ class DataSequence(ProcessingResult, ABC):
     @property
     def raw_data(self):
         # TODO: check if this has side effects in future. Previously, this said if type(self.da.data) == Array:
-        if type(self.da.variable._data) == DaskArray:
+        if isinstance(self.da.variable._data, DaskArray):
             return np.array(self.da.data)
         else:
             return self.da.variable._data
@@ -397,7 +397,7 @@ class ImageSequence(DataSequence):
         if field_of_view is None:
             field_of_view = [1, 1, 1]
 
-        if type(field_of_view[0]) not in [tuple, list, np.ndarray]:
+        if not isinstance(field_of_view[0], (tuple, list, np.ndarray)):
             field_of_view = [
                 (-x / 2, x / 2) if x is not None else (0, 0) for x in field_of_view
             ]

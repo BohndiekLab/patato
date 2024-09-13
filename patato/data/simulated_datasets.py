@@ -3,6 +3,7 @@
 
 
 import numpy as np
+from importlib.util import find_spec
 
 
 def get_basic_p0(nx=333, dx=75e-6, r=0.005):
@@ -42,12 +43,11 @@ def generate_basic_model(ndet=256):
     -------
     tuple of array_like, array_like
     """
-    try:
-        import cupy as cp
+    if find_spec("cupy") is not None:
         from ..recon.model_based.cuda_implementation import get_model
 
         CUDA_ENABLED = True
-    except ImportError:
+    else:
         from ..recon.model_based.numpy_implementation import get_model
 
         CUDA_ENABLED = False

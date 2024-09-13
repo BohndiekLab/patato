@@ -139,7 +139,7 @@ def main():
             if args.copyto is not None:
                 if args.copyto not in data["raw_data"].attrs["name"]:
                     continue
-            for roi, att, nam, num, ori in zip(
+            for roi, att, name, num, ori in zip(
                 rois, roi_attrs, roi_names, roi_numbers, roi_scan_origin
             ):
                 if ori != data["raw_data"].attrs["name"]:
@@ -177,7 +177,7 @@ def main():
                     if make_copy and not args.justdeletecopies:
                         # copy the roi to scan
                         roi_grp = data.require_group("rois")
-                        roi_grp = roi_grp.require_group(nam)
+                        roi_grp = roi_grp.require_group(name)
                         roi_num = str(len(roi_grp.keys()))
                         roi_data = roi_grp.create_dataset(roi_num, data=roi)
                         roi_data.attrs["copy"] = True

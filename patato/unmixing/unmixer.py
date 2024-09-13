@@ -95,7 +95,7 @@ class SpectralUnmixer(SpatialProcessingAlgorithm):
     ):
         super().__init__(algorithm_id)
         for i, c in enumerate(chromophores):
-            if type(c) == str:
+            if isinstance(c, str):
                 chromophores[i] = SPECTRA_NAMES[c]
         spectra = np.array([c.get_spectrum(wavelengths) for c in chromophores])
         spectra = np.atleast_2d(spectra)
@@ -245,7 +245,7 @@ class GasChallengeAnalyser(SpatialProcessingAlgorithm):
             a list containing the mean and standard deviation of the baseline sO2.
         """
 
-        if type(reference_name) == ROI:
+        if isinstance(reference_name, ROI):
             roi_reference = reference_name
         else:
             rois = pa_data.get_rois()
@@ -348,7 +348,7 @@ class DCEAnalyser(SpatialProcessingAlgorithm):
         reference_name=("reference_", "0"),
         **kwargs,
     ) -> Optional[Tuple[SingleImage, dict, Optional[List[ProcessingResult]]]]:
-        if type(reference_name) == ROI:
+        if isinstance(reference_name, ROI):
             roi_reference = reference_name
         else:
             rois = pa_data.get_rois()

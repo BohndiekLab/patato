@@ -45,7 +45,7 @@ def validate_opencl_input(
 
 class OpenCLBackprojection(ReconstructionAlgorithm):
     """
-    An OpenCL implemntation of the photoacoustic backprojection.
+    An OpenCL implementation of the photoacoustic backprojection.
 
     Note: this class will be deprecated in future. It is maintained for backwards compatibility with non-nvidia
     GPUs.

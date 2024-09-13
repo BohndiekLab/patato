@@ -104,7 +104,7 @@ class FFTReconstruction(ReconstructionAlgorithm):
         Returns
         -------
         np.ndarray
-            The reconstructed iamge, (nruns, nwavelengths, nz, ny, nx).
+            The reconstructed image, (nruns, nwavelengths, nz, ny, nx).
         """
         shape = time_series.shape[:-2]
         time_series = time_series.reshape(
@@ -219,7 +219,6 @@ class FFTReconstruction(ReconstructionAlgorithm):
         )
 
         nt = raw_timeseries_data.shape[-1]
-        ndet = raw_timeseries_data.shape[-2]
 
         # 1. Crop the time series to exclude early and late bits.
         early_cut = (np.sqrt(2) * image_width / 2) / (c / fs) - 50

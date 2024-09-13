@@ -276,7 +276,7 @@ class PAData:
         Returns
         -------
         """
-        if type(dataset) == dict:
+        if isinstance(dataset, dict):
             raise NotImplementedError
         new_dataset = SingleImage(
             operation(dataset.raw_data, axis=0)[0],
@@ -405,7 +405,7 @@ class PAData:
         from scipy.signal import detrend, lombscargle
 
         so2 = self.get_scan_images(HDF5Tags.SO2)
-        if type(so2) == dict:
+        if isinstance(so2, dict):
             if len(so2) == 1:
                 so2 = so2[list(so2.keys())[0]]
             else:
@@ -742,7 +742,11 @@ class PAData:
                 measurements.append(self.get_scan_so2())
             elif m == "icg":
                 unmixed = self.get_scan_unmixed()
-                n = [i for i, l in enumerate(unmixed.ax_1_labels) if l.lower() == "icg"]
+                n = [
+                    i
+                    for i, label in enumerate(unmixed.ax_1_labels)
+                    if label.lower() == "icg"
+                ]
                 if len(n) == 0:
                     print("No icg channel found")
                     continue

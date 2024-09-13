@@ -44,7 +44,7 @@ The logo was designed by `Elly Pugh <https://ellypugh.com/>`_.
 Cite PATATO
 """""""""""""""
 
-To cite PATATO, please reference our Journal of Open Source Software paper `here <https://joss.theoj.org/papers/456eaf591244858915ad8730dcbc19d7>`_. 
+To cite PATATO, please reference our Journal of Open Source Software paper `here <https://joss.theoj.org/papers/456eaf591244858915ad8730dcbc19d7>`_.
 
 .. only:: latex
 

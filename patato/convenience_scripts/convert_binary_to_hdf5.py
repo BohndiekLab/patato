@@ -2,7 +2,7 @@
 #  License: MIT
 
 """``patato-import-ithera``: A script to convert iThera MSOT Data into the PATATO hdf5 format."""
-
+# flake8: noqa
 import argparse
 
 

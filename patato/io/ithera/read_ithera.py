@@ -23,11 +23,11 @@ def xml_to_dict(x):
         return x.nodeName, x.nodeValue
     else:
         dicts = [xml_to_dict(y) for y in x.childNodes]
-        v = [y for y in dicts if type(y) not in [str, list] or y[0] != "\n"]
+        v = [y for y in dicts if not isinstance(y, (str, list)) or y[0] != "\n"]
         # convert to floats/ints:
         v = [
             y
-            if type(y) is not str
+            if not isinstance(y, str)
             else int(y)
             if y.isnumeric()
             else float(y)
@@ -37,11 +37,11 @@ def xml_to_dict(x):
             else y
             for y in v
         ]
-        if type(v[0]) == tuple and all([y == v[0][0] for y, _ in v]):
+        if isinstance(v[0], tuple) and all([y == v[0][0] for y, _ in v]):
             v = [y for _, y in v]
-        elif type(v[0]) == tuple:
+        elif isinstance(v[0], tuple):
             v = dict(v)
-        if type(v) == list and len(v) == 1:
+        if isinstance(v, list) and len(v) == 1:
             v = v[0]
         return x.nodeName, v
 
@@ -66,7 +66,7 @@ class iTheraMSOT(ReaderInterface):
         except IndexError:
             return {}
         reconstructions = []
-        rec_list = f[1] if type(f[1]) == list else [f[1]]
+        rec_list = f[1] if isinstance(f[1], list) else [f[1]]
 
         for r in rec_list:
             if r is None:
@@ -304,7 +304,7 @@ class iTheraMSOT(ReaderInterface):
                     value = element_type(value)
                     output[element_tag][frame_idx] = value
                 else:
-                    if element_type == int:
+                    if element_type is int:
                         output[element_tag][frame_idx] = -1
                     else:
                         output[element_tag][frame_idx] = np.nan

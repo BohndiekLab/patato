@@ -1,5 +1,5 @@
 # R.L.P. van Veen and H.J.C.M. Sterenborg, A. Pifferi, A. Torricelli and R. Cubeddu
-#Determination of VIS- NIR absorption coefficients of mammalian fat, with time- 
+#Determination of VIS- NIR absorption coefficients of mammalian fat, with time-
 #and spatially resolved diffuse reflectance and transmission spectroscopy
 #OSA Annual BIOMED Topical Meeting, 2004.
 

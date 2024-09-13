@@ -12,7 +12,7 @@ from tqdm.auto import tqdm
 def get_hash(*x):
     to_hash = []
     for y in x:
-        if type(y) == np.ndarray:
+        if isinstance(y, np.ndarray):
             y = tuple(y.flatten())
         to_hash.append(y)
     h = hash(tuple(to_hash))

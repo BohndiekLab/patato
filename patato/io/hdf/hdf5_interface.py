@@ -101,7 +101,7 @@ class HDF5Writer(WriterInterface):
 
     def __init__(self, file):
         WriterInterface.__init__(self)
-        if type(file) == h5py.File:
+        if isinstance(file, h5py.File):
             self.file = file
         else:
             self.file = h5py.File(file, "a")
@@ -111,7 +111,7 @@ class HDF5Writer(WriterInterface):
         self.file.attrs[HDF5Tags.DATE] = str(datetime)
 
     def set_pa_data(self, raw_data):
-        if type(raw_data) == PATimeSeries:
+        if isinstance(raw_data, PATimeSeries):
             raw_data = raw_data.raw_data
         if raw_data is None:
             return
@@ -182,10 +182,10 @@ class HDF5Writer(WriterInterface):
 
         # Copy attributes
         for a in image_data.attributes:
-            if type(image_data.attributes[a]) == dict:
+            if isinstance(image_data.attributes[a], dict):
                 for b in image_data.attributes[a]:
                     attr = image_data.attributes[a][b]
-                    if type(attr) == str:
+                    if isinstance(attr, str):
                         attr = bytes(attr, "utf-8")
                     try:
                         dataset.attrs[b] = attr
@@ -193,13 +193,13 @@ class HDF5Writer(WriterInterface):
                         dataset.attrs[b] = json.dumps(attr)
             else:
                 attr = image_data.attributes[a]
-                if type(attr) == str:
+                if isinstance(attr, str):
                     attr = bytes(attr, "utf-8")
-                from numpy import nan, ndarray
+                from numpy import nan
 
                 if attr is None:
                     attr = nan
-                if type(attr) is ndarray:
+                if isinstance(attr, np.ndarray):
                     if attr.dtype == "<U4":
                         attr = [bytes(a, "utf-8") for a in attr]
                 dataset.attrs[a] = attr
@@ -234,7 +234,7 @@ class HDF5Writer(WriterInterface):
             + roi_data.attributes[ROITags.ROI_POSITION]
         )
         n = str(len(region_group))
-        if type(roi_data.points) in [np.ndarray, list]:
+        if isinstance(roi_data.points, (np.ndarray, list)):
             dataset = region_group.create_dataset(n, data=roi_data.points)
         else:
             raise NotImplementedError("Cannot save specialist roi type (yet...).")
@@ -244,7 +244,7 @@ class HDF5Writer(WriterInterface):
         dataset.attrs[ROITags.GENERATED_ROI] = generated
 
     def rename_roi(self, old_name, new_name, new_position):
-        if type(old_name) == str:
+        if isinstance(old_name, str):
             old_name = tuple(old_name.split("/"))
         roi_dataset = self.file[HDF5Tags.REGIONS_OF_INTEREST]
         roi_dataset["/".join(old_name)].attrs[ROITags.ROI_NAME] = new_name
@@ -366,7 +366,7 @@ class HDF5Reader(ReaderInterface):
 
     def __init__(self, file):
         ReaderInterface.__init__(self)
-        if type(file) == h5py.File:
+        if isinstance(file, h5py.File):
             self.file = file
         else:
             self.file = h5py.File(file, "r")
@@ -375,7 +375,7 @@ class HDF5Reader(ReaderInterface):
         import dateutil.parser
 
         try:
-            if type(self.file.attrs[HDF5Tags.DATE]) == str:
+            if isinstance(self.file.attrs[HDF5Tags.DATE], str):
                 return dateutil.parser.isoparse(self.file.attrs[HDF5Tags.DATE]).replace(
                     tzinfo=None
                 )

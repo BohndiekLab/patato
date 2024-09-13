@@ -55,8 +55,8 @@ def main():
     for file in sorted(glob.glob(join(data_folder, "*.hdf5")), key=sort_key):
         data = PAData.from_hdf5(file, "r+")
         scan_name = data.get_scan_name().lower()
-        prefices = prefix.lower().split(",")
-        if not any([x in scan_name for x in prefices]):
+        prefixes = prefix.lower().split(",")
+        if not any([x in scan_name for x in prefixes]):
             continue
         data.clear_dso2()
         print(scan_name, file)

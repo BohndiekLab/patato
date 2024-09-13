@@ -131,7 +131,7 @@ def process_scan_name(template: str, scan_name: str) -> dict:
     try:
         d = p.match(scan_name).groupdict()
         for k, v in d.items():
-            if type(v) == str:
+            if isinstance(v, str):
                 d[k] = v.upper()
         return d
     except AttributeError:
