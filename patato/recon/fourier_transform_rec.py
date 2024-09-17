@@ -125,7 +125,7 @@ class FFTReconstruction(ReconstructionAlgorithm):
                 )
             )
         o = np.stack(output)
-        return o.reshape(shape + o.shape[-2:])
+        return o.reshape(shape + n_pixels)
 
     def _reconstruct(
         self,
@@ -219,7 +219,6 @@ class FFTReconstruction(ReconstructionAlgorithm):
         )
 
         nt = raw_timeseries_data.shape[-1]
-        ndet = raw_timeseries_data.shape[-2]
 
         # 1. Crop the time series to exclude early and late bits.
         early_cut = (np.sqrt(2) * image_width / 2) / (c / fs) - 50

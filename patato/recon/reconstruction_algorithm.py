@@ -51,7 +51,7 @@ class ReconstructionAlgorithm(TimeSeriesProcessingAlgorithm, ABC):
     def run(
         self,
         time_series: PATimeSeries,
-        pa_data: PAData,
+        pa_data: PAData = None,
         speed_of_sound=None,
         geometry=None,
         **kwargs,
