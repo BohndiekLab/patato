@@ -302,6 +302,9 @@ class WriterInterface(metaclass=ABCMeta):
         # TODO: implement updating.
         if reader.get_segmentation() is not None:
             self.set_segmentation(reader.get_segmentation())
+        if reader.get_rois() is not None:
+            for roi in reader.get_rois().values():
+                self.add_roi(roi, generated=False)
         self.set_scan_datetime(reader.get_scan_datetime())
         self.set_pa_data(reader.get_pa_data())
         self.set_scan_name(reader.get_scan_name())
