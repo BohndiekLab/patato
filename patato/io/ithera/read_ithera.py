@@ -74,6 +74,7 @@ class iTheraMSOT(ReaderInterface):
                 roi_class = annotation["Classname"]
                 position = str(i)
 
+                # roi name is roi type + index
                 roi_name = roi_class + "_" + position
 
                 # load additional information for patato ROI that is not stored in the iannotation file
@@ -83,9 +84,12 @@ class iTheraMSOT(ReaderInterface):
                 run = self.get_run_numbers()[frame, wav]
                 repetition = self.get_repetition_numbers()[frame, wav]
 
-                # add the patato ROI to the output dictionary
+                # load roi points. invert y axis to match the coordinate system used in patato
+                roi_points = roi.scale_points(roi.discretize(), y_scale=-1)
+
+                # create patato ROI and save to output
                 output[(roi_name, roi_number)] = ROI(
-                    points=roi.discretize(),
+                    points=roi_points,
                     z_position=z,
                     run=run,
                     repetition=repetition,

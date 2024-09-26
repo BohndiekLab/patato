@@ -3,31 +3,36 @@ import os
 import re
 import math
 from abc import ABC, abstractmethod
+
 import numpy as np
 
 
 class IROIShape(ABC):
-    # def __init__(self, roi_type):
-    #     self.roi_type = roi_type
+    """
+    Base class for all ROI shapes.
+    """
 
     @abstractmethod
     def area(self):
-        """Calculate the area of the shape."""
         pass
 
     @abstractmethod
     def __str__(self):
-        """Return a string representation of the shape."""
         pass
 
     @abstractmethod
     def discretize(self, n_points):
-        """Discretize the shape into a set of points."""
+        """
+        Discretize the shape into a set of points.
+        """
         pass
 
     @staticmethod
     def create_roi(roi_data):
-        """Factory method to create specific ROI shape instances based on type."""
+        """
+        Factory method to create specific ROI shape instances based on type.
+        Type is specified in the "__classname" key
+        """
 
         class_name = roi_data.get("__classname")
         if class_name == "iROI":
@@ -41,12 +46,39 @@ class IROIShape(ABC):
                 f"annotation class '{class_name}' is not implemented."
             )
 
+    @staticmethod
+    def scale_points(coords, x_scale=1, y_scale=1):
+        """
+        Scale all x and y coordinates in the list of coordinates by the given x and y scale factors.
+        coords: numpy array of shape (n_points, 2)
+        """
+        return np.array([[x * x_scale, y * y_scale] for x, y in coords])
+
 
 class EllipseROI(IROIShape):
+    """
+    Ellipse ROI shape.
+    Given as pos and size in the iannotation file.
+    pos refers to the top-left corner of the enclosing rectangle of the ellipse.
+    size refers to the total width and height of the ellipse.
+    top-left corner is the origin of the coordinate system.
+    """
+
     def __init__(self, roi_data):
-        # super().__init__("Ellipse")
-        self.pos = self.extract_roi_coords(roi_data["pos"])
-        self.size = self.extract_roi_coords(roi_data["size"])
+        self.topleft = self.extract_roi_coords(roi_data["pos"])
+        self._size = self.extract_roi_coords(roi_data["size"])
+        self._center = [
+            self.topleft[0] + self._size[0] / 2,
+            self.topleft[1] + self._size[1] / 2,
+        ]
+
+    @property
+    def center(self):
+        return self._center
+
+    @property
+    def size(self):
+        return self._size
 
     @staticmethod
     def extract_roi_coords(roi_string) -> list:
@@ -57,9 +89,12 @@ class EllipseROI(IROIShape):
         return [float(c) for c in roi_coords]
 
     def area(self):
-        # For an ellipse, the area is π * semi-major * semi-minor
-        semi_major = self.size[0] / 2
-        semi_minor = self.size[1] / 2
+        """
+        Area of the ellipse.
+        (π * semi-major * semi-minor)
+        """
+        semi_major = self._size[0] / 2
+        semi_minor = self._size[1] / 2
         return math.pi * semi_major * semi_minor
 
     def discretize(self, n_points=100):
@@ -67,9 +102,9 @@ class EllipseROI(IROIShape):
         Discretize the ellipse boundary into n_points, returning them as a numpy array of shape (n_points, 2).
         This is not an ideal way for storing ellipses, but ensures easy compatibility with patatos existing rois.
         """
-        h, k = self.pos[:2]  # Center coordinates (ignoring z for 2D representation)
-        a = self.size[0] / 2  # Semi-major axis (half of the width)
-        b = self.size[1] / 2  # Semi-minor axis (half of the height)
+        h, k = self._center[:2]  # Center coordinates (ignoring z for 2D representation)
+        a = self._size[0] / 2  # Semi-major axis (half of the width)
+        b = self._size[1] / 2  # Semi-minor axis (half of the height)
 
         theta = np.linspace(0, 2 * np.pi, n_points)  # Angles evenly spaced from 0 to 2π
         x = h + a * np.cos(theta)  # X-coordinates of the ellipse points
@@ -80,13 +115,18 @@ class EllipseROI(IROIShape):
         ).T  # Stack x and y into a 2D array of shape (n_points, 2)
 
     def __str__(self):
-        return f"Ellipse at {self.pos} with size {self.size} (Area: {self.area()})"
+        return f"Ellipse with center at {self._center} and size {self._size} (Area: {self.area()})"
 
 
 class IAnnotation:
-    def _load_iannotation_file(self, legacy=False):
-        if legacy:
-            raise NotImplementedError("Legacy iannotation files are not supported.")
+    """
+    Class to load and parse iThera iannotation files.
+    """
+
+    def _load_iannotation_file(self):
+        """
+        Load the iannotation file and parse the data.
+        """
 
         with open(self.path, "r") as json_file:
             data = json.load(json_file)
