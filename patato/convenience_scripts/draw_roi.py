@@ -298,35 +298,38 @@ class HDF5ViewerApp:
                 recon_methods = list(self.recon_map.keys())
                 if pa_data.get_ultrasound():
                     recon_methods.append("Ultrasound")
+
+                if not recon_methods:
+                    self.show_error_message(f"No reconstructions available for {self.scan_names[index]}.")
+                    return
+                
                 self.recon_dropdown.configure(values=recon_methods)
                 if self.recon_dropdown.get() not in recon_methods:
                     self.recon_dropdown.set(recon_methods[0])
 
-                if pa_data.get_scan_reconstructions():
-                    recon = pa_data.get_scan_reconstructions()
+                recon = pa_data.get_scan_reconstructions()
 
-                    # Change this so that you can view different reconstructions
-                    recon = recon[list(recon.keys())[0]]
+                # Change this so that you can view different reconstructions
+                recon = recon[list(recon.keys())[0]]
 
-                    # Update the frame and wavelength sliders.
-                    self.slider1.configure(from_=0, to=recon.shape[0] - 1, number_of_steps=recon.shape[0] - 1)
-                    if recon.shape[0] == 1:
-                        self.slider1.configure(state="disabled")
-                    else:
-                        self.slider1.set(0)
-                        self.slider1.configure(state="normal")
-                    self.slider2.configure(from_=0, to=recon.shape[1] - 1, number_of_steps=recon.shape[1] - 1)
-                    if recon.shape[1] == 1:
-                        self.slider2.configure(state="disabled")
-                    else:
-                        self.slider2.set(0)
-                        self.slider2.configure(state="normal")
-                    self.slider2.set(0)
-
-                    # Populate the ROI listbox with items from the 'roi' group
-                    self.update_image()
+                # Update the frame and wavelength sliders.
+                self.slider1.configure(from_=0, to=recon.shape[0] - 1, number_of_steps=recon.shape[0] - 1)
+                if recon.shape[0] == 1:
+                    self.slider1.configure(state="disabled")
                 else:
-                    self.show_error_message(f"No reconstructions available.")
+                    self.slider1.set(0)
+                    self.slider1.configure(state="normal")
+                self.slider2.configure(from_=0, to=recon.shape[1] - 1, number_of_steps=recon.shape[1] - 1)
+                if recon.shape[1] == 1:
+                    self.slider2.configure(state="disabled")
+                else:
+                    self.slider2.set(0)
+                    self.slider2.configure(state="normal")
+                self.slider2.set(0)
+
+                # Populate the ROI listbox with items from the 'roi' group
+                self.update_image()
+
             except Exception as e:
                 import traceback
                 self.show_error_message(f"Error loading HDF5 file: {str(e)}")
