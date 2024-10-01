@@ -78,7 +78,7 @@ class iTheraMSOT(ReaderInterface):
                 roi_name = roi_class + "_" + position
 
                 # load additional information for patato ROI that is not stored in the iannotation file
-                frame = annotation["Sweeps"][0]
+                frame = annotation["Sweeps"][0] - 1 # ilabs indices start at 1
                 wav = 0
                 z = self.get_scanner_z_position()[frame, wav]
                 run = self.get_run_numbers()[frame, wav]
