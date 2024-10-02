@@ -28,6 +28,13 @@ class IROIShape(ABC):
         pass
 
     @staticmethod
+    def close_polygon(points):
+        """
+        Close the polygon by adding the first point to the end.
+        """
+        return np.concatenate([points, points[0:1, :]])
+
+    @staticmethod
     def create_roi(roi_data):
         """
         Create ROI shape instances based on type.

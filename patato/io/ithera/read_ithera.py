@@ -80,8 +80,8 @@ class iTheraMSOT(ReaderInterface):
                 # load additional information for patato ROI that is not stored in the iannotation file
                 frame = annotation["Sweeps"][0] - 1 # ilabs indices start at 1
                 wav = 0
-                z = self.get_scanner_z_position()[frame, wav]
-                run = self.get_run_numbers()[frame, wav]
+                z = self._get_scanner_z_position()[frame, wav]
+                run = self._get_run_numbers()[frame, wav]
                 repetition = self.get_repetition_numbers()[frame, wav]
 
                 # load roi points. invert y axis to match the coordinate system used in patato
