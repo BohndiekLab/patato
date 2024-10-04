@@ -1,0 +1,52 @@
+{
+    "__classname": "iAnnotationListWrapper",
+    "Annotations": [
+        {
+            "__classname": "iAnnotation",
+            "ROIList": [
+                {
+                    "__classname": "iROI",
+                    "type": "Ellipse",
+                    "pos": "Point(-0.01, 0.002)"
+                },
+                {
+                    "__classname": "iROI",
+                    "type": "Ellipse",
+                    "pos": "Point(0.002, 0.0025)",
+                    "size": "Point(0.01, 0.005)",
+                    "angle": 15
+
+                },
+                {
+                    "__classname": "iROI",
+                    "type": "Segment",
+                    "points": [
+                        "Point(-0.01, 0.0)",
+                        "Point(0.01, 0.0)"
+                    ]
+                },
+                {
+                    "__classname": "iROI",
+                    "pos": "Point(0.0, -0.01)",
+                    "size": "Point(0.01, 0.005)"
+                },
+                {
+                    "__classname": "iROI",
+                    "type": "Polygon",
+                    "points": [
+                        "Point(-0.01, -0.01)",
+                        "Point(-0.005, -0.01)",
+                        "Point(-0.0025, -0.005)",
+                        "Point(-0.0075, -0.0075)",
+                        "Point(-0.01, -0.0075)"
+                    ]
+                }
+            ],
+            "Sweeps": [
+                1
+            ],
+            "Source": "iLabs"
+        }
+    ],
+    "ScanHash": ""
+}
