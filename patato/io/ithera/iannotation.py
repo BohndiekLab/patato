@@ -1,5 +1,5 @@
 import json
-import os
+from pathlib import Path
 import re
 import math
 from abc import ABC, abstractmethod
@@ -13,56 +13,63 @@ class IROIShape(ABC):
     """
 
     @abstractmethod
-    def area(self):
+    def area(self) -> float:
         pass
 
     @abstractmethod
-    def __str__(self):
+    def __str__(self) -> str:
         pass
 
     @abstractmethod
-    def discretize(self, n_points):
+    def discretize(self, n_points: int) -> np.ndarray:
         """
-        Discretize the shape into a set of points.
+        Discretize the shape into a set of n points.
         """
         pass
+
+    @property
+    @abstractmethod
+    def attributes(self) -> dict:
+        pass
+
+    @classmethod
+    def create_roi(cls, roi_data: dict) -> "IROIShape":
+        """
+        Create ROI shape instances based on type.
+        Type is specified in the "type" key for "iROI" class.
+        """
+        class_name = roi_data.get("__classname")
+        if class_name == "iROI":
+            roi_type = roi_data.get(
+                "type", "Rectangle"
+            )  # if type not specified, ilabs means it is a rectangle
+            roi_classes = {
+                "Ellipse": EllipseROI,
+                "Segment": PolygonROI,  # segment is treated as a polygon with 2 points
+                "Polygon": PolygonROI,
+                "Rectangle": RectangleROI,
+            }
+
+            if roi_type in roi_classes:
+                return roi_classes[roi_type](roi_data)
+            else:
+                raise NotImplementedError(f"ROI shape '{roi_type}' is not implemented.")
+        else:
+            raise NotImplementedError(
+                f"Annotation class '{class_name}' is not implemented."
+            )
 
     @staticmethod
-    def close_polygon(points):
+    def close_polygon(points: np.ndarray) -> np.ndarray:
         """
         Close the polygon by adding the first point to the end.
         """
         return np.concatenate([points, points[0:1, :]])
 
     @staticmethod
-    def create_roi(roi_data):
-        """
-        Create ROI shape instances based on type.
-        Type is specified in the "__classname" key
-        """
-
-        class_name = roi_data.get("__classname")
-        if class_name == "iROI":
-            # if type not specified, ilabs means it is a rectangle
-            roi_type = roi_data.get("type", "Rectangle")
-            if roi_type == "Ellipse":
-                return EllipseROI(roi_data)
-            elif roi_type == "Segment":
-                # segment (line) can be treated as a polygon with 2 points
-                return PolygonROI(roi_data)
-            elif roi_type == "Polygon":
-                return PolygonROI(roi_data)
-            elif roi_type == "Rectangle":
-                return RectangleROI(roi_data)
-            else:
-                raise NotImplementedError(f"ROI shape '{roi_type}' is not implemented.")
-        else:
-            raise NotImplementedError(
-                f"annotation class '{class_name}' is not implemented."
-            )
-
-    @staticmethod
-    def scale_points(coords, x_scale=1, y_scale=1):
+    def scale_points(
+        coords: np.ndarray, x_scale: float = 1.0, y_scale: float = 1.0
+    ) -> np.ndarray:
         """
         Scale all x and y coordinates in the list of coordinates by the given x and y scale factors.
         coords: numpy array of shape (n_points, 2)
@@ -70,17 +77,22 @@ class IROIShape(ABC):
         return np.array([[x * x_scale, y * y_scale] for x, y in coords])
 
     @staticmethod
-    def extract_roi_coords(roi_string):
+    def extract_roi_coords(roi_string: str) -> list:
         """
         Extract the (x, y, z) coordinates from the pos or size string.
         """
         roi_coords = re.findall(r"\((.*?)\)", roi_string)[0].split(", ")
         return [float(c) for c in roi_coords]
 
+    @property
+    def type(self) -> str:
+        return self._roi_type
+
 
 class EllipseROI(IROIShape):
     """
     Ellipse ROI shape.
+    Also used for circles.
     Given as pos and size in the iannotation file.
     pos refers to the top-left corner of the enclosing rectangle of the ellipse.
     Rotation angle (in degrees) is given relative to top-left corner.
@@ -126,6 +138,10 @@ class EllipseROI(IROIShape):
             ]
 
     @property
+    def type(self):
+        return "Ellipse"
+
+    @property
     def center(self):
         return self._center
 
@@ -136,6 +152,15 @@ class EllipseROI(IROIShape):
     @property
     def angle(self):
         return self._angle
+
+    @property
+    def attributes(self) -> dict:
+        return {
+            "Type": self.type,
+            "Size": self._size,
+            "Angle": self._angle,
+            "TopLeft": self._topleft,
+        }
 
     def area(self):
         """
@@ -195,8 +220,18 @@ class PolygonROI(IROIShape):
         self._points = np.array([self.extract_roi_coords(p) for p in points_dict])
 
     @property
+    def type(self):
+        return "Polygon"
+
+    @property
     def points(self):
         return self._points
+
+    @property
+    def attributes(self) -> dict:
+        return {
+            "Type": self.type,
+        }
 
     def area(self):
         """
@@ -239,12 +274,24 @@ class RectangleROI(IROIShape):
         )
 
     @property
+    def type(self):
+        return "Rectangle"
+
+    @property
     def topleft(self):
         return self._topleft
 
     @property
     def size(self):
         return self._size
+
+    @property
+    def attributes(self) -> dict:
+        return {
+            "Type": self.type,
+            "Size": self._size,
+            "TopLeft": self._topleft,
+        }
 
     def area(self):
         """
@@ -274,10 +321,10 @@ class IAnnotation:
         Load the iannotation file and parse the data.
         """
 
-        with open(self.path, "r") as json_file:
+        with open(self._file_path, "r") as json_file:
             data = json.load(json_file)
 
-        self.scan_hash = data.get("ScanHash", None)
+        self._scan_hash = data.get("ScanHash", None)
         annotations = []
 
         for annotation in data["Annotations"]:
@@ -299,30 +346,59 @@ class IAnnotation:
                 }
             )
 
-        self.annotations = annotations
-        self.n_annotations = len(annotations)
+        self._annotations = annotations
+        self._n_annotations = len(annotations)
 
     def __init__(self, file_path, unit="m"):
 
         self.unit = unit
+        file_path = Path(file_path)
 
-        if os.path.exists(file_path):
-            self.path = file_path
+        self._scan_hash = None
+        self._annotations = []
+        self._n_annotations = 0
+
+        if file_path.exists():
+            self._scan_name = file_path.parent.name
+            self._study_name = file_path.parent.parent.name
+            self._file_path = file_path
             self._load_iannotation_file()
+        else:
+            raise FileNotFoundError(f"iannotation file not found: {file_path}")
 
+    @property
+    def scan_name(self) -> str:
+        return self._scan_name
 
-# # Example Usage
-# file_path = (
-#     "/Projects/PATATO-Annotations/data/Scan_11.iannotation"
-# )
-# iannotation_object = IAnnotation(file_path)
+    @property
+    def study_name(self) -> str:
+        return self._study_name
 
-# for annotation in iannotation_object.annotations:
+    @property
+    def scan_hash(self) -> str:
+        return self._scan_hash
 
-#     print(f"Classname: {annotation['Classname']}")
-#     print(f"Sweeps: {annotation['Sweeps']}")
-#     print(f"Source: {annotation['Source']}")
+    @property
+    def annotations(self) -> list:
+        return self._annotations
 
-#     for roi in annotation["ROIs"]:
-#         print(roi)
-#         print(roi.discretize(10))
+    def get_annotation_sweeps(self, anno_index: int) -> list:
+        return self._annotations[anno_index]["Sweeps"]
+
+    def get_annotation_source(self, anno_index: int) -> str:
+        return self._annotations[anno_index]["Source"]
+
+    def get_annotation_roi(self, anno_index: int, roi_index: int) -> IROIShape:
+        return self._annotations[anno_index]["ROIs"][roi_index]
+
+    def __str__(self):
+        return f"iAnnotation object for {self.scan_name} with {self.n_annotations} annotations."
+
+    def __len__(self):
+        return self._n_annotations
+
+    def __getitem__(self, anno_index):
+        return self._annotations[anno_index]
+
+    def __iter__(self):
+        return iter(self.annotations)

@@ -67,7 +67,7 @@ class iTheraMSOT(ReaderInterface):
 
         iannotation = IAnnotation(iannotation_file)
 
-        for i, annotation in enumerate(iannotation.annotations):
+        for i, annotation in enumerate(iannotation):
 
             for roi_number, roi in enumerate(annotation["ROIs"]):
 
