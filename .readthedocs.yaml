@@ -1,21 +1,17 @@
-# .readthedocs.yaml
 # Read the Docs configuration file
 # See https://docs.readthedocs.io/en/stable/config-file/v2.html for details
 
-# Required
 version: 2
 
-# Set the version of Python and other tools you might need
 build:
   os: ubuntu-22.04
   tools:
-    python: "3.9"
-
-# Build documentation in the docs/ directory with Sphinx
-sphinx:
-   configuration: docs/conf.py
-
-# Optionally declare the Python requirements required to build your docs
-python:
-   install:
-   - requirements: docs/requirements.txt
+    python: "3.12"
+  commands:
+    - asdf plugin add uv
+    - asdf install uv latest
+    - asdf global uv latest
+    - uv venv
+    - uv pip install .[docs]
+    - .venv/bin/python -m sphinx -T -b html -d docs/_build/doctrees -D
+      language=en docs $READTHEDOCS_OUTPUT/html

@@ -1,14 +1,3 @@
-.DS_Store
-patato/_version.py
-
-.idea/
-*.npz
-*.hdf5
-!test_data.hdf5
-
-docs/_autosummary
-docs/_build
-
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -147,9 +136,23 @@ dmypy.json
 
 # Cython debug symbols
 cython_debug/
-/temporary/
-/model_based/test_model.npz
-/models/
-/patato/useful_utilities/examples/extracted_data/
-/patato/useful_utilities/examples/output_images/
-/patato/useful_utilities/examples/
+
+# setuptools_scm
+src/*/_version.py
+
+
+# ruff
+.ruff_cache/
+
+# OS specific stuff
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Common editor files
+*~
+*.swp

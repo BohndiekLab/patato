@@ -1,0 +1,12 @@
+# Changes here will be overwritten by Copier; NEVER EDIT MANUALLY
+_commit: 2024.08.19
+_src_path: gh:scientific-python/cookie
+backend: hatch
+email: tre26@cam.ac.uk
+full_name: Thomas Else
+license: MIT
+org: BohndiekLab
+project_name: PATATO
+project_short_description: A Python photoacoustic tomography analysis toolkit
+url: https://github.com/BohndiekLab/PATATO
+vcs: true

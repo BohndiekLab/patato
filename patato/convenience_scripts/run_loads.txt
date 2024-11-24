@@ -1,1 +1,0 @@
- Get-ChildItem "H:\" -Filter *.hdf5 | Foreach-Object { python process_msot.py $_.FullName}

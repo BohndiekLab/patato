@@ -1,93 +1,157 @@
 [build-system]
-requires = ["setuptools>=45", "setuptools_scm[toml]>=6.2", "wheel", "pybind11"]
-build-backend = "setuptools.build_meta"
+requires = ["hatchling", "hatch-vcs"]
+build-backend = "hatchling.build"
+
 
 [project]
-name = "patato"
-dynamic = ["version"]
-dependencies = [
-    "requests",
-    "cython",
-    "shapely",
-    "pylops", # Check version compatibility with pylops
-    "h5py",
-    "typing_extensions",
-    "pandas",
-    "scikit-learn",
-    "xarray",
-    "numpy>=1.22,<2",
-    "scipy",
-    "tabulate",
-    "matplotlib",
-    "matplotlib_scalebar",
-    "dask",
-    "pybind11",
-    "jax[cpu]",
-    # Need to verify that jax works on ARM platforms.
-    "wget",
-    "gdown",
-    "customtkinter"
-]
-
+name = "PATATO"
 authors = [
-  { name="Thomas Else", email="thomas.else@cruk.cam.ac.uk" },
+  { name = "Thomas Else", email = "tre26@cam.ac.uk" },
 ]
-description = "A Python Toolkit for the analysis of photoacoustic tomography data."
+description = "A Python photoacoustic tomography analysis toolkit"
 readme = "README.md"
-requires-python = ">=3.8,<3.13"
-
-keywords = [
-    "photoacoustics",
-    "jax",
-    "tomography",
-    "reconstruction",
-    "spectral unmixing",
-    "dynamic contrast enhanced",
-    "backprojection",
-    "model based"
-]
-
-license = { file = "LICENSE.MD", name = "LGPL-3.0" }
-
+license.file = "LICENSE"
+requires-python = ">=3.8"
 classifiers = [
-    "Intended Audience :: Education",
-    "Intended Audience :: Science/Research",
-    "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: MIT License",
-    "Operating System :: OS Independent",
+  "Development Status :: 1 - Planning",
+  "Intended Audience :: Science/Research",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: Scientific/Engineering",
+  "Typing :: Typed",
+]
+dynamic = ["version"]
+dependencies = []
+
+[project.optional-dependencies]
+test = [
+  "pytest >=6",
+  "pytest-cov >=3",
+]
+dev = [
+  "pytest >=6",
+  "pytest-cov >=3",
+]
+docs = [
+  "sphinx>=7.0",
+  "myst_parser>=0.13",
+  "sphinx_copybutton",
+  "sphinx_autodoc_typehints",
+  "furo>=2023.08.17",
 ]
 
 [project.urls]
-"Homepage" = "https://github.com/bohndieklab/patato"
-"Bug Tracker" = "https://github.com/bohndieklab/patato/issues"
-"Documentation" = "https://patato.readthedocs.io"
+Homepage = "https://github.com/BohndiekLab/PATATO"
+"Bug Tracker" = "https://github.com/BohndiekLab/PATATO/issues"
+Discussions = "https://github.com/BohndiekLab/PATATO/discussions"
+Changelog = "https://github.com/BohndiekLab/PATATO/releases"
 
-[tool.setuptools.packages.find]
-# All the following settings are optional:
-where = ["."]  # ["."] by default
-include = ["patato", "patato.*"]  # ["*"] by default
-exclude = []  # empty by default
-namespaces = true  # true by default
 
-[project.scripts]
-patato-import-ithera = "patato.convenience_scripts.convert_binary_to_hdf5:main"
-patato-set-speed-of-sound = "patato.convenience_scripts.tune_speed_of_sound:main"
-patato-unmix = "patato.convenience_scripts.unmix:main"
-patato-reconstruct = "patato.convenience_scripts.process_msot:main"
-patato-analyse-dce = "patato.convenience_scripts.data_analysis.analyse_dce:main"
-patato-analyse-gc = "patato.convenience_scripts.data_analysis.analyse_gas_challenge:main"
-patato-convert-simpa = "patato.convenience_scripts.convert_simpa:main"
-patato-draw-roi = "patato.convenience_scripts.draw_roi:main"
+[tool.hatch]
+version.source = "vcs"
+build.hooks.vcs.version-file = "src/patato/_version.py"
 
-[tool.setuptools.package-data]
-"*" = ["*.cu", "*.cl", "*.json", "*.csv", "*.txt", "*.png"]
+[tool.hatch.envs.default]
+features = ["test"]
+scripts.test = "pytest {args}"
 
-[tool.setuptools.exclude-package-data]
-"*" = [".gitattributes", ".gitignore"]
 
-[tool.setuptools_scm]
-write_to = "patato/_version.py"
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = ["-ra", "--showlocals", "--strict-markers", "--strict-config"]
+xfail_strict = true
+filterwarnings = [
+  "error",
+]
+log_cli_level = "INFO"
+testpaths = [
+  "tests",
+]
 
-[tool.cibuildwheel]
-# Disable building PyPy wheels on all platforms
-skip = "pp*"
+
+[tool.coverage]
+run.source = ["patato"]
+report.exclude_also = [
+  '\.\.\.',
+  'if typing.TYPE_CHECKING:',
+]
+
+[tool.mypy]
+files = ["src", "tests"]
+python_version = "3.8"
+warn_unused_configs = true
+strict = true
+enable_error_code = ["ignore-without-code", "redundant-expr", "truthy-bool"]
+warn_unreachable = true
+disallow_untyped_defs = false
+disallow_incomplete_defs = false
+
+[[tool.mypy.overrides]]
+module = "patato.*"
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+
+
+[tool.ruff]
+
+[tool.ruff.lint]
+extend-select = [
+  "B",        # flake8-bugbear
+  "I",        # isort
+  "ARG",      # flake8-unused-arguments
+  "C4",       # flake8-comprehensions
+  "EM",       # flake8-errmsg
+  "ICN",      # flake8-import-conventions
+  "G",        # flake8-logging-format
+  "PGH",      # pygrep-hooks
+  "PIE",      # flake8-pie
+  "PL",       # pylint
+  "PT",       # flake8-pytest-style
+  "PTH",      # flake8-use-pathlib
+  "RET",      # flake8-return
+  "RUF",      # Ruff-specific
+  "SIM",      # flake8-simplify
+  "T20",      # flake8-print
+  "UP",       # pyupgrade
+  "YTT",      # flake8-2020
+  "EXE",      # flake8-executable
+  "NPY",      # NumPy specific rules
+  "PD",       # pandas-vet
+]
+ignore = [
+  "PLR09",    # Too many <...>
+  "PLR2004",  # Magic value used in comparison
+  "ISC001",   # Conflicts with formatter
+]
+isort.required-imports = ["from __future__ import annotations"]
+# Uncomment if using a _compat.typing backport
+# typing-modules = ["patato._compat.typing"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["T20"]
+"noxfile.py" = ["T20"]
+
+
+[tool.pylint]
+py-version = "3.8"
+ignore-paths = [".*/_version.py"]
+reports.output-format = "colorized"
+similarities.ignore-imports = "yes"
+messages_control.disable = [
+  "design",
+  "fixme",
+  "line-too-long",
+  "missing-module-docstring",
+  "missing-function-docstring",
+  "wrong-import-position",
+]
