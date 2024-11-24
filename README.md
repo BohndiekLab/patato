@@ -1,18 +1,15 @@
 # PATATO: Photoacoustic Tomography Analysis Toolkit
 
+![Logo](https://github.com/BohndiekLab/patato/raw/main/docs/logos/PATATO%20Logo_1_Combination.png "Logo")
+
 [![Journal of open source software status](https://joss.theoj.org/papers/456eaf591244858915ad8730dcbc19d7/status.svg)](https://joss.theoj.org/papers/456eaf591244858915ad8730dcbc19d7)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/bohndieklab/patato/blob/main/LICENSE.MD)
-
-<!-- [![Actions Status][actions-badge]][actions-link] -->
-
 [![Documentation Status][rtd-badge]][rtd-link]
-
 [![PyPI version][pypi-version]][pypi-link]
 [![PyPI platforms][pypi-platforms]][pypi-link]
-
 [![GitHub Discussion][github-discussions-badge]][github-discussions-link]
 
-![Logo](https://github.com/BohndiekLab/patato/raw/main/docs/logos/PATATO%20Logo_1_Combination.png "Logo")
+<!-- [![Actions Status][actions-badge]][actions-link] -->
 
 PATATO is an Open-Source project to enable the analysis of photoacoustic (PA)
 imaging data in a transparent, reproducible and extendable way. We provide
