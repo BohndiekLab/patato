@@ -15,7 +15,7 @@ dependencies = [
     "pandas",
     "scikit-learn",
     "xarray",
-    "numpy>=1.22,<2",
+    "numpy",
     "scipy",
     "tabulate",
     "matplotlib",
