@@ -74,7 +74,7 @@ class iTheraMSOT(ReaderInterface):
             guid = r["GUID"]
             file = join(self.scan_folder, "RECONs", guid + ".bin")
             dtype = np.single
-            slicer = np.s_
+            slicer = np.s_[...]
             transpose = False
             if "FIELD-OF-VIEW" not in r and "Resolution" in r:
                 axis = [
@@ -82,7 +82,7 @@ class iTheraMSOT(ReaderInterface):
                     for x in range(3)
                 ]
                 dtype = np.double
-                slicer = slicer[:, :, :, :, ::-1]
+                slicer = np.s_[:, :, :, :, ::-1]
                 transpose = True
                 if not any(axis):
                     ns = [r["Resolution"], r["Resolution"], r["Resolution"]]
