@@ -1,6 +1,7 @@
 #  Copyright (c) Thomas Else 2023-25.
 #  License: MIT
 
+from __future__ import annotations
 from typing import TYPE_CHECKING, Literal, overload
 
 import numpy as np
