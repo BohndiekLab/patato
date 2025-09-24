@@ -1,7 +1,7 @@
 #  Copyright (c) Thomas Else 2023-25.
 #  License: MIT
 
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Literal, overload
 
 import numpy as np
 
@@ -62,6 +62,18 @@ class ROI:
         self.position = position
         self.generated = generated
         self.ax0_index = np.array(ax0_index)
+
+    @overload
+    def to_mask_slice(
+        self, image: "ImageSequence", return_selection=Literal[False]
+    ) -> tuple[np.ndarray, "ImageSequence"]:
+        ...
+
+    @overload
+    def to_mask_slice(
+        self, image: "ImageSequence", return_selection=Literal[True]
+    ) -> tuple[np.ndarray, "ImageSequence", np.ndarray]:
+        ...
 
     def to_mask_slice(self, image: "ImageSequence", return_selection=False):
         mask = generate_mask(
