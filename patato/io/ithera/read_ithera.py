@@ -216,15 +216,16 @@ class iTheraMSOT(ReaderInterface):
         if im is not None:
             offset = self.scan_attrs["ultraSound-frame-offset"][:]
             offset[offset < 0] = 0
-            image = np.swapaxes(im, 1, 2)[offset, :, None, ::-1]
+
+            image = im[offset, :, :, :]
+
             attributes = {}
-            field_of_view = [(-fov / 2, fov / 2), (0, 0), (-fov / 2, fov / 2)]
             attributes[ReconAttributeTags.X_NUMBER_OF_PIXELS] = image.shape[-1]
             attributes[ReconAttributeTags.Y_NUMBER_OF_PIXELS] = image.shape[-2]
             attributes[ReconAttributeTags.Z_NUMBER_OF_PIXELS] = image.shape[-3]
-            attributes[ReconAttributeTags.X_FIELD_OF_VIEW] = field_of_view[0]
-            attributes[ReconAttributeTags.Y_FIELD_OF_VIEW] = field_of_view[1]
-            attributes[ReconAttributeTags.Z_FIELD_OF_VIEW] = field_of_view[2]
+            attributes[ReconAttributeTags.X_FIELD_OF_VIEW] = fov[-1]
+            attributes[ReconAttributeTags.Y_FIELD_OF_VIEW] = fov[-2]
+            attributes[ReconAttributeTags.Z_FIELD_OF_VIEW] = fov[-3]
             attributes[ReconAttributeTags.RECONSTRUCTION_ALGORITHM] = (
                 "iThera Ultrasound"
             )
@@ -235,7 +236,7 @@ class iTheraMSOT(ReaderInterface):
                     self._get_wavelengths(),
                     attributes=attributes,
                     hdf5_sub_name="ultrasound",
-                    field_of_view=field_of_view,
+                    field_of_view=fov,
                 )
             )
             us_dict = {}
@@ -407,7 +408,8 @@ class iTheraMSOT(ReaderInterface):
         ).replace(tzinfo=None)
 
     def _get_scan_times(self):
-        return self.scan_attrs["timestamp"]
+        # Convert to seconds, iThera stores timestamps in 100 ns ticks.
+        return self.scan_attrs["timestamp"] * 1e-7
 
     def _get_temperature(self):
         return self.scan_elements["TEMPERATURE"]
@@ -454,40 +456,71 @@ class iTheraMSOT(ReaderInterface):
         return np.array(coeffs), pathlength
 
     def _get_us_data(self):
-        # self.scan_attrs["ultraSound-frame-offset"]
+        # The raw array is C-contiguous, so shape is (Frames, Z, Y, X).
+        # Therefore us_shape and fov are also returned in the same order.
         us_files = glob.glob(join(self.scan_folder, "*.us"))
         if len(us_files) > 0:
             us_nodes = self.xml_tree.getElementsByTagName("ULTRA-SOUND-FIELD-OF-VIEW")
             if len(us_nodes) > 0:
                 us_node = us_nodes[0]
-                N = (
-                    us_node.getElementsByTagName("PixelCount")[0]
-                    .getElementsByTagName("X")[0]
-                    .firstChild.nodeValue
-                )
-                us_pixels = int(N)
-                us_extents = us_node.getElementsByTagName("Extents")
-                fov = float(
-                    us_extents[0].getElementsByTagName("X")[0].firstChild.nodeValue
-                )
-            else:
-                N = self.xml_tree.getElementsByTagName("ULTRA-SOUND-RESOLUTION")[
-                    0
-                ].firstChild.nodeValue
-                us_pixels = int(N)
-                fov = (
-                    float(
-                        self.xml_tree.getElementsByTagName("UltraSoundPixelSize")[
+                us_pixel_counts = us_node.getElementsByTagName("PixelCount")[0]
+
+                # MEMORY ORDER: Read as (Z, Y, X)
+                us_shape = (
+                    int(
+                        us_pixel_counts.getElementsByTagName("Z")[
                             0
                         ].firstChild.nodeValue
-                    )
-                    * us_pixels
+                    ),
+                    int(
+                        us_pixel_counts.getElementsByTagName("Y")[
+                            0
+                        ].firstChild.nodeValue
+                    ),
+                    int(
+                        us_pixel_counts.getElementsByTagName("X")[
+                            0
+                        ].firstChild.nodeValue
+                    ),
                 )
+
+                us_extents = us_node.getElementsByTagName("Extents")
+
+                # FOV ORDER: Matched to us_shape (Z, Y, X)
+                fov = (
+                    float(
+                        us_extents[0].getElementsByTagName("Z")[0].firstChild.nodeValue
+                    ),
+                    float(
+                        us_extents[0].getElementsByTagName("Y")[0].firstChild.nodeValue
+                    ),
+                    float(
+                        us_extents[0].getElementsByTagName("X")[0].firstChild.nodeValue
+                    ),
+                )
+            else:
+                # Fallback if only single resolution is given
+                us_pixels = int(
+                    self.xml_tree.getElementsByTagName("ULTRA-SOUND-RESOLUTION")[
+                        0
+                    ].firstChild.nodeValue
+                )
+
+                us_shape = (us_pixels, 1, us_pixels)
+
+                pixel_size = float(
+                    self.xml_tree.getElementsByTagName("UltraSoundPixelSize")[
+                        0
+                    ].firstChild.nodeValue
+                )
+
+                fov_1d = pixel_size * us_pixels
+                fov = (fov_1d, 0.0, fov_1d)
+
             try:
                 us_data = np.memmap(us_files[0], mode="r", dtype=np.float32).reshape(
-                    (-1, us_pixels, us_pixels)
+                    (-1, *us_shape)
                 )
-                us_data = np.swapaxes(us_data, -1, -2)[:, ::-1, :]
                 return us_data, fov
             except ValueError:
                 print(
