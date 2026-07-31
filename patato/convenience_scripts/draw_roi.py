@@ -20,7 +20,12 @@ try:
     )
 except ImportError:
     print(
-        "This seems to be an error in Python 3.13 running on uv (standalone builds of Python). Try to run on Python 3.12."
+        "Failed to import tkinter support for matplotlib. If you are using uv, this "
+        "usually means your uv-managed Python was installed before uv started bundling "
+        "a working tkinter (August 2025, uv >= 0.8.7). Try running "
+        "`uv python upgrade --reinstall` (or `uv self update` followed by "
+        "`uv python install --reinstall`), or use a system/Homebrew Python built with "
+        "tkinter support (e.g. `brew install python-tk@3.12`) instead."
     )
     raise
 

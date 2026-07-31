@@ -13,7 +13,21 @@ from ..recon import get_default_recon_preset
 from ..io.json.json_reading import read_reconstruction_preset
 
 import os
-from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2Tk
+try:
+    from matplotlib.backends.backend_tkagg import (
+        FigureCanvasTkAgg,
+        NavigationToolbar2Tk,
+    )
+except ImportError:
+    print(
+        "Failed to import tkinter support for matplotlib. If you are using uv, this "
+        "usually means your uv-managed Python was installed before uv started bundling "
+        "a working tkinter (August 2025, uv >= 0.8.7). Try running "
+        "`uv python upgrade --reinstall` (or `uv self update` followed by "
+        "`uv python install --reinstall`), or use a system/Homebrew Python built with "
+        "tkinter support (e.g. `brew install python-tk@3.12`) instead."
+    )
+    raise
 
 from importlib.resources import files
 

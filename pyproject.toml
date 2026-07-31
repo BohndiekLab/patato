@@ -86,6 +86,12 @@ write_to = "patato/_version.py"
 # Disable building PyPy wheels on all platforms
 skip = "pp*"
 
+[tool.uv]
+# python-build-standalone only started bundling working tkinter/Tcl-Tk support
+# in its August 2025 releases; older uv versions can silently resolve to an
+# interpreter with no _tkinter extension at all, breaking the GUI scripts.
+required-version = ">=0.8.7"
+
 [dependency-groups]
 dev = [
     "ipykernel>=6.29.5",
