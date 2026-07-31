@@ -18,11 +18,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
+        python-version: ["3.10", "3.11", "3.12", "3.13", "3.14"]
         os: [ubuntu-latest, windows-latest, macos-14]
-        exclude:
-          - python-version: "3.8"
-            os: windows-latest
 
     steps:
     - uses: actions/checkout@v4
@@ -40,7 +37,7 @@ jobs:
         pip install coverage ruff
     - name: Linting
       run: |
-        ruff check --output-format=github --select=E9,F63,F7,F82 --target-version=py39 . # Should do wider tests in the future.
+        ruff check --output-format=github --select=E9,F63,F7,F82 --target-version=py310 . # Should do wider tests in the future.
     - name: Run tests
       run: |
         cd tests
