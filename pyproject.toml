@@ -8,7 +8,7 @@ dynamic = ["version"]
 dependencies = [
     "cython",
     "shapely",
-    "pylops", # Check version compatibility with pylops
+    "pylops>=2.2.0", # Check version compatibility with pylops
     "h5py",
     "pandas",
     "xarray",
@@ -18,7 +18,7 @@ dependencies = [
     "matplotlib_scalebar",
     "dask",
     "pybind11",
-    "jax[cpu]",
+    "jax[cpu]>=0.4.13",
     "customtkinter",
     "tqdm",
 ]

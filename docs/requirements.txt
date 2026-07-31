@@ -8,6 +8,7 @@ h5py
 scipy
 pandas
 matplotlib
+matplotlib_scalebar
 dask
 cython
 xarray
@@ -16,8 +17,5 @@ shapely
 nbsphinx
 ipython
 jax[cpu]
-seaborn
 pylops
-scikit-fda
-scikit-learn
-tabulate
+tqdm
