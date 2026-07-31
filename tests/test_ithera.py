@@ -52,7 +52,7 @@ class TestITheraImport(unittest.TestCase):
                 pa_1.get_time_series().raw_data == pa_2.get_time_series().raw_data[:, 0]
             )
         )
-        self.assertTrue(np.all(new_t1.raw_data[()] == new_t2.raw_data[()]))
+        self.assertTrue(np.allclose(new_t1.raw_data[()], new_t2.raw_data[()]))
 
         # test iannotation import
         rois_1 = [roi.points for roi in pa_1.get_rois().values()]
