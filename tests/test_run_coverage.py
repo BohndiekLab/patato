@@ -6,48 +6,55 @@ import unittest
 import os
 import sys
 
-sys.path.insert(0, os.path.abspath("../"))
-
-from coverage import Coverage
-
-cov = Coverage(
-    source=["../patato"],
-    omit=["*test*", "*/convenience_scripts/*", "*/useful_utilities/*"],
-)
-cov.start()
-
 # flake8: noqa
-from test_preprocessing_algorithm import TestPreprocessing
-from test_backprojection import TestBackprojection
-from test_unmixing import TestUnmixing
-from test_pipelines import TestPipelines
-from test_image_sequence import TestHDF5Load
-from test_ithera import TestITheraImport
-from test_reconstruction_reading import TestJSONLoading
-from test_msot_data import TestMSOTData
-from test_model_based import TestModelBased
-from test_make_dummy_dataset import make_dummy_dataset
 
-os.environ["XLA_PYTHON_CLIENT_PREALLOCATE"] = "false"
 
-make_dummy_dataset()
+def main():
+    sys.path.insert(0, os.path.abspath("../"))
 
-alltests = unittest.TestSuite()
-alltests.addTest(unittest.makeSuite(TestMSOTData))
-alltests.addTest(unittest.makeSuite(TestPreprocessing))
-alltests.addTest(unittest.makeSuite(TestITheraImport))
-alltests.addTest(unittest.makeSuite(TestBackprojection))
-alltests.addTest(unittest.makeSuite(TestUnmixing))
-alltests.addTest(unittest.makeSuite(TestPipelines))
-alltests.addTest(unittest.makeSuite(TestHDF5Load))
-alltests.addTest(unittest.makeSuite(TestJSONLoading))
-alltests.addTest(unittest.makeSuite(TestModelBased))
+    from coverage import Coverage
 
-result = unittest.TextTestRunner(verbosity=2).run(alltests)
+    cov = Coverage(
+        source=["../patato"],
+        omit=["*test*", "*/convenience_scripts/*", "*/useful_utilities/*"],
+    )
+    cov.start()
 
-cov.stop()
-cov.save()
+    from test_preprocessing_algorithm import TestPreprocessing
+    from test_backprojection import TestBackprojection
+    from test_unmixing import TestUnmixing
+    from test_pipelines import TestPipelines
+    from test_image_sequence import TestHDF5Load
+    from test_ithera import TestITheraImport
+    from test_reconstruction_reading import TestJSONLoading
+    from test_msot_data import TestMSOTData
+    from test_model_based import TestModelBased
+    from test_make_dummy_dataset import make_dummy_dataset
 
-cov.report(skip_empty=True, skip_covered=False)
-cov.html_report(directory="../docs/test_coverage")
-cov.xml_report(outfile="../docs/test_coverage/coverage.xml")
+    os.environ["XLA_PYTHON_CLIENT_PREALLOCATE"] = "false"
+
+    make_dummy_dataset()
+
+    alltests = unittest.TestSuite()
+    alltests.addTest(unittest.TestLoader().loadTestsFromTestCase(TestMSOTData))
+    alltests.addTest(unittest.TestLoader().loadTestsFromTestCase(TestPreprocessing))
+    alltests.addTest(unittest.TestLoader().loadTestsFromTestCase(TestITheraImport))
+    alltests.addTest(unittest.TestLoader().loadTestsFromTestCase(TestBackprojection))
+    alltests.addTest(unittest.TestLoader().loadTestsFromTestCase(TestUnmixing))
+    alltests.addTest(unittest.TestLoader().loadTestsFromTestCase(TestPipelines))
+    alltests.addTest(unittest.TestLoader().loadTestsFromTestCase(TestHDF5Load))
+    alltests.addTest(unittest.TestLoader().loadTestsFromTestCase(TestJSONLoading))
+    alltests.addTest(unittest.TestLoader().loadTestsFromTestCase(TestModelBased))
+
+    result = unittest.TextTestRunner(verbosity=2).run(alltests)
+
+    cov.stop()
+    cov.save()
+
+    cov.report(skip_empty=True, skip_covered=False)
+    cov.html_report(directory="../docs/test_coverage")
+    cov.xml_report(outfile="../docs/test_coverage/coverage.xml")
+
+
+if __name__ == "__main__":
+    main()

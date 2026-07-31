@@ -18,30 +18,26 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
-        os: [ubuntu-latest, windows-latest, macos-13]
-        exclude:
-          - python-version: "3.8"
-            os: windows-latest
+        python-version: ["3.10", "3.11", "3.12", "3.13"]
+        os: [ubuntu-latest, windows-latest, macos-14]
+
+    env:
+      UV_PYTHON: ${{ matrix.python-version }}
 
     steps:
     - uses: actions/checkout@v4
       with:
         fetch-depth: 0
-    - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v5
+    - name: Install uv
+      uses: astral-sh/setup-uv@v3
       with:
-        python-version: ${{ matrix.python-version }}
+        enable-cache: true
     - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        python -m pip install flake8 pytest
-        pip install -e .
-        pip install coverage ruff
+      run: uv sync --locked --group test
     - name: Linting
       run: |
-        ruff check --output-format=github --select=E9,F63,F7,F82 --target-version=py39 . # Should do wider tests in the future.
+        uv run ruff check --output-format=github --select=E9,F63,F7,F82 --target-version=py310 . # Should do wider tests in the future.
     - name: Run tests
       run: |
         cd tests
-        python -m unittest
+        uv run python -m unittest

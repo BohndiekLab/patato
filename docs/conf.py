@@ -46,6 +46,8 @@ autosummary_ignore_module_all = False
 autodoc_mock_imports = [
     "simpa",
     "pacfish",
+    "customtkinter",
+    "tkinter",
     "patato.recon.model_based.generate_model",
     "patato.recon.model_based.generate_model_refraction",
 ]

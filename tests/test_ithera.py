@@ -52,7 +52,12 @@ class TestITheraImport(unittest.TestCase):
                 pa_1.get_time_series().raw_data == pa_2.get_time_series().raw_data[:, 0]
             )
         )
-        self.assertTrue(np.all(new_t1.raw_data[()] == new_t2.raw_data[()]))
+        # float32 pipeline output: atol=1e-8 (np.allclose's default) is tighter
+        # than float32 precision itself for values in this range, and the jax
+        # CPU backend's parallel reductions aren't bit-reproducible run to run.
+        self.assertTrue(
+            np.allclose(new_t1.raw_data[()], new_t2.raw_data[()], rtol=1e-5, atol=1e-5)
+        )
 
         # test iannotation import
         rois_1 = [roi.points for roi in pa_1.get_rois().values()]
