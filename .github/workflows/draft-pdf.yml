@@ -14,7 +14,7 @@ jobs:
     name: Paper Draft
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
       - name: Build draft PDF
@@ -23,7 +23,7 @@ jobs:
           journal: joss
           paper-path: paper/paper.md
       - name: Upload
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: paper
           path: paper/paper.pdf
