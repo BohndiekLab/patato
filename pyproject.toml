@@ -6,21 +6,21 @@ build-backend = "setuptools.build_meta"
 name = "patato"
 dynamic = ["version"]
 dependencies = [
-    "cython",
-    "shapely",
+    "cython>=3.1.3",
+    "shapely>=2.1.1",
     "pylops>=2.2.0", # Check version compatibility with pylops
-    "h5py",
-    "pandas",
-    "xarray",
+    "h5py>=3.14.0",
+    "pandas>=2.3.1",
+    "xarray>=2025.6.1",
     "numpy>=1.22",
-    "scipy",
-    "matplotlib",
-    "matplotlib_scalebar",
-    "dask",
-    "pybind11",
+    "scipy>=1.15.3",
+    "matplotlib>=3.10.5",
+    "matplotlib_scalebar>=0.9.0",
+    "dask>=2025.7.0",
+    "pybind11>=3.0.0",
     "jax[cpu]>=0.4.13",
-    "customtkinter",
-    "tqdm",
+    "customtkinter>=5.2.2",
+    "tqdm>=4.67.1",
 ]
 
 authors = [
@@ -99,4 +99,9 @@ dev = [
     "sphinx>=6.2.1",
     "sphinx-book-theme>=1.0.1",
     "sphinx-rtd-theme>=3.0.2",
+]
+test = [
+    "coverage>=7.6.1",
+    "pytest>=8.3.5",
+    "ruff>=0.6.4",
 ]
