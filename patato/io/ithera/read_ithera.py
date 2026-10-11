@@ -407,7 +407,8 @@ class iTheraMSOT(ReaderInterface):
         ).replace(tzinfo=None)
 
     def _get_scan_times(self):
-        return self.scan_attrs["timestamp"]
+        # Convert to seconds, iThera stores timestamps in 100 ns ticks.
+        return self.scan_attrs["timestamp"] * 1e-7
 
     def _get_temperature(self):
         return self.scan_elements["TEMPERATURE"]

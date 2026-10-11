@@ -145,8 +145,9 @@ class HDF5Writer(WriterInterface):
         )
 
     def set_scan_times(self, scan_times):
+        # Store in 100 ns ticks (backwards compatibility)
         self.file.create_dataset(
-            HDF5Tags.TIMESTAMP, data=scan_times, compression="gzip"
+            HDF5Tags.TIMESTAMP, data=scan_times * 1e7, compression="gzip"
         )
 
     def set_sensor_geometry(self, sensor_geometry):
