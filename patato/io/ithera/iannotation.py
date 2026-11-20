@@ -81,8 +81,8 @@ class IROIShape(ABC):
         """
         Extract the (x, y, z) coordinates from the pos or size string.
         """
-        roi_coords = re.findall(r"\((.*?)\)", roi_string)[0].split(", ")
-        return [float(c) for c in roi_coords]
+        roi_coords = re.search(r"\((.*?)\)", roi_string).group(1).split(",")
+        return [float(c.strip()) for c in roi_coords]
 
     @property
     def type(self) -> str:
